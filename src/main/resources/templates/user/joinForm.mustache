@@ -1,0 +1,148 @@
+{{>layout/header}}
+<style>
+    * {
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    .h2-text {
+        margin: 10px 0 20px;
+        text-align: center;
+    }
+
+    .main {
+        margin: 5vw 5%;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #000;
+    }
+
+    .input-button-join {
+        padding: 5px;
+        margin: 2px 0;
+        width: 100%;
+        height: 35px;
+        background: #38f;
+        color: rgb(255, 255, 255);
+        border: none;
+        border-radius: 5px;
+    }
+
+    .p-text {
+        font-size: 13px;
+        margin-top: 10px;
+        color: rgb(66, 66, 66);
+    }
+
+    .hr-line {
+        margin-bottom: 6px;
+    }
+
+    .div-phone {
+        display: flex;
+
+    }
+
+    .div-phone-number {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+
+
+    }
+
+    .div-hyphen {
+        margin: 5px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .div-gender {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        margin-top: 2px;
+
+    }
+
+    .div-gender-radio {
+        font-size: small;
+        margin-right: 15px;
+    }
+</style>
+<div class="main">
+    <h2 class="h2-text">개인 회원가입</h2>
+    <hr class="hr-line">
+    <form action="/join" method="post">
+        <p class="p-text">이름</p>
+        <input type="text" id="username" placeholder="이름을 입력하세요" class="form-control" required>
+
+        <p class="p-text">아이디</p>
+        <input type="text" id="id" placeholder="id" class="form-control" required>
+
+        <p class="p-text">비밀번호</p>
+        <input type="password" id="pw" placeholder="password" class="form-control" required>
+
+
+        <p class="p-text">생년월일</p>
+        <input type="date" id="birthdate" placeholder="birthdate" class="form-control" required>
+
+        <p class="p-text">성별</p>
+        <div class="div-gender">
+            <div>남자</div>&nbsp;
+            <div><input type="radio" name="gender" value="남자" class="div-gender-radio"></div>
+            <div>여자</div>&nbsp;
+            <div><input type="radio" name="gender" value="여자" class="div-gender-radio"></div>
+
+        </div>
+
+        <p class="p-text">휴대전화</p>
+        <div class="div-phone">
+            <div class="div-phone-number">
+                <input type='tel' name='phone1' value="010" class="form-control">
+            </div>
+            <div class="div-hyphen">-</div>
+            <div class="div-phone-number">
+                <input type='tel' name='phone2' required class="form-control">
+            </div>
+            <div class="div-hyphen">-</div>
+            <div class="div-phone-number">
+                <input type='tel' name='phone3' required class="form-control">
+            </div>
+        </div>
+
+        <p class="p-text">주소</p>
+        <input type="text" id="pw" placeholder="주소를 입력하세요" class="form-control" required>
+
+        <p class="p-text">이메일</p>
+        <input type="email" id="pw" placeholder="email" class="form-control" required>
+
+        <p class="p-text">보유 기술
+        <div class="mb-3 form-control">
+            <span>java</span>
+            <input type="checkbox" name="stack" value="java">
+            <span>javaScript</span>
+            <input type="checkbox" name="stack" value="javascript">
+            <span>Spring</span>
+            <input type="checkbox" name="stack" value="spring">
+            <span>HTML</span>
+            <input type="checkbox" name="stack" value="html">
+            <span>jQuery</span>
+            <input type="checkbox" name="stack" value="jQuery">
+            <span>MySQL</span>
+            <input type="checkbox" name="stack" value="mysql">
+        </div>
+        </p>
+        <!-- <div class="login-find">
+        <div class="login-find-select">아이디 찾기</div>
+        <div class="login-find-select">비밀번호 찾기</div>
+        <div class="login-find-select">회원가입</div>
+    </div> -->
+
+        <input type="submit" value="회원가입" class="input-button-join">
+    </form>
+
+</div>
+<!-- 바디 end -->
+{{>layout/footer}}

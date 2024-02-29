@@ -1,0 +1,115 @@
+{{> layout/header }}
+<div class="container">
+    <h2 class="mb-4 fw-bold">이력서 수정</h2>
+    <h4 class="fw-semibold mb-3">기본정보</h4>
+    <table class="table-resume-notice">
+        <tr>
+            <td class="table-td-width-10">이름</td>
+            <td><input class="form-control" style="width: 50%;" type="text" value="홍길동" disabled></td>
+        </tr>
+        <tr>
+            <td class="table-td-width-10">생년월일</td>
+            <td>
+                <input class="form-control" style="width: 50%;" type="date" value="1996-01-01" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td class="table-td-width-10">성별</td>
+            <td>
+                <input type="radio" name="gender" checked disabled>남자
+                <input type="radio" name="gender" disabled>여자
+            </td>
+        </tr>
+        <tr>
+            <td class="table-td-width-10">휴대전화</td>
+            <td>
+                <input class="form-control" style="width: 50%;" type="tel" value="010-0000-0000" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td class="table-td-width-10">이메일</td>
+            <td>
+                <input class="form-control" style="width: 50%;" type="email" value="ssar@nate.com" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td class="table-td-width-10">주소</td>
+            <td><input class="form-control" style="width: 50%;" type="text" value="부산 부산진구 중앙대로 749" disabled></td>
+        </tr>
+    </table>
+
+    <h4 class="fw-semibold mb-3">최종 학력</h4>
+    <table class="table-resume-notice">
+        <tr>
+            <td>학교명</td>
+            <td>
+            <span>
+              <input class="form-control" style="width: 50%;" type="text">
+            </span>
+            </td>
+        </tr>
+        <tr></tr>
+        <td>졸업형태</td>
+        <td>
+            <select>
+                <option value="">재학</option>
+                <option value="">중퇴</option>
+                <option value="">졸업</option>
+            </select>
+        </td>
+        </tr>
+        <tr>
+            <td>졸업 날짜</td>
+            <td>
+                <input class="form-control" style="width: 50%;" type="date">
+            </td>
+        </tr>
+        <tr>
+            <td>전공</td>
+            <td><input class="form-control" style="width: 50%;" type="text"></td>
+        </tr>
+    </table>
+
+    <h4 class="fw-semibold mb-3 title-inline">경력 사항</h4>
+    <table class="table-resume-notice">
+        <tr>
+            <td>회사명</td>
+            <td><input class="form-control" style="width: 50%;" type="text"></td>
+        </tr>
+        <tr>
+            <td>시작 기간</td>
+            <td>
+                <input class="form-control" style="width: 50%;" type="date" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>종료 기간</td>
+            <td>
+                <input class="form-control" style="width: 50%;" type="date" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>직급</td>
+            <td><input class="form-control" style="width: 50%;" type="text"></td>
+        </tr>
+        <tr>
+            <td>부서</td>
+            <td><input class="form-control" style="width: 50%;" type="text"></td>
+        </tr>
+        <tr>
+            <td>담당 업무</td>
+            <td><textarea class="textarea-work-size"></textarea></td>
+        </tr>
+    </table>
+
+
+    <h4 class="fw-semibold mb-3">자기소개서</h4>
+    <textarea class="textarea-introduction-size mb-3"></textarea>
+    <br>
+    <div class="button-post-cancel">
+        <button class="btn btn-outline-dark">취소</button>
+        <button class="btn btn-outline-dark">등록</button>
+    </div>
+</div>
+<!-- 바디 end -->
+{{>layout/footer}}
