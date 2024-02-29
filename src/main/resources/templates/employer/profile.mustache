@@ -1,0 +1,96 @@
+{{> layout/header }}
+<div class="div-body">
+    <div class="div-layout">
+        <div class="div-header d-flex justify-content-between">
+            <h3><b>기업 정보</b></h3>
+            <form action="/employer/1/updateForm" class="justify-content-end">
+                <button class="btn btn-primary">수정</button>
+            </form>
+        </div>
+        <div class="div-information">
+            <div class="div-information-grid">
+                <h4>기본정보</h4>
+                <table class="table-image">
+                    <tr>
+                        <td class="td-image">ID</td>
+                        <td class="td-image">김성재</td>
+                    </tr>
+                    <tr>
+                        <td class="td-image">E-MAIL</td>
+                        <td class="td-image">stwin755@gmail.com</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="div-information-grid">
+                <h4>기업정보</h4>
+                <table class="table-image">
+                    <tr>
+                        <td class="td-image">회사명</td>
+                        <td class="td-image">그린</td>
+                    </tr>
+                    <tr>
+                        <td class="td-image">전화번호</td>
+                        <td class="td-image">1234567890</td>
+                    </tr>
+                    <tr>
+                        <td class="td-image">주소</td>
+                        <td class="td-image">부산광역시</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="div-layout">
+        <div class="div-header d-flex justify-content-between">
+            <h3><b>공고 관리</b></h3>
+            <form action="/board/uploadForm" method="get" class="justify-content-end">
+                <button class="btn btn-primary">추가</button>
+            </form>
+        </div>
+        <div class="div-announcement">
+            <table class="table-image">
+                <tr>
+                    <td class="td-announcement td-image">공고 데이터 불러오자
+                        <div class="button-group button-inline">
+                            <form action="/board/1/updateForm">
+                                <button class="btn btn-outline-primary">수정</button>
+                            </form>
+                            <button class="btn btn-primary">삭제</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-announcement td-image">공고 데이터 불러오자
+                        <div class="button-group button-inline">
+                            <form action="/board/1/updateForm">
+                                <button class="btn btn-outline-primary">수정</button>
+                            </form>
+                            <button class="btn btn-primary">삭제</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="div-layout">
+        <div class="div-header">
+            <h3><b>지원자 리스트</b></h3>
+        </div>
+        <div class="div-applicant">
+            <table class="table-image">
+                <tr>
+                    <td class="td-applicant td-image">지원자 데이터 불러오자
+                        <div class="button-group button-inline">
+                            <button class="btn btn-outline-primary">불합격</button>
+                            <button class="btn btn-primary">합격</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- 바디 end -->
+{{>layout/footer}}

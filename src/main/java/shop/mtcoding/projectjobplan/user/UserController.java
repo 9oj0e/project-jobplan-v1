@@ -13,9 +13,9 @@ public class UserController {
     public String joinForm() {
         return "/user/joinForm";
     }
-    @GetMapping("/user/employer/joinForm")
+    @GetMapping("/employer/joinForm")
     public String employerJoinForm() {
-        return "/user/employer/joinForm";
+        return "/employer/joinForm";
     }
     @GetMapping("/user/loginForm")
     public String loginForm() {
@@ -25,16 +25,16 @@ public class UserController {
     public String profile() {
         return "/user/profile";
     }
-    @GetMapping("/user/employer/profile")
+    @GetMapping("/employer/1")
     public String employerProfile() {
-        return "/user/profile";
+        return "/employer/profile";
     }
     @GetMapping("/user/1/updateForm")
     public String updateForm() {
         return "/user/updateForm";
     }
-    @GetMapping("/user/employer/1/updateForm")
+    @GetMapping("/employer/1/updateForm")
     public String employerUpdateForm() {
-        return "/user/employer/updateForm";
+        return "/employer/updateForm";
     }
 }
