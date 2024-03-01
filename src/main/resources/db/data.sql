@@ -10,4 +10,67 @@ INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
-    false, 1234, '회사명', now());
+        false, 1234, '회사명', now());
+
+INSERT INTO user_tb
+(username, password, name, birthdate, gender, phone_number, address, email,
+ is_employer, employer_id_number, business_name, created_at)
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
+        true, 1234, '삼성', now());
+
+INSERT INTO user_tb
+(username, password, name, birthdate, gender, phone_number, address, email,
+ is_employer, employer_id_number, business_name, created_at)
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
+        true, 1234, '롯데', now());
+
+
+INSERT INTO user_tb
+(username, password, name, birthdate, gender, phone_number, address, email,
+ is_employer, employer_id_number, business_name, created_at)
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
+        false, 1234, '회사명', now());
+
+
+-- user_tb
+INSERT INTO user_tb
+(username, password, name, birthdate, gender, phone_number, address, email,
+ is_employer, employer_id_number, business_name, created_at)
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
+        true, 1234, '구글', now());
+
+INSERT INTO user_tb
+(username, password, name, birthdate, gender, phone_number, address, email,
+ is_employer, employer_id_number, business_name, created_at)
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
+        true, 1234, '네이버', now());
+
+INSERT INTO user_tb
+(username, password, name, birthdate, gender, phone_number, address, email,
+ is_employer, employer_id_number, business_name, created_at)
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
+        false, 1234, '회사명', now());
+
+INSERT INTO user_tb
+(username, password, name, birthdate, gender, phone_number, address, email,
+ is_employer, employer_id_number, business_name, created_at)
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
+        true, 1234, '카카오', now());
+
+INSERT INTO user_tb
+(username, password, name, birthdate, gender, phone_number, address, email,
+ is_employer, employer_id_number, business_name, created_at)
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
+        false, 1234, '회사명', now());
+
+INSERT INTO user_tb
+(username, password, name, birthdate, gender, phone_number, address, email,
+ is_employer, employer_id_number, business_name, created_at)
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
+        true, 1234, '네이버', now());
+
+INSERT INTO user_tb
+(username, password, name, birthdate, gender, phone_number, address, email,
+ is_employer, employer_id_number, business_name, created_at)
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
+        false, 1234, '회사명', now());
