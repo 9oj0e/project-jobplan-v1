@@ -19,7 +19,6 @@ public class BoardController {
     @GetMapping({"/", "/board"})
     public String index(HttpServletRequest request) {
         List<User> userList = userRepository.findAll();
-        request.setAttribute("userList", userList);
 
         List<User> employerList = new ArrayList<>();
 
