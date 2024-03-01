@@ -1,10 +1,13 @@
 package shop.mtcoding.projectjobplan.user;
 
+import com.sun.tools.javac.Main;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
@@ -45,6 +48,17 @@ public class UserRepository {
 
     }
     */
+    public List<User> findAll(){
+        Query query = entityManager.createNativeQuery("select * from user_tb order by id desc;", User.class);
+
+        try {
+            return query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
     public User findById(Integer id) {
         String q = "select * from resume_tb where id = ? order by id desc";
         Query query = entityManager.createNativeQuery(q, User.class);

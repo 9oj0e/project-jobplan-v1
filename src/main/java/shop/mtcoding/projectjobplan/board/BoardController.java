@@ -1,17 +1,53 @@
 package shop.mtcoding.projectjobplan.board;
 
+import com.sun.tools.javac.Main;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import shop.mtcoding.projectjobplan.resume.ResumeRepository;
+import shop.mtcoding.projectjobplan.user.User;
+import shop.mtcoding.projectjobplan.user.UserRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+@RequiredArgsConstructor
 @Controller
 public class BoardController {
 
+
+    private final BoardRepository boardRepository ;
+
     @GetMapping({"/", "/board"})
-    public String index() {
+    public String index(HttpServletRequest request) {
+        List<BoardResponse.boardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb();
+
+        List<BoardResponse.boardAndUserDTO> employerList = new ArrayList<>();
+
+        for (BoardResponse.boardAndUserDTO dto : responseDTO) {
+            if (dto.isEmployer()) {
+                employerList.add(dto);
+            }
+        }
+        request.setAttribute("employerList", employerList);
+
         return "/index";
-    }
+}
     @GetMapping("/board/listings")
-    public String listings() {
+    public String listings(HttpServletRequest request) {
+
+        List<BoardResponse.boardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb();
+
+        List<BoardResponse.boardAndUserDTO> employerList = new ArrayList<>();
+
+        for (BoardResponse.boardAndUserDTO dto : responseDTO) {
+            if (dto.isEmployer()) {
+                employerList.add(dto);
+            }
+        }
+        request.setAttribute("employerList", employerList);
+
+
         return "/board/listings";
     }
     @GetMapping("/board/main")

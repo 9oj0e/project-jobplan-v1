@@ -75,99 +75,21 @@
         <th>구직자 정보</th>
         <th>이력서</th>
 
-        <tr>
-            <td class="div-recommendation-text-2">홍길동</td>
-            <td>
-                <div class="div-recommendation-text-1">서비스업,고객센터</div>
-                <div class="div-recommendation-text-2">맡은 업무에 항상 최선을 다하는 인재입니다.</div>
-            </td>
-            <td>
-                <button class="btn btn-outline-body" onclick="location.href='/resume/1'">이력서보기</button>
-            </td>
-        </tr>
-        <tr>
-            <td class="div-recommendation-text-2">홍길동</td>
-            <td>
-                <div class="div-recommendation-text-1">서비스업,고객센터</div>
-                <div class="div-recommendation-text-2">맡은 업무에 항상 최선을 다하는 인재입니다.</div>
-            </td>
-            <td>
-                <button class="btn btn-outline-body" onclick="location.href='/resume/1'">이력서보기</button>
-            </td>
-        </tr>
+        {{#resumeList}}
+            <tr>
+                <td class="div-recommendation-text-2">{{name}}</td>
+                <td>
+                    <div class="div-recommendation-text-1">{{career}}</div>
+                    <div class="div-recommendation-text-2">{{title}}</div>
+                </td>
+                <td>
+                    <button class="btn btn-outline-body" onclick="location.href='/resume/1'">이력서보기</button>
+                </td>
+            </tr>
 
-        <tr>
-            <td class="div-recommendation-text-2">홍길동</td>
-            <td>
-                <div class="div-recommendation-text-1">서비스업,고객센터</div>
-                <div class="div-recommendation-text-2">맡은 업무에 항상 최선을 다하는 인재입니다.</div>
-            </td>
-            <td>
-                <button class="btn btn-outline-body" onclick="location.href='/resume/1'">이력서보기</button>
-            </td>
-        </tr>
+        {{/resumeList}}
 
-        <tr>
-            <td class="div-recommendation-text-2">홍길동</td>
-            <td>
-                <div class="div-recommendation-text-1">서비스업,고객센터</div>
-                <div class="div-recommendation-text-2">맡은 업무에 항상 최선을 다하는 인재입니다.</div>
-            </td>
-            <td>
-                <button class="btn btn-outline-body" onclick="location.href='/resume/1'">이력서보기</button>
-            </td>
-        </tr>
-        <tr>
-            <td class="div-recommendation-text-2">홍길동</td>
-            <td>
-                <div class="div-recommendation-text-1">서비스업,고객센터</div>
-                <div class="div-recommendation-text-2">맡은 업무에 항상 최선을 다하는 인재입니다.</div>
-            </td>
-            <td>
-                <button class="btn btn-outline-body" onclick="location.href='/resume/1'">이력서보기</button>
-            </td>
-        </tr>
-        <tr>
-            <td class="div-recommendation-text-2">홍길동</td>
-            <td>
-                <div class="div-recommendation-text-1">서비스업,고객센터</div>
-                <div class="div-recommendation-text-2">맡은 업무에 항상 최선을 다하는 인재입니다.</div>
-            </td>
-            <td>
-                <button class="btn btn-outline-body" onclick="location.href='/resume/1'">이력서보기</button>
-            </td>
-        </tr>
-        <tr>
-            <td class="div-recommendation-text-2">홍길동</td>
-            <td>
-                <div class="div-recommendation-text-1">서비스업,고객센터</div>
-                <div class="div-recommendation-text-2">맡은 업무에 항상 최선을 다하는 인재입니다.</div>
-            </td>
-            <td>
-                <button class="btn btn-outline-body" onclick="location.href='/resume/1'">이력서보기</button>
-            </td>
-        </tr>
 
-        <tr>
-            <td class="div-recommendation-text-2">홍길동</td>
-            <td>
-                <div class="div-recommendation-text-1">서비스업,고객센터</div>
-                <div class="div-recommendation-text-2">맡은 업무에 항상 최선을 다하는 인재입니다.</div>
-            </td>
-            <td>
-                <button class="btn btn-outline-body" onclick="location.href='/resume/1'">이력서보기</button>
-            </td>
-        </tr>
-        <tr>
-            <td class="div-recommendation-text-2">홍길동</td>
-            <td>
-                <div class="div-recommendation-text-1">서비스업,고객센터</div>
-                <div class="div-recommendation-text-2">맡은 업무에 항상 최선을 다하는 인재입니다.</div>
-            </td>
-            <td>
-                <button class="btn btn-outline-body" onclick="location.href='/resume/1'">이력서보기</button>
-            </td>
-        </tr>
     </table>
 
 

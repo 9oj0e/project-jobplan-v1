@@ -5,13 +5,45 @@ import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.projectjobplan.board.BoardResponse;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
 public class ResumeRepository {
     private final EntityManager entityManager;
+
+
+    public List<ResumeResponse.ResumeAndUserDTO> findByResumeAndUser(){
+        String q = """
+                select r.id,r.user_id,r.title,r.content,r.career,u.address,u.is_employer,u.name  from resume_tb r inner join user_tb u on r.user_id = u.id ;
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        List<Object[]> results = query.getResultList();
+        List<ResumeResponse.ResumeAndUserDTO> responseDTO = new ArrayList<>();
+
+        for(Object[] result :results){
+
+            ResumeResponse.ResumeAndUserDTO dto = new ResumeResponse.ResumeAndUserDTO();
+            dto.setId((Integer) result[0]);
+            dto.setUserId((Integer) result[1]);
+            dto.setTitle((String) result[2]);
+            dto.setContent((String) result[3]);
+            dto.setCareer((String) result[4]);
+            dto.setAddress((String) result[5]);
+            dto.setEmployer((boolean) result[6]);
+            dto.setName((String) result[7]);
+
+
+
+            responseDTO.add(dto);
+        }
+        return responseDTO;
+
+    }
 
     @Transactional
     public Integer save(ResumeRequest.SaveDTO requestDTO, Integer userId) {
