@@ -23,11 +23,6 @@ public class User {
     private String address;
     private String email;
 
-    private List<Skill> skills = new ArrayList<>();
-    public void addSkill(Skill skill){
-        skills.add(skill);
-    }
-
     // employer, 사업자 항목 nullable
     private boolean isEmployer; // 사업자인지
     private Integer employerIdNumber; // 사업자번호
