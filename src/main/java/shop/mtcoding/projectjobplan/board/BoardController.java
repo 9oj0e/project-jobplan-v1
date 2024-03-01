@@ -21,14 +21,14 @@ public class BoardController {
     public String index(HttpServletRequest request) {
         List<BoardResponse.boardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb();
 
-//        List<User> employerList = new ArrayList<>();
-//
-//        for (User user : userList) {
-//            if (user.isEmployer()) {
-//                employerList.add(user);
-//            }
-//        }
-        request.setAttribute("userList", responseDTO);
+        List<BoardResponse.boardAndUserDTO> employerList = new ArrayList<>();
+
+        for (BoardResponse.boardAndUserDTO dto : responseDTO) {
+            if (dto.isEmployer()) {
+                employerList.add(dto);
+            }
+        }
+        request.setAttribute("employerList", employerList);
 
         return "/index";
 }
