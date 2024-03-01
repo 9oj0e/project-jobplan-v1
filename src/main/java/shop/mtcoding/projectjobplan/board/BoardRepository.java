@@ -14,7 +14,7 @@ public class BoardRepository {
     private final EntityManager entityManager;
 
     @Transactional
-    public void save(BoardRequest.SaveDTO requestDTO, Integer userId) {
+    public Integer save(BoardRequest.SaveDTO requestDTO, Integer userId) {
         String q = """
                 INSERT INTO board_tb
                 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
@@ -29,6 +29,8 @@ public class BoardRepository {
         query.setParameter(6, requestDTO.getSalary());
         query.setParameter(7, requestDTO.getOpeningDate());
         query.setParameter(8, requestDTO.getClosingDate());
+
+        return query.executeUpdate(); // 영향 받은 행
     }
 
     public List<Board> findAll() {
@@ -48,7 +50,7 @@ public class BoardRepository {
     }
 
     @Transactional
-    public void updateById(BoardRequest.UpdateDTO requestDTO, Integer id) {
+    public Integer updateById(BoardRequest.UpdateDTO requestDTO, Integer id) {
         String q = """
                 UPDATE board_tb
                 SET
@@ -71,12 +73,15 @@ public class BoardRepository {
         query.setParameter(7, requestDTO.getClosingDate());
         query.setParameter(8, id);
 
+        return query.executeUpdate(); // 영향 받은 행
     }
 
     @Transactional
-    public void deleteById(Integer id) {
+    public Integer deleteById(Integer id) {
         String q = "DELETE FROM board_tb WHERE id = ?";
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, id);
+
+        return query.executeUpdate(); // 영향 받은 행
     }
 }

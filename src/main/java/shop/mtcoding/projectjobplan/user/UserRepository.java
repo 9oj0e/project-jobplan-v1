@@ -12,7 +12,7 @@ public class UserRepository {
     private final EntityManager entityManager;
 
     @Transactional
-    public void save(UserRequest.SaveDTO requestDTO) {
+    public Integer save(UserRequest.SaveDTO requestDTO) {
         String q = """
                 INSERT INTO user_tb
                 (username, password, name, birthdate, gender, phone_number, address, email,
@@ -33,6 +33,8 @@ public class UserRepository {
         query.setParameter(9, requestDTO.getIsEmployer());
         query.setParameter(10, requestDTO.getEmployerIdNumber());
         query.setParameter(11, requestDTO.getBusinessName());
+
+        return query.executeUpdate(); // 영향 받은 행
     }
     /* 모든 유저를 조회할 필요가..?
     public List<User> findAll() {
@@ -52,7 +54,7 @@ public class UserRepository {
     }
 
     @Transactional
-    public void updateById(UserRequest.UpdateDTO requestDTO, Integer id) {
+    public Integer updateById(UserRequest.UpdateDTO requestDTO, Integer id) {
         String q = """
                 UPDATE user_tb
                 SET
@@ -83,13 +85,16 @@ public class UserRepository {
         query.setParameter(10, requestDTO.getEmployerIdNumber());
         query.setParameter(11, requestDTO.getBusinessName());
 
+        return query.executeUpdate(); // 영향 받은 행
     }
     /* 계정 탈퇴
     @Transactional
-    public void deleteById(Integer id) {
+    public Integer deleteById(Integer id) {
         String q = "DELETE FROM user_tb WHERE id = ?";
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, id);
+
+        return query.executeUpdate(); // 영향 받은 행
     }
     */
 }

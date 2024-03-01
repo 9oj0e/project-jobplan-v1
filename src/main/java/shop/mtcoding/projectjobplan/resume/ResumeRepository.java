@@ -14,7 +14,7 @@ public class ResumeRepository {
     private final EntityManager entityManager;
 
     @Transactional
-    public void save(ResumeRequest.SaveDTO requestDTO, Integer userId) {
+    public Integer save(ResumeRequest.SaveDTO requestDTO, Integer userId) {
         String q = """
                 INSERT INTO resume_tb
                 (user_id, title, content, school_name, major, education_level, career, created_at)
@@ -28,6 +28,8 @@ public class ResumeRepository {
         query.setParameter(5, requestDTO.getMajor());
         query.setParameter(6, requestDTO.getEducationLevel());
         query.setParameter(7, requestDTO.getCareer());
+
+        return query.executeUpdate(); // 영향 받은 행
     }
 
     public List<Resume> findAll() {
@@ -47,7 +49,7 @@ public class ResumeRepository {
     }
 
     @Transactional
-    public void updateById(ResumeRequest.UpdateDTO requestDTO, Integer id) {
+    public Integer updateById(ResumeRequest.UpdateDTO requestDTO, Integer id) {
         String q = """
                 UPDATE resume_tb
                 SET
@@ -68,12 +70,15 @@ public class ResumeRepository {
         query.setParameter(6, requestDTO.getCareer());
         query.setParameter(7, id);
 
+        return query.executeUpdate(); // 영향 받은 행
     }
 
     @Transactional
-    public void deleteById(Integer id) {
+    public Integer deleteById(Integer id) {
         String q = "DELETE FROM resume_tb WHERE id = ?";
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, id);
+
+        return query.executeUpdate(); // 영향 받은 행
     }
 }
