@@ -15,19 +15,20 @@ import java.util.List;
 public class BoardController {
 
     private final UserRepository userRepository;
+    private final BoardRepository boardRepository ;
 
     @GetMapping({"/", "/board"})
     public String index(HttpServletRequest request) {
-        List<User> userList = userRepository.findAll();
+        List<BoardResponse.boardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb();
 
-        List<User> employerList = new ArrayList<>();
-
-        for (User user : userList) {
-            if (user.isEmployer()) {
-                employerList.add(user);
-            }
-        }
-        request.setAttribute("userList", employerList);
+//        List<User> employerList = new ArrayList<>();
+//
+//        for (User user : userList) {
+//            if (user.isEmployer()) {
+//                employerList.add(user);
+//            }
+//        }
+        request.setAttribute("userList", responseDTO);
 
         return "/index";
 }
