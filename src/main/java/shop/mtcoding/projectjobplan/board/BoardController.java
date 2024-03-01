@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 @RequiredArgsConstructor
 @Controller
@@ -20,14 +21,15 @@ public class BoardController {
         List<User> userList = userRepository.findAll();
         request.setAttribute("userList", userList);
 
-//        try {
-//            if (userList.get(0).isEmployer()) {
-//                request.setAttribute("userList", userList);
-//            }
-//            // else 절이 없어도 됩니다. 첫 번째 사용자가 고용주가 아닐 경우에는 아무런 처리를 하지 않고, 아래의 "/index"를 리턴하게 됩니다.
-//        } catch (Exception e) {
-//            return null;
-//        }
+        List<User> employerList = new ArrayList<>();
+
+        for (User user : userList) {
+            if (user.isEmployer()) {
+                employerList.add(user);
+            }
+        }
+        request.setAttribute("userList", employerList);
+
         return "/index";
 }
     @GetMapping("/board/listings")
