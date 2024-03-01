@@ -44,8 +44,49 @@ VALUES (10, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '�
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (1, '이력서제목', '이력서내용', '학교명', '전공', '학력', '경력', now());
+VALUES (1, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (2, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (3, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (4, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (5, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (6, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (7, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (8, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (9, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (10, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+
+
+
+
+-- user_tb
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
@@ -72,7 +113,7 @@ VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소',
         false, 1234, '회사명', now());
 
 
--- user_tb
+
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
