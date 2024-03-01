@@ -19,7 +19,7 @@ public class BoardRepository {
 
     public List<BoardResponse.boardAndUserDTO> findByBoardtbAndUsertb(){
         String q = """
-                select b.id,b.user_id, b.title, b.content,b.field,b.position,b.salary,b.created_at, u.username,u.address,u.is_employer,u.business_name from board_tb b inner join user_tb u on b.user_id = u.id;
+                select b.id,b.user_id, b.title, b.content,b.field,b.position,b.salary,b.opening_date,b.closing_date,b.created_at, u.username,u.address,u.is_employer,u.business_name from board_tb b inner join user_tb u on b.user_id = u.id;
                 """;
         Query query = entityManager.createNativeQuery(q);
         List<Object[]> results = query.getResultList();
@@ -35,11 +35,13 @@ public class BoardRepository {
             dto.setField((String) result[4]);
             dto.setPosition((String) result[5]);
             dto.setSalary((String) result[6]);
-            dto.setCreatedAt((Timestamp) result[7]);
-            dto.setUsername((String) result[8]);
-            dto.setAddress((String) result[9]);
-            dto.setEmployer((boolean) result[10]);
-            dto.setBusinessName((String) result[11]);
+            dto.setOpeningDate((Timestamp) result[7]);
+            dto.setClosingDate((Timestamp) result[8]);
+            dto.setCreatedAt((Timestamp) result[9]);
+            dto.setUsername((String) result[10]);
+            dto.setAddress((String) result[11]);
+            dto.setEmployer((boolean) result[12]);
+            dto.setBusinessName((String) result[13]);
 
 
 

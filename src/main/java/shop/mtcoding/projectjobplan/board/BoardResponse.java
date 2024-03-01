@@ -16,6 +16,9 @@ public class BoardResponse {
         private String field; // 채용 분야
         private String position; // 포지션
         private String salary; // 연봉
+        private Timestamp openingDate; // 게시일
+        private Timestamp closingDate; // 마감일
+
         private Timestamp createdAt; // 생성일
 
         private String username;
