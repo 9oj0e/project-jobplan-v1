@@ -1,4 +1,79 @@
 package shop.mtcoding.projectjobplan.resume;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@RequiredArgsConstructor
+@Repository
 public class ResumeRepository {
+    private final EntityManager entityManager;
+
+    @Transactional
+    public void save(ResumeRequest.SaveDTO requestDTO, Integer userId) {
+        String q = """
+                INSERT INTO resume_tb
+                (user_id, title, content, school_name, major, education_level, career, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, now())
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, userId);
+        query.setParameter(2, requestDTO.getTitle());
+        query.setParameter(3, requestDTO.getContent());
+        query.setParameter(4, requestDTO.getSchoolName());
+        query.setParameter(5, requestDTO.getMajor());
+        query.setParameter(6, requestDTO.getEducationLevel());
+        query.setParameter(7, requestDTO.getCareer());
+    }
+
+    public List<Resume> findAll() {
+        String q = "select * from resume_tb order by id desc";
+        Query query = entityManager.createNativeQuery(q, Resume.class);
+
+        return (List<Resume>) query.getResultList();
+
+    }
+
+    public Resume findById(Integer id) {
+        String q = "select * from resume_tb where id = ? order by id desc";
+        Query query = entityManager.createNativeQuery(q, Resume.class);
+        query.setParameter(1, id);
+
+        return (Resume) query.getSingleResult();
+    }
+
+    @Transactional
+    public void updateById(ResumeRequest.UpdateDTO requestDTO, Integer id) {
+        String q = """
+                UPDATE resume_tb
+                SET
+                title = ?,
+                content = ?,
+                school_name = ?,
+                major = ?,
+                education_level = ?,
+                career = ?
+                WHERE id = ?
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, requestDTO.getTitle());
+        query.setParameter(2, requestDTO.getContent());
+        query.setParameter(3, requestDTO.getSchoolName());
+        query.setParameter(4, requestDTO.getMajor());
+        query.setParameter(5, requestDTO.getEducationLevel());
+        query.setParameter(6, requestDTO.getCareer());
+        query.setParameter(7, id);
+
+    }
+
+    @Transactional
+    public void deleteById(Integer id) {
+        String q = "DELETE FROM resume_tb WHERE id = ?";
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, id);
+    }
 }

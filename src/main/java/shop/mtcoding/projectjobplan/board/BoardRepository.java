@@ -33,7 +33,7 @@ public class BoardRepository {
 
     public List<Board> findAll() {
         String q = "select * from board_tb order by id desc";
-        Query query = entityManager.createNativeQuery(q);
+        Query query = entityManager.createNativeQuery(q, Board.class);
 
         return (List<Board>) query.getResultList();
 
@@ -41,7 +41,7 @@ public class BoardRepository {
 
     public Board findById(Integer id) {
         String q = "select * from board_tb where id = ? order by id desc";
-        Query query = entityManager.createNativeQuery(q);
+        Query query = entityManager.createNativeQuery(q, Board.class);
         query.setParameter(1, id);
 
         return (Board) query.getSingleResult();
