@@ -17,6 +17,7 @@ public class ResumeResponse {
 
         // employer, 사업자 항목 nullable
         private boolean isEmployer; // 사업자인지
+        private String name ;
     }
 
 
