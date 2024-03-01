@@ -22,7 +22,7 @@ public class BoardController {
     public String detail() {
         // 1번 조회
         // 1번 상자담고
-        // 1번 추력
+        // 1번 view에 뿌리기
         return "/board/detail";
     }
     @GetMapping("/board/uploadForm")
