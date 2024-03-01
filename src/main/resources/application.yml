@@ -1,26 +1,4 @@
-server:
-  servlet:
-    encoding:
-      charset: utf-8
-      force: true
-
 spring:
-  mustache:
-    servlet:
-      expose-session-attributes: true
-      expose-request-attributes: true
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:test;MODE=MySQL
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-  jpa:
-    hibernate:
-      ddl-auto: create
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: false
+  profiles:
+    active:
+      - dev
