@@ -9,6 +9,7 @@ public class BoardResponse {
 
     @Data
     public static class boardAndUserDTO{
+        private Integer id;
         private Integer userId;
         private String title; // 제목
         private String content; // 내용

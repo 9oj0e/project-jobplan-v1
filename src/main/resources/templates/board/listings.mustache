@@ -65,76 +65,17 @@
         <th>급여정보</th>
         <th>작성시간</th>
 
-        <tr>
-            <td>서울</td>
-            <td><a href="/board/1" class="text-body">2024 샘표식품 각 부문 수시 채용</a></td>
-            <td>09:00-18:00</td>
-            <td>최저시급</td>
-            <td>2024/02/25</td>
-        </tr>
-        <tr>
-            <td>서울</td>
-            <td><a href="/board/1" class="text-body">2024 샘표식품 각 부문 수시 채용</a></td>
-            <td>09:00-18:00</td>
-            <td>최저시급</td>
-            <td>2024/02/25</td>
-        </tr>
-        <tr>
-            <td>서울</td>
-            <td><a href="/board/1" class="text-body">2024 샘표식품 각 부문 수시 채용</a></td>
-            <td>09:00-18:00</td>
-            <td>최저시급</td>
-            <td>2024/02/25</td>
-        </tr>
-        <tr>
-            <td>서울</td>
-            <td><a href="/board/1" class="text-body">2024 샘표식품 각 부문 수시 채용</a></td>
-            <td>09:00-18:00</td>
-            <td>최저시급</td>
-            <td>2024/02/25</td>
-        </tr>
-        <tr>
-            <td>서울</td>
-            <td><a href="/board/1" class="text-body">2024 샘표식품 각 부문 수시 채용</a></td>
-            <td>09:00-18:00</td>
-            <td>최저시급</td>
-            <td>2024/02/25</td>
-        </tr>
-        <tr>
-            <td>서울</td>
-            <td><a href="/board/1" class="text-body">2024 샘표식품 각 부문 수시 채용</a></td>
-            <td>09:00-18:00</td>
-            <td>최저시급</td>
-            <td>2024/02/25</td>
-        </tr>
-        <tr>
-            <td>서울</td>
-            <td><a href="/board/1" class="text-body">2024 샘표식품 각 부문 수시 채용</a></td>
-            <td>09:00-18:00</td>
-            <td>최저시급</td>
-            <td>2024/02/25</td>
-        </tr>
-        <tr>
-            <td>서울</td>
-            <td><a href="/board/1" class="text-body">2024 샘표식품 각 부문 수시 채용</a></td>
-            <td>09:00-18:00</td>
-            <td>최저시급</td>
-            <td>2024/02/25</td>
-        </tr>
-        <tr>
-            <td>서울</td>
-            <td><a href="/board/1" class="text-body">2024 샘표식품 각 부문 수시 채용</a></td>
-            <td>09:00-18:00</td>
-            <td>최저시급</td>
-            <td>2024/02/25</td>
-        </tr>
-        <tr>
-            <td>서울</td>
-            <td><a href="/board/1" class="text-body">2024 샘표식품 각 부문 수시 채용</a></td>
-            <td>09:00-18:00</td>
-            <td>최저시급</td>
-            <td>2024/02/25</td>
-        </tr>
+        {{#employerList}}
+            <tr>
+                <td>{{address}}</td>
+                <td><a href="/board/{{id}}" class="text-body">{{content}}</a></td>
+                <td>09:00-18:00</td>
+                <td>{{salary}}</td>
+                <td>{{createdAt}}</td>
+            </tr>
+
+        {{/employerList}}
+
 
 
     </table>

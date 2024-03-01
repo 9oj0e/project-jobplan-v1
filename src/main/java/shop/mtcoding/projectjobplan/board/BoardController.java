@@ -14,7 +14,6 @@ import java.util.List;
 @Controller
 public class BoardController {
 
-    private final UserRepository userRepository;
     private final BoardRepository boardRepository ;
 
     @GetMapping({"/", "/board"})
@@ -33,7 +32,20 @@ public class BoardController {
         return "/index";
 }
     @GetMapping("/board/listings")
-    public String listings() {
+    public String listings(HttpServletRequest request) {
+
+        List<BoardResponse.boardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb();
+
+        List<BoardResponse.boardAndUserDTO> employerList = new ArrayList<>();
+
+        for (BoardResponse.boardAndUserDTO dto : responseDTO) {
+            if (dto.isEmployer()) {
+                employerList.add(dto);
+            }
+        }
+        request.setAttribute("employerList", employerList);
+
+
         return "/board/listings";
     }
     @GetMapping("/board/main")
