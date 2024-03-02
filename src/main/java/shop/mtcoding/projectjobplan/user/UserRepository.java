@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class UserRepository {
     @Transactional
     public UserResponse.infoDTO info() {
         Query query = entityManager.createNativeQuery("""
-            select name, username, password, birthdate, gender, phone_number, address, email
+            select name, username, password, birthdate, gender, phone_number, address, email, employer_id_number, business_name
             from user_tb
             where id = 1
             """);
@@ -30,6 +31,8 @@ public class UserRepository {
         String phoneNumber = (String) row[5];
         String address = (String) row[6];
         String email = (String) row[7];
+        String employerIdNumber = (String) row[8];
+        String businessName = (String) row[9];
 
         UserResponse.infoDTO infoDTO = new UserResponse.infoDTO();
         infoDTO.setName(name);
@@ -40,6 +43,8 @@ public class UserRepository {
         infoDTO.setPhoneNumber(phoneNumber);
         infoDTO.setAddress(address);
         infoDTO.setEmail(email);
+        infoDTO.setEmployerIdNumber(employerIdNumber);
+        infoDTO.setBusinessName(businessName);
         return infoDTO;
     }
 

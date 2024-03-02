@@ -33,7 +33,9 @@ public class UserController {
         return "/user/profile";
     }
     @GetMapping("/employer/1")
-    public String employerProfile() {
+    public String employerProfile(HttpServletRequest request) {
+        UserResponse.infoDTO infoDTO = userRepository.info();
+        request.setAttribute("info", infoDTO);
         return "/employer/profile";
     }
     @GetMapping("/user/1/updateForm")

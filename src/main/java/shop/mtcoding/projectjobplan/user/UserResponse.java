@@ -2,6 +2,8 @@ package shop.mtcoding.projectjobplan.user;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 public class UserResponse {
     @Data
     public static class infoDTO {
@@ -13,5 +15,7 @@ public class UserResponse {
         private String phoneNumber;
         private String address;
         private String email;
+        private String employerIdNumber;
+        private String businessName;
     }
 }
