@@ -27,7 +27,7 @@ public class ResumeController {
         List<ResumeResponse.ResumeAndUserDTO> resumeList = new ArrayList<>();
 
         for (ResumeResponse.ResumeAndUserDTO dto : responseDTO) {
-            if (dto.isEmployer()) {
+            if (dto.isEmployer()==false) {
                 resumeList.add(dto);
             }
         }
