@@ -26,12 +26,15 @@
         </div>
 
         <div class="div-menu-left">
-            <div><a href="/resume/main" class="text-body">이력서</a></div> <!--개인-->
-            <div><a href="/board/listings" class="text-body">채용정보</a></div> <!--개인-->
+
+            <div><a href="/board/listings" class="text-body">채용정보</a></div>
             {{#sessionUser}}
-                {{#isEmployer}}
-                    <div><a href="/board/main" class="text-body">채용공고</a></div> <!--기업-->
-                {{/isEmployer}}
+                {{#isEmployer}} <!--기업-->
+                    <div><a href="/board/main" class="text-body">채용공고</a></div>
+                {{/isEmployer}} <!--개인-->
+                {{^isEmployer}}
+                    <div><a href="/resume/main" class="text-body">이력서</a></div>
+                {{/isEmployer}} <!--공통-->
                 <div><a href="#" class="text-body text-black-50">커뮤니티</a></div>
             {{/sessionUser}}
         </div>
