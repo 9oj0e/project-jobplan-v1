@@ -1,10 +1,15 @@
 package shop.mtcoding.projectjobplan.user;
 
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
+    private final UserRepository userRepository;
+
     @GetMapping("/user/joinSelection")
     public String joinSelection() {
         return "/user/joinSelection";
@@ -22,7 +27,9 @@ public class UserController {
         return "/user/loginForm";
     }
     @GetMapping("/user/1")
-    public String profile() {
+    public String profile(HttpServletRequest request) {
+        UserResponse.infoDTO infoDTO = userRepository.info();
+        request.setAttribute("info", infoDTO);
         return "/user/profile";
     }
     @GetMapping("/employer/1")

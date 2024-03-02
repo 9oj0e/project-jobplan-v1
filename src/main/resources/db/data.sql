@@ -169,8 +169,8 @@ VALUES (20, '성실하고 유능한 인재입니다.', '이력서내용', '학�
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
-VALUES ('user', '1234', '조정현', '1996-04-01', 'M', 010-0000-0000, '주소', '이메일',
-        false, 1234, '회사명', now());
+VALUES ('user', '1234', '조정현', '1996-04-01', 'M', '010-0000-0000', '주소', '이메일',
+        false, '1234', '회사명', now());
 
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,

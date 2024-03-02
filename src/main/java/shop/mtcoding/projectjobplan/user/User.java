@@ -17,15 +17,15 @@ public class User {
     private String username;
     private String password;
     private String name;
-    private Timestamp birthdate;
+    private String birthdate;
     private char gender; // 'M' or 'F'
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String address;
     private String email;
 
     // employer, 사업자 항목 nullable
     private boolean isEmployer; // 사업자인지
-    private Integer employerIdNumber; // 사업자번호
+    private String employerIdNumber; // 사업자번호
     private String businessName; // 기업이름
     private Timestamp createdAt;
 }

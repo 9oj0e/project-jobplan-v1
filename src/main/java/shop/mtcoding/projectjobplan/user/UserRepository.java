@@ -15,6 +15,35 @@ public class UserRepository {
     private final EntityManager entityManager;
 
     @Transactional
+    public UserResponse.infoDTO info() {
+        Query query = entityManager.createNativeQuery("""
+            select name, username, password, birthdate, gender, phone_number, address, email
+            from user_tb
+            where id = 1
+            """);
+        Object[] row = (Object[]) query.getSingleResult();
+        String name = (String) row[0];
+        String username = (String) row[1];
+        String password = (String) row[2];
+        String birthdate = (String) row[3];
+        Character gender = (Character) row[4];
+        String phoneNumber = (String) row[5];
+        String address = (String) row[6];
+        String email = (String) row[7];
+
+        UserResponse.infoDTO infoDTO = new UserResponse.infoDTO();
+        infoDTO.setName(name);
+        infoDTO.setUsername(username);
+        infoDTO.setPassword(password);
+        infoDTO.setBirthdate(birthdate);
+        infoDTO.setGender(gender);
+        infoDTO.setPhoneNumber(phoneNumber);
+        infoDTO.setAddress(address);
+        infoDTO.setEmail(email);
+        return infoDTO;
+    }
+
+    @Transactional
     public Integer save(UserRequest.SaveDTO requestDTO) {
         String q = """
                 INSERT INTO user_tb
