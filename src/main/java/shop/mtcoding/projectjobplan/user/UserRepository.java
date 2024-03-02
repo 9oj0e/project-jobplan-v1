@@ -15,7 +15,7 @@ public class UserRepository {
     private final EntityManager entityManager;
 
     @Transactional
-    public Integer save(UserRequest.SaveDTO requestDTO) {
+    public Integer save(UserRequest.JoinDTO requestDTO) {
         String q = """
                 INSERT INTO user_tb
                 (username, password, name, birthdate, gender, phone_number, address, email,
@@ -39,30 +39,30 @@ public class UserRepository {
 
         return query.executeUpdate(); // 영향 받은 행
     }
-    /* 모든 유저를 조회할 필요가..?
-    public List<User> findAll() {
-        String q = "select * from resume_tb order by id desc";
-        Query query = entityManager.createNativeQuery(q, User.class);
-
-        return (List<User>) query.getResultList();
-
-    }
-    */
     public List<User> findAll(){
-        Query query = entityManager.createNativeQuery("select * from user_tb order by id desc;", User.class);
+        String q = "select * from user_tb order by id desc";
+        Query query = entityManager.createNativeQuery(q, User.class);
 
         try {
             return query.getResultList();
         } catch (Exception e) {
             return null;
         }
-
     }
 
-    public User findById(Integer id) {
-        String q = "select * from resume_tb where id = ? order by id desc";
+    public User findByUsernameAndPassword(UserRequest.LoginDTO requestDTO) {
+        String q = "select * from user_tb where username = ? and password = ?";
         Query query = entityManager.createNativeQuery(q, User.class);
-        query.setParameter(1, id);
+        query.setParameter(1, requestDTO.getUsername());
+        query.setParameter(2, requestDTO.getPassword());
+
+        return (User) query.getSingleResult();
+    }
+    public User findByUsername(UserRequest.LoginDTO requestDTO) {
+        String q = "select * from user_tb where username = ?";
+        Query query = entityManager.createNativeQuery(q, User.class);
+        query.setParameter(1, requestDTO.getUsername());
+        // query.setParameter(2, requestDTO.getPassword()); 암호화 필요
 
         return (User) query.getSingleResult();
     }

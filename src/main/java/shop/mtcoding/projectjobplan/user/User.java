@@ -2,6 +2,7 @@ package shop.mtcoding.projectjobplan.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class User {
     private String username;
     private String password;
     private String name;
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Timestamp birthdate;
     private char gender; // 'M' or 'F'
     private Integer phoneNumber;

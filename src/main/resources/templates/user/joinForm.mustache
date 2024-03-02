@@ -17,17 +17,6 @@
         box-shadow: 0 0 5px #000;
     }
 
-    .input-button-join {
-        padding: 5px;
-        margin: 2px 0;
-        width: 100%;
-        height: 35px;
-        background: #38f;
-        color: rgb(255, 255, 255);
-        border: none;
-        border-radius: 5px;
-    }
-
     .p-text {
         font-size: 13px;
         margin-top: 10px;
@@ -58,49 +47,45 @@
         margin-top: 10px;
     }
 
-    .div-gender {
-        display: flex;
-        align-items: center;
-        font-size: 15px;
-        margin-top: 2px;
-
-    }
-
-    .div-gender-radio {
-        font-size: small;
-        margin-right: 15px;
-    }
 </style>
 <div class="main">
     <h2 class="h2-text">개인 회원가입</h2>
     <hr class="hr-line">
-    <form action="/join" method="post">
-        <p class="p-text">이름</p>
-        <input type="text" id="username" placeholder="이름을 입력하세요" class="form-control" required>
-
-        <p class="p-text">아이디</p>
-        <input type="text" id="id" placeholder="id" class="form-control" required>
-
-        <p class="p-text">비밀번호</p>
-        <input type="password" id="pw" placeholder="password" class="form-control" required>
-
-
-        <p class="p-text">생년월일</p>
-        <input type="date" id="birthdate" placeholder="birthdate" class="form-control" required>
-
-        <p class="p-text">성별</p>
-        <div class="div-gender">
-            <div>남자</div>&nbsp;
-            <div><input type="radio" name="gender" value="남자" class="div-gender-radio"></div>
-            <div>여자</div>&nbsp;
-            <div><input type="radio" name="gender" value="여자" class="div-gender-radio"></div>
-
+    <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="mb-3">
+            <p class="p-text">아이디</p>
+            <input type="text" name="username" id="username" placeholder="Enter username.." value="ssar" class="form-control"
+                   required>
         </div>
-
-        <p class="p-text">휴대전화</p>
+        <div class="mb-3">
+            <p class="p-text">비밀번호</p>
+            <input type="password" name="password" id="password" placeholder="Enter password.." value="1234" class="form-control"
+                   required>
+        </div>
+        <div class="mb-3">
+            <p class="p-text">이름</p>
+            <input type="name" name="name" id="name" placeholder="Enter name.." value="jhjo" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <p class="p-text">생년월일</p>
+            <input type="date" name="birthdate" id="birthdate" value="1996-04-01" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <p class="p-text">성별</p>
+            <span>
+                <span>남자</span>
+                <input type="radio" name="gender" id="gender" value='M' required>
+            </span>
+            <span>
+                <span>여자</span>
+                <input type="radio" name="gender" id="gender" value='F' required>
+            </span>
+        </div>
+        <!--
+        <p class="p-text">휴대전화</p> // 파싱 어려움
         <div class="div-phone">
             <div class="div-phone-number">
-                <input type='tel' name='phone1' value="010" class="form-control">
+                <input type='tel' name='phone1' value="010" class="form-control" readonly>
             </div>
             <div class="div-hyphen">-</div>
             <div class="div-phone-number">
@@ -111,36 +96,36 @@
                 <input type='tel' name='phone3' required class="form-control">
             </div>
         </div>
-
-        <p class="p-text">주소</p>
-        <input type="text" id="pw" placeholder="주소를 입력하세요" class="form-control" required>
-
-        <p class="p-text">이메일</p>
-        <input type="email" id="pw" placeholder="email" class="form-control" required>
-
+        -->
+        <div class="mb-3">
+            <p class="p-text">주소</p>
+            <input type="text" name="address" id="address" placeholder="Enter address.." value="부산진구 부전동 109-11" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <p class="p-text">이메일</p>
+            <input type="email" name="email" id="email" placeholder="Enter email.." value="21560137@gnu.ac.kr" class="form-control" required>
+        </div>
+        <!--
         <p class="p-text">보유 기술
         <div class="mb-3 form-control">
             <span>java</span>
-            <input type="checkbox" name="stack" value="java">
+            <input type="checkbox" name="name" value="java">
             <span>javaScript</span>
-            <input type="checkbox" name="stack" value="javascript">
+            <input type="checkbox" name="name" value="javascript">
             <span>Spring</span>
-            <input type="checkbox" name="stack" value="spring">
+            <input type="checkbox" name="name" value="spring">
             <span>HTML</span>
-            <input type="checkbox" name="stack" value="html">
+            <input type="checkbox" name="name" value="html">
             <span>jQuery</span>
-            <input type="checkbox" name="stack" value="jQuery">
+            <input type="checkbox" name="name" value="jQuery">
             <span>MySQL</span>
-            <input type="checkbox" name="stack" value="mysql">
+            <input type="checkbox" name="name" value="mysql">
         </div>
         </p>
-        <!-- <div class="login-find">
-        <div class="login-find-select">아이디 찾기</div>
-        <div class="login-find-select">비밀번호 찾기</div>
-        <div class="login-find-select">회원가입</div>
-    </div> -->
-
-        <input type="submit" value="회원가입" class="input-button-join">
+        -->
+        <!--기업 회원 항목 감추어서 false로 보내기-->
+        <input type="hidden" name="isEmployer" value="false">
+        <button type="submit" class="btn btn-primary form-control">회원가입</button>
     </form>
 
 </div>
