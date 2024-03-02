@@ -6,31 +6,36 @@ import java.sql.Timestamp;
 
 public class UserRequest {
     @Data
-    public class SaveDTO {
+    public static class JoinDTO {
         private String username;
         private String password;
         private String name;
-        private Timestamp birthdate;
-        private Character gender;
+        private String birthdate;
+        private char gender;
         private Integer phoneNumber;
-        private Integer address;
-        private Integer email;
+        private String address;
+        private String email;
         // emp
         private Boolean isEmployer;
         private Integer employerIdNumber;
         private String businessName;
     }
+    @Data
+    public static class LoginDTO {
+        private String username;
+        private String password; // 암호화 필요
+    }
 
     @Data
-    public class UpdateDTO {
+    public static class UpdateDTO {
         private String username;
         private String password;
         private String name;
-        private Timestamp birthdate;
-        private Character gender;
+        private String birthdate;
+        private char gender;
         private Integer phoneNumber;
-        private Integer address;
-        private Integer email;
+        private String address;
+        private String email;
         // emp
         private Boolean isEmployer;
         private Integer employerIdNumber;
