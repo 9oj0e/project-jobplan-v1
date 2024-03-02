@@ -123,4 +123,16 @@ public class BoardRepository {
 
         return query.executeUpdate(); // 영향 받은 행
     }
+
+
+
+    public int countIsEmployerTrue() {
+        String q = """
+                SELECT COUNT(*) FROM board_tb b INNER JOIN user_tb u ON b.user_id = u.id WHERE u.is_employer = true;
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        Long count = (Long) query.getSingleResult();
+        return count.intValue();
+
+    }
 }
