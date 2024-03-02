@@ -2,7 +2,7 @@
 
 <div class="container">
     <h2 class="mb-4 fw-bold">채용 공고 추가</h2>
-
+    <form action="/board/{{sessionUser.id}}/upload" method="post">
     <table class="table-resume-notice">
         <tr>
             <td class="tb-row">공고 제목</td>
@@ -175,9 +175,10 @@
     </table>
     <br>
     <div class="button-post-cancel">
-        <button class="btn btn-outline-dark">취소</button>
-        <button class="btn btn-outline-dark">등록</button>
+        <button type="button" onclick="location.href='/'" class="btn btn-outline-dark">취소</button>
+        <button type="submit" class="btn btn-outline-dark">등록</button>
     </div>
+    </form>
 </div>
 <!-- 바디 end -->
 {{>layout/footer}}

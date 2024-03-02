@@ -2,9 +2,11 @@ package shop.mtcoding.projectjobplan.board;
 
 import com.sun.tools.javac.Main;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.user.User;
@@ -15,9 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
-
-
     private final BoardRepository boardRepository ;
+    private final HttpSession session;
 
     @GetMapping({"/", "/board"})
     public String index(HttpServletRequest request) {
