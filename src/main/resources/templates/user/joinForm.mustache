@@ -54,7 +54,7 @@
     <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
         <div class="mb-3">
             <p class="p-text">아이디</p>
-            <input type="text" name="username" id="username" placeholder="Enter username.." value="ssar" class="form-control"
+            <input type="text" name="username" id="username" placeholder="Enter username.." value="love" class="form-control"
                    required>
         </div>
         <div class="mb-3">
@@ -64,7 +64,7 @@
         </div>
         <div class="mb-3">
             <p class="p-text">이름</p>
-            <input type="name" name="name" id="name" placeholder="Enter name.." value="jhjo" class="form-control" required>
+            <input type="text" name="name" pattern="[^(가-힣a-zA-Z)]" id="name" placeholder="Enter name.." value="JHJO" class="form-control" required>
         </div>
         <div class="mb-3">
             <p class="p-text">생년월일</p>
@@ -81,6 +81,11 @@
                 <input type="radio" name="gender" id="gender" value='F' required>
             </span>
         </div>
+        <div class="mb-3">
+            <p class="p-text">휴대전화</p>
+            <input type="tel" pattern="[0-9]{9, 11}" title="번호만 입력하세요" name="phoneNumber" id="phoneNumber" value="010-9273-0000" class="form-control" required>
+        </div>
+
         <!--
         <p class="p-text">휴대전화</p> // 파싱 어려움
         <div class="div-phone">
@@ -123,8 +128,7 @@
         </div>
         </p>
         -->
-        <!--기업 회원 항목 감추어서 false로 보내기-->
-        <input type="hidden" name="isEmployer" value="false">
+        <input type="hidden" name="isEmployer" value="false"> <!--기업 회원 여부 false-->
         <button type="submit" class="btn btn-primary form-control">회원가입</button>
     </form>
 

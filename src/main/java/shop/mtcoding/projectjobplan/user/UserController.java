@@ -30,6 +30,7 @@ public class UserController {
     @PostMapping("/join")
     public String join(UserRequest.JoinDTO requestDTO) {
         System.out.println(requestDTO);
+        // todo 아이디 중복 검사 필요
 
         userRepository.save(requestDTO);
         return "redirect:/loginForm";
