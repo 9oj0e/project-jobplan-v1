@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
@@ -34,12 +35,9 @@ public class BoardController {
         return "/index";
 }
     @GetMapping("/board/listings")
-    public String listings(HttpServletRequest request) {
-
-        List<BoardResponse.boardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb();
-
+    public String listings(HttpServletRequest request,@RequestParam(defaultValue = "1")int page) {
+        List<BoardResponse.boardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page);
         List<BoardResponse.boardAndUserDTO> employerList = new ArrayList<>();
-
         for (BoardResponse.boardAndUserDTO dto : responseDTO) {
             if (dto.isEmployer()) {
                 employerList.add(dto);
@@ -48,8 +46,41 @@ public class BoardController {
         request.setAttribute("employerList", employerList);
 
 
+        int currentPage = page;
+        int nextPage = currentPage + 1;
+        int prevPage = currentPage - 1;
+
+        request.setAttribute("nextPage", nextPage);
+        request.setAttribute("prevPage", prevPage);
+
+
+        boolean first = (currentPage == 1 ? true : false);
+        request.setAttribute("first", first);
+
+        int totalPage = boardRepository.countIsEmployerTrue();
+
+        int totalCount = (totalPage % 10 == 0) ? (totalPage / 10) : (totalPage / 10 + 1);
+        boolean last = (currentPage == totalCount);
+        List<Integer> numberList = new ArrayList<>();
+        int allPage;
+        if (totalPage % 10 == 0) {
+            allPage = totalCount - 1;
+            for (int i = 1; i <= allPage; i++) {
+                numberList.add(i);
+                request.setAttribute("numberList", numberList);
+            }
+        } else if (totalPage % 10 != 0) {
+            allPage = totalCount;
+            for (int i = 1; i <= allPage; i++) {
+                numberList.add(i);
+                request.setAttribute("numberList", numberList);
+            }
+
+        }
+        request.setAttribute("last", last);
         return "/board/listings";
-    }
+        }
+
     @GetMapping("/board/main")
     public String main() {
         return "/board/main";
