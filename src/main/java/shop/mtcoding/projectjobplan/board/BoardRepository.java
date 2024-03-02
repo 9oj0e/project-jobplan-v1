@@ -20,7 +20,7 @@ public class BoardRepository {
 
     public List<BoardResponse.boardAndUserDTO> findByBoardtbAndUsertb(int page){
         final int COUNT = 10;
-        int value = page *COUNT;
+        int value = (page - 1) * COUNT;
         String q = """
             SELECT b.id, b.user_id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.created_at, u.username, u.address, u.is_employer, u.business_name FROM board_tb b INNER JOIN user_tb u ON b.user_id = u.id WHERE u.is_employer = true ORDER BY b.id DESC LIMIT ?,?;               
                     """;

@@ -35,8 +35,7 @@ public class BoardController {
         return "/index";
 }
     @GetMapping("/board/listings")
-    public String listings(HttpServletRequest request,@RequestParam(defaultValue = "0")int page) {
-
+    public String listings(HttpServletRequest request,@RequestParam(defaultValue = "1")int page) {
         List<BoardResponse.boardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page);
         List<BoardResponse.boardAndUserDTO> employerList = new ArrayList<>();
         for (BoardResponse.boardAndUserDTO dto : responseDTO) {
@@ -55,14 +54,13 @@ public class BoardController {
         request.setAttribute("prevPage", prevPage);
 
 
-        boolean first = (currentPage == 0 ? true : false);
+        boolean first = (currentPage == 1 ? true : false);
         request.setAttribute("first", first);
 
         int totalPage = boardRepository.countIsEmployerTrue();
 
-        int totalCount = totalPage / 10;
-        boolean last = (currentPage == totalPage ? true : false);
-
+        int totalCount = (totalPage % 10 == 0) ? (totalPage / 10) : (totalPage / 10 + 1);
+        boolean last = (currentPage == totalCount);
         List<Integer> numberList = new ArrayList<>();
         int allPage;
         if (totalPage % 10 == 0) {
