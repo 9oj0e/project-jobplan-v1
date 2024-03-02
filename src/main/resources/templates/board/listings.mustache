@@ -86,7 +86,7 @@
         <ul class="pagination">
             <li class="page-item {{#first}}disabled{{/first}}"><a class="page-link" href="?page={{prevPage}}">Previous</a></li>
             {{#numberList}}
-                <li class="page-item"><a class="page-link" href="/?page={{.}}">{{.}}</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{.}}">{{.}}</a></li>
             {{/numberList}}
             <li class="page-item {{#last}}disabled{{/last}}"><a class="page-link" href="?page={{nextPage}}">Next</a></li>
         </ul>
