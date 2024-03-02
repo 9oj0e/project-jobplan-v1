@@ -1,7 +1,7 @@
 {{> layout/header }}
 <div class="div-body">
     <div class="div-layout">
-        <div class="div-header d-flex justify-content-between">
+        <div class="d-flex justify-content-between">
             <h3><b>내 정보</b></h3>
             <form action="/user/1/updateForm" class="justify-content-end">
                 <button class="btn btn-outline-primary">수정</button>
@@ -10,7 +10,7 @@
         </div>
         <div class="div-information">
             <div class="div-information-grid">
-                <div class="card" style="width:150px">
+                <div class="card mt-5" style="width:150px">
                     <img class="card-img" src="../images/naver logo.png" alt="Card image" style="width:100%">
                     <div class="card-body">
                         <h4 class="card-title">이름</h4>
@@ -21,49 +21,53 @@
             </div>
             <div>
                 <table class="table">
+                    <thead>
                     <tr>
                         <th><h3>기업정보</h3></th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
-                        <td>ID</td>
+                        <th>ID</th>
                         <td>ssar</td>
                     </tr>
                     <tr>
-                        <td>PW</td>
+                        <th>PW</th>
                         <td>****</td>
                     </tr>
                     <tr>
-                        <td>이름</td>
+                        <th>이름</th>
                         <td>김성재</td>
                     </tr>
                     <tr>
-                        <td>생년월일</td>
+                        <th>생년월일</th>
                         <td>1998년 5월 15일</td>
                     </tr>
                     <tr>
-                        <td>성별</td>
+                        <th>성별</th>
                         <td>남자</td>
                     </tr>
                     <tr>
-                        <td>휴대전화</td>
+                        <th>휴대전화</th>
                         <td>010-7319-8019</td>
                     </tr>
                     <tr>
-                        <td>주소</td>
+                        <th>주소</th>
                         <td>부산</td>
                     </tr>
                     <tr>
-                        <td>E-MAIL</td>
+                        <th>E-MAIL</th>
                         <td>stwin755@gmail.com</td>
                     </tr>
                     <tr>
-                        <td>사업자번호</td>
+                        <th>사업자번호</th>
                         <td>00000000</td>
                     </tr>
                     <tr>
-                        <td>회사명</td>
+                        <th>회사명</th>
                         <td>그린컴퓨터</td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
