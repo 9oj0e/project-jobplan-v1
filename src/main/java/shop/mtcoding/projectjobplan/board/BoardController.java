@@ -60,18 +60,18 @@ public class BoardController {
 
         int totalPage = boardRepository.countIsEmployerTrue();
 
-        int totalCount = totalPage / 3;
+        int totalCount = totalPage / 10;
         boolean last = (currentPage == totalPage ? true : false);
 
         List<Integer> numberList = new ArrayList<>();
         int allPage;
-        if (totalPage % 3 == 0) {
+        if (totalPage % 10 == 0) {
             allPage = totalCount - 1;
             for (int i = 1; i <= allPage; i++) {
                 numberList.add(i);
                 request.setAttribute("numberList", numberList);
             }
-        } else if (totalPage % 3 != 0) {
+        } else if (totalPage % 10 != 0) {
             allPage = totalCount;
             for (int i = 1; i <= allPage; i++) {
                 numberList.add(i);
