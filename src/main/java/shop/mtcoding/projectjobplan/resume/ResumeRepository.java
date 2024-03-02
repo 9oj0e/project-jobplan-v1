@@ -19,7 +19,7 @@ public class ResumeRepository {
 
     public List<ResumeResponse.ResumeAndUserDTO> findByResumeAndUser(){
         String q = """
-                select r.id,r.user_id,r.title,r.content,r.career,u.address,u.is_employer,u.name  from resume_tb r inner join user_tb u on r.user_id = u.id ;
+                select r.id,r.user_id,r.title,r.content,r.career,u.address,u.is_employer,u.name  from resume_tb r inner join user_tb u on r.user_id = u.id order by id desc;
                 """;
         Query query = entityManager.createNativeQuery(q);
         List<Object[]> results = query.getResultList();
