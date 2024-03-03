@@ -156,8 +156,15 @@ public class BoardRepository {
         query.setParameter(3, requestDTO.getField());
         query.setParameter(4, requestDTO.getPosition());
         query.setParameter(5, requestDTO.getSalary());
-        query.setParameter(6, requestDTO.getOpeningDate());
-        query.setParameter(7, requestDTO.getClosingDate());
+
+        LocalDate opening = LocalDate.parse(requestDTO.getOpeningDate());
+        LocalDate closing = LocalDate.parse(requestDTO.getClosingDate());
+
+        Timestamp openingDate = Timestamp.valueOf(opening.atStartOfDay());
+        Timestamp closingDate = Timestamp.valueOf(closing.atStartOfDay());
+
+        query.setParameter(6, openingDate);
+        query.setParameter(7, closingDate);
         query.setParameter(8, id);
 
         return query.executeUpdate(); // 영향 받은 행
