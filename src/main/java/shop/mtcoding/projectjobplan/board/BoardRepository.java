@@ -21,11 +21,12 @@ public class BoardRepository {
         String q = """
                 select
                 u.address, u.business_name, u.email, u.name, u.phone_number,
-                b.id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date
+                b.id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.user_id
                 from user_tb u, board_tb b
-                where b.id=1 and b.user_id = u.id
+                where b.id=? and b.user_id = u.id
                 """;
         Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, idx);
 
         Object[] row = (Object[]) query.getSingleResult();
 
@@ -42,6 +43,7 @@ public class BoardRepository {
         String salary = (String) row[10];
         Timestamp openingDate = (Timestamp) row[11];
         Timestamp closingDate = (Timestamp) row[12];
+        Integer userId = (Integer) row[13];
 
         BoardResponse.BoardDetailDTO boardDetailDTO = new BoardResponse.BoardDetailDTO();
         boardDetailDTO.setAddress(address);
@@ -57,6 +59,7 @@ public class BoardRepository {
         boardDetailDTO.setSalary(salary);
         boardDetailDTO.setOpeningDate(openingDate);
         boardDetailDTO.setClosingDate(closingDate);
+        boardDetailDTO.setUserId(userId);
 
         return boardDetailDTO;
     }

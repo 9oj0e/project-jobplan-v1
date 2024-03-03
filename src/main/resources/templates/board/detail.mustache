@@ -4,19 +4,22 @@
     <div class="card" style="width:150px">
         <img class="card-img-top" src="../images/naver logo.png" alt="Card image" style="width:100%">
         <div class="card-body">
-            <h4 class="card-title text-center">회사명</h4>
-            <p class="card-text text-center">설명</p>
+            <h4 class="card-title text-center">{{boardDetail.businessName}}</h4>
             <div class="card-footer" style="text-align: center;">
                 <!-- 지원하기 버튼 -->
                 <div>
-                    <a href="#" class="btn btn-primary">지원</a>
+                    {{^sessionUser.isEmployer}}
+                        <a href="#" class="btn btn-primary">지원</a>
+                    {{/sessionUser.isEmployer}}
                 </div>
                 <!-- 수정 삭제 버튼 -->
                 <div>
-                    <a href="/board/1/updateForm" method="get" class="btn btn-warning">수정</a>
-                    <form action="/board/1/delete" method="post" onsubmit="return false">
-                        <button class="btn btn-danger">삭제</button>
-                    </form>
+                    {{#boardDetail.boardOwner}}
+                        <a href="/board/{{boardDetail.id}}/updateForm" method="get" class="btn btn-warning">수정</a>
+                        <form action="/board/1/delete" method="post" onsubmit="return false">
+                            <button class="btn btn-danger">삭제</button>
+                        </form>
+                    {{/boardDetail.boardOwner}}
                 </div>
             </div>
         </div>
@@ -24,99 +27,51 @@
 </div>
 <!-- 게시글내용 -->
 <div class="container bg-light">
-    <h2><b>공고 제목</b></h2>
+    <h2><b>{{boardDetail.title}}</b></h2>
     <hr>
-    <div class="blockquote">
-        <span>회사명</span>
-        <span>근무지역</span>
-        <span>경력</span>
-    </div>
     <div>
         <span>요약</span>
         <table class="table">
             <tr>
-                <th>경력</th>
-                <td>1년</td>
-            </tr>
-            <tr>
-                <th>학력</th>
-                <td>초대졸 이상</td>
-            </tr>
-            <tr>
                 <th>근무지역</th>
-                <td>부산</td>
+                <td>{{boardDetail.address}}</td>
+            </tr>
+            <tr>
+                <th>모집분야</th>
+                <td>{{boardDetail.field}}</td>
             </tr>
             <tr>
                 <th>포지션</th>
-                <td>백엔드</td>
+                <td>{{boardDetail.position}}</td>
+            </tr>
+            <tr>
+                <th>연봉</th>
+                <td>{{boardDetail.salary}}</td>
             </tr>
         </table>
     </div>
     <div class="m-4 p-2">
         <div>
-            <h3>포지션 상세</h3>
-            <div class="bg-white">내용
-                현재 AI 기반의 어댑티드 러닝 솔루션을 제작하고 있는 교육 콘텐츠 스타트업입니다. 국내 최고 수준의 문항 콘텐츠 제작 역량을 지닌 팀과 자체 개발 팀, 인공지능 개발팀과 함께
-                빠른 속도로 서비스를 기획하고 있으며 금년 중에 정식 출시가 예정되어있습니다.
-
-                저희는 연매출 1000억 규모의 서비스를 0 to 1하기 위해서 시장 조사, 기획, 서비스 제작, 마케팅의 모든 단계에 있어 파괴적이고 혁신적인 아이디어와 타협하지 않는 기준을
-                가지고 누구보다 빠르게 실행하는 팀으로 매일매일 성장을 경험하고 있습니다.
-
-                대한민국의 입시 시장을 뒤흔들어보고 싶으신 분, 교육 서비스와 교육 콘텐츠에 대한 남다른 인사이트를 가지신 분, 나이 불문하고 10대의 감성과 눈높이에 대한 공감이 가능하신
-                분이시라면 연락 주세요. 함께 성장하며 타협 없이 시장을 때려부술 수 있는 제품과 서비스를 만들고 싶습니다.
-
-                급여와 업무 환경, 복리후생은 물론, 개인의 성장과 커리어 형성에 있어서도 모두 최고 수준의 아웃풋을 드릴 자신이 있습니다
-
-            </div>
-        </div>
-        <div>
-            <h3>채용 절차</h3>
+            <h3>내용</h3>
             <div class="bg-white">
-                - 서류 심사 - 1차 인터뷰 - 2차 인터뷰 - 근무조건 협의
-                - 점심 시간과 저녁 시간에도 인터뷰는 가능합니다.
-                - 포지션의 특성에 따라 채용절차 중 온라인 과제가 진행될 수 있습니다.
-                - 고용형태 : 정규직(수습기간 3개월)
+                {{boardDetail.content}}
             </div>
         </div>
         <div>
-            <h3>주요 업무</h3>
-            <div class="bg-white">
-                - 스프린트 단위로 할 일을 계획하고 개개인이 주도적으로 업무를 진행합니다.
-                - 팀원들과의 협력을 통해 문제를 해결하며 스프린트를 수행합니다.
-            </div>
+            <h4>채용공고 게시일</h4>
+            <div>{{boardDetail.openingDate}}</div>
         </div>
         <div>
-            <h3>자격 요건</h3>
-            <div class="bg-white">내용</div>
+            <h4>채용공고 마감일</h4>
+            <div>{{boardDetail.closingDate}}</div>
         </div>
         <div>
-            <h3>우대사항</h3>
-            <div class="bg-white">내용</div>
+            <h4>연락처</h4>
+            <div>전화번호: {{boardDetail.phoneNumber}}</div>
+            <div>이메일: {{boardDetail.email}}</div>
         </div>
         <div>
-            <h3>혜택 및 복지</h3>
-            <div class="bg-white">내용</div>
-        </div>
-        <div>
-            <h3>기술 스택 / 툴</h3>
-            <button>Java</button>
-            <button>JavaScript</button>
-            <button>HTML</button>
-            <button>SQL</button>
-        </div>
-        <div>
-            <h3>태그</h3>
-            <button>스타트업</button>
-            <button>석식제공</button>
-            <button>자기계발</button>
-            <button>IT, 컨텐츠</button>
-        </div>
-        <div>
-            <h3>마감일</h3>
-            <div>상시채용</div>
-        </div>
-        <div>
-            <h3>근무지역</h3>
+            <h4>근무지역</h4>
             <div>지도</div>
         </div>
     </div>

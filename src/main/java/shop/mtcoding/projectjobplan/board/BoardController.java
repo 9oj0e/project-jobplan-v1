@@ -102,12 +102,12 @@ public class BoardController {
     }
     @GetMapping("/board/{id}")
     public String detail(@PathVariable int id, HttpServletRequest request) {
-        // 1번 조회
+        User sessionUser = (User) session.getAttribute("sessionUser");
         BoardResponse.BoardDetailDTO boardDetailDTO= boardRepository.detail(id);
-        System.out.println(boardDetailDTO);
-        // 1번 상자담고
+        boardDetailDTO.isBoardOwner(sessionUser);
+
         request.setAttribute("boardDetail", boardDetailDTO);
-        // 1번 view에 뿌리기
+
         return "/board/detail";
     }
     @GetMapping("/board/uploadForm")
