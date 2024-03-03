@@ -85,8 +85,11 @@
 
         <div class="div-resume">
             <table class="table-image">
+                {{#resume}}
                 <tr>
-                    <td class="td-resume td-image">이력서 데이터 불러오자
+                    <td class="td-resume td-image">
+                        {{title}}
+                        이력서 데이터 불러오자
                         <div class="button-group">
                             <form action="/resume/1/updateForm">
                                 <button class="btn btn-outline-primary">수정</button>
@@ -95,6 +98,7 @@
                         </div>
                     </td>
                 </tr>
+                {{/resume}}
                 <tr>
                     <td class="td-resume td-image">이력서 데이터 불러오자
                         <div class="button-group">
