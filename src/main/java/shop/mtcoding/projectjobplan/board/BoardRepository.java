@@ -17,7 +17,7 @@ import java.util.Objects;
 public class BoardRepository {
     private final EntityManager entityManager;
 
-    public BoardResponse.BoardDetailDTO detail(int idx){
+    public BoardResponse.BoardDetailDTO detail(int idx) {
         String q = """
                 select
                 u.address, u.business_name, u.email, u.name, u.phone_number,
@@ -64,19 +64,19 @@ public class BoardRepository {
         return boardDetailDTO;
     }
 
-    public List<BoardResponse.boardAndUserDTO> findByBoardtbAndUsertb(int page){
+    public List<BoardResponse.boardAndUserDTO> findByBoardtbAndUsertb(int page) {
         final int COUNT = 10;
         int value = (page - 1) * COUNT;
         String q = """
-            SELECT b.id, b.user_id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.created_at, u.username, u.address, u.is_employer, u.business_name FROM board_tb b INNER JOIN user_tb u ON b.user_id = u.id WHERE u.is_employer = true ORDER BY b.id DESC LIMIT ?,?;               
-                    """;
+                SELECT b.id, b.user_id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.created_at, u.username, u.address, u.is_employer, u.business_name FROM board_tb b INNER JOIN user_tb u ON b.user_id = u.id WHERE u.is_employer = true ORDER BY b.id DESC LIMIT ?,?;               
+                        """;
         Query query = entityManager.createNativeQuery(q);
-        query.setParameter(1,value);
-        query.setParameter(2,COUNT);
+        query.setParameter(1, value);
+        query.setParameter(2, COUNT);
         List<Object[]> results = query.getResultList();
         List<BoardResponse.boardAndUserDTO> responseDTO = new ArrayList<>();
 
-        for(Object[] result :results){
+        for (Object[] result : results) {
 
             BoardResponse.boardAndUserDTO dto = new BoardResponse.boardAndUserDTO();
             dto.setId((Integer) result[0]);
@@ -94,16 +94,12 @@ public class BoardRepository {
             dto.setEmployer((boolean) result[12]);
             dto.setBusinessName((String) result[13]);
 
-
-
             responseDTO.add(dto);
         }
         return responseDTO;
-
     }
 
-
-    public List<BoardResponse.boardAndUserDTO> findByBoardtbAndUsertb(){
+    public List<BoardResponse.boardAndUserDTO> findByBoardtbAndUsertb() {
         String q = """
                 select b.id,b.user_id, b.title, b.content,b.field,b.position,b.salary,b.opening_date,b.closing_date,b.created_at, u.username,u.address,u.is_employer,u.business_name from board_tb b inner join user_tb u on b.user_id = u.id  order by id desc;
                 """;
@@ -111,7 +107,7 @@ public class BoardRepository {
         List<Object[]> results = query.getResultList();
         List<BoardResponse.boardAndUserDTO> responseDTO = new ArrayList<>();
 
-        for(Object[] result :results){
+        for (Object[] result : results) {
 
             BoardResponse.boardAndUserDTO dto = new BoardResponse.boardAndUserDTO();
             dto.setId((Integer) result[0]);
@@ -128,7 +124,6 @@ public class BoardRepository {
             dto.setAddress((String) result[11]);
             dto.setEmployer((boolean) result[12]);
             dto.setBusinessName((String) result[13]);
-
 
 
             responseDTO.add(dto);
@@ -153,9 +148,9 @@ public class BoardRepository {
         query.setParameter(5, requestDTO.getPosition());
         query.setParameter(6, requestDTO.getSalary());
 
+        // String -> LocalData -> Timestamp
         LocalDate opening = LocalDate.parse(requestDTO.getOpeningDate());
         LocalDate closing = LocalDate.parse(requestDTO.getClosingDate());
-
         Timestamp openingDate = Timestamp.valueOf(opening.atStartOfDay());
         Timestamp closingDate = Timestamp.valueOf(closing.atStartOfDay());
 
@@ -202,9 +197,9 @@ public class BoardRepository {
         query.setParameter(4, requestDTO.getPosition());
         query.setParameter(5, requestDTO.getSalary());
 
+        // String -> LocalData -> Timestamp
         LocalDate opening = LocalDate.parse(requestDTO.getOpeningDate());
         LocalDate closing = LocalDate.parse(requestDTO.getClosingDate());
-
         Timestamp openingDate = Timestamp.valueOf(opening.atStartOfDay());
         Timestamp closingDate = Timestamp.valueOf(closing.atStartOfDay());
 
@@ -225,14 +220,13 @@ public class BoardRepository {
     }
 
 
-
     public int countIsEmployerTrue() {
         String q = """
                 SELECT COUNT(*) FROM board_tb b INNER JOIN user_tb u ON b.user_id = u.id WHERE u.is_employer = true;
                 """;
         Query query = entityManager.createNativeQuery(q);
         Long count = (Long) query.getSingleResult();
-        return count.intValue();
 
+        return count.intValue();
     }
 }

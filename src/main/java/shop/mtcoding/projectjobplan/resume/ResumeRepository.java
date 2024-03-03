@@ -16,7 +16,7 @@ import java.util.List;
 public class ResumeRepository {
     private final EntityManager entityManager;
 
-    public ResumeResponse.ResumeDetailDTO detail(int idx){
+    public ResumeResponse.ResumeDetailDTO detail(int idx) {
         String q = """
                 select
                 u.id, u.name, u.address, u.phone_number, u.email,
@@ -56,7 +56,7 @@ public class ResumeRepository {
         return resumeDetailDTO;
     }
 
-    public List<ResumeResponse.ResumeAndUserDTO> findByResumeAndUser(int page){
+    public List<ResumeResponse.ResumeAndUserDTO> findByResumeAndUser(int page) {
         final int COUNT = 10;
         int value = (page - 1) * COUNT;
 
@@ -64,13 +64,13 @@ public class ResumeRepository {
                 select r.id,r.user_id,r.title,r.content,r.career,u.address,u.is_employer,u.name  from resume_tb r inner join user_tb u on r.user_id = u.id where u.is_employer =false order by id desc limit ?,?;
                 """;
         Query query = entityManager.createNativeQuery(q);
-        query.setParameter(1,value);
-        query.setParameter(2,COUNT);
+        query.setParameter(1, value);
+        query.setParameter(2, COUNT);
 
         List<Object[]> results = query.getResultList();
         List<ResumeResponse.ResumeAndUserDTO> responseDTO = new ArrayList<>();
 
-        for(Object[] result :results){
+        for (Object[] result : results) {
 
             ResumeResponse.ResumeAndUserDTO dto = new ResumeResponse.ResumeAndUserDTO();
             dto.setId((Integer) result[0]);
@@ -83,15 +83,13 @@ public class ResumeRepository {
             dto.setName((String) result[7]);
 
 
-
             responseDTO.add(dto);
         }
         return responseDTO;
-
     }
 
 
-    public List<ResumeResponse.ResumeAndUserDTO> findByResumeAndUser(){
+    public List<ResumeResponse.ResumeAndUserDTO> findByResumeAndUser() {
         String q = """
                 select r.id,r.user_id,r.title,r.content,r.career,u.address,u.is_employer,u.name  from resume_tb r inner join user_tb u on r.user_id = u.id order by id desc;
                 """;
@@ -99,7 +97,7 @@ public class ResumeRepository {
         List<Object[]> results = query.getResultList();
         List<ResumeResponse.ResumeAndUserDTO> responseDTO = new ArrayList<>();
 
-        for(Object[] result :results){
+        for (Object[] result : results) {
 
             ResumeResponse.ResumeAndUserDTO dto = new ResumeResponse.ResumeAndUserDTO();
             dto.setId((Integer) result[0]);
@@ -111,12 +109,9 @@ public class ResumeRepository {
             dto.setEmployer((boolean) result[6]);
             dto.setName((String) result[7]);
 
-
-
             responseDTO.add(dto);
         }
         return responseDTO;
-
     }
 
     @Transactional
@@ -194,8 +189,8 @@ public class ResumeRepository {
                 """;
         Query query = entityManager.createNativeQuery(q);
         Long count = (Long) query.getSingleResult();
-        return count.intValue();
 
+        return count.intValue();
     }
-    }
+}
 

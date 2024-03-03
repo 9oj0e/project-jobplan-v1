@@ -56,14 +56,18 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(UserRequest.LoginDTO requestDTO) {
+    public String login(HttpServletRequest request, UserRequest.LoginDTO requestDTO) {
         System.out.println(requestDTO);
 
         User user = userRepository.findByUsernameAndPassword(requestDTO); // 암호화 안됨
-        if (user == null)
-            return "401";
-        else
+        if (user == null) {
+            request.setAttribute("status", 401);
+            request.setAttribute("msg", "아이디 혹은 비밀번호가 틀렸습니다.");
+            return "error";
+        }
+        else {
             session.setAttribute("sessionUser", user);
+        }
         return "redirect:/";
     }
 

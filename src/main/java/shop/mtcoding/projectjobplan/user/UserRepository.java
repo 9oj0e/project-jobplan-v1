@@ -108,6 +108,7 @@ public class UserRepository {
             query.setParameter(6, requestDTO.getPhoneNumber());
             query.setParameter(7, requestDTO.getAddress());
             query.setParameter(8, id);
+
             return query.executeUpdate();
         } else {
             Query query = entityManager.createNativeQuery("""
@@ -126,6 +127,7 @@ public class UserRepository {
             query.setParameter(4, requestDTO.getPhoneNumber());
             query.setParameter(5, requestDTO.getAddress());
             query.setParameter(6, id);
+
             return query.executeUpdate();
         }
     }
