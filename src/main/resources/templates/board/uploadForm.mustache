@@ -6,171 +6,39 @@
     <table class="table-resume-notice">
         <tr>
             <td class="tb-row">공고 제목</td>
-            <td><input class="input-width30" type="text"></td>
+            <td><input name="title" class="input-width30" type="text"></td>
         </tr>
     </table>
 
-    <h4 class="fw-semibold mb-3">인사 담당자 정보</h4>
+    <h4 class="fw-semibold mb-3">채용 분야 정보</h4>
     <table class="table-resume-notice">
         <tr>
-            <td class="tb-row">담당자 이름</td>
+            <td class="tb-row">채용 분야</td>
+            <td><input name="field" type="text"></td>
+        </tr>
+        <tr>
+            <td>포지션</td>
             <td>
-                <input class="input-width10" type="text">
+                <input name="position" type="text">
             </td>
         </tr>
         <tr>
-            <td class="tb-row">전화번호</td>
-            <td>
-                <input class="input-width5" type="text"> -
-                <input class="input-width5" type="text"> -
-                <input class="input-width5" type="text">
-            </td>
-        </tr>
-        <tr>
-            <td class="tb-row">담당자 전화번호</td>
-            <td>
-                <input class="input-width5" type="text"> -
-                <input class="input-width5" type="text"> -
-                <input class="input-width5" type="text">
-            </td>
-        </tr>
-        <tr>
-            <td class="tb-row">이메일</td>
-            <td>
-                <input class="input-width15" type="text">@
-                <input class="input-width10" type="text">
-            </td>
-        </tr>
-    </table>
-
-    <h4 class="fw-semibold mb-3">모집 분야 정보</h4>
-    <table class="table-resume-notice">
-        <tr>
-            <td class="tb-row">모집분야명</td>
-            <td><input type="text"></td>
-        </tr>
-        <tr>
-            <td>경력여부</td>
-            <td>
-                <input type="radio">신입
-                <input type="radio">경력
-                <input type="radio">경력무관
-            </td>
-        </tr>
-        <tr>
-            <td>담당업무</td>
-            <td><input type="text"></td>
-        </tr>
-    </table>
-
-    <h4 class="fw-semibold mb-3">지원자 조건</h4>
-    <table class="table-resume-notice">
-        <tr>
-            <td class="tb-row">학력</td>
-            <td>
-                <select>
-                    <option value="">초졸</option>
-                    <option value="">중졸</option>
-                    <option value="">고졸</option>
-                    <option value="">대졸</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td class="tb-row">성별</td>
-            <td>
-                <input name="gender" type="radio">남자
-                <input name="gender" type="radio">여자
-                <input name="gender" type="radio">성별무관
-            </td>
-        </tr>
-        <tr>
-            <td class="tb-row">지원자 연령</td>
-            <td>
-                <select>
-                    <option value="">전체</option>
-                    <option value="">20세</option>
-                    <option value="">21세</option>
-                </select>~
-                <select>
-                    <option value="">전체</option>
-                    <option value="">30세</option>
-                    <option value="">31세</option>
-                </select>
-            </td>
+            <td class="tb-row">업무 상세</td>
+            <td><textarea name="content" class="textarea-work-size"></textarea></td>
         </tr>
         <tr>
             <td class="tb-row">연봉</td>
             <td>
-                <select>
-                    <option value="">전체</option>
-                    <option value="">2800~3000</option>
-                    <option value="">3000~3200</option>
-                </select>
+                <input name="salary" type="text">
             </td>
         </tr>
         <tr>
-            <td class="tb-row">기술 스택</td>
-            <td>
-                <input type="checkbox">Java
-                <input type="checkbox">JavaScript
-                <input type="checkbox">HTML
-                <input type="checkbox">SQL
-            </td>
+            <td>게시일</td>
+            <td><input name="openingDate" type="date"></td>
         </tr>
         <tr>
-            <td class="tb-row">우대 사항</td>
-            <td><input class="input-width30" type="text"></td>
-        </tr>
-    </table>
-    <h4 class="fw-semibold mb-3">근무 정보</h4>
-    <table class="table-resume-notice">
-        <tr>
-            <td class="tb-row">근무 지역</td>
-            <td><input class="input-width30" type="text"></td>
-        </tr>
-        <tr>
-            <td class="tb-row">근무 형태</td>
-            <td>
-                <input name="worker" type="radio">정규직
-                <input name="worker" type="radio">계약직
-                <select>
-                    <option value="">수습기간 or 계약기간</option>
-                    <option value="">1개월</option>
-                    <option value="">3개월</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td class="tb-row">근무 상세</td>
-            <td><textarea class="textarea-work-size"></textarea></td>
-        </tr>
-        <tr>
-            <td class="tb-row">근무요일</td>
-            <td>
-                <select>
-                    <option value="">근무요일</option>
-                    <option value="">주5일(월~금)</option>
-                </select>
-                <select>
-                    <option value="">근무시간</option>
-                    <option value="">9:00~17:00</option>
-                </select>
-            </td>
-        </tr>
-    </table>
-    <h4 class="fw-semibold mb-3">채용 절차</h4>
-    <table class="table-resume-notice">
-        <tr>
-            <td class="tb-row">채용 절차</td>
-            <td><input class="input-width30"></input></td>
-        </tr>
-    </table>
-    <h4 class="fw-semibold mb-3">혜택 및 복지</h4>
-    <table class="table-resume-notice">
-        <tr>
-            <td class="tb-row">복지</td>
-            <td><input class="input-width30"></input></td>
+            <td>마감일</td>
+            <td><input name="closingDate" type="date"></td>
         </tr>
     </table>
     <br>
