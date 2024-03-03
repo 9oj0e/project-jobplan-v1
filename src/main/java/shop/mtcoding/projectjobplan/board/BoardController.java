@@ -20,13 +20,15 @@ public class BoardController {
 
     @PostMapping("/board/{id}/update")
     public String update(@PathVariable int id, BoardRequest.UpdateDTO requestDTO){
+        // todo 유효성 검사, 권한 검사
         boardRepository.updateById(requestDTO, id);
-        System.out.println(requestDTO);
+
         return "redirect:/board/" + id;
     }
 
     @PostMapping("/board/{id}/upload")
     public String upload(@PathVariable int id, BoardRequest.SaveDTO requestDTO){
+        // todo 유효성 검사, 권한 검사
         boardRepository.save(requestDTO, id);
 
         return "redirect:/board/" + id;
