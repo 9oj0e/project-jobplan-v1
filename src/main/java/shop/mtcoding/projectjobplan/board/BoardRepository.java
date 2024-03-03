@@ -17,7 +17,49 @@ import java.util.Objects;
 public class BoardRepository {
     private final EntityManager entityManager;
 
+    public BoardResponse.BoardDetailDTO detail(int idx){
+        String q = """
+                select
+                u.address, u.business_name, u.email, u.name, u.phone_number,
+                b.id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date
+                from user_tb u, board_tb b
+                where b.id=1 and b.user_id = u.id
+                """;
+        Query query = entityManager.createNativeQuery(q);
 
+        Object[] row = (Object[]) query.getSingleResult();
+
+        String address = (String) row[0];
+        String businessName = (String) row[1];
+        String email = (String) row[2];
+        String name = (String) row[3];
+        String phoneNumber = (String) row[4];
+        Integer id = (Integer) row[5];
+        String title = (String) row[6];
+        String content = (String) row[7];
+        String field = (String) row[8];
+        String position = (String) row[9];
+        String salary = (String) row[10];
+        Timestamp openingDate = (Timestamp) row[11];
+        Timestamp closingDate = (Timestamp) row[12];
+
+        BoardResponse.BoardDetailDTO boardDetailDTO = new BoardResponse.BoardDetailDTO();
+        boardDetailDTO.setAddress(address);
+        boardDetailDTO.setBusinessName(businessName);
+        boardDetailDTO.setEmail(email);
+        boardDetailDTO.setName(name);
+        boardDetailDTO.setPhoneNumber(phoneNumber);
+        boardDetailDTO.setId(id);
+        boardDetailDTO.setTitle(title);
+        boardDetailDTO.setContent(content);
+        boardDetailDTO.setField(field);
+        boardDetailDTO.setPosition(position);
+        boardDetailDTO.setSalary(salary);
+        boardDetailDTO.setOpeningDate(openingDate);
+        boardDetailDTO.setClosingDate(closingDate);
+
+        return boardDetailDTO;
+    }
 
     public List<BoardResponse.boardAndUserDTO> findByBoardtbAndUsertb(int page){
         final int COUNT = 10;

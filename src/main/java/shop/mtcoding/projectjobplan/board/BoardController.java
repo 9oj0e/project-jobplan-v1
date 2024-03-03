@@ -100,10 +100,13 @@ public class BoardController {
     public String main() {
         return "/board/main";
     }
-    @GetMapping("/board/1")
-    public String detail() {
+    @GetMapping("/board/{id}")
+    public String detail(@PathVariable int id, HttpServletRequest request) {
         // 1번 조회
+        BoardResponse.BoardDetailDTO boardDetailDTO= boardRepository.detail(id);
+        System.out.println(boardDetailDTO);
         // 1번 상자담고
+        request.setAttribute("boardDetail", boardDetailDTO);
         // 1번 view에 뿌리기
         return "/board/detail";
     }

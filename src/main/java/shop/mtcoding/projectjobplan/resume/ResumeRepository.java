@@ -22,11 +22,10 @@ public class ResumeRepository {
                 u.id, u.name, u.address, u.phone_number, u.email,
                 r.user_id, r.title, r.education_level, r.major, r.school_name, r.content
                 from user_tb u, resume_tb r
-                where r.id = ? and u.id = ?
+                where r.id = ? and r.user_id = u.id
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, idx);
-        query.setParameter(2, idx);
 
         Object[] row = (Object[]) query.getSingleResult();
         Integer id = (Integer) row[0];
