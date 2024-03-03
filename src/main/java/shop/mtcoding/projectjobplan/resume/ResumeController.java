@@ -20,8 +20,17 @@ public class ResumeController {
     private final ResumeRepository resumeRepository;
     private final HttpSession session;
 
+    @PostMapping("resume/{id}/update")
+    public String update(@PathVariable int id, ResumeRequest.UpdateDTO requestDTO){
+        // todo 유효성 검사, 권한 검사
+        resumeRepository.updateById(requestDTO, id);
+
+        return "redirect:/user/" + id;
+    }
+
     @PostMapping("/resume/{id}/upload")
     public String upload(@PathVariable int id, ResumeRequest.SaveDTO requestDTO){
+        // todo 유효성 검사, 권한 검사
         resumeRepository.save(requestDTO, id);
 
         return "/user/" + id;
@@ -85,11 +94,17 @@ public class ResumeController {
         return "/resume/uploadForm";
     }
     @GetMapping("/resume/{id}/updateForm")
-    public String updateForm() {
+    public String updateForm(@PathVariable int id, HttpServletRequest request) {
+        Resume resume = resumeRepository.findById(id);
+        request.setAttribute("resume", resume);
+
         return "/resume/updateForm";
     }
-    @GetMapping("/resume/1")
-    public String detail() {
+    @GetMapping("/resume/{id}")
+    public String detail(@PathVariable int id, HttpServletRequest request) {
+        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
+        request.setAttribute("detail", resumeDetailDTO);
+
         return "/resume/detail";
     }
 }

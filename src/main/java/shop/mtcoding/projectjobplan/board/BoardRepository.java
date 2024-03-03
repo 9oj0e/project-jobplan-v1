@@ -17,7 +17,52 @@ import java.util.Objects;
 public class BoardRepository {
     private final EntityManager entityManager;
 
+    public BoardResponse.BoardDetailDTO detail(int idx){
+        String q = """
+                select
+                u.address, u.business_name, u.email, u.name, u.phone_number,
+                b.id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.user_id
+                from user_tb u, board_tb b
+                where b.id=? and b.user_id = u.id
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, idx);
 
+        Object[] row = (Object[]) query.getSingleResult();
+
+        String address = (String) row[0];
+        String businessName = (String) row[1];
+        String email = (String) row[2];
+        String name = (String) row[3];
+        String phoneNumber = (String) row[4];
+        Integer id = (Integer) row[5];
+        String title = (String) row[6];
+        String content = (String) row[7];
+        String field = (String) row[8];
+        String position = (String) row[9];
+        String salary = (String) row[10];
+        Timestamp openingDate = (Timestamp) row[11];
+        Timestamp closingDate = (Timestamp) row[12];
+        Integer userId = (Integer) row[13];
+
+        BoardResponse.BoardDetailDTO boardDetailDTO = new BoardResponse.BoardDetailDTO();
+        boardDetailDTO.setAddress(address);
+        boardDetailDTO.setBusinessName(businessName);
+        boardDetailDTO.setEmail(email);
+        boardDetailDTO.setName(name);
+        boardDetailDTO.setPhoneNumber(phoneNumber);
+        boardDetailDTO.setId(id);
+        boardDetailDTO.setTitle(title);
+        boardDetailDTO.setContent(content);
+        boardDetailDTO.setField(field);
+        boardDetailDTO.setPosition(position);
+        boardDetailDTO.setSalary(salary);
+        boardDetailDTO.setOpeningDate(openingDate);
+        boardDetailDTO.setClosingDate(closingDate);
+        boardDetailDTO.setUserId(userId);
+
+        return boardDetailDTO;
+    }
 
     public List<BoardResponse.boardAndUserDTO> findByBoardtbAndUsertb(int page){
         final int COUNT = 10;
@@ -156,8 +201,15 @@ public class BoardRepository {
         query.setParameter(3, requestDTO.getField());
         query.setParameter(4, requestDTO.getPosition());
         query.setParameter(5, requestDTO.getSalary());
-        query.setParameter(6, requestDTO.getOpeningDate());
-        query.setParameter(7, requestDTO.getClosingDate());
+
+        LocalDate opening = LocalDate.parse(requestDTO.getOpeningDate());
+        LocalDate closing = LocalDate.parse(requestDTO.getClosingDate());
+
+        Timestamp openingDate = Timestamp.valueOf(opening.atStartOfDay());
+        Timestamp closingDate = Timestamp.valueOf(closing.atStartOfDay());
+
+        query.setParameter(6, openingDate);
+        query.setParameter(7, closingDate);
         query.setParameter(8, id);
 
         return query.executeUpdate(); // 영향 받은 행

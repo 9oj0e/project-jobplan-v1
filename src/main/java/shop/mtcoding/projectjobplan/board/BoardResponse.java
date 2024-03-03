@@ -2,8 +2,10 @@ package shop.mtcoding.projectjobplan.board;
 
 
 import lombok.Data;
+import shop.mtcoding.projectjobplan.user.User;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class BoardResponse {
 
@@ -25,6 +27,35 @@ public class BoardResponse {
         private String address;
         private boolean isEmployer; // 사업자인지
         private String businessName;
+
+    }
+
+    @Data
+    public static class BoardDetailDTO{
+        private Integer id;
+        private String title;
+        private String content;
+        private String field;
+        private String position;
+        private String salary;
+        private Timestamp openingDate;
+        private Timestamp closingDate;
+
+        private String address;
+        private String businessName;
+        private String email;
+        private String name;
+        private String phoneNumber;
+        private Integer userId;
+        private Boolean boardOwner;
+
+        public void isBoardOwner(User sessionUser){
+            if(sessionUser == null) boardOwner = false;
+            else boardOwner = sessionUser.getId() == userId;
+        }
+
+        // ADDRESS BUSINESS_NAME EMAIL NAME PHONE_NUMBER
+        // ID TITLE CONTENT FIELD POSITION SALARY OPENING_DATE CLOSING_DATE
 
     }
 

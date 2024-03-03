@@ -26,7 +26,7 @@ public class BoardRequest {
         private String field;
         private String position;
         private String salary;
-        private Timestamp openingDate;
-        private Timestamp closingDate;
+        private String openingDate;
+        private String closingDate;
     }
 }

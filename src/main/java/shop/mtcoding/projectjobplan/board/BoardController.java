@@ -5,10 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
@@ -21,11 +18,20 @@ public class BoardController {
     private final BoardRepository boardRepository ;
     private final HttpSession session;
 
+    @PostMapping("/board/{id}/update")
+    public String update(@PathVariable int id, BoardRequest.UpdateDTO requestDTO){
+        // todo 유효성 검사, 권한 검사
+        boardRepository.updateById(requestDTO, id);
+
+        return "redirect:/board/" + id;
+    }
+
     @PostMapping("/board/{id}/upload")
     public String upload(@PathVariable int id, BoardRequest.SaveDTO requestDTO){
+        // todo 유효성 검사, 권한 검사
         boardRepository.save(requestDTO, id);
 
-        return "/employer/" + id;
+        return "redirect:/board/" + id;
     }
 
     @GetMapping({"/", "/board"})
@@ -94,19 +100,25 @@ public class BoardController {
     public String main() {
         return "/board/main";
     }
-    @GetMapping("/board/1")
-    public String detail() {
-        // 1번 조회
-        // 1번 상자담고
-        // 1번 view에 뿌리기
+    @GetMapping("/board/{id}")
+    public String detail(@PathVariable int id, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        BoardResponse.BoardDetailDTO boardDetailDTO= boardRepository.detail(id);
+        boardDetailDTO.isBoardOwner(sessionUser);
+
+        request.setAttribute("boardDetail", boardDetailDTO);
+
         return "/board/detail";
     }
     @GetMapping("/board/uploadForm")
     public String uploadForm() {
         return "/board/uploadForm";
     }
-    @GetMapping("/board/1/updateForm")
-    public String updateForm() {
+    @GetMapping("/board/{id}/updateForm")
+    public String updateForm(@PathVariable int id, HttpServletRequest request) {
+        Board board = boardRepository.findById(id);
+        request.setAttribute("board", board);
+
         return "/board/updateForm";
     }
 }
