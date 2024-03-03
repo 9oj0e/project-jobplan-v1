@@ -1,84 +1,35 @@
 --board_tb
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (1, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
+(user_id, title, content, address, field, position, salary, opening_date, closing_date, created_at)
+VALUES (1, '2024년 신입 노예 채용', '포지션 상세, 주요 업무, 자격 요건, 우대 사항, 혜택 및 복지', '부산', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (2, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
+(user_id, title, content, address, field, position, salary, opening_date, closing_date, created_at)
+VALUES (2, '2024년 신입 노예 채용', '포지션 상세, 주요 업무, 자격 요건, 우대 사항, 혜택 및 복지', '부산', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (3, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
+(user_id, title, content, address, field, position, salary, opening_date, closing_date, created_at)
+VALUES (3, '2024년 신입 노예 채용', '포지션 상세, 주요 업무, 자격 요건, 우대 사항, 혜택 및 복지', '부산', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (4, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
+(user_id, title, content, address, field, position, salary, opening_date, closing_date, created_at)
+VALUES (4, '2024년 신입 노예 채용', '포지션 상세, 주요 업무, 자격 요건, 우대 사항, 혜택 및 복지', '부산', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (5, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
+(user_id, title, content, address, field, position, salary, opening_date, closing_date, created_at)
+VALUES (5, '2024년 신입 노예 채용', '포지션 상세, 주요 업무, 자격 요건, 우대 사항, 혜택 및 복지', '부산', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (6, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
+(user_id, title, content, address, field, position, salary, opening_date, closing_date, created_at)
+VALUES (1, '2024년 신입 노예 채용', '포지션 상세, 주요 업무, 자격 요건, 우대 사항, 혜택 및 복지', '부산', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (7, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
+(user_id, title, content, address, field, position, salary, opening_date, closing_date, created_at)
+VALUES (2, '2024년 신입 노예 채용', '포지션 상세, 주요 업무, 자격 요건, 우대 사항, 혜택 및 복지', '부산', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (8, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
+(user_id, title, content, address, field, position, salary, opening_date, closing_date, created_at)
+VALUES (3, '2024년 신입 노예 채용', '포지션 상세, 주요 업무, 자격 요건, 우대 사항, 혜택 및 복지', '부산', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (9, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
+(user_id, title, content, address, field, position, salary, opening_date, closing_date, created_at)
+VALUES (4, '2024년 신입 노예 채용', '포지션 상세, 주요 업무, 자격 요건, 우대 사항, 혜택 및 복지', '부산', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (10, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
-INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (11, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
-INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (12, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
-INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (13, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
-INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (14, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
-INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (15, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
-INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (16, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
-INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (17, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
-INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (18, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
-INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (19, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
-INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (20, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+(user_id, title, content, address, field, position, salary, opening_date, closing_date, created_at)
+VALUES (5, '2024년 신입 노예 채용', '포지션 상세, 주요 업무, 자격 요건, 우대 사항, 혜택 및 복지', '부산', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 -- resume_tb
 
@@ -168,55 +119,55 @@ INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('admin1', '1234', '조정현', '1996-04-01', 'M', 01000000000, '주소', '이메일',
-        true, 0000000000, '회사명', now());
+        true, 0000000000, '네이버', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('admin2', '1234', '류재성', '1991-10-01', 'M', 01000000000, '주소', '이메일',
-        true, 0000000000, '회사명', now());
+        true, 0000000000, '카카오', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('admin3', '1234', '김정수', '1996-08-01', 'M', 01000000000, '주소', '이메일',
-        true, 0000000000, '회사명', now());
+        true, 0000000000, '라인', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('admin4', '1234', '김성재', '1998-05-01', 'M', 01000000000, '주소', '이메일',
-        true, 0000000000, '회사명', now());
+        true, 0000000000, '쿠팡', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('admin5', '1234', '최윤정', '2000-04-01', 'F', 01000000000, '주소', '이메일',
-        true, 0000000000, '회사명', now());
+        true, 0000000000, '배달의민족', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('user1', '1234', '홍길동', '2000-01-01', 'M', 01000000000, '주소', '이메일',
-        false, 0000000000, '회사명', now());
+        false, 0000000000, '', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('user2', '1234', '이가탄', '2000-01-01', 'M', 01000000000, '주소', '이메일',
-        false, 0000000000, '회사명', now());
+        false, 0000000000, '', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('user3', '1234', '홍금보', '2000-01-01', 'M', 01000000000, '주소', '이메일',
-        false, 0000000000, '회사명', now());
+        false, 0000000000, '', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('user4', '1234', '김덕배', '2000-01-01', 'M', 01000000000, '주소', '이메일',
-        false, 0000000000, '회사명', now());
+        false, 0000000000, '', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('user5', '1234', '한만춘', '2000-01-01', 'M', 01000000000, '주소', '이메일',
-        false, 0000000000, '회사명', now());
+        false, 0000000000, '', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
 VALUES ('user6', '1234', '전두광', '1931-01-18', 'M', 01000000000, '주소', '이메일',
-        false, 0000000000, '회사명', now());
+        false, 0000000000, '', now());
 

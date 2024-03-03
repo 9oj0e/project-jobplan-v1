@@ -61,16 +61,15 @@
     <table class="table">
         <th>지역</th>
         <th>회사정보</th>
-        <th>근무시간</th>
+        <th>마감기간</th>
         <th>급여정보</th>
         <th>작성시간</th>
 
         {{#boardList}}
             <tr>
                 <td>{{address}}</td>
-                <td><a href="/board/{{id}}" class="text-body">{{content}}</a></td>
-                <!--근무 시간은 아닌데 임의로 넣어놓음  -->
-                <td>{{openingDate}}-{{closingDate}}</td>
+                <td><a href="/board/{{id}}" class="text-body">{{title}}</a></td>
+                <td>{{closingDate}}</td>
                 <td>{{salary}}</td>
                 <td>{{createdAt}}</td>
             </tr>

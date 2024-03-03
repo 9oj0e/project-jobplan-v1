@@ -2,6 +2,7 @@ package shop.mtcoding.projectjobplan.board;
 
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
 
@@ -16,9 +17,14 @@ public class BoardResponse {
         private String field; // 채용 분야
         private String position; // 포지션
         private String salary; // 연봉
+
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private Timestamp openingDate; // 게시일
+
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private Timestamp closingDate; // 마감일
 
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private Timestamp createdAt; // 생성일
 
         private String username;

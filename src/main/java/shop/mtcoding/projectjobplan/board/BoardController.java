@@ -48,17 +48,10 @@ public class BoardController {
 
     @GetMapping("/board/listings")
     public String listings(HttpServletRequest request, @RequestParam(defaultValue = "0") int page) {
-        List<BoardResponse.boardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page);
-        List<BoardResponse.boardAndUserDTO> boardList = new ArrayList<>();
-        for (BoardResponse.boardAndUserDTO dto : responseDTO) {
-            if (dto.isEmployer()) {
-                boardList.add(dto);
-            }
-        }
+        List<Board> boardList = boardRepository.findAll(page);
         request.setAttribute("boardList", boardList);
         request.setAttribute("nextPage", page + 1);
         request.setAttribute("prevPage", page - 1);
-
         int totalPage = boardRepository.count();
         request.setAttribute("isFirst", PagingUtil.isFirst(page));
         request.setAttribute("isLast", PagingUtil.isLast(page, totalPage));
