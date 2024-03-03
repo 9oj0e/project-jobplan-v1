@@ -72,13 +72,17 @@ public class UserRepository {
         return (User) query.getSingleResult();
     }
 
-    public User findByUsername(UserRequest.LoginDTO requestDTO) {
+    public User findByUsername(String username) {
         String q = "select * from user_tb where username = ?";
         Query query = entityManager.createNativeQuery(q, User.class);
-        query.setParameter(1, requestDTO.getUsername());
+        query.setParameter(1, username);
         // query.setParameter(2, requestDTO.getPassword()); 암호화 필요
 
-        return (User) query.getSingleResult();
+        try { // 아이디 중복체크
+            return (User) query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Transactional
