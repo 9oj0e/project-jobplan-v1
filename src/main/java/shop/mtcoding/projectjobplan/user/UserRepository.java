@@ -69,7 +69,11 @@ public class UserRepository {
         query.setParameter(1, requestDTO.getUsername());
         query.setParameter(2, requestDTO.getPassword());
 
-        return (User) query.getSingleResult();
+        try { // 아이디나 비밀번호 틀렸을 때
+            return (User) query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public User findByUsername(String username) {
