@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -106,8 +107,15 @@ public class BoardRepository {
         query.setParameter(4, requestDTO.getField());
         query.setParameter(5, requestDTO.getPosition());
         query.setParameter(6, requestDTO.getSalary());
-        query.setParameter(7, requestDTO.getOpeningDate());
-        query.setParameter(8, requestDTO.getClosingDate());
+
+        LocalDate opening = LocalDate.parse(requestDTO.getOpeningDate());
+        LocalDate closing = LocalDate.parse(requestDTO.getClosingDate());
+
+        Timestamp openingDate = Timestamp.valueOf(opening.atStartOfDay());
+        Timestamp closingDate = Timestamp.valueOf(closing.atStartOfDay());
+
+        query.setParameter(7, openingDate);
+        query.setParameter(8, closingDate);
 
         return query.executeUpdate(); // 영향 받은 행
     }

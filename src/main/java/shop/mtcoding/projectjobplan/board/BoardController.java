@@ -23,7 +23,6 @@ public class BoardController {
 
     @PostMapping("/board/{id}/upload")
     public String upload(@PathVariable int id, BoardRequest.SaveDTO requestDTO){
-        User sessionUser = (User) session.getAttribute("sessionUser");
         boardRepository.save(requestDTO, id);
 
         return "/employer/" + id;
