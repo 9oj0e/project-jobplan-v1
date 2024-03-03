@@ -5,6 +5,15 @@ import java.util.List;
 
 public class PagingUtil {
 
+    public static boolean isFirst(int currentPage) {
+        return currentPage == 0 ? true : false;
+    }
+
+    public static boolean isLast(int currentPage, int totalCount) {
+        int totalPageCount = getTotalPageCount(totalCount);
+        return currentPage == totalPageCount - 1 ? true : false;
+    }
+
     public static List<Integer> getPageList(int totalPageCount) {
         List<Integer> pageList = new ArrayList<>();
         for (int i = 0; i < totalPageCount; i++) {
