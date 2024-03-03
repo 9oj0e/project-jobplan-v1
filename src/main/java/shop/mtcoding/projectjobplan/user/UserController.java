@@ -33,12 +33,21 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String join(UserRequest.JoinDTO requestDTO) {
+    public String join(HttpServletRequest request, UserRequest.JoinDTO requestDTO) {
         System.out.println(requestDTO);
-        // todo 유효성 검사 (아이디 중복) 필요
+        // 1. 유효성 검사
 
-        userRepository.save(requestDTO);
-        return "redirect:/loginForm";
+        // 2. 동일 username 체크
+        User user = userRepository.findByUsername(requestDTO.getUsername());
+        if (user == null){
+            // 3. model에 위임하기
+            userRepository.save(requestDTO);
+            return "redirect:/loginForm";
+        } else {
+            request.setAttribute("status", "400");
+            request.setAttribute("msg", "중복된 아이디입니다.");
+            return "error";
+        }
     }
 
     @GetMapping("/loginForm")
@@ -47,14 +56,18 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(UserRequest.LoginDTO requestDTO) {
+    public String login(HttpServletRequest request, UserRequest.LoginDTO requestDTO) {
         System.out.println(requestDTO);
 
         User user = userRepository.findByUsernameAndPassword(requestDTO); // 암호화 안됨
-        if (user == null)
-            return "401";
-        else
+        if (user == null) {
+            request.setAttribute("status", 401);
+            request.setAttribute("msg", "아이디 혹은 비밀번호가 틀렸습니다.");
+            return "error";
+        }
+        else {
             session.setAttribute("sessionUser", user);
+        }
         return "redirect:/";
     }
 
