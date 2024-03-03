@@ -59,20 +59,24 @@ public class UserController {
     public String profile(HttpServletRequest request, @PathVariable int id) {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
+
+        // 기업 회원 인지..
         if (user.getIsEmployer())
             return "/employer/profile";
         else
             return "/user/profile";
     }
 
-    @GetMapping("/user/1/updateForm")
-    public String updateForm() {
-        return "/user/updateForm";
-    }
+    @GetMapping("/user/{id}/updateForm")
+    public String updateForm(HttpServletRequest request, @PathVariable int id) {
+        User user = userRepository.findById(id);
+        request.setAttribute("user", user);
 
-    @GetMapping("/employer/1/updateForm")
-    public String employerUpdateForm() {
-        return "/employer/updateForm";
+        // 기업 회원인지..
+        if (user.getIsEmployer())
+            return "/employer/updateForm";
+        else
+            return "/user/updateForm";
     }
 
     @GetMapping("/logout")
