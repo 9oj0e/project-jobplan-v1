@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import shop.mtcoding.projectjobplan.resume.Resume;
+import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 
 @RequiredArgsConstructor
 @Controller
 public class UserController {
     private final UserRepository userRepository;
+    private final ResumeRepository resumeRepository;
     private final HttpSession session;
 
     @GetMapping("/user/joinSelection")
@@ -60,6 +63,10 @@ public class UserController {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
 
+        Resume resume = resumeRepository.findById(id);
+        request. setAttribute( "resume", resume);
+
+
         // 기업 회원 인지..
         if (user.getIsEmployer())
             return "/employer/profile";
@@ -77,6 +84,12 @@ public class UserController {
             return "/employer/updateForm";
         else
             return "/user/updateForm";
+    }
+
+    @PostMapping("/user/{id}/update")
+    public String update(@PathVariable int id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
+        request.setAttribute("user", userRepository.updateById(requestDTO, id));
+        return "redirect:/user/"+id;
     }
 
     @GetMapping("/logout")

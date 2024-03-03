@@ -1,43 +1,45 @@
 {{>layout/header}}
-<div class="container">
-    <h2 class="mb-4 fw-bold">이력서 수정</h2>
-    <h4 class="fw-semibold mb-3">기본정보</h4>
-    <table class="table-resume-notice">
-        <tr>
-            <td class="table-td-width-10">이름</td>
-            <td><input class="form-control" style="width: 50%;" type="text" value="홍길동" disabled></td>
-        </tr>
-        <tr>
-            <td class="table-td-width-10">생년월일</td>
-            <td>
-                <input class="form-control" style="width: 50%;" type="date" value="1996-01-01" disabled>
-            </td>
-        </tr>
-        <tr>
-            <td class="table-td-width-10">성별</td>
-            <td>
-                <input type="radio" name="gender" checked disabled>남자
-                <input type="radio" name="gender" disabled>여자
-            </td>
-        </tr>
-        <tr>
-            <td class="table-td-width-10">휴대전화</td>
-            <td>
-                <input class="form-control" style="width: 50%;" type="tel" value="010-0000-0000" disabled>
-            </td>
-        </tr>
-        <tr>
-            <td class="table-td-width-10">이메일</td>
-            <td>
-                <input class="form-control" style="width: 50%;" type="email" value="ssar@nate.com" disabled>
-            </td>
-        </tr>
-        <tr>
-            <td class="table-td-width-10">주소</td>
-            <td><input class="form-control" style="width: 50%;" type="text" value="부산 부산진구 중앙대로 749" disabled></td>
-        </tr>
-    </table>
-    <form action="/resume/{{sessionUser.id}}/update" method="post">
+    <div class="container">
+        <h2 class="mb-4 fw-bold">이력서 수정</h2>
+        <h4 class="fw-semibold mb-3">기본정보</h4>
+        <table class="table-resume-notice">
+            <tr>
+                <td class="table-td-width-10">이름</td>
+                <td><input class="form-control" style="width: 50%; background: #dee2e6" type="text" value="{{sessionUser.name}}" readonly></td>
+            </tr>
+            <tr>
+                <td class="table-td-width-10">생년월일</td>
+                <td>
+                    <input class="form-control" style="width: 50%; background: #dee2e6" type="date" value="{{sessionUser.birthdate}}" readonly>
+                </td>
+            </tr>
+            <!-- mustache에서 처리 불가
+            <tr>
+                <td class="table-td-width-10">성별</td>
+                <td>
+                    <input type="radio" name="gender" checked disabled>남자
+                    <input type="radio" name="gender" disabled>여자
+                </td>
+            </tr>
+            -->
+            <tr>
+                <td class="table-td-width-10">휴대전화</td>
+                <td>
+                    <input class="form-control" style="width: 50%; background: #dee2e6" type="tel" value="{{sessionUser.phoneNumber}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-td-width-10">이메일</td>
+                <td>
+                    <input class="form-control" style="width: 50%; background: #dee2e6" type="email" value="{{sessionUser.email}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-td-width-10">주소</td>
+                <td><input class="form-control" style="width: 50%; background: #dee2e6" type="text" value="{{sessionUser.address}}" readonly></td>
+            </tr>
+        </table>
+        <form action="/resume/{{sessionUser.id}}/update" method="post">
         <h4 class="fw-semibold mb-3">이력서 제목</h4>
         <table class="table-resume-notice">
             <td>제목</td>
