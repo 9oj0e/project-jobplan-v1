@@ -1,14 +1,15 @@
 package shop.mtcoding.projectjobplan.user;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
-@RequiredArgsConstructor
 public class UserController {
     private final UserRepository userRepository;
     private final HttpSession session;
@@ -54,18 +55,14 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/user/1")
-    public String profile(HttpServletRequest request) {
-        UserResponse.infoDTO infoDTO = userRepository.info();
-        request.setAttribute("info", infoDTO);
-        return "/user/profile";
-    }
-
-    @GetMapping("/employer/1")
-    public String employerProfile(HttpServletRequest request) {
-        UserResponse.infoDTO infoDTO = userRepository.info();
-        request.setAttribute("info", infoDTO);
-        return "/employer/profile";
+    @GetMapping("/user/{id}")
+    public String profile(HttpServletRequest request, @PathVariable int id) {
+        User user = userRepository.findById(id);
+        request.setAttribute("user", user);
+        if (user.getIsEmployer())
+            return "/employer/profile";
+        else
+            return "/user/profile";
     }
 
     @GetMapping("/user/1/updateForm")

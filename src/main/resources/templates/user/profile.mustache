@@ -3,7 +3,7 @@
     <div class="div-layout">
         <div class="d-flex justify-content-between">
             <h3><b>내 정보</b></h3>
-            <form action="/user/1/updateForm" class="justify-content-end">
+            <form action="/user/{{sessionUser.id}}/updateForm" class="justify-content-end">
                 <button class="btn btn-outline-primary">수정</button>
                 <button class="btn btn-primary">탈퇴</button>
             </form>
@@ -13,7 +13,7 @@
                 <div class="card mt-5" style="width:150px">
                     <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
                     <div class="card-body">
-                        <h4 class="card-title">{{info.name}}</h4>
+                        <h4 class="card-title">{{user.name}}</h4>
                         <button class="btn btn-outline-primary">수정</button>
                         <button class="btn btn-primary">삭제</button>
                     </div>
@@ -29,35 +29,35 @@
                     <tbody>
                     <tr>
                         <td>ID</td>
-                        <td>{{User.username}}</td>
+                        <td>{{user.username}}</td>
                     </tr>
                     <tr>
                         <th>PW</th>
-                        <td>1234</td>
+                        <td>{{user.password}}</td>
                     </tr>
                     <tr>
                         <td>이름</td>
-                        <td>{{User.name}}</td>
+                        <td>{{user.name}}</td>
                     </tr>
                     <tr>
                         <td>생년월일</td>
-                        <td>{{User.birthdate}}</td>
+                        <td>{{user.birthdate}}</td>
                     </tr>
                     <tr>
                         <td>성별</td>
-                        <td>{{User.gender}}</td>
+                        <td>{{user.gender}}</td>
                     </tr>
                     <tr>
                         <td>휴대전화</td>
-                        <td>{{User.phoneNumber}}</td>
+                        <td>{{user.phoneNumber}}</td>
                     </tr>
                     <tr>
                         <td>주소</td>
-                        <td>{{User.address}}</td>
+                        <td>{{user.address}}</td>
                     </tr>
                     <tr>
                         <td>E-MAIL</td>
-                        <td>{{User.email}}</td>
+                        <td>{{user.email}}</td>
                     </tr>
                     </tbody>
                 </table>

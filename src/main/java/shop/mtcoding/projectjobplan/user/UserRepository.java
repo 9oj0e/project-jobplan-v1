@@ -14,18 +14,9 @@ import java.util.List;
 @Repository
 public class UserRepository {
     private final EntityManager entityManager;
-    public User findById(int id) {
-        String q = ("""
-            SELECT *
-            FROM user_tb
-            WHERE id = ?
-            """);
-        Query query = entityManager.createNativeQuery(q, User.class);                                           
-        query.setParameter(1,id);                                           
-        return query.getSingleResult();
-    }                                          
+
     @Transactional
-    public Integer save(UserRequest.SaveDTO requestDTO) {
+    public Integer save(UserRequest.JoinDTO requestDTO) {
         String q = """
                 INSERT INTO user_tb
                 (username, password, name, birthdate, gender, phone_number, address, email,
@@ -49,7 +40,19 @@ public class UserRepository {
 
         return query.executeUpdate(); // 영향 받은 행
     }
-    public List<User> findAll(){
+
+    public User findById(int id) {
+        String q = ("""
+                SELECT *
+                FROM user_tb
+                WHERE id = ?
+                """);
+        Query query = entityManager.createNativeQuery(q, User.class);
+        query.setParameter(1, id);
+        return (User) query.getSingleResult();
+    }
+
+    public List<User> findAll() {
         String q = "select * from user_tb order by id desc";
         Query query = entityManager.createNativeQuery(q, User.class);
 
@@ -68,6 +71,7 @@ public class UserRepository {
 
         return (User) query.getSingleResult();
     }
+
     public User findByUsername(UserRequest.LoginDTO requestDTO) {
         String q = "select * from user_tb where username = ?";
         Query query = entityManager.createNativeQuery(q, User.class);
