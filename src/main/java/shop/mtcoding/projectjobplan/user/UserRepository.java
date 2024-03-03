@@ -7,15 +7,25 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
 public class UserRepository {
     private final EntityManager entityManager;
-
+    public User findById(int id) {
+        String q = ("""
+            SELECT *
+            FROM user_tb
+            WHERE id = ?
+            """);
+        Query query = entityManager.createNativeQuery(q, User.class);                                           
+        query.setParameter(1,id);                                           
+        return query.getSingleResult();
+    }                                          
     @Transactional
-    public Integer save(UserRequest.JoinDTO requestDTO) {
+    public Integer save(UserRequest.SaveDTO requestDTO) {
         String q = """
                 INSERT INTO user_tb
                 (username, password, name, birthdate, gender, phone_number, address, email,

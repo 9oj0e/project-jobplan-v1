@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,17 +19,16 @@ public class User {
     private String username;
     private String password;
     private String name;
-
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Timestamp birthdate;
+  
+    private String birthdate; // Timestamp..
     private char gender; // 'M' or 'F'
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String address;
     private String email;
 
     // employer, 사업자 항목 nullable
     private boolean isEmployer; // 사업자인지
-    private Integer employerIdNumber; // 사업자번호
+    private String employerIdNumber; // 사업자번호
     private String businessName; // 기업이름
     private Timestamp createdAt;
 }

@@ -13,7 +13,7 @@
                 <div class="card mt-5" style="width:150px">
                     <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
                     <div class="card-body">
-                        <h4 class="card-title">이름</h4>
+                        <h4 class="card-title">{{info.name}}</h4>
                         <button class="btn btn-outline-primary">수정</button>
                         <button class="btn btn-primary">삭제</button>
                     </div>
@@ -28,36 +28,36 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <th>ID</th>
-                        <td>love</td>
+                        <td>ID</td>
+                        <td>{{User.username}}</td>
                     </tr>
                     <tr>
                         <th>PW</th>
                         <td>1234</td>
                     </tr>
                     <tr>
-                        <th>이름</th>
-                        <td>홍길동</td>
+                        <td>이름</td>
+                        <td>{{User.name}}</td>
                     </tr>
                     <tr>
-                        <th>생년월일</th>
-                        <td>1996-04-01</td>
+                        <td>생년월일</td>
+                        <td>{{User.birthdate}}</td>
                     </tr>
                     <tr>
-                        <th>성별</th>
-                        <td>남자</td>
+                        <td>성별</td>
+                        <td>{{User.gender}}</td>
                     </tr>
                     <tr>
-                        <th>휴대전화</th>
-                        <td>010-9273-0000</td>
+                        <td>휴대전화</td>
+                        <td>{{User.phoneNumber}}</td>
                     </tr>
                     <tr>
-                        <th>주소</th>
-                        <td>경상남도 진주시 초전동</td>
+                        <td>주소</td>
+                        <td>{{User.address}}</td>
                     </tr>
                     <tr>
-                        <th>E-MAIL</th>
-                        <td>21560137@gnu.ac.kr</td>
+                        <td>E-MAIL</td>
+                        <td>{{User.email}}</td>
                     </tr>
                     </tbody>
                 </table>

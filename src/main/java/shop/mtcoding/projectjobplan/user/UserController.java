@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
 public class UserController {
     private final UserRepository userRepository;
     private final HttpSession session;
@@ -54,12 +55,16 @@ public class UserController {
     }
 
     @GetMapping("/user/1")
-    public String profile() {
+    public String profile(HttpServletRequest request) {
+        UserResponse.infoDTO infoDTO = userRepository.info();
+        request.setAttribute("info", infoDTO);
         return "/user/profile";
     }
 
     @GetMapping("/employer/1")
-    public String employerProfile() {
+    public String employerProfile(HttpServletRequest request) {
+        UserResponse.infoDTO infoDTO = userRepository.info();
+        request.setAttribute("info", infoDTO);
         return "/employer/profile";
     }
 
