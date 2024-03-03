@@ -100,8 +100,11 @@ public class ResumeController {
 
         return "/resume/updateForm";
     }
-    @GetMapping("/resume/1")
-    public String detail() {
+    @GetMapping("/resume/{id}")
+    public String detail(@PathVariable int id, HttpServletRequest request) {
+        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
+        request.setAttribute("detail", resumeDetailDTO);
+
         return "/resume/detail";
     }
 }

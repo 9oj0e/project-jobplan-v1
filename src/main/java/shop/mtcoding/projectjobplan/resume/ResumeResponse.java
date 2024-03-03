@@ -20,9 +20,25 @@ public class ResumeResponse {
         private String name ;
     }
 
+    @Data
+    public static class ResumeDetailDTO{
+        private Integer id;
+        private String name;
+        private String address;
+        private String phoneNumber;
+        private String email;
 
-
+        private Integer userId;
+        private String title;
+        private String educationLevel;
+        private String major;
+        private String schoolName;
+        private String content;
+        // ID NAME ADDRESS PHONE_NUMBER EMAIL USER_ID
+        // TITLE EDUCATION_LEVEL MAJOR SCHOOL_NAME CONTENT
     }
+
+}
 
 
 
