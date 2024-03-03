@@ -5,133 +5,105 @@
         box-sizing: border-box;
     }
 
-    .h2-text {
-        margin: 10px 0 20px;
-        text-align: center;
-    }
-
-    .main {
-        margin: 5vw 5%;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 5px #000;
-    }
-
     .p-text {
         font-size: 13px;
         margin-top: 10px;
         color: rgb(66, 66, 66);
     }
-
-    .hr-line {
-        margin-bottom: 6px;
-    }
-
-    .div-phone {
-        display: flex;
-
-    }
-
-    .div-phone-number {
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-
-
-    }
-
-    .div-hyphen {
-        margin: 5px;
-        align-items: center;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
 </style>
-<div class="main">
-    <h2 class="h2-text">개인 회원가입</h2>
-    <hr class="hr-line">
-    <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
-        <div class="mb-3">
-            <p class="p-text">아이디</p>
-            <input type="text" name="username" id="username" placeholder="Enter username.." value="love" class="form-control"
-                   required>
+<div style="display: flex; justify-content: center">
+    <div class="card" style="width: 600px; margin-bottom: 5%">
+        <div class="card-header" style="text-align: end"><b>개인 회원가입</b></div>
+        <div class="card-body">
+            <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
+                <div style="text-align: end"><h4>기본 정보</h4></div>
+                <div>아이디</div>
+                <div class="mb-3">
+                    <input type="text" name="username" id="username" placeholder="Enter username.." value="love"
+                           class="form-control"
+                           required>
+                </div>
+                <div>비밀번호</div>
+                <div class="mb-3">
+                    <input type="password" name="password" id="password" placeholder="Enter password.." value="1234"
+                           class="form-control"
+                           required>
+                </div>
+                <div style="text-align: end"><h4>개인 정보</h4></div>
+                <div>이름</div>
+                <div class="mb-3">
+                    <input type="text" name="name" pattern="[^(가-힣a-zA-Z)]" id="name" placeholder="Enter name.."
+                           value="JHJO" class="form-control" required>
+                </div>
+                <div>생년월일</div>
+                <div class="mb-3">
+                    <input type="date" name="birthdate" id="birthdate" value="1988-04-01" class="form-control" required>
+                </div>
+                <div>성별</div>
+                <div class="mb-3" style="display: grid; grid-template-columns: 1fr 1fr">
+                    <div style="display: flex; justify-content: center">
+                        <span>남자</span>
+                        <input type="radio" name="gender" id="gender" value='M' required>
+                    </div>
+                    <div style="display: flex; justify-content: center">
+                        <span>여자</span>
+                        <input type="radio" name="gender" id="gender" value='F' required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <p class="p-text">휴대전화</p>
+                    <input type="tel" pattern="[0-9]{9, 11}" title="번호만 입력하세요" name="phoneNumber" id="phoneNumber"
+                           value="01092730000" class="form-control" required>
+                </div>
+                <!--
+                <p class="p-text">휴대전화</p> // 파싱 어려움
+                <div class="div-phone">
+                    <div class="div-phone-number">
+                        <input type='tel' name='phone1' value="010" class="form-control" readonly>
+                    </div>
+                    <div class="div-hyphen">-</div>
+                    <div class="div-phone-number">
+                        <input type='tel' name='phone2' required class="form-control">
+                    </div>
+                    <div class="div-hyphen">-</div>
+                    <div class="div-phone-number">
+                        <input type='tel' name='phone3' required class="form-control">
+                    </div>
+                </div>
+                -->
+                <div class="mb-3">
+                    <p class="p-text">주소</p>
+                    <input type="text" name="address" id="address" placeholder="Enter address.." value="부산진구 부전동 109-11"
+                           class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <p class="p-text">이메일</p>
+                    <input type="email" name="email" id="email" placeholder="Enter email.." value="greeni@green.ac.kr"
+                           class="form-control" required>
+                </div>
+                <!--
+                <p class="p-text">보유 기술
+                <div class="mb-3 form-control">
+                    <span>java</span>
+                    <input type="checkbox" name="name" value="java">
+                    <span>javaScript</span>
+                    <input type="checkbox" name="name" value="javascript">
+                    <span>Spring</span>
+                    <input type="checkbox" name="name" value="spring">
+                    <span>HTML</span>
+                    <input type="checkbox" name="name" value="html">
+                    <span>jQuery</span>
+                    <input type="checkbox" name="name" value="jQuery">
+                    <span>MySQL</span>
+                    <input type="checkbox" name="name" value="mysql">
+                </div>
+                </p>
+                -->
+                <input type="hidden" name="isEmployer" value="false"> <!--기업 회원 여부 false-->
+                <button type="submit" class="btn btn-primary form-control mt-3">회원가입</button>
+            </form>
         </div>
-        <div class="mb-3">
-            <p class="p-text">비밀번호</p>
-            <input type="password" name="password" id="password" placeholder="Enter password.." value="1234" class="form-control"
-                   required>
-        </div>
-        <div class="mb-3">
-            <p class="p-text">이름</p>
-            <input type="text" name="name" pattern="[^(가-힣a-zA-Z)]" id="name" placeholder="Enter name.." value="JHJO" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <p class="p-text">생년월일</p>
-            <input type="date" name="birthdate" id="birthdate" value="1996-04-01" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <p class="p-text">성별</p>
-            <span>
-                <span>남자</span>
-                <input type="radio" name="gender" id="gender" value='M' required>
-            </span>
-            <span>
-                <span>여자</span>
-                <input type="radio" name="gender" id="gender" value='F' required>
-            </span>
-        </div>
-        <div class="mb-3">
-            <p class="p-text">휴대전화</p>
-            <input type="tel" pattern="[0-9]{9, 11}" title="번호만 입력하세요" name="phoneNumber" id="phoneNumber" value="01092730000" class="form-control" required>
-        </div>
-
-        <!--
-        <p class="p-text">휴대전화</p> // 파싱 어려움
-        <div class="div-phone">
-            <div class="div-phone-number">
-                <input type='tel' name='phone1' value="010" class="form-control" readonly>
-            </div>
-            <div class="div-hyphen">-</div>
-            <div class="div-phone-number">
-                <input type='tel' name='phone2' required class="form-control">
-            </div>
-            <div class="div-hyphen">-</div>
-            <div class="div-phone-number">
-                <input type='tel' name='phone3' required class="form-control">
-            </div>
-        </div>
-        -->
-        <div class="mb-3">
-            <p class="p-text">주소</p>
-            <input type="text" name="address" id="address" placeholder="Enter address.." value="부산진구 부전동 109-11" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <p class="p-text">이메일</p>
-            <input type="email" name="email" id="email" placeholder="Enter email.." value="21560137@gnu.ac.kr" class="form-control" required>
-        </div>
-        <!--
-        <p class="p-text">보유 기술
-        <div class="mb-3 form-control">
-            <span>java</span>
-            <input type="checkbox" name="name" value="java">
-            <span>javaScript</span>
-            <input type="checkbox" name="name" value="javascript">
-            <span>Spring</span>
-            <input type="checkbox" name="name" value="spring">
-            <span>HTML</span>
-            <input type="checkbox" name="name" value="html">
-            <span>jQuery</span>
-            <input type="checkbox" name="name" value="jQuery">
-            <span>MySQL</span>
-            <input type="checkbox" name="name" value="mysql">
-        </div>
-        </p>
-        -->
-        <input type="hidden" name="isEmployer" value="false"> <!--기업 회원 여부 false-->
-        <button type="submit" class="btn btn-primary form-control">회원가입</button>
-    </form>
-
+    </div>
 </div>
-<!-- 바디 end -->
+        <!-- 바디 end -->
 {{>layout/footer}}

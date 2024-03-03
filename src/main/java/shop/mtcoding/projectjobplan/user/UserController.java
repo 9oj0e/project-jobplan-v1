@@ -77,7 +77,7 @@ public class UserController {
         request.setAttribute("user", user);
 
         Resume resume = resumeRepository.findById(id);
-        request. setAttribute( "resume", resume);
+        request.setAttribute( "resume", resume);
 
 
         // 기업 회원 인지..
