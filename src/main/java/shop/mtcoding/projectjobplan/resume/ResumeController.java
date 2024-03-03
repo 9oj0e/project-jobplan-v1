@@ -1,11 +1,15 @@
 package shop.mtcoding.projectjobplan.resume;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.projectjobplan.board.BoardResponse;
+import shop.mtcoding.projectjobplan.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +18,14 @@ import java.util.List;
 @Controller
 public class ResumeController {
     private final ResumeRepository resumeRepository;
+    private final HttpSession session;
 
+    @PostMapping("/resume/{id}/upload")
+    public String upload(@PathVariable int id, ResumeRequest.SaveDTO requestDTO){
+        resumeRepository.save(requestDTO, id);
+
+        return "/user/" + id;
+    }
 
     @GetMapping("/resume/main")
     public String main() {
@@ -73,7 +84,7 @@ public class ResumeController {
     public String uploadForm() {
         return "/resume/uploadForm";
     }
-    @GetMapping("/resume/1/updateForm")
+    @GetMapping("/resume/{id}/updateForm")
     public String updateForm() {
         return "/resume/updateForm";
     }
