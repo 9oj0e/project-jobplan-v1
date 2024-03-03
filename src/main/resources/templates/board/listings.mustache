@@ -65,7 +65,7 @@
         <th>급여정보</th>
         <th>작성시간</th>
 
-        {{#employerList}}
+        {{#boardList}}
             <tr>
                 <td>{{address}}</td>
                 <td><a href="/board/{{id}}" class="text-body">{{content}}</a></td>
@@ -75,7 +75,7 @@
                 <td>{{createdAt}}</td>
             </tr>
 
-        {{/employerList}}
+        {{/boardList}}
 
 
 
@@ -84,11 +84,11 @@
 
     <div class="d-flex justify-content-center">
         <ul class="pagination">
-            <li class="page-item {{#first}}disabled{{/first}}"><a class="page-link" href="?page={{prevPage}}">Previous</a></li>
-            {{#numberList}}
+            <li class="page-item {{#isFirst}}disabled{{/isFirst}}"><a class="page-link" href="?page={{prevPage}}">Previous</a></li>
+            {{#pageList}}
                 <li class="page-item"><a class="page-link" href="?page={{.}}">{{.}}</a></li>
-            {{/numberList}}
-            <li class="page-item {{#last}}disabled{{/last}}"><a class="page-link" href="?page={{nextPage}}">Next</a></li>
+            {{/pageList}}
+            <li class="page-item {{#isLast}}disabled{{/isLast}}"><a class="page-link" href="?page={{nextPage}}">Next</a></li>
         </ul>
 
     </div>

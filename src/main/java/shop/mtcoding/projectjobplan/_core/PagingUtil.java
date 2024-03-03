@@ -19,6 +19,23 @@ public class PagingUtil {
         for (int i = 0; i < totalPageCount; i++) {
             pageList.add(i);
         }
+        /* RJS
+        List<Integer> numberList = new ArrayList<>();
+        int allPage;
+        if (totalPage % 10 == 0) {
+            allPage = totalCount - 1;
+            for (int i = 1; i <= allPage; i++) {
+                numberList.add(i);
+                request.setAttribute("numberList", numberList);
+            }
+        } else if (totalPage % 10 != 0) {
+            allPage = totalCount;
+            for (int i = 1; i <= allPage; i++) {
+                numberList.add(i);
+                request.setAttribute("numberList", numberList);
+            }
+        }
+        */
         return pageList;
     }
 

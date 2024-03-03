@@ -174,9 +174,9 @@ public class BoardRepository {
 
 
 
-    public int countIsEmployerTrue() {
+    public int count() {
         String q = """
-                SELECT COUNT(*) FROM board_tb b INNER JOIN user_tb u ON b.user_id = u.id WHERE u.is_employer = true;
+                SELECT COUNT(*) FROM board_tb;
                 """;
         Query query = entityManager.createNativeQuery(q);
         Long count = (Long) query.getSingleResult();

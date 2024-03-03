@@ -9,20 +9,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
-    private final BoardRepository boardRepository ;
+    private final BoardRepository boardRepository;
     private final HttpSession session;
 
     @PostMapping("/board/{id}/upload")
-    public String upload(@PathVariable int id, BoardRequest.SaveDTO requestDTO){
+    public String upload(@PathVariable int id, BoardRequest.SaveDTO requestDTO) {
         boardRepository.save(requestDTO, id);
 
         return "/employer/" + id;
@@ -42,58 +44,34 @@ public class BoardController {
         request.setAttribute("employerList", employerList);
 
         return "/index";
-}
+    }
+
     @GetMapping("/board/listings")
-    public String listings(HttpServletRequest request,@RequestParam(defaultValue = "1")int page) {
+    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "0") int page) {
         List<BoardResponse.boardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page);
-        List<BoardResponse.boardAndUserDTO> employerList = new ArrayList<>();
+        List<BoardResponse.boardAndUserDTO> boardList = new ArrayList<>();
         for (BoardResponse.boardAndUserDTO dto : responseDTO) {
             if (dto.isEmployer()) {
-                employerList.add(dto);
+                boardList.add(dto);
             }
         }
-        request.setAttribute("employerList", employerList);
+        request.setAttribute("boardList", boardList);
+        request.setAttribute("nextPage", page + 1);
+        request.setAttribute("prevPage", page - 1);
 
+        int totalPage = boardRepository.count();
+        request.setAttribute("isFirst", PagingUtil.isFirst(page));
+        request.setAttribute("isLast", PagingUtil.isLast(page, totalPage));
+        request.setAttribute("pageList", PagingUtil.getPageList(PagingUtil.getTotalPageCount(totalPage)));
 
-        int currentPage = page;
-        int nextPage = currentPage + 1;
-        int prevPage = currentPage - 1;
-
-        request.setAttribute("nextPage", nextPage);
-        request.setAttribute("prevPage", prevPage);
-
-
-        boolean first = (currentPage == 1 ? true : false);
-        request.setAttribute("first", first);
-
-        int totalPage = boardRepository.countIsEmployerTrue();
-
-        int totalCount = (totalPage % 10 == 0) ? (totalPage / 10) : (totalPage / 10 + 1);
-        boolean last = (currentPage == totalCount);
-        List<Integer> numberList = new ArrayList<>();
-        int allPage;
-        if (totalPage % 10 == 0) {
-            allPage = totalCount - 1;
-            for (int i = 1; i <= allPage; i++) {
-                numberList.add(i);
-                request.setAttribute("numberList", numberList);
-            }
-        } else if (totalPage % 10 != 0) {
-            allPage = totalCount;
-            for (int i = 1; i <= allPage; i++) {
-                numberList.add(i);
-                request.setAttribute("numberList", numberList);
-            }
-
-        }
-        request.setAttribute("last", last);
         return "/board/listings";
-        }
+    }
 
     @GetMapping("/board/main")
     public String main() {
         return "/board/main";
     }
+
     @GetMapping("/board/1")
     public String detail() {
         // 1번 조회
@@ -101,10 +79,12 @@ public class BoardController {
         // 1번 view에 뿌리기
         return "/board/detail";
     }
+
     @GetMapping("/board/uploadForm")
     public String uploadForm() {
         return "/board/uploadForm";
     }
+
     @GetMapping("/board/1/updateForm")
     public String updateForm() {
         return "/board/updateForm";
