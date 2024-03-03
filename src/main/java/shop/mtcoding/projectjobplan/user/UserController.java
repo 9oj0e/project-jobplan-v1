@@ -79,6 +79,12 @@ public class UserController {
             return "/user/updateForm";
     }
 
+    @PostMapping("/user/{id}/update")
+    public String update(@PathVariable int id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
+        request.setAttribute("user", userRepository.updateById(requestDTO, id));
+        return "redirect:/user/"+id;
+    }
+
     @GetMapping("/logout")
     public String logout() {
         session.invalidate();
