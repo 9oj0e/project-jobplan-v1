@@ -2,6 +2,7 @@ package shop.mtcoding.projectjobplan.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -18,7 +19,8 @@ public class User {
     private String username;
     private String password;
     private String name;
-    private String birthdate;
+  
+    private String birthdate; // Timestamp..
     private char gender; // 'M' or 'F'
     private String phoneNumber;
     private String address;

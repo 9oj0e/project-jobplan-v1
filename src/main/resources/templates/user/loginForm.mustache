@@ -42,25 +42,6 @@
         margin-bottom: 6px;
     }
 
-    .login-select {
-        text-align: center;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-
-    }
-
-    .login-select-box {
-        margin: 2px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid #eee;
-        background-color: #eee;
-        border-radius: 5px;
-        height: 30px;
-
-    }
-
     .login-find {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -78,22 +59,22 @@
 <div class="main">
     <h2>로그인</h2>
     <hr>
-    <form action="/login" method="post">
-        <div class="login-select">
-            <button class="login-select-box">개인 회원</button>
-            <button class="login-select-box">기업 회원</button>
+    <form action="/login" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="mb-3">
+            <p>아이디 입력</p>
+            <input type="text" name="username" id="username" placeholder="Enter username...">
         </div>
-        <p>아이디 입력</p>
-        <input type="text" id="id" placeholder="id">
-        <p>비밀번호 입력</p>
-        <input type="password" id="pw" placeholder="password">
-
+        <div class="mb-3">
+            <p>비밀번호 입력</p>
+            <input type="text" name="password" id="password" placeholder="Enter password...">
+        </div>
+        <!--
         <div class="login-find">
             <div class="login-find-select">아이디 찾기</div>
             <div class="login-find-select">비밀번호 찾기</div>
             <div class="login-find-select">회원가입</div>
         </div>
-
+        -->
         <input type="submit" value="로그인"></input>
     </form>
 

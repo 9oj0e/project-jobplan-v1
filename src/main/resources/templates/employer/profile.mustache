@@ -1,7 +1,7 @@
 {{> layout/header }}
 <div class="div-body">
     <div class="div-layout">
-        <div class="div-header d-flex justify-content-between">
+        <div class="d-flex justify-content-between">
             <h3><b>내 정보</b></h3>
             <form action="/user/1/updateForm" class="justify-content-end">
                 <button class="btn btn-outline-primary">수정</button>
@@ -10,7 +10,7 @@
         </div>
         <div class="div-information">
             <div class="div-information-grid">
-                <div class="card" style="width:150px">
+                <div class="card mt-5" style="width:150px">
                     <img class="card-img" src="../images/naver logo.png" alt="Card image" style="width:100%">
                     <div class="card-body">
                         <h4 class="card-title">{{info.name}}</h4>
@@ -21,49 +21,53 @@
             </div>
             <div>
                 <table class="table">
+                    <thead>
                     <tr>
                         <th><h3>기업정보</h3></th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>ID</td>
-                        <td>{{info.username}}</td>
+                        <td>{{User.username}}</td>
                     </tr>
                     <tr>
-                        <td>PW</td>
-                        <td>****</td>
+                        <th>PW</th>
+                        <td>1234</td>
                     </tr>
                     <tr>
                         <td>이름</td>
-                        <td>{{info.name}}</td>
+                        <td>{{User.name}}</td>
                     </tr>
                     <tr>
                         <td>생년월일</td>
-                        <td>{{info.birthdate}}</td>
+                        <td>{{User.birthdate}}</td>
                     </tr>
                     <tr>
                         <td>성별</td>
-                        <td>{{info.gender}}</td>
+                        <td>{{User.gender}}</td>
                     </tr>
                     <tr>
                         <td>휴대전화</td>
-                        <td>{{info.phoneNumber}}</td>
+                        <td>{{User.phoneNumber}}</td>
                     </tr>
                     <tr>
                         <td>주소</td>
-                        <td>{{info.address}}</td>
+                        <td>{{User.address}}</td>
                     </tr>
                     <tr>
                         <td>E-MAIL</td>
-                        <td>{{info.email}}</td>
+                        <td>{{User.email}}</td>
                     </tr>
                     <tr>
                         <td>사업자번호</td>
-                        <td>{{info.employerIdNumber}}</td>
+                        <td>{{User.employerIdNumber}}</td>
                     </tr>
                     <tr>
                         <td>회사명</td>
-                        <td>{{info.businessName}}</td>
+                        <td>{{User.businessName}}</td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

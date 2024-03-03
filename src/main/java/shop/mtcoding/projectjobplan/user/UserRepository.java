@@ -14,40 +14,16 @@ import java.util.List;
 @Repository
 public class UserRepository {
     private final EntityManager entityManager;
-
-    @Transactional
-    public UserResponse.infoDTO info() {
-        Query query = entityManager.createNativeQuery("""
-            select name, username, password, birthdate, gender, phone_number, address, email, employer_id_number, business_name
-            from user_tb
-            where id = 1
+    public User findById(int id) {
+        String q = ("""
+            SELECT *
+            FROM user_tb
+            WHERE id = ?
             """);
-        Object[] row = (Object[]) query.getSingleResult();
-        String name = (String) row[0];
-        String username = (String) row[1];
-        String password = (String) row[2];
-        String birthdate = (String) row[3];
-        Character gender = (Character) row[4];
-        String phoneNumber = (String) row[5];
-        String address = (String) row[6];
-        String email = (String) row[7];
-        String employerIdNumber = (String) row[8];
-        String businessName = (String) row[9];
-
-        UserResponse.infoDTO infoDTO = new UserResponse.infoDTO();
-        infoDTO.setName(name);
-        infoDTO.setUsername(username);
-        infoDTO.setPassword(password);
-        infoDTO.setBirthdate(birthdate);
-        infoDTO.setGender(gender);
-        infoDTO.setPhoneNumber(phoneNumber);
-        infoDTO.setAddress(address);
-        infoDTO.setEmail(email);
-        infoDTO.setEmployerIdNumber(employerIdNumber);
-        infoDTO.setBusinessName(businessName);
-        return infoDTO;
-    }
-
+        Query query = entityManager.createNativeQuery(q, User.class);                                           
+        query.setParameter(1,id);                                           
+        return query.getSingleResult();
+    }                                          
     @Transactional
     public Integer save(UserRequest.SaveDTO requestDTO) {
         String q = """
@@ -73,30 +49,30 @@ public class UserRepository {
 
         return query.executeUpdate(); // 영향 받은 행
     }
-    /* 모든 유저를 조회할 필요가..?
-    public List<User> findAll() {
-        String q = "select * from resume_tb order by id desc";
-        Query query = entityManager.createNativeQuery(q, User.class);
-
-        return (List<User>) query.getResultList();
-
-    }
-    */
     public List<User> findAll(){
-        Query query = entityManager.createNativeQuery("select * from user_tb order by id desc;", User.class);
+        String q = "select * from user_tb order by id desc";
+        Query query = entityManager.createNativeQuery(q, User.class);
 
         try {
             return query.getResultList();
         } catch (Exception e) {
             return null;
         }
-
     }
 
-    public User findById(Integer id) {
-        String q = "select * from resume_tb where id = ? order by id desc";
+    public User findByUsernameAndPassword(UserRequest.LoginDTO requestDTO) {
+        String q = "select * from user_tb where username = ? and password = ?";
         Query query = entityManager.createNativeQuery(q, User.class);
-        query.setParameter(1, id);
+        query.setParameter(1, requestDTO.getUsername());
+        query.setParameter(2, requestDTO.getPassword());
+
+        return (User) query.getSingleResult();
+    }
+    public User findByUsername(UserRequest.LoginDTO requestDTO) {
+        String q = "select * from user_tb where username = ?";
+        Query query = entityManager.createNativeQuery(q, User.class);
+        query.setParameter(1, requestDTO.getUsername());
+        // query.setParameter(2, requestDTO.getPassword()); 암호화 필요
 
         return (User) query.getSingleResult();
     }
