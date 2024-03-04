@@ -5,7 +5,10 @@ import lombok.Data;
 import shop.mtcoding.projectjobplan.user.User;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class BoardResponse {
 
@@ -18,16 +21,46 @@ public class BoardResponse {
         private String field; // 채용 분야
         private String position; // 포지션
         private String salary; // 연봉
-        private Timestamp openingDate; // 게시일
-        private Timestamp closingDate; // 마감일
+        private String openingDate; // 게시일
+        private String closingDate; // 마감일
 
-        private Timestamp createdAt; // 생성일
+        private String createdAt; // 생성일
 
         private String username;
         private String address;
         private boolean isEmployer; // 사업자인지
         private String businessName;
 
+        public void parseOpeningDate(Timestamp timestamp){
+            // Timestamp -> String
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String timestampString = dateFormat.format(timestamp);
+            // String "yyyy-MM-dd HH:mm:ss" -> "yyyy-MM-dd"
+            String dateTime = LocalDateTime
+                    .parse(timestampString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            this.openingDate = dateTime;
+        }
+        public void parseClosingDate(Timestamp timestamp){
+            // Timestamp -> String
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String timestampString = dateFormat.format(timestamp);
+            // String "yyyy-MM-dd HH:mm:ss" -> "yyyy-MM-dd"
+            String dateTime = LocalDateTime
+                    .parse(timestampString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            this.closingDate = dateTime;
+        }
+        public void parseCreatedAt(Timestamp timestamp){
+            // Timestamp -> String
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSS");
+            String timestampString = dateFormat.format(timestamp);
+            // String "yyyy-MM-dd HH:mm:ss.SSSSS" -> "yyyy-MM-dd"
+            String dateTime = LocalDateTime
+                    .parse(timestampString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSS"))
+                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            this.createdAt = dateTime;
+        }
     }
 
     @Data

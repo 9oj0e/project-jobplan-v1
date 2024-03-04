@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -86,9 +87,9 @@ public class BoardRepository {
             dto.setField((String) result[4]);
             dto.setPosition((String) result[5]);
             dto.setSalary((String) result[6]);
-            dto.setOpeningDate((Timestamp) result[7]);
-            dto.setClosingDate((Timestamp) result[8]);
-            dto.setCreatedAt((Timestamp) result[9]);
+            dto.parseOpeningDate((Timestamp) result[7]);
+            dto.parseClosingDate((Timestamp) result[8]);
+            dto.parseCreatedAt((Timestamp) result[9]);
             dto.setUsername((String) result[10]);
             dto.setAddress((String) result[11]);
             dto.setEmployer((boolean) result[12]);
@@ -117,9 +118,9 @@ public class BoardRepository {
             dto.setField((String) result[4]);
             dto.setPosition((String) result[5]);
             dto.setSalary((String) result[6]);
-            dto.setOpeningDate((Timestamp) result[7]);
-            dto.setClosingDate((Timestamp) result[8]);
-            dto.setCreatedAt((Timestamp) result[9]);
+            dto.parseOpeningDate((Timestamp) result[7]);
+            dto.parseClosingDate((Timestamp) result[8]);
+            dto.parseCreatedAt((Timestamp) result[9]);
             dto.setUsername((String) result[10]);
             dto.setAddress((String) result[11]);
             dto.setEmployer((boolean) result[12]);
