@@ -22,6 +22,7 @@
                 </div>
             </div>
             <div>
+                {{#user}}
                 <table class="table">
                     <thead>
                     <tr>
@@ -31,46 +32,47 @@
                     <tbody>
                     <tr>
                         <th>아이디</th>
-                        <td>{{user.username}}</td>
+                        <td>{{username}}</td>
                     </tr>
                     <tr>
                         <th>비밀번호</th>
-                        <td>{{user.password}}</td>
+                        <td>{{password}}</td>
                     </tr>
                     <tr>
                         <th>이름</th>
-                        <td>{{user.name}}</td>
+                        <td>{{name}}</td>
                     </tr>
                     <tr>
                         <th>생년월일</th>
-                        <td>{{user.birthdate}}</td>
+                        <td>{{birthdate}}</td>
                     </tr>
                     <tr>
                         <th>성별</th>
-                        <td>{{user.gender}}</td>
+                        <td>{{gender}}</td>
                     </tr>
                     <tr>
                         <th>휴대전화</th>
-                        <td>{{user.phoneNumber}}</td>
+                        <td>{{phoneNumber}}</td>
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td>{{user.address}}</td>
+                        <td>{{address}}</td>
                     </tr>
                     <tr>
                         <th>E-MAIL</th>
-                        <td>{{user.email}}</td>
+                        <td>{{email}}</td>
                     </tr>
                     <tr>
                         <th>사업자번호</th>
-                        <td>{{user.employerIdNumber}}</td>
+                        <td>{{employerIdNumber}}</td>
                     </tr>
                     <tr>
                         <th>회사명</th>
-                        <td>{{user.businessName}}</td>
+                        <td>{{businessName}}</td>
                     </tr>
                     </tbody>
                 </table>
+                {{/user}}
             </div>
         </div>
     </div>
@@ -81,18 +83,23 @@
                 <button class="btn btn-primary">추가</button>
             </form>
         </div>
-
-        <table class="table">
-            <tr class="table">
-                <th class="col-1" >공고제목</th>
-            </tr>
-        </table>
         <div class="div-announcement">
-            <table class="table-image">
+            <table class="table table-hover" style="text-align: end">
+                <tr>
+                    <th>포지션</th>
+                    <th>채용 분야</th>
+                    <th>공고 제목</th>
+                    <th>게시일</th>
+                    <th></th>
+                </tr>
                 {{#boardList}}
                     <tr>
-                        <td class="td-announcement td-image">{{title}}
-                            <div class="button-group button-inline">
+                        <td>{{position}}</td>
+                        <td>{{field}}</td>
+                        <td>{{title}}</td>
+                        <td>{{openingDate}}</td>
+                        <td>
+                            <div style="display: flex; justify-content: end">
                                 <form action="/board/{{id}}/updateForm">
                                     <button class="btn btn-outline-primary">수정</button>
                                 </form>

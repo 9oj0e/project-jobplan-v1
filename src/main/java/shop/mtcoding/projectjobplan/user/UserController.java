@@ -86,7 +86,6 @@ public class UserController {
         if (user.getIsEmployer()) {
             List<Board> boardList = boardRepository.findByUserId(user.getId());
             request.setAttribute("boardList", boardList);
-            // 조회한 거 박스에 담는거
             return "/employer/profile";
         }
         else {
