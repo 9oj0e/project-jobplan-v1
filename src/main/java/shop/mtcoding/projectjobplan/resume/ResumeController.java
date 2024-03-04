@@ -65,6 +65,15 @@ public class ResumeController {
 
         return "/resume/listings";
     }
+
+    @GetMapping("/resume/{id}")
+    public String detail(@PathVariable int id, HttpServletRequest request) {
+        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
+        request.setAttribute("detail", resumeDetailDTO);
+
+        return "/resume/detail";
+    }
+
     @GetMapping("/resume/uploadForm")
     public String uploadForm() {
         return "/resume/uploadForm";
@@ -76,11 +85,18 @@ public class ResumeController {
 
         return "/resume/updateForm";
     }
-    @GetMapping("/resume/{id}")
-    public String detail(@PathVariable int id, HttpServletRequest request) {
-        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
-        request.setAttribute("detail", resumeDetailDTO);
 
-        return "/resume/detail";
+    @PostMapping("/resume/{id}/delete")
+    public String delete(@PathVariable int id, HttpServletRequest request) {
+        User user = (User) session.getAttribute("sessionUser");
+        Resume resume = resumeRepository.findById(id);
+        if (resume == null) {
+            request.setAttribute("msg", "해당 아이디를 찾을 수 없습니다.");
+            request.setAttribute("status", "404");
+            return "/error";
+        } else {
+            resumeRepository.deleteById(id);
+            return "redirect:/user/" + user.getId();
+        }
     }
 }

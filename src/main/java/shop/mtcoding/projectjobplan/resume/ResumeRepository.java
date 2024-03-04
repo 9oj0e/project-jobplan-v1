@@ -189,7 +189,11 @@ public class ResumeRepository {
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, id);
 
-        return query.executeUpdate(); // 영향 받은 행
+        try {
+            return query.executeUpdate(); // 영향 받은 행
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public int countIsEmployerFalse() {
