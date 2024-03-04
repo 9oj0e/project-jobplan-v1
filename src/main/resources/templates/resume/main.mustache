@@ -44,13 +44,23 @@
                 <div class="div-center-text-2 text-white">잡플랜과 함께라면 가능합니다.</div>
                 <div class="div-center-text-2 text-white">더 높은 합격 가능성을 경험하세요.</div>
                 <br>
-                <div>
-                    <button type="button" class="btn btn-outline-light btn-light text-primary"
-                            onclick="location.href='/user/{{sessionUser.id}}'">이력서 관리
-                    </button>
-                    <button type="button" class="btn btn-outline-primary btn-primary text-white"
-                            onclick="location.href='/resume/uploadForm'">이력서 작성
-                    </button>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px">
+                    {{#sessionUser}}
+                        <form action="/user/{{id}}" method="get">
+                            <button class="btn btn-outline-light btn-light text-primary">이력서 관리</button>
+                        </form>
+                        <form action="/resume/uploadForm" method="get">
+                            <button class="btn btn-outline-primary btn-primary text-white">이력서 작성</button>
+                        </form>
+                    {{/sessionUser}}
+                    {{^sessionUser}}
+                        <form action="/loginForm" method="get">
+                            <button class="btn btn-outline-light btn-light text-primary">이력서 관리</button>
+                        </form>
+                        <form action="/loginForm" method="get">
+                            <button class="btn btn-outline-primary btn-primary text-white">이력서 작성</button>
+                        </form>
+                    {{/sessionUser}}
                 </div>
             </div>
         </div>
