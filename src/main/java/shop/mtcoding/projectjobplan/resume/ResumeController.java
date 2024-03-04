@@ -68,21 +68,13 @@ public class ResumeController {
         int totalCount = (totalPage % 10 == 0) ? (totalPage / 10) : (totalPage / 10 + 1);
         boolean last = (currentPage == totalCount);
         List<Integer> numberList = new ArrayList<>();
-        int allPage;
-        if (totalPage % 10 == 0) {
-            allPage = totalCount - 1;
-            for (int i = 1; i <= allPage; i++) {
-                numberList.add(i);
-                request.setAttribute("numberList", numberList);
-            }
-        } else if (totalPage % 10 != 0) {
-            allPage = totalCount;
-            for (int i = 1; i <= allPage; i++) {
-                numberList.add(i);
-                request.setAttribute("numberList", numberList);
-            }
-
+        int allPage = totalCount ;
+        for (int i = 1; i <= allPage; i++) {
+            numberList.add(i);
+            request.setAttribute("numberList", numberList);
         }
+
+
         request.setAttribute("last", last);
 
 
