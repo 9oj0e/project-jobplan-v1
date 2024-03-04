@@ -80,6 +80,7 @@ INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (5, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
+
 -- resume_tb
 
 INSERT INTO resume_tb
