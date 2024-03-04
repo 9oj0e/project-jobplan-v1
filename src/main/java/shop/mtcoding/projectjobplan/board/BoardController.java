@@ -69,19 +69,19 @@ public class BoardController {
         request.setAttribute("prevPage", prevPage);
 
 
-        boolean first = (currentPage == 1 ? true : false);
-        request.setAttribute("first", first);
+                boolean first = (currentPage == 1 ? true : false);
+                request.setAttribute("first", first);
 
-        int totalPage = boardRepository.countIsEmployerTrue();
+                int totalPage = boardRepository.countIsEmployerTrue();
 
-        int totalCount = (totalPage % 10 == 0) ? (totalPage / 10) : (totalPage / 10 + 1);
-        boolean last = (currentPage == totalCount);
-        List<Integer> numberList = new ArrayList<>();
-        int allPage;
-        if (totalPage % 10 == 0) {
-            allPage = totalCount - 1;
-            for (int i = 1; i <= allPage; i++) {
-                numberList.add(i);
+                int totalCount = (totalPage % 10 == 0) ? (totalPage / 10) : (totalPage / 10 + 1);
+                boolean last = (currentPage == totalCount);
+                List<Integer> numberList = new ArrayList<>();
+                int allPage;
+                if (totalPage % 10 == 0) {
+                    allPage = totalCount - 1;
+                    for (int i = 1; i <= allPage; i++) {
+                        numberList.add(i);
                 request.setAttribute("numberList", numberList);
             }
         } else if (totalPage % 10 != 0) {

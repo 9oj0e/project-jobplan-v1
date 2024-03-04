@@ -37,7 +37,7 @@
                 </div>
                 <div>휴대전화</div>
                 <div class="mb-3">
-                    <input type="tel" class="form-control" name="phoneNumber" value="{{user.phoneNumber}}" required>
+                    <input type="tel" pattern="[0-9]{9, 11}" title="번호만 입력하세요" class="form-control" name="phoneNumber" value="{{user.phoneNumber}}" required>
                 </div>
                 <div>주소</div>
                 <div class="mb-3">

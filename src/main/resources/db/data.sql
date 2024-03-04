@@ -22,85 +22,65 @@ VALUES (5, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (6, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (1, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (7, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (2, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (8, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (3, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (9, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (4, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (10, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (5, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (11, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (1, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (12, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (2, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (13, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (3, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (14, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (4, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (15, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (5, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (16, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (1, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (17, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (2, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (18, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (3, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (19, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (4, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (20, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (5, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 -- resume_tb
-
-INSERT INTO resume_tb
-(user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (1, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
-
-INSERT INTO resume_tb
-(user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (2, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
-
-INSERT INTO resume_tb
-(user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (3, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
-
-INSERT INTO resume_tb
-(user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (4, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
-
-INSERT INTO resume_tb
-(user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (5, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
@@ -128,39 +108,51 @@ VALUES (11, '성실하고 유능한 인재입니다.', '이력서내용', '학�
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (12, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (6, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (13, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (7, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (14, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (8, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (15, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (9, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (16, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (10, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (17, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (11, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (18, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (6, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (19, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (7, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (20, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (8, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (9, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (10, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+
+INSERT INTO resume_tb
+(user_id, title, content, school_name, major, education_level, career, created_at)
+VALUES (11, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 
 -- user_tb
