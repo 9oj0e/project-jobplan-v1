@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -20,7 +21,7 @@ public class Resume {
     private String educationLevel; // 고졸/초대졸/대졸
     // 경력 career_tb로 분리 회사명, 경력..
     private String career; // 회사명+경력
-    private Timestamp createdAt;
+    private LocalDate createdAt;
 
 
 }
