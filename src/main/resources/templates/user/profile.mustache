@@ -78,7 +78,7 @@
 <!--내 이력서 보기-->
     <div class="div-layout">
         <div class="div-header d-flex justify-content-between">
-            <h2><b>내 이력서</b></h2>
+            <h2><b>나의 이력서</b></h2>
             <form action="/resume/uploadForm" method="get">
                 <button class="btn btn-primary">추가</button>
             </form>
@@ -95,17 +95,17 @@
             <table class="table-image">
                 <tr>
                     <td class="td-resume td-image">
-                        <!-- Row for No -->
+                        <!--No-->
                         <div>1</div>
 
-                        <!-- Row for 제목 (Title) -->
+                        <!--제목-->
                         <div>이력서 제목</div>
 
-                        <!-- Row for 지원 날짜 (Application Date) -->
+                        <!--지원 날짜-->
                         <div>2024-03-04</div>
 
                         <div class="button-group">
-                            <form action="/resume/{{sessionUser.id}}/updateForm">
+                            <form action="/resume/{{id}}/updateForm">
                                 <button class="btn btn-outline-primary">수정</button>
                             </form>
                             <button class="btn btn-primary">삭제</button>
@@ -117,6 +117,49 @@
     </div>
 
 
+<!--내 지원현황 보기-->
+    <div class="div-layout">
+        <div class="div-header d-flex justify-content-between">
+            <h2><b>나의 지원현황</b></h2>
+        </div>
+
+        <div class="div-apply-col">
+            <div><b>&nbsp;No</b></div>
+            <div><b>&nbsp;&nbsp;제목</b></div>
+            <div><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;지원한 회사</b></div>
+            <div><b>&nbsp;지원 날짜</b></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <div class="div-resume">
+            <table class="table-image">
+                <tr>
+                    <td class="td-resume td-image">
+                        <!--No -->
+                        <div>1</div>
+
+                        <!--제목-->
+                        <div>이력서 제목</div>
+
+                        <!--지원한 회사-->
+                        <div>지원한 회사</div>
+
+                        <!--지원 날짜-->
+                        <div>2024-03-04</div>
+
+                        <div class="button-group">
+                            <form action="/resume/{{id}}/updateForm">
+                                <button class="btn btn-outline-primary">이력서 보기</button>
+                            </form>
+                            <button class="btn btn-primary">공고 보기</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
 
 </div>
