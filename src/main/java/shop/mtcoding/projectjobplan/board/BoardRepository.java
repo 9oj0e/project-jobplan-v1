@@ -177,6 +177,14 @@ public class BoardRepository {
         return (Board) query.getSingleResult();
     }
 
+    public List<Board> findByUserId(Integer userId) {
+        String q = "select * from board_tb where user_id = ? order by id desc";
+        Query query = entityManager.createNativeQuery(q, Board.class);
+        query.setParameter(1, userId);
+
+        return (List<Board>) query.getResultList();
+    }
+
     @Transactional
     public Integer updateById(BoardRequest.UpdateDTO requestDTO, Integer id) {
         String q = """

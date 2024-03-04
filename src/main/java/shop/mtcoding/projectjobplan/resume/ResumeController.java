@@ -25,16 +25,18 @@ public class ResumeController {
     public String update(@PathVariable int id, ResumeRequest.UpdateDTO requestDTO){
         // todo 유효성 검사, 권한 검사
         resumeRepository.updateById(requestDTO, id);
+        User user = (User) session.getAttribute("sessionUser");
 
-        return "redirect:/user/" + id;
+        return "redirect:/user/" + user.getId();
     }
 
     @PostMapping("/resume/{id}/upload")
     public String upload(@PathVariable int id, ResumeRequest.SaveDTO requestDTO){
         // todo 유효성 검사, 권한 검사
         resumeRepository.save(requestDTO, id);
+        User user = (User) session.getAttribute("sessionUser");
 
-        return "/user/" + id;
+        return "redirect:/user/" + user.getId();
     }
 
     @GetMapping("/resume/main")
