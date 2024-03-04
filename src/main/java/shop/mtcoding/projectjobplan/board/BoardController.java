@@ -60,7 +60,7 @@ public class BoardController {
             }
         }
         request.setAttribute("employerList", employerList);
-        // 페이지네이션
+        // 페이지네이션 모듈
         int totalPage = boardRepository.countIsEmployerTrue();
         PagingUtil paginationHelper = new PagingUtil(totalPage, page);
 
