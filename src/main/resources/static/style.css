@@ -330,6 +330,10 @@ a {
     padding: 10px;
 }
 
+.col-1 {
+    border: none;
+}
+
 .table-td-width-10 {
     width: 10%;
 }
