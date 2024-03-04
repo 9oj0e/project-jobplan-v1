@@ -1,5 +1,4 @@
 {{> layout/header }}
-
 <div class="row justify-content-end mb-3">
     <div class="col-md-4">
         <form action="/" method="get" class="form-inline">
@@ -11,19 +10,14 @@
         </form>
     </div>
 </div>
-
-
 <!-- 광고 창 start -->
 <div class="div-addimage">
     <section class="section-body">
         <div class="div-ad-img1"></div>
     </section>
     <!-- 광고 창 end -->
-
     <!-- 바디 start -->
-
     <section class="section-body">
-
         <div class="div-recommendation mb-20">추천 채용 정보</div>
         <div class="div-recommendation-img">
             <div>
@@ -47,41 +41,26 @@
                 </div>
                 <div class="div-recommendation-text-2">회사정보</div>
             </div>
-
         </div>
-
     </section>
-
-
     <hr>
-
-
     <div class="div-recommendation mb-20">채용 정보</div>
-
     <table class="table">
         <th>지역</th>
         <th>회사명</th>
-        <th>회사정보</th>
-        <th>급여정보</th>
-        <th>마감시간</th>
-
+        <th>공고 제목</th>
+        <th>급여 정보</th>
+        <th>마감일</th>
         {{#employerList}}
             <tr>
                 <td>{{address}}</td>
                 <td><a href="/board/{{id}}" class="text-body">{{businessName}}</a></td>
-                <td><a href="/board/{{id}}" class="text-body">{{content}}</a></td>
-                <!--근무 시간은 아닌데 임의로 넣어놓음  -->
+                <td><a href="/board/{{id}}" class="text-body">{{title}}</a></td>
                 <td>{{salary}}</td>
                 <td>{{closingDate}}</td>
             </tr>
-
         {{/employerList}}
-
-
-
     </table>
-
-
     <div class="d-flex justify-content-center">
         <ul class="pagination">
             <li class="page-item {{#first}}disabled{{/first}}"><a class="page-link" href="?page={{prevPage}}">Previous</a></li>
@@ -90,10 +69,7 @@
             {{/numberList}}
             <li class="page-item {{#last}}disabled{{/last}}"><a class="page-link" href="?page={{nextPage}}">Next</a></li>
         </ul>
-
     </div>
-
-
 </div>
 <!-- 바디 end -->
 {{>layout/footer}}

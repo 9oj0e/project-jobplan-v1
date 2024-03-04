@@ -78,7 +78,7 @@
     </div>
 
 
-<!--내 이력서 보기-->
+    <!--내 이력서 보기-->
     <div class="div-layout">
         <div class="div-header d-flex justify-content-between">
             <h2><b>나의 이력서</b></h2>
@@ -86,45 +86,33 @@
                 <button class="btn btn-primary">추가</button>
             </form>
         </div>
-
-        <div class="div-resume-col">
-        <div></div>
-        <div><b>제목</b></div>
-        <div></div>
-        <div></div>
-        <div><b>최종 수정 날짜</b></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        </div>
-
         <div class="div-resume">
-            <table class="table-image">
-                {{#resumeList}}
+            <table class="table table-hover" style="text-align: end">
                 <tr>
-                    <td class="td-resume td-image">
-                        <!-- Row for 제목 (Title) -->
-                        <div>{{title}}</div>
-
-                        <!-- Row for 지원 날짜 (Application Date) -->
-                        <div>{{createdAt}}</div>
-                        <div class="button-group">
-                            <form action="/resume/{{id}}/updateForm">
-                                <button class="btn btn-outline-primary">수정</button>&nbsp;
-                            </form>
-                            <form action="/resume/{{id}}/delete" method="post">
-                                <button class="btn btn-primary">삭제</button>
-                            </form>
-                        </div>
-                    </td>
+                    <td>제목</td>
+                    <td>게시일자</td>
+                    <td></td>
                 </tr>
+                {{#resumeList}}
+                    <tr>
+                        <td>{{title}}</td>
+                        <td>{{createdAt}}</td>
+                        <td>
+                            <div style="display: flex; justify-content: end">
+                                <form action="/resume/{{id}}/updateForm">
+                                    <button class="btn btn-outline-primary">수정</button>&nbsp;
+                                </form>
+                                <form action="/resume/{{id}}/delete" method="post">
+                                    <button class="btn btn-primary">삭제</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
                 {{/resumeList}}
             </table>
         </div>
     </div>
-
-
-<!--내 지원현황 보기-->
+    <!--내 지원현황 보기-->
     <div class="div-layout">
         <div class="div-header d-flex justify-content-between">
             <h2><b>나의 지원현황</b></h2>
@@ -147,13 +135,10 @@
                     <td class="td-resume td-image">
                         <!--제목-->
                         <div>이력서 제목</div>
-
                         <!--지원한 회사-->
                         <div>지원한 회사</div>
-
                         <!--지원 날짜-->
                         <div>2024-03-04</div>
-
                         <div class="button-group">
                             <form action="/resume/{{id}}/updateForm">
                                 <button class="btn btn-outline-primary">이력서 보기</button>&nbsp;
