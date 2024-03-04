@@ -2,83 +2,84 @@
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (1, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (1, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (2, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (2, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (3, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (3, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (4, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (4, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (5, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (5, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (1, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (1, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (2, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (2, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (3, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (3, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (4, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (4, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (5, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (5, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (1, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (1, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (2, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (2, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (3, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (3, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (4, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (4, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (5, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (5, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (1, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (1, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (2, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (2, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (3, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (3, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (4, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (4, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (5, '제목', '2024년 신입 노예 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+VALUES (5, '제목', '2024년 신입 개발자 채용', '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+
 
 -- resume_tb
 
@@ -159,27 +160,27 @@ VALUES (11, '성실하고 유능한 인재입니다.', '이력서내용', '학�
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
-VALUES ('admin1', '1234', '조정현', '1996-04-01', 'M', 01000000000, '주소', '이메일',
+VALUES ('emp1', '1234', '조정현', '1996-04-01', 'M', 01000000000, '주소', '이메일',
         true, 0000000000, '네이버', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
-VALUES ('admin2', '1234', '류재성', '1991-10-01', 'M', 01000000000, '주소', '이메일',
+VALUES ('emp2', '1234', '류재성', '1991-10-01', 'M', 01000000000, '주소', '이메일',
         true, 0000000000, '카카오', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
-VALUES ('admin3', '1234', '김정수', '1996-08-01', 'M', 01000000000, '주소', '이메일',
+VALUES ('emp3', '1234', '김정수', '1996-08-01', 'M', 01000000000, '주소', '이메일',
         true, 0000000000, '라인', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
-VALUES ('admin4', '1234', '김성재', '1998-05-01', 'M', 01000000000, '주소', '이메일',
+VALUES ('emp4', '1234', '김성재', '1998-05-01', 'M', 01000000000, '주소', '이메일',
         true, 0000000000, '쿠팡', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,
  is_employer, employer_id_number, business_name, created_at)
-VALUES ('admin5', '1234', '최윤정', '2000-04-01', 'F', 01000000000, '주소', '이메일',
+VALUES ('emp5', '1234', '최윤정', '2000-04-01', 'F', 01000000000, '주소', '이메일',
         true, 0000000000, '배달의민족', now());
 INSERT INTO user_tb
 (username, password, name, birthdate, gender, phone_number, address, email,

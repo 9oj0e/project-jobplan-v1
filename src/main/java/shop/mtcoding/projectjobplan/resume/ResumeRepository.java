@@ -143,10 +143,19 @@ public class ResumeRepository {
 
     public Resume findById(Integer id) {
         String q = "select * from resume_tb where id = ? order by id desc";
+
         Query query = entityManager.createNativeQuery(q, Resume.class);
         query.setParameter(1, id);
 
         return (Resume) query.getSingleResult();
+    }
+    public List<Resume> findByUserId(Integer userId) {
+        String q = "select * from resume_tb where user_id = ? order by id desc";
+
+        Query query = entityManager.createNativeQuery(q, Resume.class);
+        query.setParameter(1, userId);
+
+        return (List<Resume>) query.getResultList();
     }
 
     @Transactional
@@ -180,7 +189,11 @@ public class ResumeRepository {
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, id);
 
-        return query.executeUpdate(); // 영향 받은 행
+        try {
+            return query.executeUpdate(); // 영향 받은 행
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public int countIsEmployerFalse() {

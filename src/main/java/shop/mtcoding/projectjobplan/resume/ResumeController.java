@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.board.BoardResponse;
 import shop.mtcoding.projectjobplan.user.User;
 
@@ -52,35 +53,27 @@ public class ResumeController {
         }
         request.setAttribute("resumeList", resumeList);
 
-        int currentPage = page;
-        int nextPage = currentPage + 1;
-        int prevPage = currentPage - 1;
+        // 페이지네이션 모듈
+        int totalPage = resumeRepository.countIsEmployerFalse();;
+        PagingUtil paginationHelper = new PagingUtil(totalPage, page);
 
-        request.setAttribute("nextPage", nextPage);
-        request.setAttribute("prevPage", prevPage);
-
-
-        boolean first = (currentPage == 1 ? true : false);
-        request.setAttribute("first", first);
-
-        int totalPage = resumeRepository.countIsEmployerFalse();
-
-        int totalCount = (totalPage % 10 == 0) ? (totalPage / 10) : (totalPage / 10 + 1);
-        boolean last = (currentPage == totalCount);
-        List<Integer> numberList = new ArrayList<>();
-        int allPage = totalCount ;
-        for (int i = 1; i <= allPage; i++) {
-            numberList.add(i);
-            request.setAttribute("numberList", numberList);
-        }
-
-
-        request.setAttribute("last", last);
-
-
+        request.setAttribute("nextPage", paginationHelper.getNextPage());
+        request.setAttribute("prevPage", paginationHelper.getPrevPage());
+        request.setAttribute("first", paginationHelper.isFirst());
+        request.setAttribute("last", paginationHelper.isLast());
+        request.setAttribute("numberList", paginationHelper.getNumberList());
 
         return "/resume/listings";
     }
+
+    @GetMapping("/resume/{id}")
+    public String detail(@PathVariable int id, HttpServletRequest request) {
+        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
+        request.setAttribute("detail", resumeDetailDTO);
+
+        return "/resume/detail";
+    }
+
     @GetMapping("/resume/uploadForm")
     public String uploadForm() {
         return "/resume/uploadForm";
@@ -92,11 +85,18 @@ public class ResumeController {
 
         return "/resume/updateForm";
     }
-    @GetMapping("/resume/{id}")
-    public String detail(@PathVariable int id, HttpServletRequest request) {
-        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
-        request.setAttribute("detail", resumeDetailDTO);
 
-        return "/resume/detail";
+    @PostMapping("/resume/{id}/delete")
+    public String delete(@PathVariable int id, HttpServletRequest request) {
+        User user = (User) session.getAttribute("sessionUser");
+        Resume resume = resumeRepository.findById(id);
+        if (resume == null) {
+            request.setAttribute("msg", "해당 아이디를 찾을 수 없습니다.");
+            request.setAttribute("status", "404");
+            return "/error";
+        } else {
+            resumeRepository.deleteById(id);
+            return "redirect:/user/" + user.getId();
+        }
     }
 }
