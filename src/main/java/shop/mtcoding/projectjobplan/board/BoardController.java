@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
@@ -59,33 +60,16 @@ public class BoardController {
             }
         }
         request.setAttribute("employerList", employerList);
-
-
-        int currentPage = page;
-        int nextPage = currentPage + 1;
-        int prevPage = currentPage - 1;
-
-        request.setAttribute("nextPage", nextPage);
-        request.setAttribute("prevPage", prevPage);
-
-
-        boolean first = (currentPage == 1 ? true : false);
-        request.setAttribute("first", first);
-
+        // 페이지네이션 모듈
         int totalPage = boardRepository.countIsEmployerTrue();
+        PagingUtil paginationHelper = new PagingUtil(totalPage, page);
 
-        int totalCount = (totalPage % 10 == 0) ? (totalPage / 10) : (totalPage / 10 + 1);
-        boolean last = (currentPage == totalCount);
-        List<Integer> numberList = new ArrayList<>();
-        int allPage = totalCount ;
-        for (int i = 1; i <= allPage; i++) {
-            numberList.add(i);
-            request.setAttribute("numberList", numberList);
-        }
+        request.setAttribute("nextPage", paginationHelper.getNextPage());
+        request.setAttribute("prevPage", paginationHelper.getPrevPage());
+        request.setAttribute("first", paginationHelper.isFirst());
+        request.setAttribute("last", paginationHelper.isLast());
+        request.setAttribute("numberList", paginationHelper.getNumberList());
 
-
-
-        request.setAttribute("last", last);
         return "/board/listings";
         }
 

@@ -142,11 +142,12 @@ public class ResumeRepository {
     }
 
     public Resume findById(Integer id) {
-        String q = "select * from resume_tb where id = ? order by id desc";
+        String q = "select * from resume_tb user_id =? order by id desc";
+
         Query query = entityManager.createNativeQuery(q, Resume.class);
         query.setParameter(1, id);
 
-        return (Resume) query.getSingleResult();
+        return (Resume) query.getResultList();
     }
 
     @Transactional
