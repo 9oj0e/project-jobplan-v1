@@ -74,6 +74,8 @@
         </div>
     </div>
 
+
+<!--내 이력서 보기-->
     <div class="div-layout">
         <div class="div-header d-flex justify-content-between">
             <h2><b>내 이력서</b></h2>
@@ -82,11 +84,26 @@
             </form>
         </div>
 
+        <div class="div-resume-col">
+        <div><b>&nbsp;No</b></div>
+        <div><b>제목</b></div>
+        <div><b>&nbsp;&nbsp;&nbsp;&nbsp;지원 날짜</b></div>
+        <div></div>
+        </div>
 
         <div class="div-resume">
             <table class="table-image">
                 <tr>
-                    <td class="td-resume td-image">이력서 데이터 불러오자
+                    <td class="td-resume td-image">
+                        <!-- Row for No -->
+                        <div>1</div>
+
+                        <!-- Row for 제목 (Title) -->
+                        <div>이력서 제목</div>
+
+                        <!-- Row for 지원 날짜 (Application Date) -->
+                        <div>2024-03-04</div>
+
                         <div class="button-group">
                             <form action="/resume/{{sessionUser.id}}/updateForm">
                                 <button class="btn btn-outline-primary">수정</button>
@@ -98,6 +115,10 @@
             </table>
         </div>
     </div>
+
+
+
+
 </div>
 <!-- 바디 end -->
-{{>layout/footer}}}
+{{>layout/footer}}
