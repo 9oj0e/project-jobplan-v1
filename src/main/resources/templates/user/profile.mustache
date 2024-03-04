@@ -87,31 +87,33 @@
         <div class="div-resume-col">
         <div><b>&nbsp;No</b></div>
         <div><b>제목</b></div>
-        <div><b>&nbsp;&nbsp;&nbsp;&nbsp;지원 날짜</b></div>
+        <div><b>&nbsp;&nbsp;&nbsp;&nbsp;작성 날짜</b></div>
         <div></div>
         </div>
 
         <div class="div-resume">
             <table class="table-image">
+                {{#resumeList}}
                 <tr>
                     <td class="td-resume td-image">
                         <!-- Row for No -->
-                        <div>1</div>
+                        <div>{{id}}</div>
 
                         <!-- Row for 제목 (Title) -->
-                        <div>이력서 제목</div>
+                        <div>{{title}}</div>
 
                         <!-- Row for 지원 날짜 (Application Date) -->
-                        <div>2024-03-04</div>
+                        <div>{{createdAt}}</div>
 
                         <div class="button-group">
-                            <form action="/resume/{{sessionUser.id}}/updateForm">
+                            <form action="/resume/{{id}}/updateForm">
                                 <button class="btn btn-outline-primary">수정</button>
                             </form>
                             <button class="btn btn-primary">삭제</button>
                         </div>
                     </td>
                 </tr>
+                {{/resumeList}}
             </table>
         </div>
     </div>

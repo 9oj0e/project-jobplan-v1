@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Controller
 public class UserController {
@@ -76,15 +78,14 @@ public class UserController {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
 
-        Resume resume = resumeRepository.findById(id);
-        request.setAttribute( "resume", resume);
-
-
         // 기업 회원 인지..
         if (user.getIsEmployer())
             return "/employer/profile";
-        else
+        else {
+            List<Resume> resumeList = resumeRepository.findByUserId(user.getId());
+            request.setAttribute( "resumeList", resumeList);
             return "/user/profile";
+        }
     }
 
     @GetMapping("/user/{id}/updateForm")
