@@ -81,26 +81,20 @@
         </div>
         <div class="div-announcement">
             <table class="table-image">
-                <tr>
-                    <td class="td-announcement td-image">공고 데이터 불러오자
-                        <div class="button-group button-inline">
-                            <form action="/board/1/updateForm">
-                                <button class="btn btn-outline-primary">수정</button>
-                            </form>
-                            <button class="btn btn-primary">삭제</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-announcement td-image">공고 데이터 불러오자
-                        <div class="button-group button-inline">
-                            <form action="/board/1/updateForm">
-                                <button class="btn btn-outline-primary">수정</button>
-                            </form>
-                            <button class="btn btn-primary">삭제</button>
-                        </div>
-                    </td>
-                </tr>
+                {{#boardList}}
+                    <tr>
+                        <td class="td-announcement td-image">{{title}}
+                            <div class="button-group button-inline">
+                                <form action="/board/{{id}}/updateForm">
+                                    <button class="btn btn-outline-primary">수정</button>
+                                </form>
+                                <form action="board/{{id}}/delete" method="post">
+                                    <button class="btn btn-primary">삭제</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {{/boardList}}
             </table>
         </div>
     </div>
