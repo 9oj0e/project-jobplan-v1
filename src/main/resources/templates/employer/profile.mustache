@@ -13,7 +13,7 @@
                 <div class="card mt-5" style="width:200px">
                     <img class="card-img" src="../images/naver logo.png" alt="Card image" style="width:100%">
                     <div class="card-body">
-                        <h4 class="card-title">{{user.name}}</h4>
+                        <h4 class="card-title">{{user.businessName}}</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
                         <button class="btn btn-outline-primary">수정</button>
                         <button class="btn btn-primary">삭제</button>
@@ -118,39 +118,39 @@
         <div class="div-header">
             <h3><b>지원자 리스트</b></h3>
         </div>
-
-<!--        <div class="div-post-col">-->
-<!--            <div><b>공고제목</b></div>-->
-<!--            <div><b>지원자명</b></div>-->
-<!--            <div><b>이력서 제목</b></div>-->
-<!--            <div><b>지원 날짜</b></div>-->
-<!--        </div>-->
-
-        <table class="table">
-            <tr class="table">
-                <th class="col-1" >공고제목</th>
-                <th class="col-1">지원자명</th>
-                <th class="col-1">이력서 제목</th>
-                <th class="col-1">지원 날짜</th>
-                <th class="col-1"> </th>
+        <table class="table table-hover" style="text-align: end">
+            <tr>
+                <th>공고 제목</th>
+                <th>지원자 명</th>
+                <th>이력서 제목</th>
+                <th>지원 날짜</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td><a href="/board/1">신입 채용 공고</a></td>
+                <td>홍길동</td>
+                <td><a href="/board/1">나는 노예가 아니다</a></td>
+                <td>2024-03-04</td>
+                <td>
+                    <div style="display: flex; justify-content: end">
+                        <button class="btn btn-outline-primary">불합격</button>
+                        <button class="btn btn-primary">합격</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="/board/1">신입 채용 공고</a></td>
+                <td>전두광</td>
+                <td><a href="/board/1">핵맹 아입니까</a></td>
+                <td>2024-03-04</td>
+                <td>
+                    <div style="display: flex; justify-content: end">
+                        <button class="btn btn-outline-primary">불합격</button>
+                        <button class="btn btn-primary">합격</button>
+                    </div>
+                </td>
             </tr>
         </table>
-        <div class="div-applicant">
-            <table class="table-image">
-                <tr>
-                    <td class="td-applicant td-image">
-                        <div><a href="/board/{{id}}">공고제목</a></div>
-                        <div>지원자명</div>
-                        <div><a href="/resume/{{id}}">이력서 제목</a></div>
-                        <div>지원 날짜</div>
-                        <div class="button-group button-inline">
-                            <button class="btn btn-outline-primary">불합격</button>
-                            <button class="btn btn-primary">합격</button>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
     </div>
 </div>
 <!-- 바디 end -->

@@ -112,46 +112,47 @@
             </table>
         </div>
     </div>
-    <!--내 지원현황 보기-->
     <div class="div-layout">
-        <div class="div-header d-flex justify-content-between">
+        <div class="div-header d-flex justify-content-between" style="text-align: end">
             <h2><b>나의 지원현황</b></h2>
         </div>
-
-        <div class="div-apply-col">
-            <div><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제목</b></div>
-            <div></div>
-            <div><b>지원한 회사</b></div>
-            <div></div>
-            <div><b>지원 날짜</b></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-
         <div class="div-resume">
-            <table class="table-image">
+            <table class="table table-hover" style="text-align: end">
                 <tr>
-                    <td class="td-resume td-image">
-                        <!--제목-->
-                        <div>이력서 제목</div>
-                        <!--지원한 회사-->
-                        <div>지원한 회사</div>
-                        <!--지원 날짜-->
-                        <div>2024-03-04</div>
-                        <div class="button-group">
+                    <th>제목</th>
+                    <th>회사</th>
+                    <th>날짜</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>나는 노예가 아니다</td>
+                    <td>네이버</td>
+                    <td>2024-03-04</td>
+                    <td>
+                        <div style="display: flex; justify-content: end">
                             <form action="/resume/{{id}}/updateForm">
-                                <button class="btn btn-outline-primary">이력서 보기</button>&nbsp;
+                                <button class="btn btn-outline-primary">이력서</button>&nbsp;
                             </form>
-                            <button class="btn btn-primary">공고 보기</button>
+                            <button class="btn btn-primary">공고</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>목화밭에서</td>
+                    <td>카카오</td>
+                    <td>2024-03-04</td>
+                    <td>
+                        <div style="display: flex; justify-content: end">
+                            <form action="/resume/{{id}}/updateForm">
+                                <button class="btn btn-outline-primary">이력서</button>&nbsp;
+                            </form>
+                            <button class="btn btn-primary">공고</button>
                         </div>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
-
-
 </div>
 <!-- 바디 end -->
 {{>layout/footer}}
