@@ -12,12 +12,12 @@ public class UserRequest {
         private String name;
         private String birthdate;
         private char gender;
-        private Integer phoneNumber;
+        private String phoneNumber;
         private String address;
         private String email;
         // emp
         private Boolean isEmployer;
-        private Integer employerIdNumber;
+        private String employerIdNumber;
         private String businessName;
     }
     @Data
@@ -33,12 +33,12 @@ public class UserRequest {
         private String name;
         private String birthdate;
         private char gender;
-        private Integer phoneNumber;
+        private String phoneNumber;
         private String address;
         private String email;
         // emp
         private Boolean isEmployer;
-        private Integer employerIdNumber;
+        private String employerIdNumber;
         private String businessName;
     }
 }
