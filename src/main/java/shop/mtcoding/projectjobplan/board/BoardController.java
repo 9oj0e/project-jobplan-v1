@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
+import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
@@ -18,6 +19,20 @@ import java.util.List;
 public class BoardController {
     private final BoardRepository boardRepository ;
     private final HttpSession session;
+
+    @PostMapping("/board/{id}/delete")
+    public String delete(@PathVariable int id, HttpServletRequest request) {
+        User user = (User) session.getAttribute("sessionUser");
+        Board board = boardRepository.findById(id);
+        if (board == null) {
+            request.setAttribute("msg", "해당 아이디를 찾을 수 없습니다.");
+            request.setAttribute("status", "404");
+            return "/error";
+        } else {
+            boardRepository.deleteById(id);
+            return "redirect:/user/" + user.getId();
+        }
+    }
 
     @PostMapping("/board/{id}/update")
     public String update(@PathVariable int id, BoardRequest.UpdateDTO requestDTO){
