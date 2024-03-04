@@ -10,12 +10,15 @@
         </div>
         <div class="div-information">
             <div>
-                <div class="card mt-5" style="width:150px">
+                <div class="card mt-5" style="width:200px">
                     <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
                     <div class="card-body">
                         <h4 class="card-title">{{user.name}}</h4>
-                        <button class="btn btn-outline-primary">수정</button>
-                        <button class="btn btn-primary">삭제</button>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
+                            <button class="btn btn-outline-primary">수정</button>
+                            <button class="btn btn-primary">삭제</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -85,9 +88,13 @@
         </div>
 
         <div class="div-resume-col">
-        <div><b>&nbsp;No</b></div>
+        <div></div>
         <div><b>제목</b></div>
-        <div><b>&nbsp;&nbsp;&nbsp;&nbsp;작성 날짜</b></div>
+        <div></div>
+        <div></div>
+        <div><b>최종 수정 날짜</b></div>
+        <div></div>
+        <div></div>
         <div></div>
         </div>
 
@@ -103,7 +110,7 @@
                         <div>{{createdAt}}</div>
                         <div class="button-group">
                             <form action="/resume/{{id}}/updateForm">
-                                <button class="btn btn-outline-primary">수정</button>
+                                <button class="btn btn-outline-primary">수정</button>&nbsp;
                             </form>
                             <form action="/resume/{{id}}/delete" method="post">
                                 <button class="btn btn-primary">삭제</button>
@@ -124,10 +131,11 @@
         </div>
 
         <div class="div-apply-col">
-            <div><b>&nbsp;No</b></div>
-            <div><b>&nbsp;&nbsp;제목</b></div>
-            <div><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;지원한 회사</b></div>
-            <div><b>&nbsp;지원 날짜</b></div>
+            <div><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제목</b></div>
+            <div></div>
+            <div><b>지원한 회사</b></div>
+            <div></div>
+            <div><b>지원 날짜</b></div>
             <div></div>
             <div></div>
             <div></div>
@@ -137,9 +145,6 @@
             <table class="table-image">
                 <tr>
                     <td class="td-resume td-image">
-                        <!--No -->
-                        <div>1</div>
-
                         <!--제목-->
                         <div>이력서 제목</div>
 
@@ -151,7 +156,7 @@
 
                         <div class="button-group">
                             <form action="/resume/{{id}}/updateForm">
-                                <button class="btn btn-outline-primary">이력서 보기</button>
+                                <button class="btn btn-outline-primary">이력서 보기</button>&nbsp;
                             </form>
                             <button class="btn btn-primary">공고 보기</button>
                         </div>

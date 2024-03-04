@@ -237,12 +237,12 @@ a {
 
 .div-resume-col {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr 1fr;
 }
 
 .div-apply-col{
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .table-image {
