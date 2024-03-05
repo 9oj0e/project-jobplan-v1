@@ -1,4 +1,4 @@
-package shop.mtcoding.projectjobplan.user;
+package shop.mtcoding.projectjobplan.skill;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,6 +11,8 @@ public class Skill { // Tech Stack
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer userId;
+    private Integer resumeId; // null 허용  -> 5
+    private Integer boardId; // 1          -> null
+
     private String name;
 }

@@ -63,7 +63,7 @@ public class PicController {
             picRepository.insert(id, imgFilename);
 
             Pic pic = picRepository.findById(1);
-            request.getSession().setAttribute("pic", pic);
+            redirectAttrs.addFlashAttribute("pic", pic);
 
         } catch (IOException e) {
             throw new RuntimeException(e);

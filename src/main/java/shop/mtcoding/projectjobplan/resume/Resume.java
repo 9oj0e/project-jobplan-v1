@@ -13,7 +13,7 @@ public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer userId; // writtenBy
+    private Integer userId; // writtenBy 이력서 작성자 아이디 (구직자)
     private String title;
     private String content; // cv, cover letter 자기소개서
     private String schoolName;

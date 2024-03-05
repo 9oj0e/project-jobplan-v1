@@ -115,14 +115,14 @@ public class ResumeRepository {
     }
 
     @Transactional
-    public Integer save(ResumeRequest.SaveDTO requestDTO, Integer userId) {
+    public Integer save(ResumeRequest.SaveDTO requestDTO, Integer sessionUserId) {
         String q = """
                 INSERT INTO resume_tb
                 (user_id, title, content, school_name, major, education_level, career, created_at)
                 VALUES (?, ?, ?, ?, ?, ?, ?, now())
                 """;
         Query query = entityManager.createNativeQuery(q);
-        query.setParameter(1, userId);
+        query.setParameter(1, sessionUserId);
         query.setParameter(2, requestDTO.getTitle());
         query.setParameter(3, requestDTO.getContent());
         query.setParameter(4, requestDTO.getSchoolName());
@@ -130,6 +130,8 @@ public class ResumeRepository {
         query.setParameter(6, requestDTO.getEducationLevel());
         query.setParameter(7, requestDTO.getCareer());
 
+        // pk 응답
+        
         return query.executeUpdate(); // 영향 받은 행
     }
 
