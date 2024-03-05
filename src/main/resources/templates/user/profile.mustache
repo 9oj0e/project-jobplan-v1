@@ -11,12 +11,18 @@
         <div class="div-information">
             <div>
                 <div class="card mt-5" style="width:200px">
-                    <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
+                    {{#pic}}
+                        <img class="card-img" src="/upload/{{pic.imgFilename}}" style="width:100%">
+                    {{/pic}}
+                    {{^pic}}
+                        <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
+                    {{/pic}}
                     <div class="card-body">
                         <h4 class="card-title">{{user.name}}</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
-                            <button class="btn btn-outline-primary">수정</button>
-                            <button class="btn btn-primary">삭제</button>
+                            <form action="/uploadForm/{{user.id}}" method="get">
+                                <button class="btn btn-outline-primary">수정</button>
+                            </form>
                         </div>
 
                     </div>
