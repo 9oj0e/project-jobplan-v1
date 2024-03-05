@@ -43,7 +43,7 @@ public class BoardController {
     }
 
     @PostMapping("/board/upload")
-    public String upload(@ModelAttribute BoardRequest.SaveDTO requestDTO){
+    public String upload(HttpServletRequest request, BoardRequest.SaveDTO requestDTO){
 
         User sessionUser = (User) session.getAttribute("sessionUser");
 

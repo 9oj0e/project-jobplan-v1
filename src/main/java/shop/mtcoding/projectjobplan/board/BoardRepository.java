@@ -160,6 +160,28 @@ public class BoardRepository {
 
         query.executeUpdate(); // 영향 받은 행
 
+        String q1 = """
+                select max(id) from board_tb
+                """;
+
+        Query query1 = entityManager.createNativeQuery(q1);
+        Integer boardId = (Integer) query1.getSingleResult();
+
+
+        // skills 필드에 체크된 스킬이 있을 경우에만 처리
+        if (requestDTO.getSkills() != null) {
+            for (String skill : requestDTO.getSkills()) {
+                String q2 = """
+                    INSERT INTO skill_tb(board_id, skill_name) VALUES (?, ?)
+                    """;
+                Query query2 = entityManager.createNativeQuery(q2);
+                query2.setParameter(1, boardId);
+                query2.setParameter(2, skill); // 여기에서 각각의 스킬명을 저장합니다.
+                query2.executeUpdate();
+            }
+        }
+
+
 //        Query query2 = entityManager.createNativeQuery("select max(id) from board_tb", Integer.class);
 //        Integer boardId  =  (Integer) query2.getSingleResult();
     }
