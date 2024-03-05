@@ -1,18 +1,23 @@
 package shop.mtcoding.projectjobplan.pic;
 
+import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
 import shop.mtcoding.projectjobplan.user.UserResponse;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,8 +29,26 @@ public class PicController {
     private final UserRepository userRepository;
     private final PicRepository picRepository;
 
+    private final String uploadDir = "./upload/";
+
+    @GetMapping("/upload/{filename:.+}")
+    public void serveFile(@PathVariable String filename, HttpServletResponse response) {
+        Path file = Paths.get(uploadDir, filename);
+        try (FileInputStream fis = new FileInputStream(file.toFile());
+             OutputStream os = response.getOutputStream()) {
+            byte[] buffer = new byte[1024];
+            int b;
+            while ((b = fis.read(buffer)) != -1) {
+                os.write(buffer, 0, b);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @PostMapping("/upload/{id}")
-    public String upload(PicRequest.UploadDTO requestDTO, @PathVariable int id, RedirectAttributes redirectAttrs){
+    public String upload(PicRequest.UploadDTO requestDTO, @PathVariable int id, HttpServletRequest request){
         // 1. 데이터 전달 받고
         String title = requestDTO.getTitle();
         MultipartFile imgFile = requestDTO.getImgFile();
@@ -37,11 +60,9 @@ public class PicController {
             Files.write(imgPath, imgFile.getBytes());
 
             // 3. DB에 저장 (title, realFileName)
-            picRepository.insert(title, imgFilename);
+            picRepository.insert(id, imgFilename);
 
             Pic pic = picRepository.findById(1);
-            
-            // 세션에 저장됨
             redirectAttrs.addFlashAttribute("pic", pic);
 
         } catch (IOException e) {
@@ -56,6 +77,15 @@ public class PicController {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
         return "user/uploadForm";
+    }
+
+    @PostMapping("/deleteImg")
+    public String deleteImg(@RequestParam int userId, HttpServletRequest request) {
+        picRepository.deleteByUserId(userId);
+
+        request.getSession().removeAttribute("pic");
+
+        return "redirect:/user/"+userId;
     }
 
 }
