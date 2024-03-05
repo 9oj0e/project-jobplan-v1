@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Repository
 public class ApplyRepository {
@@ -14,10 +16,10 @@ public class ApplyRepository {
     public int upload(ApplyRequest.UploadDTO requestDTO){
         return 0;
     }
-    public ApplyResponse.ToEmployerDTO findByEmployerId(){
+    public List<ApplyResponse.ToEmployerDTO>  findByEmployerId(){
         return null;
     }
-    public ApplyResponse.ToUserDTO findByUserId(){
+    public List<ApplyResponse.ToUserDTO> findByUserId(){
         return null;
     }
     @Transactional
