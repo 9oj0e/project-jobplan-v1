@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import shop.mtcoding.projectjobplan.apply.ApplyRepository;
 import shop.mtcoding.projectjobplan.board.Board;
 import shop.mtcoding.projectjobplan.board.BoardRepository;
 import shop.mtcoding.projectjobplan.resume.Resume;
@@ -20,6 +21,7 @@ public class UserController {
     private final UserRepository userRepository;
     private final ResumeRepository resumeRepository;
     private final BoardRepository boardRepository;
+    private final ApplyRepository applyRepository;
     private final HttpSession session;
 
     @GetMapping("/user/joinSelection")
@@ -80,7 +82,17 @@ public class UserController {
     public String profile(HttpServletRequest request, @PathVariable int id) {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
-        // board 조회
+        // 지원 현황 조회 (개인)
+
+        // 지원 현황 조회 (기업)
+
+        // 지원 합격 ("apply/1/accept")
+
+        // 지원 불합격 ("apply/1/reject")
+
+        // 지원 삭제 (개인)
+
+        // 지원 삭제 (기업)
 
         // 기업 회원 인지..
         if (user.getIsEmployer()) {
