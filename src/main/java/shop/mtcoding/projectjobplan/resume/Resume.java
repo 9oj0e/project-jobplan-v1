@@ -22,6 +22,7 @@ public class Resume {
     // 경력 career_tb로 분리 회사명, 경력..
     private String career; // 회사명+경력
     private LocalDate createdAt;
+    private String skills;
 
 
 }

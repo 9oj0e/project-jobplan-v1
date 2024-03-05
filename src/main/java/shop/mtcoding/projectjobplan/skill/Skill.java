@@ -14,5 +14,5 @@ public class Skill { // Tech Stack
     private Integer resumeId; // null 허용  -> 5
     private Integer boardId; // 1          -> null
 
-    private String name;
+    private String skillName;
 }

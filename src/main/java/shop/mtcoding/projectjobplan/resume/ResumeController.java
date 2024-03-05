@@ -4,12 +4,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.board.BoardResponse;
+import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.user.User;
 
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ public class ResumeController {
     }
 
     @PostMapping("/resume/upload")
-    public String upload(ResumeRequest.SaveDTO requestDTO){
+    public String upload(HttpServletRequest request,ResumeRequest.SaveDTO requestDTO){
 
         User sessionUser = (User) session.getAttribute("sessionUser");
 
