@@ -25,7 +25,7 @@ public class ApplyResponse {
     public static class ToUserDTO{ // 지원 현황 (개인)
         private String resumeTitle;
         private Integer resumeId;
-        private String businessName;
+        private String businessName; // 회사명
         private String boardTitle;
         private Integer boardId;
         private Timestamp appliedAt; // 지원 날짜

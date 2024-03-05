@@ -46,8 +46,37 @@ public class ApplyRepository {
 
         return responseDTO;
     }
-    public List<ApplyResponse.ToUserDTO> findByUserId(){
-        return null;
+    public List<ApplyResponse.ToUserDTO> findByUserId(Integer sessionUser){
+        String q = """
+                SELECT 
+                  r.title AS resume_title,
+                  a.resume_id,
+                  u.business_name,
+                  b.title AS board_title,
+                  b.id,
+                  a.created_at
+               FROM apply_tb a
+               JOIN resume_tb r ON a.resume_id = r.id
+               JOIN board_tb b ON a.board_id = b.id
+               JOIN user_tb u ON a.board_user_id = u.id
+               WHERE a.resume_user_id = ?;
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, sessionUser);
+        List<Object[]> rawResultList = query.getResultList();
+        List<ApplyResponse.ToUserDTO> responseDTO = new ArrayList<>();
+        for (Object[] r : rawResultList){
+            ApplyResponse.ToUserDTO dto = new ApplyResponse.ToUserDTO();
+            dto.setResumeTitle((String) r[0]);
+            dto.setResumeId((Integer) r[1]);
+            dto.setBusinessName((String) r[2]);
+            dto.setBoardTitle((String) r[3]);
+            dto.setBoardId((Integer) r[4]);
+            dto.setAppliedAt((Timestamp) r[5]);
+            responseDTO.add(dto);
+        }
+
+        return responseDTO;
     }
     @Transactional
     public int update(ApplyRequest.UpdateDTO requestDTO){

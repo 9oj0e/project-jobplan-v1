@@ -120,35 +120,25 @@
             <table class="table table-hover" style="text-align: end">
                 <tr>
                     <th>이력서 제목</th>
-                    <th>회사</th>
+                    <th>회사명</th>
                     <th>공고 제목</th>
-                    <th>날짜</th>
-                    <th>합격 여부</th>
+                    <th>지원 날짜</th>
+                    <th></th>
                 </tr>
-                <tr>
-                    <td><a href="/resume/1">나는 노예가 아니다</a></td>
-                    <td>네이버</td>
-                    <td><a href="/board/1">2024 신입 채용</a></td>
-                    <td>2024-03-04</td>
-                    <td>
-                        <div style="display: flex; justify-content: end">
-                            <button class="btn btn-outline-danger">합격</button>&nbsp;
-                            <button class="btn btn-danger">불합격</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><a href="/resume/1">목화밭에서</a></td>
-                    <td>카카오</td>
-                    <td><a href="/board/1">2024 신입 채용</a></td>
-                    <td>2024-03-04</td>
-                    <td>
-                        <div style="display: flex; justify-content: end">
-                            <button class="btn btn-outline-danger">합격</button>&nbsp;
-                            <button class="btn btn-danger">불합격</button>
-                        </div>
-                    </td>
-                </tr>
+                {{#applyList}}
+                    <tr>
+                        <td><a href="/resume/{{resumeId}}">{{resumeTitle}}</a></td>
+                        <td>{{businessName}}</td>
+                        <td><a href="/board/{{boardId}}">{{boardTitle}}</a></td>
+                        <td>{{appliedAt}}</td>
+                        <td>
+                            <div style="display: flex; justify-content: end">
+                                <button class="btn btn-outline-primary">불합격</button>
+                                <button class="btn btn-primary">합격</button>
+                            </div>
+                        </td>
+                    </tr>
+                {{/applyList}}
             </table>
         </div>
     </div>

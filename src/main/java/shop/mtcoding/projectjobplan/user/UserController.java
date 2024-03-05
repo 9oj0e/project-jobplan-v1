@@ -108,6 +108,9 @@ public class UserController {
         else {
             List<Resume> resumeList = resumeRepository.findByUserId(user.getId());
             request.setAttribute( "resumeList", resumeList);
+            List<ApplyResponse.ToUserDTO> applyList = applyRepository.findByUserId(id);
+            request.setAttribute("applyList", applyList);
+            System.out.println(applyList.get(0));
             return "/user/profile";
         }
     }
