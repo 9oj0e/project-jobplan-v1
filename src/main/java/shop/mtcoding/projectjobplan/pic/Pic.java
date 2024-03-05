@@ -10,7 +10,5 @@ public class Pic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private String title;
     private String imgFilename; // 파일 패스
 }

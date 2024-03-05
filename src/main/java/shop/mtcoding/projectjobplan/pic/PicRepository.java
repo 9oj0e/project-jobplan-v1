@@ -13,9 +13,8 @@ public class PicRepository {
 
     @Transactional
     public void insert(String title, String imgFilename){
-        Query query = em.createNativeQuery("insert into pic_tb(title, img_filename) values(?,?)");
-        query.setParameter(1, title);
-        query.setParameter(2, imgFilename);
+        Query query = em.createNativeQuery("insert into pic_tb (img_filename) values (?)");
+        query.setParameter(1, imgFilename);
 
         query.executeUpdate();
     }
