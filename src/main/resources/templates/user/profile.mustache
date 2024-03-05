@@ -20,9 +20,15 @@
                     <div class="card-body">
                         <h4 class="card-title">{{user.name}}</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
-                            <form action="/uploadForm/{{user.id}}" method="get">
-                                <button class="btn btn-outline-primary">수정</button>
-                            </form>
+                            {{#pic}}
+                                <button class="btn btn-primary">삭제</button>
+                            {{/pic}}
+                            {{^pic}}
+                                <form action="/uploadForm/{{user.id}}" method="get">
+                                    <button class="btn btn-outline-primary">등록</button>
+                                </form>
+                            {{/pic}}
+
                         </div>
 
                     </div>
