@@ -65,7 +65,7 @@ public class BoardRepository {
         return boardDetailDTO;
     }
 
-    public List<BoardResponse.boardAndUserDTO> findByBoardtbAndUsertb(int page) {
+    public List<BoardResponse.BoardAndUserDTO> findByBoardtbAndUsertb(int page) {
         final int COUNT = 10;
         int value = (page - 1) * COUNT;
         String q = """
@@ -75,11 +75,11 @@ public class BoardRepository {
         query.setParameter(1, value);
         query.setParameter(2, COUNT);
         List<Object[]> results = query.getResultList();
-        List<BoardResponse.boardAndUserDTO> responseDTO = new ArrayList<>();
+        List<BoardResponse.BoardAndUserDTO> responseDTO = new ArrayList<>();
 
         for (Object[] result : results) {
 
-            BoardResponse.boardAndUserDTO dto = new BoardResponse.boardAndUserDTO();
+            BoardResponse.BoardAndUserDTO dto = new BoardResponse.BoardAndUserDTO();
             dto.setId((Integer) result[0]);
             dto.setUserId((Integer) result[1]);
             dto.setTitle((String) result[2]);
@@ -100,17 +100,17 @@ public class BoardRepository {
         return responseDTO;
     }
 
-    public List<BoardResponse.boardAndUserDTO> findByBoardtbAndUsertb() {
+    public List<BoardResponse.BoardAndUserDTO> findByBoardtbAndUsertb() {
         String q = """
                 select b.id,b.user_id, b.title, b.content,b.field,b.position,b.salary,b.opening_date,b.closing_date,b.created_at, u.username,u.address,u.is_employer,u.business_name from board_tb b inner join user_tb u on b.user_id = u.id  order by id desc LIMIT 0,12;
                 """;
         Query query = entityManager.createNativeQuery(q);
         List<Object[]> results = query.getResultList();
-        List<BoardResponse.boardAndUserDTO> responseDTO = new ArrayList<>();
+        List<BoardResponse.BoardAndUserDTO> responseDTO = new ArrayList<>();
 
         for (Object[] result : results) {
 
-            BoardResponse.boardAndUserDTO dto = new BoardResponse.boardAndUserDTO();
+            BoardResponse.BoardAndUserDTO dto = new BoardResponse.BoardAndUserDTO();
             dto.setId((Integer) result[0]);
             dto.setUserId((Integer) result[1]);
             dto.setTitle((String) result[2]);

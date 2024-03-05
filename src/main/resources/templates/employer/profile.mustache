@@ -126,30 +126,20 @@
                 <th>지원 날짜</th>
                 <th></th>
             </tr>
-            <tr>
-                <td><a href="/board/1">신입 채용 공고</a></td>
-                <td>홍길동</td>
-                <td><a href="/board/1">나는 노예가 아니다</a></td>
-                <td>2024-03-04</td>
-                <td>
-                    <div style="display: flex; justify-content: end">
-                        <button class="btn btn-outline-primary">불합격</button>
-                        <button class="btn btn-primary">합격</button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><a href="/board/1">신입 채용 공고</a></td>
-                <td>전두광</td>
-                <td><a href="/board/1">핵맹 아입니까</a></td>
-                <td>2024-03-04</td>
-                <td>
-                    <div style="display: flex; justify-content: end">
-                        <button class="btn btn-outline-primary">불합격</button>
-                        <button class="btn btn-primary">합격</button>
-                    </div>
-                </td>
-            </tr>
+            {{#applicationList}}
+                <tr>
+                    <td><a href="/board/{{boardId}}">{{boardTitle}}</a></td>
+                    <td>{{applicantName}}</td>
+                    <td><a href="/resume/{{resumeId}}">{{resumeTitle}}</a></td>
+                    <td>{{appliedAt}}</td>
+                    <td>
+                        <div style="display: flex; justify-content: end">
+                            <button class="btn btn-outline-primary">불합격</button>
+                            <button class="btn btn-primary">합격</button>
+                        </div>
+                    </td>
+                </tr>
+            {{/applicationList}}
         </table>
     </div>
 </div>

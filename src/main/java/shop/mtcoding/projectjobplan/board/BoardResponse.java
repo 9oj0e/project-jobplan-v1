@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 public class BoardResponse {
 
     @Data
-    public static class boardAndUserDTO{
+    public static class BoardAndUserDTO{
         private Integer id;
         private Integer userId;
         private String title; // 제목

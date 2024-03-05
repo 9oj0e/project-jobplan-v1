@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.projectjobplan.apply.ApplyRepository;
+import shop.mtcoding.projectjobplan.apply.ApplyResponse;
 import shop.mtcoding.projectjobplan.board.Board;
 import shop.mtcoding.projectjobplan.board.BoardRepository;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -84,8 +86,6 @@ public class UserController {
         request.setAttribute("user", user);
         // 지원 현황 조회 (개인)
 
-        // 지원 현황 조회 (기업)
-
         // 지원 합격 ("apply/1/accept")
 
         // 지원 불합격 ("apply/1/reject")
@@ -96,8 +96,13 @@ public class UserController {
 
         // 기업 회원 인지..
         if (user.getIsEmployer()) {
+            // 내가 쓴 공고 조회
             List<Board> boardList = boardRepository.findByUserId(user.getId());
             request.setAttribute("boardList", boardList);
+            // 지원자 현황 조회
+            List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(id);
+            request.setAttribute("applicationList", applicationList);
+
             return "/employer/profile";
         }
         else {
