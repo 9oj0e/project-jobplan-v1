@@ -21,7 +21,12 @@
                         <h4 class="card-title">{{user.name}}</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
                             {{#pic}}
-                                <button class="btn btn-primary">삭제</button>
+                                <form action="/deleteImg" method="post">
+                                    <input type="hidden" name="userId" value="{{pic.userId}}">
+                                    <button class="btn btn-primary">삭제</button>
+                                </form>
+
+
                             {{/pic}}
                             {{^pic}}
                                 <form action="/uploadForm/{{user.id}}" method="get">

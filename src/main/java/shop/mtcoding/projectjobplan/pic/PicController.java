@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shop.mtcoding.projectjobplan.user.User;
@@ -59,10 +60,9 @@ public class PicController {
             Files.write(imgPath, imgFile.getBytes());
 
             // 3. DB에 저장 (title, realFileName)
-            picRepository.insert(title, imgFilename);
+            picRepository.insert(id, imgFilename);
 
             Pic pic = picRepository.findById(1);
-            //request.getSession().setAttribute("pic", pic);
             request.getSession().setAttribute("pic", pic);
 
         } catch (IOException e) {
@@ -77,6 +77,15 @@ public class PicController {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
         return "user/uploadForm";
+    }
+
+    @PostMapping("/deleteImg")
+    public String deleteImg(@RequestParam int userId, HttpServletRequest request) {
+        picRepository.deleteByUserId(userId);
+
+        request.getSession().removeAttribute("pic");
+
+        return "redirect:/user/"+userId;
     }
 
 }
