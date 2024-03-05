@@ -24,8 +24,11 @@ public class PicController {
     private final UserRepository userRepository;
     private final PicRepository picRepository;
 
+
+    // 사진 업로드
     @PostMapping("/upload/{id}")
-    public String upload(PicRequest.UploadDTO requestDTO, @PathVariable int id, RedirectAttributes redirectAttrs){
+    public String upload(PicRequest.UploadDTO requestDTO, @PathVariable int id, HttpServletRequest request){
+
         // 1. 데이터 전달 받고
         String title = requestDTO.getTitle();
         MultipartFile imgFile = requestDTO.getImgFile();
@@ -39,16 +42,26 @@ public class PicController {
             // 3. DB에 저장 (title, realFileName)
             picRepository.insert(title, imgFilename);
 
-            Pic pic = picRepository.findById(1);
-            redirectAttrs.addFlashAttribute("pic", pic);
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return "redirect:/user/"+id;
+        return "/user/uploadCheck";
     }
 
+    @GetMapping("/mypage/gogo/{id}")
+    public String uploadCheck(PicRequest.UploadDTO requestDTO, @PathVariable int id, HttpServletRequest request){
+        User user = userRepository.findById(id);
+        request.setAttribute("user", user);
+
+        Pic pic = picRepository.findById(1);
+        request.getSession().setAttribute("pic", pic);
+
+        return "redirect:/user/" + id;
+    }
+
+
+    // 수정 버튼 눌렸을 때
     @GetMapping("/uploadForm/{id}")
     public String uploadForm(@PathVariable int id, HttpServletRequest request){
         User user = userRepository.findById(id);
