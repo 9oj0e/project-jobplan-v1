@@ -79,6 +79,7 @@ public class BoardController {
     // 지원하기
     @GetMapping("/board/1/applyForm")
 
+
     @PostMapping("/board/1/apply")
     public String apply(){
         return "redirect:/board/" + 1;
