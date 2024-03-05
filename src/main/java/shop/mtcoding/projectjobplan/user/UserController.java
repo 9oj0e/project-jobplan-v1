@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.projectjobplan.board.Board;
 import shop.mtcoding.projectjobplan.board.BoardRepository;
+import shop.mtcoding.projectjobplan.pic.Pic;
+import shop.mtcoding.projectjobplan.pic.PicRepository;
+import shop.mtcoding.projectjobplan.pic.PicRequest;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 
@@ -21,6 +24,7 @@ public class UserController {
     private final ResumeRepository resumeRepository;
     private final BoardRepository boardRepository;
     private final HttpSession session;
+    private final PicRepository picRepository;
 
     @GetMapping("/user/joinSelection")
     public String joinSelection() {
@@ -80,6 +84,8 @@ public class UserController {
     public String profile(HttpServletRequest request, @PathVariable int id) {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
+
+
         // board 조회
 
         // 기업 회원 인지..
@@ -93,6 +99,8 @@ public class UserController {
             request.setAttribute( "resumeList", resumeList);
             return "/user/profile";
         }
+
+
     }
 
     @GetMapping("/user/{id}/updateForm")
