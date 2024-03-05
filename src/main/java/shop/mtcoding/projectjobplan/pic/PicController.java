@@ -40,6 +40,8 @@ public class PicController {
             picRepository.insert(title, imgFilename);
 
             Pic pic = picRepository.findById(1);
+            
+            // 세션에 저장됨
             redirectAttrs.addFlashAttribute("pic", pic);
 
         } catch (IOException e) {

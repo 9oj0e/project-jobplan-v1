@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Data
@@ -12,7 +14,7 @@ public class Board {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer userId; // 게시자 id
+    private Integer compId; // 게시자 id
     // @Column(nullable = false)
     private String title; // 제목
     private String content; // 내용
@@ -24,4 +26,14 @@ public class Board {
     private Timestamp closingDate; // 마감일
     // closingDate == null -> "상시채용"
     private Timestamp createdAt; // 생성일
+
+    public String getOpeningDateFormat(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return openingDate.toLocalDateTime().format(formatter);
+    }
+
+    public String getClosingDateFormat(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return closingDate.toLocalDateTime().format(formatter);
+    }
 }

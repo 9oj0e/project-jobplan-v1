@@ -1,121 +1,121 @@
 --board_tb
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (1, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (2, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (3, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (4, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (5, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (1, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (2, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (3, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (4, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (5, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (1, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (2, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (3, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (4, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (5, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (1, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (2, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (3, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (4, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
-(user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+(comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
 VALUES (5, '2024년 신입 개발자 채용',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
         '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
