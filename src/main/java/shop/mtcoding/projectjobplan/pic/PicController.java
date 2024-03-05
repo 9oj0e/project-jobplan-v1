@@ -40,7 +40,7 @@ public class PicController {
             Files.write(imgPath, imgFile.getBytes());
 
             // 3. DB에 저장 (title, realFileName)
-            picRepository.insert(title, imgFilename);
+            picRepository.insert(id, imgFilename);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -54,7 +54,7 @@ public class PicController {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
 
-        Pic pic = picRepository.findById(1);
+        Pic pic = picRepository.findById(id);
         request.getSession().setAttribute("pic", pic);
 
         return "redirect:/user/" + id;
@@ -67,6 +67,16 @@ public class PicController {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
         return "user/uploadForm";
+    }
+
+    // 삭제 버튼 눌렸을 때
+    @PostMapping("/deletePic/{id}")
+    public String deletePic(@PathVariable int id, HttpServletRequest request) {
+        picRepository.deleteById(id);
+        request.getSession().removeAttribute("pic");
+
+
+        return "redirect:/user/" + id;
     }
 
 }

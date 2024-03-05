@@ -12,18 +12,27 @@
             <div>
                 <div class="card mt-5" style="width:200px">
                     {{#pic}}
-                        제목 : {{pic.title}}
                         <img class="card-img" src="/upload/{{pic.imgFilename}}" style="width:100%">
                     {{/pic}}
                     {{^pic}}
                         <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
                     {{/pic}}
+<!--                    {{^checkPic}}-->
+<!--                        <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">-->
+<!--                    {{/checkPic}}-->
                     <div class="card-body">
                         <h4 class="card-title">{{user.name}}</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
-                            <form action="/uploadForm/{{user.id}}" method="get">
-                                <button class="btn btn-outline-primary">수정</button>
-                            </form>
+                            {{#pic}}
+                                <form action="/deletePic/{{user.id}}" method="post">
+                                    <button class="btn btn-primary">삭제</button>
+                                </form>
+                            {{/pic}}
+                            {{^pic}}
+                                <form action="/uploadForm/{{user.id}}" method="get">
+                                    <button class="btn btn-outline-primary">등록</button>
+                                </form>
+                            {{/pic}}
                         </div>
 
                     </div>
