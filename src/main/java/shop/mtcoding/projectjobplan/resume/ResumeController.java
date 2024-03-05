@@ -29,7 +29,7 @@ public class ResumeController {
     }
 
     @PostMapping("/resume/upload")
-    public String upload(HttpServletRequest request,ResumeRequest.SaveDTO requestDTO){
+    public String upload(ResumeRequest.SaveDTO requestDTO){
 
         User sessionUser = (User) session.getAttribute("sessionUser");
 
@@ -39,9 +39,8 @@ public class ResumeController {
         //int resumeId = resumeRepository.save(requestDTO, id);
 
         //
-        User user = (User) session.getAttribute("sessionUser");
 
-        return "redirect:/user/" + user.getId();
+        return "redirect:/user/" + sessionUser.getId();
     }
 
     @GetMapping("/resume/main")

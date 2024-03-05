@@ -138,8 +138,8 @@ public class BoardRepository {
     public void save(BoardRequest.SaveDTO requestDTO, Integer sessionUserId) {
         String q = """
                 INSERT INTO board_tb
-                (comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, now())
+                (comp_id, title, content, field, position, salary, opening_date, closing_date, created_at,skills)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, now(),?)
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, sessionUserId);
@@ -157,9 +157,12 @@ public class BoardRepository {
 
         query.setParameter(7, openingDate);
         query.setParameter(8, closingDate);
+        query.setParameter(9,requestDTO.getSkills());
 
-        query.executeUpdate(); // 영향 받은 행
 
+        query.executeUpdate();
+
+        //board_id 찾기
         String q1 = """
                 select max(id) from board_tb
                 """;
@@ -168,7 +171,7 @@ public class BoardRepository {
         Integer boardId = (Integer) query1.getSingleResult();
 
 
-        // skills 필드에 체크된 스킬이 있을 경우에만 처리
+        // 반복문으로 skill_tb 저장
         if (requestDTO.getSkills() != null) {
             for (String skill : requestDTO.getSkills()) {
                 String q2 = """
@@ -176,7 +179,7 @@ public class BoardRepository {
                     """;
                 Query query2 = entityManager.createNativeQuery(q2);
                 query2.setParameter(1, boardId);
-                query2.setParameter(2, skill); // 여기에서 각각의 스킬명을 저장합니다.
+                query2.setParameter(2, skill);
                 query2.executeUpdate();
             }
         }

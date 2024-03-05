@@ -133,8 +133,10 @@ public class ResumeRepository {
         query.setParameter(8,requestDTO.getSkills());
         // pk 응답
 
-        query.executeUpdate(); // 영향 받은 행
+        query.executeUpdate();
 
+
+        //resume_id 찾기
         String q1 = """
                 select max(id) from resume_tb
                 """;
@@ -143,7 +145,7 @@ public class ResumeRepository {
         Integer resumeId = (Integer) query1.getSingleResult();
 
 
-        // skills 필드에 체크된 스킬이 있을 경우에만 처리
+        // 반복문으로 skill_tb 저장
         if (requestDTO.getSkills() != null) {
             for (String skill : requestDTO.getSkills()) {
                 String q2 = """
@@ -151,7 +153,7 @@ public class ResumeRepository {
                     """;
                 Query query2 = entityManager.createNativeQuery(q2);
                 query2.setParameter(1, resumeId);
-                query2.setParameter(2, skill); // 여기에서 각각의 스킬명을 저장합니다.
+                query2.setParameter(2, skill);
                 query2.executeUpdate();
             }
         }
