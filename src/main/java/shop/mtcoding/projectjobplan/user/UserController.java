@@ -140,9 +140,8 @@ public class UserController {
     @PostMapping("/user/{id}/update")
     public String update(@PathVariable int id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
 
-        for (String skill : requestDTO.getSkill()){
-            skillRepository.save(skill, id);
-        }
+            skillRepository.save(requestDTO.getSkill(), id);
+
 
         request.setAttribute("user", userRepository.updateById(requestDTO, id));
         return "redirect:/user/"+id;

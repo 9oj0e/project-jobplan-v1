@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.projectjobplan.user.UserRequest;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Repository
 public class SkillRepository {
@@ -45,5 +47,28 @@ public class SkillRepository {
         query.setParameter(1,userId);
         query.setParameter(2,skill);
         query.executeUpdate();
+    }
+
+    @Transactional
+    public void save(List<String> skills, int userId) {
+
+        String q1 = """
+                delete from skill_tb where user_id = ? 
+            """;
+        Query query1 = entityManager.createNativeQuery(q1);
+        query1.setParameter(1,userId);
+        query1.executeUpdate();
+
+        for(String skill : skills) {
+            String q2 =
+                    """
+                INSERT INTO skill_tb(user_id, skill_name)
+                    VALUES (?, ?)
+                """;
+            Query query2 = entityManager.createNativeQuery(q2);
+            query2.setParameter( 1,userId);
+            query2.setParameter(2,skill);
+            query2.executeUpdate();
+        }
     }
 }
