@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import shop.mtcoding.projectjobplan.apply.ApplyRepository;
+import shop.mtcoding.projectjobplan.apply.ApplyResponse;
 import shop.mtcoding.projectjobplan.board.Board;
 import shop.mtcoding.projectjobplan.board.BoardRepository;
 import shop.mtcoding.projectjobplan.pic.Pic;
@@ -15,6 +17,7 @@ import shop.mtcoding.projectjobplan.pic.PicRequest;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -23,6 +26,7 @@ public class UserController {
     private final UserRepository userRepository;
     private final ResumeRepository resumeRepository;
     private final BoardRepository boardRepository;
+    private final ApplyRepository applyRepository;
     private final HttpSession session;
     private final PicRepository picRepository;
 
@@ -84,19 +88,33 @@ public class UserController {
     public String profile(HttpServletRequest request, @PathVariable int id) {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
+        // 지원 현황 조회 (개인)
 
+        // 지원 합격 ("apply/1/accept")
 
-        // board 조회
+        // 지원 불합격 ("apply/1/reject")
+
+        // 지원 삭제 (개인)
+
+        // 지원 삭제 (기업)
 
         // 기업 회원 인지..
         if (user.getIsEmployer()) {
+            // 내가 쓴 공고 조회
             List<Board> boardList = boardRepository.findByUserId(user.getId());
             request.setAttribute("boardList", boardList);
+            // 지원자 현황 조회
+            List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(id);
+            request.setAttribute("applicationList", applicationList);
+
             return "/employer/profile";
         }
         else {
             List<Resume> resumeList = resumeRepository.findByUserId(user.getId());
             request.setAttribute( "resumeList", resumeList);
+            List<ApplyResponse.ToUserDTO> applyList = applyRepository.findByUserId(id);
+            request.setAttribute("applyList", applyList);
+            System.out.println(applyList.get(0));
             return "/user/profile";
         }
 
