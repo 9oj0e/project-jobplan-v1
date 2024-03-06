@@ -1,6 +1,5 @@
 package shop.mtcoding.projectjobplan.pic;
 
-import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -10,10 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
-import shop.mtcoding.projectjobplan.user.UserResponse;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -63,7 +60,7 @@ public class PicController {
             picRepository.insert(id, imgFilename);
 
             Pic pic = picRepository.findById(1);
-            redirectAttrs.addFlashAttribute("pic", pic);
+            request.getSession().setAttribute("pic", pic);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
