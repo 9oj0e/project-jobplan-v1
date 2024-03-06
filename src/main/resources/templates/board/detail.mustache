@@ -9,8 +9,9 @@
                 <!-- 지원하기 버튼 -->
                 <div>
                     {{^sessionUser.isEmployer}}
-                        <form action="/board/{boardId}/apply" method="post"></form>
-                        <a href="#" class="btn btn-primary">지원</a>
+                        <form action="/board/{{boardDetail.id}}/applyForm" method="get">
+                            <button class="btn btn-primary">지원</button>
+                        </form>
                     {{/sessionUser.isEmployer}}
                 </div>
                 <!-- 수정 삭제 버튼 -->

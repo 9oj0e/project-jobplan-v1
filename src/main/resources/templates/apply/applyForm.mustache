@@ -2,38 +2,40 @@
 <div style="display: flex; justify-content: center">
     <div class="card" style="width: 600px; margin-bottom: 5%">
         <div class="card-header" style="text-align: end"><b>온라인 입사지원</b></div>
-        <div>억대연봉을 실현하는 전문 관리자 양성과정 모집 주4일</div>
-        <div style="display: flex; justify-content: space-between">
-            <div>DB손해보험(주)</div>
-            <div>마감일 : 상시모집</div>
+        <div style="margin-left: 5%; margin-right: 5%">
+            <div>억대연봉을 실현하는 전문 관리자 양성과정 모집 주4일</div>
+            <div style="display: flex; justify-content: space-between">
+                <div>DB손해보험(주)</div>
+                <div><b>마감일 : 상시모집</b></div>
+            </div>
+            <hr>
         </div>
-        <hr>
-        <div class="card-body">
+        <div class="card-body" style="margin-left: 3%; margin-right: 3%">
             <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
-                <div style="text-align: end"><h4>이력서 선택</h4></div>
-                <table class="table table-hover">
+                <div style="text-align: end"><h5><b>이력서 선택</b></h5></div>
+                <table class="table table-bordered">
                     <tr>
                         <td>2022-02-08</td>
-                        <td>맡은 업무에 항상 최선을 다하는 인재입니다.</td>
+                        <td><a href="#">맡은 업무에 항상 최선을 다하는 인재입니다.</a></td>
                         <td>
-                            <button>보기</button>
                             <button>수정</button>
                         </td>
                     </tr>
                     <tr>
                         <td>2016-12-22</td>
-                        <td>긍정의 에너지를 가지고 열심히 하겠습니다.</td>
+                        <td><a href="#">긍정의 에너지를 가지고 열심히 하겠습니다.</a></td>
                         <td>
-                            <button>보기</button>
                             <button>수정</button>
                         </td>
                     </tr>
                 </table>
                 <div class="mb-3">이미 지원된 이력서는 수정이 불가능 하오니 한번 더 확인해 주세요.</div>
-                <div style="text-align: end"><h4>사장님(인사담당자님)께 한마디</h4></div>
+
+                <div style="text-align: end"><h6><b>사장님(인사담당자님)께 한마디</b></h6></div>
                 <div>
-                    <textarea name="content" rows="3"></textarea>
+                    <textarea name="content" rows="5" style="width: 100%"></textarea>
                 </div>
+
                 <div>면접제의가 오면 약속된 면접시간을 꼭 지켜주세요.</div>
                 <div>부득이하게 면접에 불참하게 될 경우 면접시간 전에 미리 연락하는 것은 구직자의 기본 매너입니다.</div>
                 <button type="submit" class="btn btn-primary form-control mt-3">지원하기</button>

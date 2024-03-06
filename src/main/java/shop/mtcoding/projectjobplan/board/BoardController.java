@@ -21,7 +21,6 @@ import java.util.List;
 @Controller
 public class BoardController {
     private final BoardRepository boardRepository;
-    private final ApplyRepository applyRepository;
     private final SkillRepository skillRepository;
     private final HttpSession session;
   
@@ -77,14 +76,6 @@ public class BoardController {
         request.setAttribute("boardDetail", boardDetailDTO);
 
         return "/board/detail";
-    }
-    // 지원하기
-    @GetMapping("/board/1/applyForm")
-
-
-    @PostMapping("/board/1/apply")
-    public String apply(){
-        return "redirect:/board/" + 1;
     }
 
     @PostMapping("/board/upload")
