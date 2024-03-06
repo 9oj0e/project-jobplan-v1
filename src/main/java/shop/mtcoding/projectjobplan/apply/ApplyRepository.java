@@ -54,7 +54,7 @@ public class ApplyRepository {
 
         return responseDTO;
     }
-    public List<ApplyResponse.ToEmployerDTO> findByEmployerId(Integer sessionUserId, Integer boardId){
+    public List<ApplyResponse.ToEmployerDTO> findByBoardUserId(Integer boardId){
         String q = """
                 SELECT
                     b.id AS board_id,
@@ -68,11 +68,11 @@ public class ApplyRepository {
                 JOIN apply_tb a ON b.id = a.board_id
                 JOIN user_tb u ON a.resume_user_id = u.id
                 JOIN resume_tb r ON a.resume_id = r.id
-                WHERE a.board_user_id = ? AND a.board_id = ?;
+                WHERE a.board_id = ?;
                 """;
         Query query = entityManager.createNativeQuery(q);
-        query.setParameter(1, sessionUserId);
-        query.setParameter(2, boardId);
+        query.setParameter(1, boardId);
+
         List<Object[]> rawResultList = query.getResultList();
         List<ApplyResponse.ToEmployerDTO> responseDTO = new ArrayList<>();
         for (Object[] r : rawResultList ) {
@@ -87,8 +87,8 @@ public class ApplyRepository {
 
             responseDTO.add(dto);
         }
-
         return responseDTO;
+
     }
     public List<ApplyResponse.ToUserDTO> findByUserId(Integer sessionUserId){
         String q = """

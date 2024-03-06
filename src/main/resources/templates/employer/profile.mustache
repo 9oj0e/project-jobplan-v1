@@ -3,10 +3,14 @@
     <div class="div-layout">
         <div class="d-flex justify-content-between">
             <h3><b>내 정보</b></h3>
-            <form action="/user/{{sessionUser.id}}/updateForm" class="justify-content-end">
-                <button class="btn btn-outline-primary">수정</button>
-                <button class="btn btn-primary">탈퇴</button>
-            </form>
+            <div style="display: flex; justify-content: space-evenly; width: 120px">
+                <form action="/user/{{sessionUser.id}}/updateForm">
+                    <button class="btn btn-outline-primary">수정</button>
+                </form>
+                <form action="/user/{{sessionUser.id}}/delete">
+                    <button class="btn btn-primary">탈퇴</button>
+                </form>
+            </div>
         </div>
         <div class="div-information">
             <div class="div-information-grid">
@@ -99,7 +103,7 @@
                         <td><a href="/board/{{id}}">{{title}}</a></td>
                         <td>{{openingDateFormat}}</td>
                         <td>
-                            <div style="display: flex; justify-content: end">
+                            <div style="display: flex; justify-content: space-evenly">
                                 <form action="/user/{{sessionUser.id}}/{{id}}" method="get">
                                     <button class="btn btn-outline-primary">지원자</button>
                                 </form>
@@ -115,8 +119,11 @@
     </div>
 
     <div class="div-layout">
-        <div class="div-header">
+        <div class="div-header d-flex justify-content-between">
             <h3><b>지원자 리스트</b></h3>
+            <form action="/user/{{sessionUser.id}}" method="get" class="justify-content-end">
+                <button class="btn btn-primary">전체</button>
+            </form>
         </div>
         <table class="table table-hover" style="text-align: end">
             <tr>
@@ -133,7 +140,7 @@
                     <td><a href="/resume/{{resumeId}}">{{resumeTitle}}</a></td>
                     <td>{{appliedAt}}</td>
                     <td>
-                        <div style="display: flex; justify-content: end">
+                        <div style="display: flex; justify-content: space-evenly">
                             <button class="btn btn-outline-danger">불합격</button>
                             <button class="btn btn-outline-primary">합격</button>
                         </div>
