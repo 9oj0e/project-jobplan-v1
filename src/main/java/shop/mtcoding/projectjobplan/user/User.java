@@ -27,7 +27,7 @@ public class User {
     private String email;
 
     // employer, 사업자 항목 nullable
-    private Boolean isEmployer; // 사업자인지 userId, compId
+    private Boolean isEmployer; // 사업자인지 userId, employerId
     private String employerIdNumber; // 사업자번호
     private String businessName; // 기업이름
     private Timestamp createdAt;

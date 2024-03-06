@@ -23,7 +23,7 @@ public class ApplyRepository {
         String q = """
                 SELECT b.title, b.id, u.name, r.title, r.id, a.created_at, a.status
                 FROM apply_tb AS a
-                JOIN board_tb AS b ON a.board_user_id = b.user_id
+                JOIN board_tb AS b ON a.board_user_id = b.employer_id
                 JOIN user_tb AS u ON a.resume_user_id = u.id
                 JOIN resume_tb AS r ON a.resume_id = r.id
                 WHERE a.board_user_id = ?

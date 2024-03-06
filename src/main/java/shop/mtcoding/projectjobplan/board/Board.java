@@ -14,7 +14,7 @@ public class Board {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer compId; // 게시자 id
+    private Integer employerId; // 게시자 id
     // @Column(nullable = false)
     private String title; // 제목
     private String content; // 내용

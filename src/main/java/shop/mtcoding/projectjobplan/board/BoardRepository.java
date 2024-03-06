@@ -22,9 +22,9 @@ public class BoardRepository {
         String q = """
                 select
                 u.address, u.business_name, u.email, u.name, u.phone_number,
-                b.id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.comp_id
+                b.id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.employer_id
                 from user_tb u, board_tb b
-                where b.id=? and b.comp_id = u.id
+                where b.id=? and b.employer_id = u.id
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, idx);
@@ -44,7 +44,7 @@ public class BoardRepository {
         String salary = (String) row[10];
         Timestamp openingDate = (Timestamp) row[11];
         Timestamp closingDate = (Timestamp) row[12];
-        Integer compId = (Integer) row[13];
+        Integer employerId = (Integer) row[13];
 
         BoardResponse.BoardDetailDTO boardDetailDTO = new BoardResponse.BoardDetailDTO();
         boardDetailDTO.setAddress(address);
@@ -60,7 +60,7 @@ public class BoardRepository {
         boardDetailDTO.setSalary(salary);
         boardDetailDTO.setOpeningDate(openingDate);
         boardDetailDTO.setClosingDate(closingDate);
-        boardDetailDTO.setCompId(compId);
+        boardDetailDTO.setEmployerId(employerId);
 
         return boardDetailDTO;
     }
@@ -69,7 +69,7 @@ public class BoardRepository {
         final int COUNT = 10;
         int value = (page - 1) * COUNT;
         String q = """
-                SELECT b.id, b.comp_id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.created_at, u.username, u.address, u.is_employer, u.business_name FROM board_tb b INNER JOIN user_tb u ON b.comp_id = u.id WHERE u.is_employer = true ORDER BY b.id DESC LIMIT ?,?;               
+                SELECT b.id, b.employer_id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.created_at, u.username, u.address, u.is_employer, u.business_name FROM board_tb b INNER JOIN user_tb u ON b.employer_id = u.id WHERE u.is_employer = true ORDER BY b.id DESC LIMIT ?,?;               
                         """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, value);
@@ -81,7 +81,7 @@ public class BoardRepository {
 
             BoardResponse.BoardAndUserDTO dto = new BoardResponse.BoardAndUserDTO();
             dto.setId((Integer) result[0]);
-            dto.setCompId((Integer) result[1]);
+            dto.setEmployerId((Integer) result[1]);
             dto.setTitle((String) result[2]);
             dto.setContent((String) result[3]);
             dto.setField((String) result[4]);
@@ -102,7 +102,7 @@ public class BoardRepository {
 
     public List<BoardResponse.BoardAndUserDTO> findByBoardtbAndUsertb() {
         String q = """
-                select b.id,b.comp_id, b.title, b.content,b.field,b.position,b.salary,b.opening_date,b.closing_date,b.created_at, u.username,u.address,u.is_employer,u.business_name from board_tb b inner join user_tb u on b.comp_id = u.id  order by id desc LIMIT 0,12;
+                select b.id,b.employer_id, b.title, b.content,b.field,b.position,b.salary,b.opening_date,b.closing_date,b.created_at, u.username,u.address,u.is_employer,u.business_name from board_tb b inner join user_tb u on b.employer_id = u.id  order by id desc LIMIT 0,12;
                 """;
         Query query = entityManager.createNativeQuery(q);
         List<Object[]> results = query.getResultList();
@@ -112,7 +112,7 @@ public class BoardRepository {
 
             BoardResponse.BoardAndUserDTO dto = new BoardResponse.BoardAndUserDTO();
             dto.setId((Integer) result[0]);
-            dto.setCompId((Integer) result[1]);
+            dto.setEmployerId((Integer) result[1]);
             dto.setTitle((String) result[2]);
             dto.setContent((String) result[3]);
             dto.setField((String) result[4]);
@@ -138,7 +138,7 @@ public class BoardRepository {
     public int save(BoardRequest.SaveDTO requestDTO, Integer sessionUserId) {
         String q = """
                 INSERT INTO board_tb
-                (comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
+                (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, now())
                 """;
         Query query = entityManager.createNativeQuery(q);
@@ -191,10 +191,10 @@ public class BoardRepository {
     }
 
     // 기업 마이페이지에서 공고목록 보기
-    public List<Board> findByUserId(Integer compId) {
-        String q = "select * from board_tb where comp_id = ? order by id desc";
+    public List<Board> findByUserId(Integer employerId) {
+        String q = "select * from board_tb where employer_id = ? order by id desc";
         Query query = entityManager.createNativeQuery(q, Board.class);
-        query.setParameter(1, compId);
+        query.setParameter(1, employerId);
 
         return (List<Board>) query.getResultList();
     }
@@ -249,7 +249,7 @@ public class BoardRepository {
 
     public int countIsEmployerTrue() {
         String q = """
-                SELECT COUNT(*) FROM board_tb b INNER JOIN user_tb u ON b.comp_id = u.id WHERE u.is_employer = true;
+                SELECT COUNT(*) FROM board_tb b INNER JOIN user_tb u ON b.employer_id = u.id WHERE u.is_employer = true;
                 """;
         Query query = entityManager.createNativeQuery(q);
         Long count = (Long) query.getSingleResult();

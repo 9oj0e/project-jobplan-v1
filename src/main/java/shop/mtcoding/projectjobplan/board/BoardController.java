@@ -22,6 +22,7 @@ import java.util.List;
 public class BoardController {
     private final BoardRepository boardRepository;
     private final ApplyRepository applyRepository;
+    private final SkillRepository skillRepository;
     private final HttpSession session;
   
     @GetMapping({"/", "/board"})
