@@ -59,7 +59,7 @@ public class PicController {
             // 3. DB에 저장 (title, realFileName)
             picRepository.insert(id, imgFilename);
 
-            Pic pic = picRepository.findById(1);
+            Pic pic = picRepository.findById(id);
             request.getSession().setAttribute("pic", pic);
 
         } catch (IOException e) {
