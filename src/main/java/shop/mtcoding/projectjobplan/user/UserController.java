@@ -87,46 +87,46 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/user/{id}")
-    public String profile(HttpServletRequest request, @PathVariable int id) {
-        User user = userRepository.findById(id);
+    @GetMapping({"/user/{sessionUserId}", "/user/{sessionUserId}/{boardId}"})
+    public String profile(HttpServletRequest request,
+                          @PathVariable int sessionUserId,
+                          @PathVariable(required = false) Integer boardId) {
+        User user = userRepository.findById(sessionUserId);
+      
         List<Skill> skillList = skillRepository.findById(id);
         if (skillList != null) {
             request.setAttribute("skillList",skillList);
         }
-
         request.setAttribute("user", user);
-        // 지원 현황 조회 (개인)
 
-        // 지원 합격 ("apply/1/accept")
-
-        // 지원 불합격 ("apply/1/reject")
-
-        // 지원 삭제 (개인)
-
-        // 지원 삭제 (기업)
+        // 지원 삭제 (개인, 지원 취소)
 
         // 기업 회원 인지..
         if (user.getIsEmployer()) {
             // 내가 쓴 공고 조회
-            List<Board> boardList = boardRepository.findByUserId(user.getId());
+            List<Board> boardList = boardRepository.findByEmployerId(user.getId());
             request.setAttribute("boardList", boardList);
-            // 지원자 현황 조회
-            List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(id);
-            request.setAttribute("applicationList", applicationList);
+            if (boardId == null) {
+                // 지원자 현황 조회
+                List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(sessionUserId);
+                request.setAttribute("applicationList", applicationList);
+            } else {
+                // 지원자 현황 조회
+                List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByBoardUserId(boardId);
+                request.setAttribute("applicationList", applicationList);
+            }
 
             return "/employer/profile";
         }
         else {
+            // 지원 현황 조회
             List<Resume> resumeList = resumeRepository.findByUserId(user.getId());
             request.setAttribute( "resumeList", resumeList);
-            List<ApplyResponse.ToUserDTO> applyList = applyRepository.findByUserId(id);
+            List<ApplyResponse.ToUserDTO> applyList = applyRepository.findByUserId(sessionUserId);
             request.setAttribute("applyList", applyList);
-            System.out.println(applyList.get(0));
+
             return "/user/profile";
         }
-
-
     }
 
     @GetMapping("/user/{id}/updateForm")
