@@ -87,9 +87,17 @@ public class BoardResponse {
             else boardOwner = sessionUser.getId() == employerId;
         }
 
+        public String getOpeningDate(){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            return openingDate.toLocalDateTime().format(formatter);
+        }
+
+        public String getClosingDate(){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            return closingDate.toLocalDateTime().format(formatter);
+        }
         // ADDRESS BUSINESS_NAME EMAIL NAME PHONE_NUMBER
         // ID TITLE CONTENT FIELD POSITION SALARY OPENING_DATE CLOSING_DATE
-
     }
 
 }
