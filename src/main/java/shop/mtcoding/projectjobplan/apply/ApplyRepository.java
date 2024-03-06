@@ -21,12 +21,19 @@ public class ApplyRepository {
     }
     public List<ApplyResponse.ToEmployerDTO> findByEmployerId(Integer sessionUserId){
         String q = """
-                SELECT b.title, b.id, u.name, r.title, r.id, a.created_at, a.status
-                FROM apply_tb AS a
-                JOIN board_tb AS b ON a.board_user_id = b.employer_id
-                JOIN user_tb AS u ON a.resume_user_id = u.id
-                JOIN resume_tb AS r ON a.resume_id = r.id
-                WHERE a.board_user_id = ?
+                SELECT
+                    b.id AS board_id,
+                    b.title AS board_title,
+                    u.name AS applicant_name,
+                    r.id AS resume_id,
+                    r.title AS resume_title,
+                    a.created_at,
+                    a.status
+                FROM board_tb b
+                JOIN apply_tb a ON b.id = a.board_id
+                JOIN user_tb u ON a.resume_user_id = u.id
+                JOIN resume_tb r ON a.resume_id = r.id
+                WHERE a.board_user_id = ?;
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, sessionUserId);
@@ -34,12 +41,13 @@ public class ApplyRepository {
         List<ApplyResponse.ToEmployerDTO> responseDTO = new ArrayList<>();
         for (Object[] r : rawResultList ) {
             ApplyResponse.ToEmployerDTO dto = new ApplyResponse.ToEmployerDTO();
-            dto.setBoardTitle((String) r[0]);
-            dto.setBoardId((Integer) r[1]);
+            dto.setBoardId((Integer) r[0]);
+            dto.setBoardTitle((String) r[1]);
             dto.setApplicantName((String) r[2]);
-            dto.setResumeTitle((String) r[3]);
-            dto.setResumeId((Integer) r[4]);
+            dto.setResumeId((Integer) r[3]);
+            dto.setResumeTitle((String) r[4]);
             dto.setAppliedAt((Timestamp) r[5]);
+            dto.setStatus((Boolean) r[6]);
 
             responseDTO.add(dto);
         }
@@ -48,12 +56,19 @@ public class ApplyRepository {
     }
     public List<ApplyResponse.ToEmployerDTO> findByEmployerId(Integer sessionUserId, Integer boardId){
         String q = """
-                SELECT b.title, b.id, u.name, r.title, r.id, a.created_at, a.status
-                FROM apply_tb AS a
-                JOIN board_tb AS b ON a.board_user_id = b.employer_id
-                JOIN user_tb AS u ON a.resume_user_id = u.id
-                JOIN resume_tb AS r ON a.resume_id = r.id
-                WHERE a.board_user_id = ? AND b.id = ?
+                SELECT
+                    b.id AS board_id,
+                    b.title AS board_title,
+                    u.name AS applicant_name,
+                    r.id AS resume_id,
+                    r.title AS resume_title,
+                    a.created_at,
+                    a.status
+                FROM board_tb b
+                JOIN apply_tb a ON b.id = a.board_id
+                JOIN user_tb u ON a.resume_user_id = u.id
+                JOIN resume_tb r ON a.resume_id = r.id
+                WHERE a.board_user_id = ? AND a.board_id = ?;
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, sessionUserId);
@@ -62,12 +77,13 @@ public class ApplyRepository {
         List<ApplyResponse.ToEmployerDTO> responseDTO = new ArrayList<>();
         for (Object[] r : rawResultList ) {
             ApplyResponse.ToEmployerDTO dto = new ApplyResponse.ToEmployerDTO();
-            dto.setBoardTitle((String) r[0]);
-            dto.setBoardId((Integer) r[1]);
+            dto.setBoardId((Integer) r[0]);
+            dto.setBoardTitle((String) r[1]);
             dto.setApplicantName((String) r[2]);
-            dto.setResumeTitle((String) r[3]);
-            dto.setResumeId((Integer) r[4]);
+            dto.setResumeId((Integer) r[3]);
+            dto.setResumeTitle((String) r[4]);
             dto.setAppliedAt((Timestamp) r[5]);
+            dto.setStatus((Boolean) r[6]);
 
             responseDTO.add(dto);
         }

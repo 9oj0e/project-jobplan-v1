@@ -258,32 +258,32 @@ INSERT INTO apply_tb
 VALUES (1, 6, 1, 1, now(), 1);
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at, status)
-VALUES (2, 7, 1, 1, now(), 0);
+VALUES (2, 7, 2, 1, now(), 0);
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (3, 8, 1, 1, now());
+VALUES (3, 8, 3, 1, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (4, 9, 1, 1, now());
+VALUES (4, 9, 4, 1, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
 VALUES (5, 10, 1, 1, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (6, 11, 1, 1, now());
+VALUES (6, 11, 2, 1, now());
 
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at, status)
-VALUES (1, 6, 2, 2, now(), 1);
+VALUES (1, 6, 5, 2, now(), 1);
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at, status)
-VALUES (2, 7, 2, 2, now(), 0);
+VALUES (2, 7, 6, 2, now(), 0);
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (3, 8, 2, 2, now());
+VALUES (3, 8, 7, 2, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (4, 9, 2, 2, now());
+VALUES (4, 9, 8, 2, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (5, 10, 2, 2, now());
+VALUES (5, 10, 5, 2, now());

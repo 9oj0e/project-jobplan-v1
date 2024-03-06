@@ -14,6 +14,7 @@ public class ApplyResponse {
         private String resumeTitle;
         private Integer resumeId;
         private Timestamp appliedAt; // 지원 날짜
+        private Boolean status;
 
         public String getBoardTitle(){
             String input = this.boardTitle; // 입력받은 문자열
@@ -45,7 +46,6 @@ public class ApplyResponse {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             return appliedAt.toLocalDateTime().format(formatter);
         }
-        private Boolean status;
     }
     @Data
     public static class ToUserDTO{ // 지원 현황 (개인)
@@ -55,6 +55,7 @@ public class ApplyResponse {
         private String boardTitle;
         private Integer boardId;
         private Timestamp appliedAt; // 지원 날짜
+        private Boolean status;
 
         public String getResumeTitle(){
             String input = this.resumeTitle; // 입력받은 문자열
@@ -86,6 +87,5 @@ public class ApplyResponse {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             return appliedAt.toLocalDateTime().format(formatter);
         }
-        private Boolean status;
     }
 }
