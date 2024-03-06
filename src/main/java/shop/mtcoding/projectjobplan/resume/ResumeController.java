@@ -39,10 +39,6 @@ public class ResumeController {
         // todo 유효성 검사, 권한 검사
          resumeRepository.save(requestDTO, sessionUser.getId());
 
-//        for (String skill : requestDTO.getSkill()){
-//            skillRepository.saveResume(skill, resumeId);
-//        }
-
         return "redirect:/user/" + sessionUser.getId();
     }
 
