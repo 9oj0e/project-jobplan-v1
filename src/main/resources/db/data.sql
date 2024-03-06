@@ -256,10 +256,10 @@ VALUES (11, '성실하고 유능한 인재입니다.', '이력서내용', '학�
 
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at, status)
-VALUES (1, 6, 1, 1, now(), true);
+VALUES (1, 6, 1, 1, now(), 1);
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at, status)
-VALUES (2, 7, 1, 1, now(), false);
+VALUES (2, 7, 1, 1, now(), 0);
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
 VALUES (3, 8, 1, 1, now());
@@ -275,10 +275,10 @@ VALUES (6, 11, 1, 1, now());
 
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at, status)
-VALUES (1, 6, 2, 2, now(), true);
+VALUES (1, 6, 2, 2, now(), 1);
 INSERT INTO apply_tb
-(resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (2, 7, 2, 2, now(), false);
+(resume_id, resume_user_id, board_id, board_user_id, created_at, status)
+VALUES (2, 7, 2, 2, now(), 0);
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
 VALUES (3, 8, 2, 2, now());
