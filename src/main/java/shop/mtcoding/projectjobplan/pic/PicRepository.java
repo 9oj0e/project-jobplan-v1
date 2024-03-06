@@ -22,7 +22,7 @@ public class PicRepository {
 
     @Transactional
     public Pic findById(int id){
-        Query query = em.createNativeQuery("select * from pic_tb where id = ?", Pic.class);
+        Query query = em.createNativeQuery("select * from pic_tb where user_id = ?", Pic.class);
         query.setParameter(1, id);
 
         return (Pic) query.getSingleResult();
