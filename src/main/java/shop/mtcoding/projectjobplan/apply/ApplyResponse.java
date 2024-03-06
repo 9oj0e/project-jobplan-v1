@@ -56,6 +56,32 @@ public class ApplyResponse {
         private Integer boardId;
         private Timestamp appliedAt; // 지원 날짜
 
+        public String getResumeTitle(){
+            String input = this.resumeTitle; // 입력받은 문자열
+            int maxLength = 8; // 최대 길이
+
+            String output;
+            if (input.length() > maxLength) {
+                output = input.substring(0, maxLength) + "...";
+            } else {
+                output = input;
+            }
+
+            return output;
+        }
+        public String getBoardTitle(){
+            String input = this.boardTitle; // 입력받은 문자열
+            int maxLength = 8; // 최대 길이
+
+            String output;
+            if (input.length() > maxLength) {
+                output = input.substring(0, maxLength) + "...";
+            } else {
+                output = input;
+            }
+
+            return output;
+        }
         public String getAppliedAt(){
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             return appliedAt.toLocalDateTime().format(formatter);
