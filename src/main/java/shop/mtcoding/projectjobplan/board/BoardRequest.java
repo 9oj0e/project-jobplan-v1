@@ -3,12 +3,12 @@ package shop.mtcoding.projectjobplan.board;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class BoardRequest {
     @Data
     public class SaveDTO {
         // (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-        private int userId;
         private String title;
         private String content;
         private String field;
@@ -16,6 +16,8 @@ public class BoardRequest {
         private String salary;
         private String openingDate;
         private String closingDate;
+
+        private List<String> skills; // checkbox 5개 -> name 을 통일 skills
     }
 
     @Data

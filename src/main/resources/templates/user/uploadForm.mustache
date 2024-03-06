@@ -1,0 +1,7 @@
+{{>layout/header}}
+<form action="/upload/{{user.id}}" method="post" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="사진제목...">
+    <input type="file" name="imgFile">
+    <button>사진업로드</button>
+</form>
+{{>layout/footer}}

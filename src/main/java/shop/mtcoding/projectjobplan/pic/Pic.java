@@ -1,16 +1,15 @@
-package shop.mtcoding.projectjobplan.user;
+package shop.mtcoding.projectjobplan.pic;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
 @Data
-@Table(name = "skill_tb")
-public class Skill { // Tech Stack
+@Table(name = "pic_tb")
+@Entity
+public class Pic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private Integer userId;
-    private String name;
+    private String imgFilename; // 파일 패스
 }

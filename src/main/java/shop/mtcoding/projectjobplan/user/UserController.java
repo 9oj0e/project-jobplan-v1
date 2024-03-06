@@ -11,6 +11,9 @@ import shop.mtcoding.projectjobplan.apply.ApplyRepository;
 import shop.mtcoding.projectjobplan.apply.ApplyResponse;
 import shop.mtcoding.projectjobplan.board.Board;
 import shop.mtcoding.projectjobplan.board.BoardRepository;
+import shop.mtcoding.projectjobplan.pic.Pic;
+import shop.mtcoding.projectjobplan.pic.PicRepository;
+import shop.mtcoding.projectjobplan.pic.PicRequest;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 
@@ -25,6 +28,7 @@ public class UserController {
     private final BoardRepository boardRepository;
     private final ApplyRepository applyRepository;
     private final HttpSession session;
+    private final PicRepository picRepository;
 
     @GetMapping("/user/joinSelection")
     public String joinSelection() {
@@ -113,6 +117,8 @@ public class UserController {
             System.out.println(applyList.get(0));
             return "/user/profile";
         }
+
+
     }
 
     @GetMapping("/user/{id}/updateForm")

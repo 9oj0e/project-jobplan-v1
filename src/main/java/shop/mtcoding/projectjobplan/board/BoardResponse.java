@@ -15,7 +15,7 @@ public class BoardResponse {
     @Data
     public static class BoardAndUserDTO{
         private Integer id;
-        private Integer userId;
+        private Integer compId; // 기업ID
         private String title; // 제목
         private String content; // 내용
         private String field; // 채용 분야
@@ -79,12 +79,12 @@ public class BoardResponse {
         private String email;
         private String name;
         private String phoneNumber;
-        private Integer userId;
+        private Integer compId;
         private Boolean boardOwner;
 
         public void isBoardOwner(User sessionUser){
             if(sessionUser == null) boardOwner = false;
-            else boardOwner = sessionUser.getId() == userId;
+            else boardOwner = sessionUser.getId() == compId;
         }
 
         // ADDRESS BUSINESS_NAME EMAIL NAME PHONE_NUMBER

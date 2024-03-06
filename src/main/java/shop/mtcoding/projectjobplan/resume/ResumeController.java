@@ -30,10 +30,17 @@ public class ResumeController {
         return "redirect:/user/" + user.getId();
     }
 
-    @PostMapping("/resume/{id}/upload")
-    public String upload(@PathVariable int id, ResumeRequest.SaveDTO requestDTO){
+    @PostMapping("/resume/upload")
+    public String upload(ResumeRequest.SaveDTO requestDTO){
+
+        User sessionUser = (User) session.getAttribute("sessionUser");
+
         // todo 유효성 검사, 권한 검사
-        resumeRepository.save(requestDTO, id);
+        resumeRepository.save(requestDTO, sessionUser.getId());
+
+        //int resumeId = resumeRepository.save(requestDTO, id);
+
+        //
         User user = (User) session.getAttribute("sessionUser");
 
         return "redirect:/user/" + user.getId();
