@@ -11,12 +11,15 @@
         <div class="div-information">
             <div class="div-information-grid">
                 <div class="card mt-5" style="width:200px">
-                    {{#pic}}
-                        <img class="card-img" src="/upload/{{pic.imgFilename}}" style="width:100%">
-                    {{/pic}}
-                    {{^pic}}
-                        <img class="card-img" src="../images/naver logo.png" alt="Card image" style="width:100%">
-                    {{/pic}}
+                    <div class="card-img" style="width:100%">
+                        {{#pic}}
+                            <img class="card-img" src="/upload/{{imgFilename}}" style="width:100%;" >
+                        {{/pic}}
+                        {{^pic}}
+                                <img class="card-img" src="../images/{{user.businessName}}.jpg" alt="Card image" style="width:100%;">
+                        {{/pic}}
+                    </div>
+
                     <div class="card-body">
                         <h4 class="card-title">{{user.businessName}}</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
