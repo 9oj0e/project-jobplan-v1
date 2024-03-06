@@ -10,6 +10,7 @@ import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.apply.ApplyRepository;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
+import shop.mtcoding.projectjobplan.skill.SkillRepository;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
 
@@ -22,7 +23,7 @@ public class BoardController {
     private final BoardRepository boardRepository;
     private final ApplyRepository applyRepository;
     private final HttpSession session;
-
+  
     @GetMapping({"/", "/board"})
     public String index(HttpServletRequest request) {
         List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb();
@@ -85,14 +86,21 @@ public class BoardController {
         return "redirect:/board/" + 1;
     }
 
+    @PostMapping("/board/upload")
+    public String upload(BoardRequest.SaveDTO requestDTO){
 
-    @PostMapping("/board/{id}/upload")
-    public String upload(@PathVariable int id, BoardRequest.SaveDTO requestDTO) {
-        boardRepository.save(requestDTO, id);
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
-        return "redirect:/board/" + id;
+        // todo 유효성 검사, 권한 검사
+        int boardId = boardRepository.save(requestDTO, sessionUser.getId());
+
+        for (String skill : requestDTO.getSkill()){
+            skillRepository.saveBoard(skill, boardId);
+        }
+
+        return "redirect:/user/" + sessionUser.getId();
     }
-
+  
     @GetMapping("/board/uploadForm")
     public String uploadForm() {
         return "/board/uploadForm";

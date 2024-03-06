@@ -135,7 +135,7 @@ public class BoardRepository {
 
 
     @Transactional
-    public void save(BoardRequest.SaveDTO requestDTO, Integer sessionUserId) {
+    public int save(BoardRequest.SaveDTO requestDTO, Integer sessionUserId) {
         String q = """
                 INSERT INTO board_tb
                 (comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
@@ -158,10 +158,20 @@ public class BoardRepository {
         query.setParameter(7, openingDate);
         query.setParameter(8, closingDate);
 
-        query.executeUpdate(); // 영향 받은 행
 
-//        Query query2 = entityManager.createNativeQuery("select max(id) from board_tb", Integer.class);
-//        Integer boardId  =  (Integer) query2.getSingleResult();
+        query.executeUpdate();
+
+        //board_id 찾기
+        String q1 = """
+                select max(id) from board_tb
+                """;
+
+        Query query1 = entityManager.createNativeQuery(q1);
+        Integer boardId = (Integer) query1.getSingleResult();
+
+        return boardId ;
+
+
     }
 
     public List<Board> findAll() {

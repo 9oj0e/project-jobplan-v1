@@ -17,7 +17,7 @@ public class BoardRequest {
         private String openingDate;
         private String closingDate;
 
-        private List<String> skills; // checkbox 5개 -> name 을 통일 skills
+        private List<String> skill; // checkbox 5개 -> name 을 통일 skills
     }
 
     @Data

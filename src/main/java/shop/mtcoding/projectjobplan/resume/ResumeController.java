@@ -1,15 +1,15 @@
 package shop.mtcoding.projectjobplan.resume;
 
+import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.board.BoardResponse;
+import shop.mtcoding.projectjobplan.skill.Skill;
+import shop.mtcoding.projectjobplan.skill.SkillRepository;
 import shop.mtcoding.projectjobplan.user.User;
 
 import java.util.ArrayList;
@@ -19,6 +19,7 @@ import java.util.List;
 @Controller
 public class ResumeController {
     private final ResumeRepository resumeRepository;
+    private final SkillRepository skillRepository;
     private final HttpSession session;
 
     @PostMapping("resume/{id}/update")
@@ -36,14 +37,13 @@ public class ResumeController {
         User sessionUser = (User) session.getAttribute("sessionUser");
 
         // todo 유효성 검사, 권한 검사
-        resumeRepository.save(requestDTO, sessionUser.getId());
+        int resumeId = resumeRepository.save(requestDTO, sessionUser.getId());
 
-        //int resumeId = resumeRepository.save(requestDTO, id);
+        for (String skill : requestDTO.getSkill()){
+            skillRepository.saveResume(skill, resumeId);
+        }
 
-        //
-        User user = (User) session.getAttribute("sessionUser");
-
-        return "redirect:/user/" + user.getId();
+        return "redirect:/user/" + sessionUser.getId();
     }
 
     @GetMapping("/resume/main")

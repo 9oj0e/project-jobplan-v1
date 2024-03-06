@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.projectjobplan.board.BoardResponse;
+import shop.mtcoding.projectjobplan.skill.Skill;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -115,10 +116,9 @@ public class ResumeRepository {
     }
 
     @Transactional
-    public Integer save(ResumeRequest.SaveDTO requestDTO, Integer sessionUserId) {
+    public int save(ResumeRequest.SaveDTO requestDTO, Integer sessionUserId) {
         String q = """
-                INSERT INTO resume_tb
-                (user_id, title, content, school_name, major, education_level, career, created_at)
+                INSERT INTO resume_tb(user_id, title, content, school_name, major, education_level, career, created_at)
                 VALUES (?, ?, ?, ?, ?, ?, ?, now())
                 """;
         Query query = entityManager.createNativeQuery(q);
@@ -130,9 +130,19 @@ public class ResumeRepository {
         query.setParameter(6, requestDTO.getEducationLevel());
         query.setParameter(7, requestDTO.getCareer());
 
-        // pk 응답
-        
-        return query.executeUpdate(); // 영향 받은 행
+        query.executeUpdate();
+
+
+        //resume_id 찾기
+        String q1 = """
+                select max(id) from resume_tb
+                """;
+
+        Query query1 = entityManager.createNativeQuery(q1);
+        Integer resumeId = (Integer) query1.getSingleResult();
+
+        return resumeId;
+
     }
 
     public List<Resume> findAll() {
