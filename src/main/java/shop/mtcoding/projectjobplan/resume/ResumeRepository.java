@@ -116,11 +116,10 @@ public class ResumeRepository {
     }
 
     @Transactional
-    public void save(ResumeRequest.SaveDTO requestDTO, Integer sessionUserId) {
+    public int save(ResumeRequest.SaveDTO requestDTO, Integer sessionUserId) {
         String q = """
-                INSERT INTO resume_tb
-                (user_id, title, content, school_name, major, education_level, career, created_at,skills)
-                VALUES (?, ?, ?, ?, ?, ?, ?, now(),?)
+                INSERT INTO resume_tb(user_id, title, content, school_name, major, education_level, career, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, now())
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, sessionUserId);
@@ -130,10 +129,8 @@ public class ResumeRepository {
         query.setParameter(5, requestDTO.getMajor());
         query.setParameter(6, requestDTO.getEducationLevel());
         query.setParameter(7, requestDTO.getCareer());
-        query.setParameter(8,requestDTO.getSkills());
-        // pk 응답
 
-        query.executeUpdate(); // 영향 받은 행
+        query.executeUpdate();
 
         String q1 = """
                 select max(id) from resume_tb
@@ -142,19 +139,7 @@ public class ResumeRepository {
         Query query1 = entityManager.createNativeQuery(q1);
         Integer resumeId = (Integer) query1.getSingleResult();
 
-
-        // skills 필드에 체크된 스킬이 있을 경우에만 처리
-        if (requestDTO.getSkills() != null) {
-            for (String skill : requestDTO.getSkills()) {
-                String q2 = """
-                    INSERT INTO skill_tb(resume_id, skill_name) VALUES (?, ?)
-                    """;
-                Query query2 = entityManager.createNativeQuery(q2);
-                query2.setParameter(1, resumeId);
-                query2.setParameter(2, skill); // 여기에서 각각의 스킬명을 저장합니다.
-                query2.executeUpdate();
-            }
-        }
+        return resumeId;
 
     }
 

@@ -135,7 +135,7 @@ public class BoardRepository {
 
 
     @Transactional
-    public void save(BoardRequest.SaveDTO requestDTO, Integer sessionUserId) {
+    public int save(BoardRequest.SaveDTO requestDTO, Integer sessionUserId) {
         String q = """
                 INSERT INTO board_tb
                 (comp_id, title, content, field, position, salary, opening_date, closing_date, created_at)
@@ -167,23 +167,8 @@ public class BoardRepository {
         Query query1 = entityManager.createNativeQuery(q1);
         Integer boardId = (Integer) query1.getSingleResult();
 
+        return boardId ;
 
-        // skills 필드에 체크된 스킬이 있을 경우에만 처리
-        if (requestDTO.getSkills() != null) {
-            for (String skill : requestDTO.getSkills()) {
-                String q2 = """
-                    INSERT INTO skill_tb(board_id, skill_name) VALUES (?, ?)
-                    """;
-                Query query2 = entityManager.createNativeQuery(q2);
-                query2.setParameter(1, boardId);
-                query2.setParameter(2, skill); // 여기에서 각각의 스킬명을 저장합니다.
-                query2.executeUpdate();
-            }
-        }
-
-
-//        Query query2 = entityManager.createNativeQuery("select max(id) from board_tb", Integer.class);
-//        Integer boardId  =  (Integer) query2.getSingleResult();
     }
 
     public List<Board> findAll() {
