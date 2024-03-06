@@ -2,7 +2,13 @@
 <!-- 기업 버튼 -->
 <div class="sidenav">
     <div class="card" style="width:150px">
-        <img class="card-img-top" src="../images/naver logo.png" alt="Card image" style="width:100%">
+        {{#pic}}
+            <img class="card-img-top" src="/upload/{{imgFilename}}" alt="Card image" style="width:100%">
+        {{/pic}}
+        {{^pic}}
+            <img class="card-img-top" src="../images/naver logo.png" alt="Card image" style="width:100%">
+        {{/pic}}
+
         <div class="card-body">
             <h4 class="card-title text-center">{{boardDetail.businessName}}</h4>
             <div class="card-footer" style="text-align: center;">

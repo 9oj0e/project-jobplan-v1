@@ -2,6 +2,7 @@ package shop.mtcoding.projectjobplan.pic;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ import java.util.UUID;
 public class PicController {
     private final UserRepository userRepository;
     private final PicRepository picRepository;
+    private final HttpSession session;
 
     private final String uploadDir = "./upload/";
 
@@ -47,8 +49,8 @@ public class PicController {
     @PostMapping("/upload/{id}")
     public String upload(PicRequest.UploadDTO requestDTO, @PathVariable int id, HttpServletRequest request){
         // 1. 데이터 전달 받고
-        String title = requestDTO.getTitle();
         MultipartFile imgFile = requestDTO.getImgFile();
+        session.getAttribute(String.valueOf(imgFile));
 
         // 2. 파일저장 위치 설정해서 파일을 저장 (UUID 붙여서 롤링)
         String imgFilename = UUID.randomUUID()+"_"+imgFile.getOriginalFilename();
@@ -77,12 +79,23 @@ public class PicController {
     }
 
     @PostMapping("/deleteImg")
-    public String deleteImg(@RequestParam int userId, HttpServletRequest request) {
-        picRepository.deleteByUserId(userId);
+    public String deleteImg(PicRequest.UploadDTO requestDTO, @RequestParam int userId, HttpServletRequest request) {
+
+        Pic pic = picRepository.findById(userId);
+        String imgFilename = pic.getImgFilename();
+
+        try {
+            Files.deleteIfExists(Paths.get("./upload/"+imgFilename)); // 이미지 파일 삭제
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        picRepository.deleteByUserId(userId); // DB에서 데이터 삭제
 
         request.getSession().removeAttribute("pic");
 
         return "redirect:/user/"+userId;
+
     }
 
 }
