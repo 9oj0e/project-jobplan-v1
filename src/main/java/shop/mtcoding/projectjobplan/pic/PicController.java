@@ -62,7 +62,12 @@ public class PicController {
             picRepository.insert(id, imgFilename);
 
             Pic pic = picRepository.findById(id);
-            request.getSession().setAttribute("pic", pic);
+            if (userRepository.findById(id).getIsEmployer() != true) {
+                request.getSession().setAttribute("userPic", pic);
+            } else {
+                request.getSession().setAttribute("pic", pic);
+            }
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -92,7 +97,14 @@ public class PicController {
 
         picRepository.deleteByUserId(userId); // DB에서 데이터 삭제
 
-        request.getSession().removeAttribute("pic");
+
+        if (userRepository.findById(userId).getIsEmployer() != true) {
+            request.getSession().removeAttribute("userPic");
+        } else {
+            request.getSession().removeAttribute("pic");
+        }
+
+
 
         return "redirect:/user/"+userId;
 
