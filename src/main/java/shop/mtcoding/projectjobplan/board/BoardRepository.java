@@ -183,14 +183,39 @@ public class BoardRepository {
     }
 
     public Board findById(Integer id) {
-        String q = "select * from board_tb where id = ? order by id desc";
+        String q = "select * from board_tb where id = ?";
         Query query = entityManager.createNativeQuery(q, Board.class);
         query.setParameter(1, id);
 
         return (Board) query.getSingleResult();
     }
+    public BoardResponse.ApplyFormDTO findWithBusinessNameById(Integer id) {
+        String q = """
+                SELECT u.id, u.business_name, b.title, b.closing_date
+                FROM board_tb AS b
+                JOIN user_tb AS u ON u.id = b.employer_id
+                WHERE b.id = ?;
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, id);
 
-    // 기업 마이페이지에서 공고목록 보기
+        Object[] row = (Object[]) query.getSingleResult();
+
+        Integer employerId = (Integer) row[0];
+        String businessName = (String) row[1];
+        String title = (String) row[2];
+        Timestamp closingDate = (Timestamp) row[3];
+
+        BoardResponse.ApplyFormDTO responseDTO = new BoardResponse.ApplyFormDTO();
+        responseDTO.setBusinessName(businessName);
+        responseDTO.setEmployerId(employerId);
+        responseDTO.setId(id);
+        responseDTO.setTitle(title);
+        responseDTO.setClosingDate(closingDate);
+
+        return responseDTO;
+    }
+
     public List<Board> findByEmployerId(Integer employerId) {
         String q = "select * from board_tb where employer_id = ? order by id desc";
         Query query = entityManager.createNativeQuery(q, Board.class);

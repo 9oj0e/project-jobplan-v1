@@ -17,7 +17,19 @@ public class ApplyRepository {
 
     @Transactional
     public int upload(ApplyRequest.UploadDTO requestDTO){
-        return 0;
+        String q = """
+                INSERT INTO apply_tb
+                (resume_id, resume_user_id, board_id, board_user_id, created_at)
+                VALUES
+                (?, ?, ?, ?, now())
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, requestDTO.getResumeId());
+        query.setParameter(2, requestDTO.getResumeUserId());
+        query.setParameter(3, requestDTO.getBoardId());
+        query.setParameter(4, requestDTO.getBoardUserId());
+
+        return query.executeUpdate();
     }
     public List<ApplyResponse.ToEmployerDTO> findByEmployerId(Integer sessionUserId){
         String q = """
@@ -54,7 +66,7 @@ public class ApplyRepository {
 
         return responseDTO;
     }
-    public List<ApplyResponse.ToEmployerDTO> findByBoardUserId(Integer boardId){
+    public List<ApplyResponse.ToEmployerDTO> findByBoardId(Integer boardId){
         String q = """
                 SELECT
                     b.id AS board_id,
