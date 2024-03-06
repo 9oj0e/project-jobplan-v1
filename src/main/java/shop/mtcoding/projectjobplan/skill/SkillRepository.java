@@ -5,6 +5,7 @@ import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.projectjobplan.user.UserRequest;
 
 @RequiredArgsConstructor
 @Repository
@@ -33,5 +34,16 @@ public class SkillRepository {
         query.setParameter(2, skill);
         query.executeUpdate();
 
+    }
+
+    @Transactional
+    public void save(String skill, int userId) {
+        String q = """
+                INSERT INTO skill_tb(user_id, skill_name) VALUES (?, ?)
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1,userId);
+        query.setParameter(2,skill);
+        query.executeUpdate();
     }
 }

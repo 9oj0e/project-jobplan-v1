@@ -11,7 +11,7 @@ public class Skill { // Tech Stack
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer resumeId; // null 허용  -> 5
+    private Integer userId; // null 허용  -> 5
     private Integer boardId; // 1          -> null
 
     private String skillName;

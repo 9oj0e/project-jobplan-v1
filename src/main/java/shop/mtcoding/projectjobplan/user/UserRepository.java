@@ -133,6 +133,9 @@ public class UserRepository {
             query.setParameter(6, id);
 
             return query.executeUpdate();
+
+
+
         }
     }
     /* 계정 탈퇴

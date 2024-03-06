@@ -116,7 +116,7 @@ public class ResumeRepository {
     }
 
     @Transactional
-    public int save(ResumeRequest.SaveDTO requestDTO, Integer sessionUserId) {
+    public void save(ResumeRequest.SaveDTO requestDTO, Integer sessionUserId) {
         String q = """
                 INSERT INTO resume_tb(user_id, title, content, school_name, major, education_level, career, created_at)
                 VALUES (?, ?, ?, ?, ?, ?, ?, now())
@@ -133,15 +133,6 @@ public class ResumeRepository {
         query.executeUpdate();
 
 
-        //resume_id 찾기
-        String q1 = """
-                select max(id) from resume_tb
-                """;
-
-        Query query1 = entityManager.createNativeQuery(q1);
-        Integer resumeId = (Integer) query1.getSingleResult();
-
-        return resumeId;
 
     }
 

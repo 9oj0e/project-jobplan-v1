@@ -16,6 +16,7 @@ import shop.mtcoding.projectjobplan.pic.PicRepository;
 import shop.mtcoding.projectjobplan.pic.PicRequest;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
+import shop.mtcoding.projectjobplan.skill.SkillRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class UserController {
     private final ApplyRepository applyRepository;
     private final HttpSession session;
     private final PicRepository picRepository;
+    private final SkillRepository skillRepository;
 
     @GetMapping("/user/joinSelection")
     public String joinSelection() {
@@ -131,10 +133,17 @@ public class UserController {
             return "/employer/updateForm";
         else
             return "/user/updateForm";
+
+
     }
 
     @PostMapping("/user/{id}/update")
     public String update(@PathVariable int id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
+
+        for (String skill : requestDTO.getSkill()){
+            skillRepository.save(skill, id);
+        }
+
         request.setAttribute("user", userRepository.updateById(requestDTO, id));
         return "redirect:/user/"+id;
     }
