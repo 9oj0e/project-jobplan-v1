@@ -98,7 +98,8 @@ public class ApplyRepository {
                   u.business_name,
                   b.title AS board_title,
                   b.id,
-                  a.created_at
+                  a.created_at,
+                  a.status
                FROM apply_tb a
                JOIN resume_tb r ON a.resume_id = r.id
                JOIN board_tb b ON a.board_id = b.id
@@ -117,6 +118,7 @@ public class ApplyRepository {
             dto.setBoardTitle((String) r[3]);
             dto.setBoardId((Integer) r[4]);
             dto.setAppliedAt((Timestamp) r[5]);
+            dto.setStatus((Boolean) r[6]);
             responseDTO.add(dto);
         }
 

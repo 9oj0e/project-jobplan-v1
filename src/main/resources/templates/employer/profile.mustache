@@ -141,18 +141,23 @@
                     <td>{{appliedAt}}</td>
                     <td>
                         <div style="display: flex; justify-content: space-evenly">
-                            <form action="/apply/update" method="post">
-                                <input name="status" type="hidden" value="0">
-                                <input name="resumeId" type="hidden" value="{{resumeId}}">
-                                <input name="boardId" type="hidden" value="{{boardId}}">
-                                <button class="btn btn-outline-danger">불합격</button>
-                            </form>
-                            <form action="/apply/update" method="post">
-                                <input name="status" type="hidden" value="1">
-                                <input name="resumeId" type="hidden" value="{{resumeId}}">
-                                <input name="boardId" type="hidden" value="{{boardId}}">
-                                <button class="btn btn-outline-primary">합격</button>
-                            </form>
+                            {{#statusOutput}}
+                                <button class="btn btn-outline-danger" disabled>{{statusOutput}}</button>
+                            {{/statusOutput}}
+                            {{^statusOutput}}
+                                <form action="/apply/update" method="post">
+                                    <input name="status" type="hidden" value="0">
+                                    <input name="resumeId" type="hidden" value="{{resumeId}}">
+                                    <input name="boardId" type="hidden" value="{{boardId}}">
+                                    <button class="btn btn-outline-danger">불합격</button>
+                                </form>
+                                <form action="/apply/update" method="post">
+                                    <input name="status" type="hidden" value="1">
+                                    <input name="resumeId" type="hidden" value="{{resumeId}}">
+                                    <input name="boardId" type="hidden" value="{{boardId}}">
+                                    <button class="btn btn-outline-primary">합격</button>
+                                </form>
+                            {{/statusOutput}}
                         </div>
                     </td>
                 </tr>

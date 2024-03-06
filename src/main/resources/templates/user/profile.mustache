@@ -150,8 +150,13 @@
                         <td>{{appliedAt}}</td>
                         <td>
                             <div style="display: flex; justify-content: end">
-                                <button class="btn btn-outline-primary">불합격</button>
-                                <button class="btn btn-primary">합격</button>
+                                {{#statusOutput}}
+                                    <button class="btn btn-outline-primary" disabled>{{statusOutput}}</button>
+                                {{/statusOutput}}
+                                {{^statusOutput}}
+                                    <button class="btn btn-outline-primary">불합격</button>
+                                    <button class="btn btn-primary">합격</button>
+                                {{/statusOutput}}
                             </div>
                         </td>
                     </tr>
