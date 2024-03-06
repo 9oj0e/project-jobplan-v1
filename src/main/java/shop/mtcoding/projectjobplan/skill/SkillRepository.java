@@ -71,4 +71,19 @@ public class SkillRepository {
             query2.executeUpdate();
         }
     }
+
+    public List<Skill> findById(int userId) {
+        String q = """
+                select * from skill_tb where user_id = ?
+                """;
+        Query query = entityManager.createNativeQuery(q,Skill.class);
+        query.setParameter(1,userId);
+
+        try {
+           List<Skill> skillList = query.getResultList();
+           return skillList;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

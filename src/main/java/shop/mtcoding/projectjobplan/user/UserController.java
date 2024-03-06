@@ -16,6 +16,7 @@ import shop.mtcoding.projectjobplan.pic.PicRepository;
 import shop.mtcoding.projectjobplan.pic.PicRequest;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
+import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
 
 import java.util.ArrayList;
@@ -89,6 +90,11 @@ public class UserController {
     @GetMapping("/user/{id}")
     public String profile(HttpServletRequest request, @PathVariable int id) {
         User user = userRepository.findById(id);
+        List<Skill> skillList = skillRepository.findById(id);
+        if (skillList != null) {
+            request.setAttribute("skillList",skillList);
+        }
+
         request.setAttribute("user", user);
         // 지원 현황 조회 (개인)
 
@@ -140,9 +146,7 @@ public class UserController {
     @PostMapping("/user/{id}/update")
     public String update(@PathVariable int id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
 
-            skillRepository.save(requestDTO.getSkill(), id);
-
-
+        skillRepository.save(requestDTO.getSkill(), id);
         request.setAttribute("user", userRepository.updateById(requestDTO, id));
         return "redirect:/user/"+id;
     }

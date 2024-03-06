@@ -84,10 +84,12 @@
                 <div class="form-control">
                     <div>보유기술</div>
                     <div>
-                        <button>Java</button>
-                        <button>Spring</button>
-                        <button>HTML</button>
-                        <button>JavaScript</button>
+                        {{#skillList}}
+                            <span>{{skillName}}</span>
+                        {{/skillList}}
+                        {{^skillList}}
+                            <div>보유 기술 없음</div>
+                        {{/skillList}}
                     </div>
                 </div>
             </div>
