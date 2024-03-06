@@ -3,6 +3,7 @@ package shop.mtcoding.projectjobplan.user;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class UserRequest {
     @Data
@@ -36,6 +37,9 @@ public class UserRequest {
         private String phoneNumber;
         private String address;
         private String email;
+
+        private List<String> skill; // checkbox 5개 -> name 을 통일 skills
+
         // emp
         private Boolean isEmployer;
         private String employerIdNumber;

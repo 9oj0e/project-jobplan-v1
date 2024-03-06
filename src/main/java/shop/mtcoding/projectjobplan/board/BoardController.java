@@ -93,11 +93,8 @@ public class BoardController {
         User sessionUser = (User) session.getAttribute("sessionUser");
 
         // todo 유효성 검사, 권한 검사
-        int boardId = boardRepository.save(requestDTO, sessionUser.getId());
+        boardRepository.save(requestDTO, sessionUser.getId());
 
-        for (String skill : requestDTO.getSkill()){
-            skillRepository.saveBoard(skill, boardId);
-        }
 
         return "redirect:/user/" + sessionUser.getId();
     }

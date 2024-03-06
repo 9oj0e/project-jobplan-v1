@@ -116,13 +116,14 @@ public class ResumeRepository {
     }
 
     @Transactional
-    public int save(ResumeRequest.SaveDTO requestDTO, Integer sessionUserId) {
+    public Integer save(ResumeRequest.SaveDTO requestDTO, Integer userId) {
         String q = """
-                INSERT INTO resume_tb(user_id, title, content, school_name, major, education_level, career, created_at)
+                INSERT INTO resume_tb
+                (user_id, title, content, school_name, major, education_level, career, created_at)
                 VALUES (?, ?, ?, ?, ?, ?, ?, now())
                 """;
         Query query = entityManager.createNativeQuery(q);
-        query.setParameter(1, sessionUserId);
+        query.setParameter(1, userId);
         query.setParameter(2, requestDTO.getTitle());
         query.setParameter(3, requestDTO.getContent());
         query.setParameter(4, requestDTO.getSchoolName());
@@ -130,19 +131,7 @@ public class ResumeRepository {
         query.setParameter(6, requestDTO.getEducationLevel());
         query.setParameter(7, requestDTO.getCareer());
 
-        query.executeUpdate();
-
-
-        //resume_id 찾기
-        String q1 = """
-                select max(id) from resume_tb
-                """;
-
-        Query query1 = entityManager.createNativeQuery(q1);
-        Integer resumeId = (Integer) query1.getSingleResult();
-
-        return resumeId;
-
+        return query.executeUpdate(); // 영향 받은 행
     }
 
     public List<Resume> findAll() {
