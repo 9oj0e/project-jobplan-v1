@@ -96,14 +96,14 @@
                     <tr>
                         <td>{{position}}</td>
                         <td>{{field}}</td>
-                        <td>{{title}}</td>
+                        <td><a href="/board/{{id}}">{{title}}</a></td>
                         <td>{{openingDateFormat}}</td>
                         <td>
                             <div style="display: flex; justify-content: end">
-                                <form action="/board/{{id}}/updateForm">
-                                    <button class="btn btn-outline-primary">수정</button>
+                                <form action="/user/{{sessionUser.id}}/{{id}}" method="get">
+                                    <button class="btn btn-outline-primary">지원자</button>
                                 </form>
-                                <form action="/board/{{id}}/delete" method="post">
+                                <form action="/board/{{id}}/update" method="post">
                                     <button class="btn btn-primary">삭제</button>
                                 </form>
                             </div>
@@ -134,8 +134,8 @@
                     <td>{{appliedAt}}</td>
                     <td>
                         <div style="display: flex; justify-content: end">
-                            <button class="btn btn-outline-primary">불합격</button>
-                            <button class="btn btn-primary">합격</button>
+                            <button class="btn btn-outline-danger">불합격</button>
+                            <button class="btn btn-outline-primary">합격</button>
                         </div>
                     </td>
                 </tr>

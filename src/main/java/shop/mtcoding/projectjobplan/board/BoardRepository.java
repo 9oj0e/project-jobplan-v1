@@ -191,7 +191,7 @@ public class BoardRepository {
     }
 
     // 기업 마이페이지에서 공고목록 보기
-    public List<Board> findByUserId(Integer employerId) {
+    public List<Board> findByEmployerId(Integer employerId) {
         String q = "select * from board_tb where employer_id = ? order by id desc";
         Query query = entityManager.createNativeQuery(q, Board.class);
         query.setParameter(1, employerId);
