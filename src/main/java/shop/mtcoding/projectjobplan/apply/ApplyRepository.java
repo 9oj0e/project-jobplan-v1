@@ -74,7 +74,7 @@ public class ApplyRepository {
 
         return responseDTO;
     }
-    public List<ApplyResponse.ToUserDTO> findByUserId(Integer sessionUser){
+    public List<ApplyResponse.ToUserDTO> findByUserId(Integer sessionUserId){
         String q = """
                 SELECT 
                   r.title AS resume_title,
@@ -90,7 +90,7 @@ public class ApplyRepository {
                WHERE a.resume_user_id = ?;
                 """;
         Query query = entityManager.createNativeQuery(q);
-        query.setParameter(1, sessionUser);
+        query.setParameter(1, sessionUserId);
         List<Object[]> rawResultList = query.getResultList();
         List<ApplyResponse.ToUserDTO> responseDTO = new ArrayList<>();
         for (Object[] r : rawResultList){

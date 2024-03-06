@@ -84,29 +84,27 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping({"/user/{id}", "/user/{id}/{boardId}"})
+    @GetMapping({"/user/{sessionUserId}", "/user/{sessionUserId}/{boardId}"})
     public String profile(HttpServletRequest request,
-                          @PathVariable int id,
+                          @PathVariable int sessionUserId,
                           @PathVariable(required = false) Integer boardId) {
-        User user = userRepository.findById(id);
+        User user = userRepository.findById(sessionUserId);
         request.setAttribute("user", user);
-        // 지원 합격/불합격 ("apply/{{sessionUserId}}/update")
 
         // 지원 삭제 (개인, 지원 취소)
 
         // 기업 회원 인지..
         if (user.getIsEmployer()) {
-            System.out.println(boardId);
             // 내가 쓴 공고 조회
             List<Board> boardList = boardRepository.findByEmployerId(user.getId());
             request.setAttribute("boardList", boardList);
             if (boardId == null) {
                 // 지원자 현황 조회
-                List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(id);
+                List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(sessionUserId);
                 request.setAttribute("applicationList", applicationList);
             } else {
                 // 지원자 현황 조회
-                List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(id, boardId);
+                List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(sessionUserId, boardId);
                 request.setAttribute("applicationList", applicationList);
             }
 
@@ -116,9 +114,9 @@ public class UserController {
             // 지원 현황 조회
             List<Resume> resumeList = resumeRepository.findByUserId(user.getId());
             request.setAttribute( "resumeList", resumeList);
-            List<ApplyResponse.ToUserDTO> applyList = applyRepository.findByUserId(id);
+            List<ApplyResponse.ToUserDTO> applyList = applyRepository.findByUserId(sessionUserId);
             request.setAttribute("applyList", applyList);
-            System.out.println(applyList.get(0));
+
             return "/user/profile";
         }
     }
