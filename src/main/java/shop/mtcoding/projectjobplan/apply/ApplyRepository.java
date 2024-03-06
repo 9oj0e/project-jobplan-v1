@@ -123,8 +123,17 @@ public class ApplyRepository {
         return responseDTO;
     }
     @Transactional
-    public int update(ApplyRequest.UpdateDTO requestDTO){
-        return 0;
+    public int update(Integer status, Integer resumeId, Integer boardId){
+        String q = """
+                update apply_tb set status = ? where resume_id = ? and board_id = ?
+                """;
+
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, status);
+        query.setParameter(2, resumeId);
+        query.setParameter(3, boardId);
+
+        return query.executeUpdate();
     }
     @Transactional
     public int deleteByEmployerId(){

@@ -21,4 +21,5 @@ public class ApplyRequest {
         private Integer boardUserId;
         private Boolean status;
     }
+
 }
