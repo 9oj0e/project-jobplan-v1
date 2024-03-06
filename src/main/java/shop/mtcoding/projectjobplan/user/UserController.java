@@ -16,6 +16,8 @@ import shop.mtcoding.projectjobplan.pic.PicRepository;
 import shop.mtcoding.projectjobplan.pic.PicRequest;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
+import shop.mtcoding.projectjobplan.skill.Skill;
+import shop.mtcoding.projectjobplan.skill.SkillRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class UserController {
     private final ApplyRepository applyRepository;
     private final HttpSession session;
     private final PicRepository picRepository;
+    private final SkillRepository skillRepository;
 
     @GetMapping("/user/joinSelection")
     public String joinSelection() {
@@ -89,6 +92,11 @@ public class UserController {
                           @PathVariable int sessionUserId,
                           @PathVariable(required = false) Integer boardId) {
         User user = userRepository.findById(sessionUserId);
+      
+        List<Skill> skillList = skillRepository.findById(id);
+        if (skillList != null) {
+            request.setAttribute("skillList",skillList);
+        }
         request.setAttribute("user", user);
 
         // 지원 삭제 (개인, 지원 취소)
@@ -131,10 +139,14 @@ public class UserController {
             return "/employer/updateForm";
         else
             return "/user/updateForm";
+
+
     }
 
     @PostMapping("/user/{id}/update")
     public String update(@PathVariable int id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
+
+        skillRepository.save(requestDTO.getSkill(), id);
         request.setAttribute("user", userRepository.updateById(requestDTO, id));
         return "redirect:/user/"+id;
     }

@@ -8,9 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.board.BoardResponse;
+import shop.mtcoding.projectjobplan.pic.Pic;
+import shop.mtcoding.projectjobplan.pic.PicRepository;
+import shop.mtcoding.projectjobplan.pic.PicRequest;
 import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
 import shop.mtcoding.projectjobplan.user.User;
+import shop.mtcoding.projectjobplan.user.UserRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,7 @@ public class ResumeController {
     private final ResumeRepository resumeRepository;
     private final SkillRepository skillRepository;
     private final HttpSession session;
+    private final PicRepository picRepository;
 
     @PostMapping("resume/{id}/update")
     public String update(@PathVariable int id, ResumeRequest.UpdateDTO requestDTO){
@@ -37,11 +42,7 @@ public class ResumeController {
         User sessionUser = (User) session.getAttribute("sessionUser");
 
         // todo 유효성 검사, 권한 검사
-        int resumeId = resumeRepository.save(requestDTO, sessionUser.getId());
-
-        for (String skill : requestDTO.getSkill()){
-            skillRepository.saveResume(skill, resumeId);
-        }
+         resumeRepository.save(requestDTO, sessionUser.getId());
 
         return "redirect:/user/" + sessionUser.getId();
     }
@@ -76,7 +77,7 @@ public class ResumeController {
     }
 
     @GetMapping("/resume/{id}")
-    public String detail(@PathVariable int id, HttpServletRequest request) {
+    public String detail(@PathVariable int id, HttpServletRequest request, PicRequest.UploadDTO requestDTO, UserRequest.JoinDTO userRequestDTO) {
         ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
         request.setAttribute("detail", resumeDetailDTO);
 

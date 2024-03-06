@@ -11,29 +11,26 @@
         <div class="div-information">
             <div>
                 <div class="card mt-5" style="width:200px">
-                    {{#pic}}
-                        <img class="card-img" src="/upload/{{pic.imgFilename}}" style="width:100%">
-                    {{/pic}}
-                    {{^pic}}
+                    {{#userPic}}
+                        <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
+                    {{/userPic}}
+                    {{^userPic}}
                         <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
-                    {{/pic}}
+                    {{/userPic}}
                     <div class="card-body">
                         <h4 class="card-title">{{user.name}}</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
-                            {{#pic}}
+                            {{#userPic}}
                                 <form action="/deleteImg" method="post">
-                                    <input type="hidden" name="userId" value="{{pic.userId}}">
+                                    <input type="hidden" name="userId" value="{{userPic.userId}}">
                                     <button class="btn btn-primary">삭제</button>
                                 </form>
-
-
-                            {{/pic}}
-                            {{^pic}}
+                            {{/userPic}}
+                            {{^userPic}}
                                 <form action="/uploadForm/{{user.id}}" method="get">
                                     <button class="btn btn-outline-primary">등록</button>
                                 </form>
-                            {{/pic}}
-
+                            {{/userPic}}
                         </div>
 
                     </div>
@@ -82,12 +79,14 @@
                     </tbody>
                 </table>
                 <div class="form-control">
-                    <div>보유기술</div>
+                    <div><b>보유기술</b></div>
                     <div>
-                        <button>Java</button>
-                        <button>Spring</button>
-                        <button>HTML</button>
-                        <button>JavaScript</button>
+                        {{#skillList}}
+                            <span>{{skillName}}</span>
+                        {{/skillList}}
+                        {{^skillList}}
+                            <div>없음</div>
+                        {{/skillList}}
                     </div>
                 </div>
             </div>
