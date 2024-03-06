@@ -132,6 +132,8 @@ public class ResumeRepository {
 
         query.executeUpdate();
 
+
+        //resume_id 찾기
         String q1 = """
                 select max(id) from resume_tb
                 """;

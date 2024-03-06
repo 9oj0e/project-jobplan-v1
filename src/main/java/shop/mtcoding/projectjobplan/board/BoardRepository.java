@@ -158,8 +158,10 @@ public class BoardRepository {
         query.setParameter(7, openingDate);
         query.setParameter(8, closingDate);
 
-        query.executeUpdate(); // 영향 받은 행
 
+        query.executeUpdate();
+
+        //board_id 찾기
         String q1 = """
                 select max(id) from board_tb
                 """;
@@ -168,6 +170,7 @@ public class BoardRepository {
         Integer boardId = (Integer) query1.getSingleResult();
 
         return boardId ;
+
 
     }
 
