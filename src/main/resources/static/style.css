@@ -419,3 +419,13 @@ th {
 td {
     vertical-align: middle;
 }
+
+.div-card-container {
+    display: flex;
+    justify-content: center;
+}
+
+.div-card {
+    width: 600px;
+    margin-bottom: 5%;
+}
