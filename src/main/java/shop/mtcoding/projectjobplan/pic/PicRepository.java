@@ -22,9 +22,7 @@ public class PicRepository {
 
     @Transactional
     public Pic findById(int id){
-        Query query = em.createNativeQuery("select * from pic_tb where user_id = ?", Pic.class);
-        query.setParameter(1, id);
-
+        Query query = em.createNativeQuery("select * from pic_tb", Pic.class);
         return (Pic) query.getSingleResult();
     }
 
@@ -33,5 +31,11 @@ public class PicRepository {
         Query query = em.createNativeQuery("delete from pic_tb where user_id = ?");
         query.setParameter(1, id);
         return query.executeUpdate();
+    }
+
+    @Transactional
+    public String findImg() {
+        Query query = em.createNativeQuery("select img_filename from pic_tb");
+        return (String) query.getSingleResult();
     }
 }

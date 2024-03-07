@@ -6,7 +6,12 @@
             <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
         {{/userPic}}
         {{^userPic}}
-            <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
+            {{#userPic2}}
+                <img class="card-img" src="/upload/{{userPic2}}" onerror="this.src='../images/avatar.png'" style="width:100%">
+            {{/userPic2}}
+            {{^userPic2}}
+                <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
+            {{/userPic2}}
         {{/userPic}}
         <div class="card-body">
             <h4 class="card-title text-center">{{detail.name}}</h4>
