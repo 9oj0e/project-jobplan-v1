@@ -103,15 +103,14 @@ public class UserController {
                           @PathVariable int sessionUserId,
                           @PathVariable(required = false) Integer boardId) {
         User user = userRepository.findById(sessionUserId);
-      
-        List<Skill> skillList = skillRepository.findById(sessionUserId);
-         if(sessionUser.getIsEmployer()==true){
-            List<Skill> skillList = skillRepository.findByIdWithBoardId(id);
+
+        if (user.getIsEmployer() == true) {
+            List<Skill> skillList = skillRepository.findByEmployerId(sessionUserId);
             if (skillList != null) {
-                request.setAttribute("skillList",skillList);
+                request.setAttribute("skillList", skillList);
             }
-        }else {
-            List<Skill> skillList = skillRepository.findByIdWithUserId(id);
+        } else {
+            List<Skill> skillList = skillRepository.findByUserId(sessionUserId);
             if (skillList != null) {
                 request.setAttribute("skillList", skillList);
             }
@@ -136,11 +135,10 @@ public class UserController {
             }
 
             return "/employer/profile";
-        }
-        else {
+        } else {
             // 지원 현황 조회
             List<Resume> resumeList = resumeRepository.findByUserId(user.getId());
-            request.setAttribute( "resumeList", resumeList);
+            request.setAttribute("resumeList", resumeList);
             List<ApplyResponse.ToUserDTO> applyList = applyRepository.findByUserId(sessionUserId);
             request.setAttribute("applyList", applyList);
 
@@ -158,24 +156,20 @@ public class UserController {
             return "/employer/updateForm";
         else
             return "/user/updateForm";
-
     }
 
-    @PostMapping("/user/{id}/update")
-    public String update(@PathVariable int id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
+    @PostMapping("/user/{sessionUserId}/update")
+    public String update(@PathVariable int sessionUserId, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
+        User user = (User) session.getAttribute("sessionUser");
 
-        if(sessionUser.getIsEmployer()==true){
-            skillRepository.uploadEmployer(requestDTO.getSkill(),id);
-        }else{
-            skillRepository.uploadUser(requestDTO.getSkill(), id);
-
+        if (user.getIsEmployer() == true) {
+            skillRepository.uploadByEmployerId(requestDTO.getSkill(), sessionUserId);
+        } else {
+            skillRepository.uploadByUserId(requestDTO.getSkill(), sessionUserId);
         }
+        request.setAttribute("user", userRepository.updateById(requestDTO, sessionUserId));
 
-        request.setAttribute("user", userRepository.updateById(requestDTO, id));
-
-
-        return "redirect:/user/"+id;
+        return "redirect:/user/" + sessionUserId;
     }
 
     @GetMapping("/logout")
