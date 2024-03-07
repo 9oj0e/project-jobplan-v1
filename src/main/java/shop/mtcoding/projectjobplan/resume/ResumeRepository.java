@@ -143,7 +143,7 @@ public class ResumeRepository {
     }
 
     public Resume findById(Integer id) {
-        String q = "select * from resume_tb where id = ? order by id desc";
+        String q = "select * from resume_tb where id = ?";
 
         Query query = entityManager.createNativeQuery(q, Resume.class);
         query.setParameter(1, id);
@@ -152,6 +152,14 @@ public class ResumeRepository {
     }
     public List<Resume> findByUserId(Integer userId) {
         String q = "select * from resume_tb where user_id = ? order by id desc";
+
+        Query query = entityManager.createNativeQuery(q, Resume.class);
+        query.setParameter(1, userId);
+
+        return (List<Resume>) query.getResultList();
+    }
+    public List<Resume> findThreeByUserId(Integer userId) {
+        String q = "select * from resume_tb where user_id = ? order by id desc limit 3";
 
         Query query = entityManager.createNativeQuery(q, Resume.class);
         query.setParameter(1, userId);

@@ -410,3 +410,12 @@ a {
     width: 1000px;
     margin: 0px auto 30px auto;
 }
+
+/* jjh */
+
+th {
+    vertical-align: middle;
+}
+td {
+    vertical-align: middle;
+}

@@ -112,7 +112,7 @@ public class UserController {
                 request.setAttribute("applicationList", applicationList);
             } else {
                 // 지원자 현황 조회
-                List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByBoardUserId(boardId);
+                List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByBoardId(boardId);
                 request.setAttribute("applicationList", applicationList);
             }
 
