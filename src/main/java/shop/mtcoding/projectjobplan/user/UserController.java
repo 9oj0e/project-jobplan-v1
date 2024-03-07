@@ -90,8 +90,10 @@ public class UserController {
     @GetMapping("/user/{id}")
     public String profile(HttpServletRequest request, @PathVariable int id) {
         User user = userRepository.findById(id);
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
-        if(user.getIsEmployer()==true){
+
+        if(sessionUser.getIsEmployer()==true){
             List<Skill> skillList = skillRepository.findByIdWithBoardId(id);
             if (skillList != null) {
                 request.setAttribute("skillList",skillList);
@@ -101,7 +103,6 @@ public class UserController {
             if (skillList != null) {
                 request.setAttribute("skillList", skillList);
             }
-
         }
             request.setAttribute("user", user);
             // 지원 현황 조회 (개인)
@@ -147,16 +148,17 @@ public class UserController {
         else
             return "/user/updateForm";
 
-
     }
 
     @PostMapping("/user/{id}/update")
     public String update(@PathVariable int id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
-        if(requestDTO.getIsEmployer() !=null && requestDTO.getIsEmployer()==true){
-            skillRepository.uploadEmployer(requestDTO.getSkill(), id);
-        } else {
+        if(sessionUser.getIsEmployer()==true){
+            skillRepository.uploadEmployer(requestDTO.getSkill(),id);
+        }else{
             skillRepository.uploadUser(requestDTO.getSkill(), id);
+
         }
 
         request.setAttribute("user", userRepository.updateById(requestDTO, id));

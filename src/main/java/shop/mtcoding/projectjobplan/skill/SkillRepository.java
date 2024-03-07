@@ -50,13 +50,12 @@ public class SkillRepository {
     }
 
     @Transactional
-    public void uploadUser(List<String> skills, int userId) {
-
+    public void uploadUser(List<String> skills, Integer userId) {
         String q1 = """
-                delete from skill_tb where user_id = ? 
-            """;
+            delete from skill_tb where user_id = ? 
+        """;
         Query query1 = entityManager.createNativeQuery(q1);
-        query1.setParameter(1,userId);
+        query1.setParameter(1, userId);
         query1.executeUpdate();
 
         for(String skill : skills) {
@@ -66,20 +65,19 @@ public class SkillRepository {
                     VALUES (?, ?)
                 """;
             Query query2 = entityManager.createNativeQuery(q2);
-            query2.setParameter( 1,userId);
-            query2.setParameter(2,skill);
+            query2.setParameter(1, userId);
+            query2.setParameter(2, skill);
             query2.executeUpdate();
         }
     }
 
     @Transactional
-    public void uploadEmployer(List<String> skills, int boardId) {
-
+    public void uploadEmployer(List<String> skills,Integer boardId) {
         String q1 = """
-                delete from skill_tb where board_id = ? 
-            """;
+            delete from skill_tb where board_id = ? 
+        """;
         Query query1 = entityManager.createNativeQuery(q1);
-        query1.setParameter(1,boardId);
+        query1.setParameter(1, boardId);
         query1.executeUpdate();
 
         for(String skill : skills) {
@@ -89,11 +87,12 @@ public class SkillRepository {
                     VALUES (?, ?)
                 """;
             Query query2 = entityManager.createNativeQuery(q2);
-            query2.setParameter( 1,boardId);
-            query2.setParameter(2,skill);
+            query2.setParameter(1, boardId);
+            query2.setParameter(2, skill);
             query2.executeUpdate();
         }
     }
+
 
     public List<Skill> findByIdWithBoardId(int boardId) {
         String q = """
