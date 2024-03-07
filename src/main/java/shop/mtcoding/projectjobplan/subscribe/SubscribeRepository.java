@@ -2,6 +2,7 @@ package shop.mtcoding.projectjobplan.subscribe;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -12,24 +13,70 @@ import java.util.List;
 public class SubscribeRepository {
     private final EntityManager entityManager;
 
-    public int uploadByBoardId(
-            int boardId,
-            SubscribeRequest.UploadByBoardIdDTO requestDTO) {
-        String q = """
-                """;
+    public Subscribe findAllByUserIdResumeId(Integer userId, Integer resumeId){
+        String q = "select * from subscribe_tb where user_id = ? and resume_id = ?";
+        Query query = entityManager.createNativeQuery(q, Subscribe.class);
+        query.setParameter(1, userId);
+        query.setParameter(2, resumeId);
+
+        try {
+            return (Subscribe)query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public Subscribe findAllByUserIdBoardId(Integer userId, Integer boardId){
+        String q = "select * from subscribe_tb where user_id = ? and board_id = ?";
+        Query query = entityManager.createNativeQuery(q, Subscribe.class);
+        query.setParameter(1, userId);
+        query.setParameter(2, boardId);
+
+        try {
+            return (Subscribe)query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public Integer findResumeUserIdByBoardId(int resumeId){
+        String q = "select user_id from resume_tb where id = ?";
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, resumeId);
+
+        return (Integer) query.getSingleResult();
+    }
+
+    public Integer findBoardUserIdByBoardId(int boardId){
+        String q = "select employer_id from board_tb where id = ?";
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, boardId);
+
+        return (Integer) query.getSingleResult();
+    }
+
+    @Transactional
+    public int uploadByBoardId(int boardId,Integer sessionUserId, Integer boardUserId) {
+        String q = """
+                insert into subscribe_tb (user_id, board_id, board_user_id, created_at) values(?,?,?, now())
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, sessionUserId);
+        query.setParameter(2, boardId);
+        query.setParameter(3, boardUserId);
 
         return query.executeUpdate();
     }
 
-    public int uploadByResumeId(
-            int resumeId,
-            SubscribeRequest.UploadByResumeIdDTO requestDTO) {
+    @Transactional
+    public int uploadByResumeId(int resumeId, Integer sessionUserId, Integer resumeUserId) {
         String q = """
+                insert into subscribe_tb (user_id, resume_id, resume_user_id, created_at) values(?,?,?, now())
                 """;
         Query query = entityManager.createNativeQuery(q);
-        query.setParameter(1, resumeId);
+        query.setParameter(1, sessionUserId);
+        query.setParameter(2, resumeId);
+        query.setParameter(3, resumeUserId);
 
         return query.executeUpdate();
     }
@@ -50,20 +97,27 @@ public class SubscribeRepository {
         return null;
     }
 
-    public int deleteByBoardId(int boardId) {
+
+    @Transactional
+    public int deleteByBoardId(int boardId, Integer sessionUserId) {
         String q = """
+                delete from subscribe_tb where board_id = ? and user_id = ?
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, boardId);
+        query.setParameter(2, sessionUserId);
 
         return query.executeUpdate();
     }
 
-    public int deleteByResumeId(int resumeId) {
+    @Transactional
+    public int deleteByResumeId(int resumeId, Integer sessionUserId) {
         String q = """
+                delete from subscribe_tb where resume_id = ? and user_id = ?
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, resumeId);
+        query.setParameter(2, sessionUserId);
 
         return query.executeUpdate();
     }

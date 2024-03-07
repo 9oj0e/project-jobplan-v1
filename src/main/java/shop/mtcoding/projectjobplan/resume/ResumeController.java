@@ -13,6 +13,8 @@ import shop.mtcoding.projectjobplan.pic.PicRepository;
 import shop.mtcoding.projectjobplan.pic.PicRequest;
 import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
+import shop.mtcoding.projectjobplan.subscribe.Subscribe;
+import shop.mtcoding.projectjobplan.subscribe.SubscribeRepository;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRequest;
 
@@ -24,6 +26,7 @@ import java.util.List;
 public class ResumeController {
     private final ResumeRepository resumeRepository;
     private final SkillRepository skillRepository;
+    private final SubscribeRepository subscribeRepository;
     private final HttpSession session;
     private final PicRepository picRepository;
 
@@ -77,9 +80,18 @@ public class ResumeController {
     }
 
     @GetMapping("/resume/{id}")
-    public String detail(@PathVariable int id, HttpServletRequest request, PicRequest.UploadDTO requestDTO, UserRequest.JoinDTO userRequestDTO) {
+    public String detail(@PathVariable int id, HttpServletRequest request) {
         ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
         request.setAttribute("detail", resumeDetailDTO);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        resumeDetailDTO.isResumeOwner(sessionUser);
+        Subscribe subscribe = subscribeRepository.findAllByUserIdResumeId(sessionUser.getId(),id);
+        if(subscribe != null){
+            request.setAttribute("subscribe", subscribe);
+        }
+        else {
+            return "/resume/detail";
+        }
 
         return "/resume/detail";
     }

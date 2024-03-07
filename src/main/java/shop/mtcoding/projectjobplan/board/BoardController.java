@@ -11,6 +11,8 @@ import shop.mtcoding.projectjobplan.apply.ApplyRepository;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
+import shop.mtcoding.projectjobplan.subscribe.Subscribe;
+import shop.mtcoding.projectjobplan.subscribe.SubscribeRepository;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
 
@@ -22,6 +24,7 @@ import java.util.List;
 public class BoardController {
     private final BoardRepository boardRepository;
     private final SkillRepository skillRepository;
+    private final SubscribeRepository subscribeRepository;
     private final HttpSession session;
   
     @GetMapping({"/", "/board"})
@@ -72,9 +75,14 @@ public class BoardController {
         User sessionUser = (User) session.getAttribute("sessionUser");
         BoardResponse.BoardDetailDTO boardDetailDTO = boardRepository.detail(id);
         boardDetailDTO.isBoardOwner(sessionUser);
-
         request.setAttribute("boardDetail", boardDetailDTO);
-
+        Subscribe subscribe = subscribeRepository.findAllByUserIdBoardId(sessionUser.getId(),id);
+        if(subscribe != null){
+            request.setAttribute("subscribe", subscribe);
+        }
+        else {
+            return "/board/detail";
+        }
         return "/board/detail";
     }
 

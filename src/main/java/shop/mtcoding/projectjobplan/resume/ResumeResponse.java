@@ -1,6 +1,7 @@
 package shop.mtcoding.projectjobplan.resume;
 
 import lombok.Data;
+import shop.mtcoding.projectjobplan.user.User;
 
 import java.sql.Timestamp;
 
@@ -34,6 +35,12 @@ public class ResumeResponse {
         private String major;
         private String schoolName;
         private String content;
+        private Boolean resumeOwner;
+
+        public void isResumeOwner(User sessionUser){
+            if(sessionUser == null) resumeOwner = false;
+            else resumeOwner = sessionUser.getId() == userId;
+        }
         // ID NAME ADDRESS PHONE_NUMBER EMAIL USER_ID
         // TITLE EDUCATION_LEVEL MAJOR SCHOOL_NAME CONTENT
     }

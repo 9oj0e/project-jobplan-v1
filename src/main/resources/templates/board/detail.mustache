@@ -26,12 +26,23 @@
                                     <button class="btn btn-primary">지원</button>
                                 </form>
                         {{/sessionUser}}
+                        <!-- 구독하기 버튼 -->
+                        {{^subscribe}}
+                            <form action="/board/{{boardDetail.id}}/subscribe" method="post">
+                                <button class="btn btn-success">구독</button>
+                            </form>
+                        {{/subscribe}}
+                        {{#subscribe}}
+                            <form action="/board/{{boardDetail.id}}/unsubscribe" method="post">
+                                <button class="btn btn-danger">구독취소</button>
+                            </form>
+                        {{/subscribe}}
                     </div>
                     <!-- 수정 삭제 버튼 -->
                     <div>
                         {{#boardOwner}}
                             <a href="/board/{{id}}/updateForm" method="get" class="btn btn-warning">수정</a>
-                            <form action="/board/1/delete" method="post" onsubmit="return false">
+                            <form action="/board/{{id}}/delete" method="post">
                                 <button class="btn btn-danger">삭제</button>
                             </form>
                         {{/boardOwner}}

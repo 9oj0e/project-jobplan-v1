@@ -12,12 +12,12 @@ import java.time.format.DateTimeFormatter;
 public class Subscribe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int userId;
-    private int boardId;
-    private int boardUserId;
-    private int resumeId;
-    private int resumeUserId;
+    private Integer id;
+    private Integer userId;
+    private Integer boardId;
+    private Integer boardUserId;
+    private Integer resumeId;
+    private Integer resumeUserId;
     private Timestamp createdAt;
 
     public String getCreatedAt() {

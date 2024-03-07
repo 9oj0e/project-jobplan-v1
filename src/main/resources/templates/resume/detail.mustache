@@ -11,16 +11,27 @@
         <div class="card-body">
             <h4 class="card-title text-center">{{detail.name}}</h4>
             <div class="card-footer" style="text-align: center;">
-                <!-- 지원하기 버튼 -->
-                <div>
-                    <a href="#" class="btn btn-primary">지원</a>
-                </div>
+                <!-- 구독하기 버튼 -->
+                {{^subscribe}}
+                    <form action="/resume/{{detail.id}}/subscribe" method="post">
+                        <button class="btn btn-success">구독</button>
+                    </form>
+                {{/subscribe}}
+                {{#subscribe}}
+                    <form action="/resume/{{detail.id}}/unsubscribe" method="post">
+                        <button class="btn btn-danger">구독취소</button>
+                    </form>
+                {{/subscribe}}
                 <!-- 수정 삭제 버튼 -->
                 <div>
-                    <a href="/board/1/updateForm" method="get" class="btn btn-warning">수정</a>
-                    <form action="/board/1/delete" method="post" onsubmit="return false">
-                        <button class="btn btn-danger">삭제</button>
-                    </form>
+                    {{#detail}}
+                        {{#resumeOwner}}
+                            <a href="/resume/{{id}}/updateForm" method="get" class="btn btn-warning">수정</a>
+                            <form action="/resume/{{id}}/delete" method="post">
+                                <button class="btn btn-danger">삭제</button>
+                            </form>
+                        {{/resumeOwner}}
+                    {{/detail}}
                 </div>
             </div>
         </div>

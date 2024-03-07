@@ -33,37 +33,40 @@ public class SubscribeController {
         return "/user/subscription"; // view 만들기
     }
 
+    // 공고 구독
     @PostMapping("/board/{boardId}/subscribe")
-    public String subscribeBoard( // 공고 구독
-                                  @PathVariable int boardId,
-                                  SubscribeRequest.UploadByBoardIdDTO requestDTO) {
-        subscribeRepository.uploadByBoardId(boardId, requestDTO);
+    public String subscribeBoard(@PathVariable int boardId) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        subscribeRepository.uploadByBoardId(boardId, sessionUser.getId(), subscribeRepository.findBoardUserIdByBoardId(boardId));
 
         return "redirect:/board/" + boardId;
     }
 
+    // 이력서 구독
     @PostMapping("/resume/{resumeId}/subscribe")
-    public String subscribeResume( // 이력서 구독
-                                   @PathVariable int resumeId,
-                                   SubscribeRequest.UploadByResumeIdDTO requestDTO) {
-        subscribeRepository.uploadByResumeId(resumeId, requestDTO);
+    public String subscribeResume(@PathVariable int resumeId) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        subscribeRepository.uploadByResumeId(resumeId, sessionUser.getId(), subscribeRepository.findResumeUserIdByBoardId(resumeId));
+
 
         return "redirect:/resume/" + resumeId;
     }
 
+    // 공고 구독 취소
     @PostMapping("/board/{boardId}/unsubscribe")
-    public String unsubscribeBoard( // 공고 구독 취소
-                                    @PathVariable int boardId) {
-        subscribeRepository.deleteByBoardId(boardId);
+    public String unsubscribeBoard(@PathVariable int boardId) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        subscribeRepository.deleteByBoardId(boardId, sessionUser.getId());
 
-        return "";
+        return "redirect:/board/" + boardId;
     }
 
+    // 이력서 구독 취소
     @PostMapping("/resume/{resumeId}/unsubscribe")
-    public String unsubscribeResume( // 이력서 구독 취소
-                                     @PathVariable int resumeId) {
-        subscribeRepository.deleteByResumeId(resumeId);
+    public String unsubscribeResume(@PathVariable int resumeId) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        subscribeRepository.deleteByResumeId(resumeId, sessionUser.getId());
 
-        return "";
+        return "redirect:/resume/" + resumeId;
     }
 }
