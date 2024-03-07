@@ -49,6 +49,8 @@ public class ResumeRepository {
         resumeDetailDTO.setAddress(address);
         resumeDetailDTO.setPhoneNumber(phoneNumber);
         resumeDetailDTO.setEmail(email);
+
+        resumeDetailDTO.setResumeId(resumeId);
         resumeDetailDTO.setResumeUserId(resumeUserId);
         resumeDetailDTO.setTitle(title);
         resumeDetailDTO.setContent(content);

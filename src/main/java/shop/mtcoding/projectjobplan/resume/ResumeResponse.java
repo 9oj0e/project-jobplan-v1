@@ -1,6 +1,7 @@
 package shop.mtcoding.projectjobplan.resume;
 
 import lombok.Data;
+import shop.mtcoding.projectjobplan.user.User;
 
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +30,7 @@ public class ResumeResponse {
         private String phoneNumber;
         private String email;
 
+        private Integer resumeId;
         private Integer resumeUserId;
         private String title;
         private String content;
@@ -37,8 +39,15 @@ public class ResumeResponse {
         private String educationLevel;
         private String career;
 
+        private Boolean resumeOwner;
+
         public String getBirthyear() { // 생년까지만 출력
             return birthdate.substring(0, 4);
+        }
+
+        public void isResumeOwner(User sessionUser){
+            if(sessionUser == null) resumeOwner = false;
+            else resumeOwner = sessionUser.getId() == resumeUserId;
         }
     }
 }

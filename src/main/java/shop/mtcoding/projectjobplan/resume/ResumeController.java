@@ -1,20 +1,14 @@
 package shop.mtcoding.projectjobplan.resume;
 
-import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
-import shop.mtcoding.projectjobplan.board.BoardResponse;
-import shop.mtcoding.projectjobplan.pic.Pic;
 import shop.mtcoding.projectjobplan.pic.PicRepository;
-import shop.mtcoding.projectjobplan.pic.PicRequest;
-import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
 import shop.mtcoding.projectjobplan.user.User;
-import shop.mtcoding.projectjobplan.user.UserRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +17,7 @@ import java.util.List;
 @Controller
 public class ResumeController {
     private final ResumeRepository resumeRepository;
-    private final SkillRepository skillRepository;
     private final HttpSession session;
-    private final PicRepository picRepository;
 
     @PostMapping("resume/{id}/update")
     public String update(@PathVariable int id, ResumeRequest.UpdateDTO requestDTO){
@@ -76,10 +68,13 @@ public class ResumeController {
         return "/resume/listings";
     }
 
-    @GetMapping("/resume/{id}")
-    public String detail(@PathVariable int id, HttpServletRequest request, PicRequest.UploadDTO requestDTO, UserRequest.JoinDTO userRequestDTO) {
-        ResumeResponse.ResumeDetailDTO resumeDetail = resumeRepository.detail(id);
-        request.setAttribute("resumeDetail", resumeDetail);
+    @GetMapping("/resume/{resumeId}")
+    public String detail(@PathVariable int resumeId, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(resumeId);
+        resumeDetailDTO.isResumeOwner(sessionUser);
+
+        request.setAttribute("resumeDetail", resumeDetailDTO);
 
         return "/resume/detail";
     }

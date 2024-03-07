@@ -8,20 +8,10 @@
             </div>
             <div class="card-body">
                 <h4 class="card-title">{{title}}</h4>
-                <table class="table">
-
-                    <!--
-                    <tr>
-                        <td>졸업형태</td>
-                        <td>{{educationLevel}}</td>
-                    </tr>
-                    -->
-                </table>
                 <h4 class="card-title">자기소개서</h4>
                 <div class="form-control" style="height: 300px">{{content}}</div>
                 <h4 class="card-title">경력 정보</h4>
                 <div class="form-control" style="height: 100px">{{career}}</div>
-                </tr>
                 <h4 class="card-title">개인 정보</h4>
                 <table class="table">
                     <tr>
@@ -32,6 +22,12 @@
                         <td>전공</td>
                         <td>{{major}}</td>
                     </tr>
+                    <!--
+                    <tr>
+                        <td>졸업형태</td>
+                        <td>{{educationLevel}}</td>
+                    </tr>
+                    -->
                     <tr>
                         <td>이름</td>
                         <td>{{username}}</td>
@@ -71,17 +67,21 @@
                 <div class="card-body">
                     <h4 class="card-title text-center">{{resumeDetail.username}}</h4>
                     <div class="card-footer" style="text-align: center;">
-                        <!-- 지원하기 버튼 -->
-                        <div>
-                            <a href="#" class="btn btn-primary">지원</a>
-                        </div>
+                        <!-- 제안하기 버튼 -->
+                        {{#isEmployer}}
+                            <div>
+                                <a href="#" class="btn btn-primary">제안</a>
+                            </div>
+                        {{/isEmployer}}
                         <!-- 수정 삭제 버튼 -->
+                        {{#resumeDetail.resumeOwner}}
                         <div>
-                            <a href="/board/1/updateForm" method="get" class="btn btn-warning">수정</a>
-                            <form action="/board/1/delete" method="post" onsubmit="return false">
+                            <a href="/resume/{{resumeDetail.resumeId}}/updateForm" class="btn btn-warning">수정</a>
+                            <form action="/resume/{{resumeDetail.resumeId}}/delete" method="post" onsubmit="return false">
                                 <button class="btn btn-danger">삭제</button>
                             </form>
                         </div>
+                        {{/resumeDetail.resumeOwner}}
                     </div>
                 </div>
             </div>
