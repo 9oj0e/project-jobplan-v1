@@ -93,7 +93,7 @@ public class UserController {
                           @PathVariable(required = false) Integer boardId) {
         User user = userRepository.findById(sessionUserId);
       
-        List<Skill> skillList = skillRepository.findById(id);
+        List<Skill> skillList = skillRepository.findById(sessionUserId);
         if (skillList != null) {
             request.setAttribute("skillList",skillList);
         }
