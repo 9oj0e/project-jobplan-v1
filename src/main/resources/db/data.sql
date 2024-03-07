@@ -59,233 +59,231 @@ VALUES ('user6', '1234', '전두광', '1931-01-18', 'M', '01012345678', '주소'
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (1, '2024년 신입 개발자 채용',
+VALUES (1, '솔루션 운영/개발자 (2년 이상)',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '풀스택', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (2, '2024년 신입 개발자 채용',
+VALUES (1, 'S/W Front-End',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (3, '2024년 신입 개발자 채용',
+VALUES (1, 'AI 비전 플랫폼 개발',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '기획자', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (4, '2024년 신입 개발자 채용',
+VALUES (1, '클라우드 DevOps 엔지니어',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '클라우드', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (5, '2024년 신입 개발자 채용',
+VALUES (2, '솔루션 운영/개발자 (2년 이상)',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '풀스택', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (1, '2024년 신입 개발자 채용',
+VALUES (2, 'S/W Front-End',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (2, '2024년 신입 개발자 채용',
+VALUES (2, 'AI 비전 플랫폼 개발',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '기획자', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (3, '2024년 신입 개발자 채용',
+VALUES (2, '클라우드 DevOps 엔지니어',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '클라우드', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (4, '2024년 신입 개발자 채용',
+VALUES (3, '솔루션 운영/개발자 (2년 이상)',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '풀스택', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (5, '2024년 신입 개발자 채용',
+VALUES (3, 'S/W Front-End',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (1, '2024년 신입 개발자 채용',
+VALUES (3, 'AI 비전 플랫폼 개발',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '기획자', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (2, '2024년 신입 개발자 채용',
+VALUES (3, '클라우드 DevOps 엔지니어',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '클라우드', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (3, '2024년 신입 개발자 채용',
+VALUES (4, '솔루션 운영/개발자 (2년 이상)',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '풀스택', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (4, '2024년 신입 개발자 채용',
+VALUES (4, 'S/W Front-End',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (5, '2024년 신입 개발자 채용',
+VALUES (4, 'AI 비전 플랫폼 개발',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '기획자', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (1, '2024년 신입 개발자 채용',
+VALUES (4, '클라우드 DevOps 엔지니어',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '클라우드', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (2, '2024년 신입 개발자 채용',
+VALUES (5, '솔루션 운영/개발자 (2년 이상)',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '풀스택', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (3, '2024년 신입 개발자 채용',
+VALUES (5, 'S/W Front-End',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (4, '2024년 신입 개발자 채용',
+VALUES (5, 'AI 비전 플랫폼 개발',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
+        '기획자', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 INSERT INTO board_tb
 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
-VALUES (5, '2024년 신입 개발자 채용',
+VALUES (5, '클라우드 DevOps 엔지니어',
         '저희 회사와 함께 성장할 수 있는 역량 있고 창의적인 분들의 지원을 기대합니다. 포지션 상세.. 주요 업무 : 게시판, 백 오피스 구축, 연동, api 연동. 자격 요건 : 풀스택. 우대 사항 : PHP를 전문적으로 다루시는 분. 혜택 및 복지 : 4대 보험, 주 5일제',
-        '백앤드 프론트', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
-
+        '클라우드', '신입', '최저시급', '2024-02-26', '2024-03-08', now());
 
 -- resume_tb
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (6, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (6, '새싹을 틔울 수 있는 씨앗이 되겠습니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (7, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (7, '새싹을 틔울 수 있는 씨앗이 되겠습니다.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (8, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (8, '새싹을 틔울 수 있는 씨앗이 되겠습니다.', '이력서내용', '학교명', '전공', '학력', '풀스택 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (9, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (9, '매일 30분으로 내가 이뤄낸 것.', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (10, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (10, '학점 2.3에서 편입 후 4.2로.', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (11, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (11, '목표를 달성하기 위해 실행한 3단계 실행 계획.', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (6, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (6, '당신은 내가 넘어야 할 작은 산에 불과하다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (7, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (7, '당신은 내가 넘어야 할 작은 산에 불과하다.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (8, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (8, '당신은 내가 넘어야 할 작은 산에 불과하다.', '이력서내용', '학교명', '전공', '학력', '풀스택 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (9, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (9, '화살 하나는 쉽게 부러져도 화살 한 묶음은 쉽게 부러지지 않습니다.', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (10, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (10, '자전거는 계속 나아가지 않으면 쓰러진다.', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (11, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (11, '한번 물면 쉽게 놓지 않습니다.', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (6, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (6, '회복의 유일한 길은 다시 시작하는 것이다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (7, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (7, '회복의 유일한 길은 다시 시작하는 것이다.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (8, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (8, '회복의 유일한 길은 다시 시작하는 것이다.', '이력서내용', '학교명', '전공', '학력', '풀스택 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (9, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (9, '배우는 것은 산에 오르는 것과 같다.', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (10, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (10, '혁신은 180도 다른 시선에서 나온다.', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (11, '성실하고 유능한 인재입니다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (11, '여전할 것인가, 역전할 것인가.', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 -- apply_tb
 
 INSERT INTO apply_tb
-(resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (1, 6, 1, 1, now());
+(resume_id, resume_user_id, board_id, board_user_id, created_at, status)
+VALUES (1, 6, 1, 1, now(), 1);
+INSERT INTO apply_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at, status)
+VALUES (2, 7, 2, 1, now(), 0);
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (2, 7, 1, 1, now());
+VALUES (3, 8, 3, 1, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (3, 8, 1, 1, now());
-INSERT INTO apply_tb
-(resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (4, 9, 1, 1, now());
+VALUES (4, 9, 4, 1, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
 VALUES (5, 10, 1, 1, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (6, 11, 1, 1, now());
+VALUES (6, 11, 2, 1, now());
 
 INSERT INTO apply_tb
-(resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (1, 6, 2, 2, now());
+(resume_id, resume_user_id, board_id, board_user_id, created_at, status)
+VALUES (1, 6, 5, 2, now(), 1);
+INSERT INTO apply_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at, status)
+VALUES (2, 7, 6, 2, now(), 0);
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (2, 7, 2, 2, now());
+VALUES (3, 8, 7, 2, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (3, 8, 2, 2, now());
+VALUES (4, 9, 8, 2, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (4, 9, 2, 2, now());
-INSERT INTO apply_tb
-(resume_id, resume_user_id, board_id, board_user_id, created_at)
-VALUES (5, 10, 2, 2, now());
-
+VALUES (5, 10, 5, 2, now());

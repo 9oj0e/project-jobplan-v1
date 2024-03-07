@@ -11,7 +11,6 @@ public class ApplyRequest {
         private Integer resumeUserId;
         private Integer boardId;
         private Integer boardUserId;
-        private String appliedAt; // 지원 날짜
     }
     @Data
     public class UpdateDTO{ // 합격 불합격 업데이트
@@ -21,4 +20,5 @@ public class ApplyRequest {
         private Integer boardUserId;
         private Boolean status;
     }
+
 }

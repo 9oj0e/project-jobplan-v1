@@ -3,20 +3,26 @@
     <div class="div-layout">
         <div class="d-flex justify-content-between">
             <h3><b>내 정보</b></h3>
-            <form action="/user/{{sessionUser.id}}/updateForm" class="justify-content-end">
-                <button class="btn btn-outline-primary">수정</button>
-                <button class="btn btn-primary">탈퇴</button>
-            </form>
+            <div style="display: flex; justify-content: space-evenly; width: 120px">
+                <form action="/user/{{sessionUser.id}}/updateForm">
+                    <button class="btn btn-outline-primary">수정</button>
+                </form>
+                <form action="/user/{{sessionUser.id}}/delete">
+                    <button class="btn btn-primary">탈퇴</button>
+                </form>
+            </div>
         </div>
         <div class="div-information">
             <div class="div-information-grid">
                 <div class="card mt-5" style="width:200px">
-                    {{#pic}}
-                        <img class="card-img" src="/upload/{{pic.imgFilename}}" style="width:100%">
-                    {{/pic}}
-                    {{^pic}}
-                        <img class="card-img" src="../images/naver logo.png" alt="Card image" style="width:100%">
-                    {{/pic}}
+                    <div class="card-img" style="width:100%">
+                        {{#pic}}
+                            <img class="card-img" src="/upload/{{imgFilename}}" style="width:100%;" >
+                        {{/pic}}
+                        {{^pic}}
+                                <img class="card-img" src="../images/{{user.businessName}}.jpg" onerror="this.src='../../images/{{user.businessName}}.jpg'" style="width:100%;">
+                        {{/pic}}
+                    </div>
                     <div class="card-body">
                         <h4 class="card-title">{{user.businessName}}</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
@@ -88,13 +94,15 @@
                     </tbody>
                 </table>
                     <div class="form-control">
-                        <div><b>요구기술</b></div>
+                        <div class="mb-3"><b>요구기술</b></div>
                         <div>
                             {{#skillList}}
                                 <span>{{skillName}}</span>
                             {{/skillList}}
                             {{^skillList}}
-                                <div>없음</div>
+                                <form action="/user/{{sessionUser.id}}/updateForm">
+                                    <button class="btn btn-outline-primary form-control">추가하기</button>
+                                </form>
                             {{/skillList}}
                         </div>
                     </div>
@@ -110,7 +118,7 @@
             </form>
         </div>
         <div class="div-announcement">
-            <table class="table table-hover" style="text-align: end">
+            <table class="table table-hover" style="text-align: center">
                 <tr>
                     <th>포지션</th>
                     <th>채용 분야</th>
@@ -123,13 +131,13 @@
                         <td>{{position}}</td>
                         <td>{{field}}</td>
                         <td><a href="/board/{{id}}">{{title}}</a></td>
-                        <td>{{openingDateFormat}}</td>
+                        <td>{{openingDate}}</td>
                         <td>
-                            <div style="display: flex; justify-content: end">
-                                <form action="/board/{{id}}/updateForm">
-                                    <button class="btn btn-outline-primary">수정</button>
+                            <div style="display: flex; justify-content: space-evenly">
+                                <form action="/user/{{sessionUser.id}}/{{id}}" method="get">
+                                    <button class="btn btn-outline-primary">지원자</button>
                                 </form>
-                                <form action="/board/{{id}}/delete" method="post">
+                                <form action="/board/{{id}}/update" method="post">
                                     <button class="btn btn-primary">삭제</button>
                                 </form>
                             </div>
@@ -141,16 +149,19 @@
     </div>
 
     <div class="div-layout">
-        <div class="div-header">
+        <div class="div-header d-flex justify-content-between">
             <h3><b>지원자 리스트</b></h3>
+            <form action="/user/{{sessionUser.id}}" method="get" class="justify-content-end">
+                <button class="btn btn-primary">전체</button>
+            </form>
         </div>
-        <table class="table table-hover" style="text-align: end">
+        <table class="table table-hover" style="text-align: center">
             <tr>
                 <th>공고 제목</th>
                 <th>지원자 명</th>
                 <th>이력서 제목</th>
                 <th>지원 날짜</th>
-                <th>합격 여부</th>
+                <th></th>
             </tr>
             {{#applicationList}}
                 <tr>
@@ -159,9 +170,24 @@
                     <td><a href="/resume/{{resumeId}}">{{resumeTitle}}</a></td>
                     <td>{{appliedAt}}</td>
                     <td>
-                        <div style="display: flex; justify-content: end">
-                            <button class="btn btn-outline-primary">불합격</button>
-                            <button class="btn btn-primary">합격</button>
+                        <div style="display: flex; justify-content: space-evenly">
+                            {{#statusOutput}}
+                                <div>{{statusOutput}}</div>
+                            {{/statusOutput}}
+                            {{^statusOutput}}
+                                <form action="/apply/update" method="post">
+                                    <input name="status" type="hidden" value="0">
+                                    <input name="resumeId" type="hidden" value="{{resumeId}}">
+                                    <input name="boardId" type="hidden" value="{{boardId}}">
+                                    <button class="btn btn-outline-danger">불합격</button>
+                                </form>
+                                <form action="/apply/update" method="post">
+                                    <input name="status" type="hidden" value="1">
+                                    <input name="resumeId" type="hidden" value="{{resumeId}}">
+                                    <input name="boardId" type="hidden" value="{{boardId}}">
+                                    <button class="btn btn-outline-primary">합격</button>
+                                </form>
+                            {{/statusOutput}}
                         </div>
                     </td>
                 </tr>

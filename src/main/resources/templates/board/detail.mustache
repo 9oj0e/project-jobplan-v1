@@ -1,90 +1,100 @@
 {{> layout/header }}
 <!-- 기업 버튼 -->
-<div class="sidenav">
-    <div class="card" style="width:150px">
-        {{#pic}}
+{{#boardDetail}}
+    <div class="sidenav">
+        <div class="card" style="width:150px">
+         {{#pic}}
             <img class="card-img-top" src="/upload/{{imgFilename}}" alt="Card image" style="width:100%">
         {{/pic}}
         {{^pic}}
-            <img class="card-img-top" src="../images/naver logo.png" alt="Card image" style="width:100%">
-        {{/pic}}
-
-        <div class="card-body">
-            <h4 class="card-title text-center">{{boardDetail.businessName}}</h4>
-            <div class="card-footer" style="text-align: center;">
-                <!-- 지원하기 버튼 -->
-                <div>
-                    {{^sessionUser.isEmployer}}
-                        <a href="#" class="btn btn-primary">지원</a>
-                    {{/sessionUser.isEmployer}}
-                </div>
-                <!-- 수정 삭제 버튼 -->
-                <div>
-                    {{#boardDetail.boardOwner}}
-                        <a href="/board/{{boardDetail.id}}/updateForm" method="get" class="btn btn-warning">수정</a>
-                        <form action="/board/1/delete" method="post" onsubmit="return false">
-                            <button class="btn btn-danger">삭제</button>
-                        </form>
-                    {{/boardDetail.boardOwner}}
+            <img class="card-img-top" src="../images/{{boardDetail.businessName}}.jpg" onerror="this.onerror=null; this.src='../images/chaeyong.jpg';" style="width:100%">
+        {{/pic}}    
+            <div class="card-body">
+                <h4 class="card-title text-center">{{businessName}}</h4>
+                <div class="card-footer" style="text-align: center;">
+                    <!-- 지원하기 버튼 -->
+                    <div>
+                        {{#sessionUser}}
+                            {{^isEmployer}}
+                                <form action="/board/{{boardDetail.id}}/applyForm" method="get">
+                                    <button class="btn btn-primary">지원</button>
+                                </form>
+                            {{/isEmployer}}
+                        {{/sessionUser}}
+                        {{^sessionUser}}
+                                <form action="/loginForm" method="get">
+                                    <button class="btn btn-primary">지원</button>
+                                </form>
+                        {{/sessionUser}}
+                    </div>
+                    <!-- 수정 삭제 버튼 -->
+                    <div>
+                        {{#boardOwner}}
+                            <a href="/board/{{id}}/updateForm" method="get" class="btn btn-warning">수정</a>
+                            <form action="/board/1/delete" method="post" onsubmit="return false">
+                                <button class="btn btn-danger">삭제</button>
+                            </form>
+                        {{/boardOwner}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- 게시글내용 -->
-<div class="container bg-light">
-    <h2><b>{{boardDetail.title}}</b></h2>
-    <hr>
-    <div>
-        <span>요약</span>
-        <table class="table">
-            <tr>
-                <th>근무지역</th>
-                <td>{{boardDetail.address}}</td>
-            </tr>
-            <tr>
-                <th>모집분야</th>
-                <td>{{boardDetail.field}}</td>
-            </tr>
-            <tr>
-                <th>포지션</th>
-                <td>{{boardDetail.position}}</td>
-            </tr>
-            <tr>
-                <th>연봉</th>
-                <td>{{boardDetail.salary}}</td>
-            </tr>
-        </table>
-    </div>
-    <div class="m-4 p-2">
+    <!-- 게시글내용 -->
+    <div class="container bg-light">
+        <h2><b>{{title}}</b></h2>
+        <hr>
         <div>
-            <h3>내용</h3>
-            <div class="bg-white">
-                {{boardDetail.content}}
+            <span>요약</span>
+            <table class="table">
+                <tr>
+                    <th>근무지역</th>
+                    <td>{{address}}</td>
+                </tr>
+                <tr>
+                    <th>모집분야</th>
+                    <td>{{field}}</td>
+                </tr>
+                <tr>
+                    <th>포지션</th>
+                    <td>{{position}}</td>
+                </tr>
+                <tr>
+                    <th>연봉</th>
+                    <td>{{salary}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="m-4 p-2">
+            <div>
+                <h3>내용</h3>
+                <div class="bg-white">
+                    {{content}}
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h4>채용공고 게시일</h4>
+                <div>{{openingDate}}</div>
+            </div>
+            <hr>
+            <div>
+                <h4>채용공고 마감일</h4>
+                <div>{{closingDate}}</div>
+            </div>
+            <hr>
+            <div>
+                <h4>연락처</h4>
+                <div>전화번호: {{phoneNumber}}</div>
+                <div>이메일: {{email}}</div>
+            </div>
+            <hr>
+            <div>
+                <h4>근무지역</h4>
+                <div>지도</div>
             </div>
         </div>
-        <hr>
-        <div>
-            <h4>채용공고 게시일</h4>
-            <div>{{boardDetail.openingDate}}</div>
-        </div>
-        <hr>
-        <div>
-            <h4>채용공고 마감일</h4>
-            <div>{{boardDetail.closingDate}}</div>
-        </div>
-        <hr>
-        <div>
-            <h4>연락처</h4>
-            <div>전화번호: {{boardDetail.phoneNumber}}</div>
-            <div>이메일: {{boardDetail.email}}</div>
-        </div>
-        <hr>
-        <div>
-            <h4>근무지역</h4>
-            <div>지도</div>
-        </div>
     </div>
-</div>
+{{/boardDetail}}
 <!-- 바디 end -->
 {{>layout/footer}}

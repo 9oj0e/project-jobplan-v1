@@ -29,13 +29,12 @@ public class Board {
 
     private String skill;
 
-
-    public String getOpeningDateFormat(){
+    public String getOpeningDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return openingDate.toLocalDateTime().format(formatter);
     }
 
-    public String getClosingDateFormat(){
+    public String getClosingDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return closingDate.toLocalDateTime().format(formatter);
     }
