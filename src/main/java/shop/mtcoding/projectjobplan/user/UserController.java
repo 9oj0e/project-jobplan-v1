@@ -105,8 +105,16 @@ public class UserController {
         User user = userRepository.findById(sessionUserId);
       
         List<Skill> skillList = skillRepository.findById(sessionUserId);
-        if (skillList != null) {
-            request.setAttribute("skillList",skillList);
+         if(sessionUser.getIsEmployer()==true){
+            List<Skill> skillList = skillRepository.findByIdWithBoardId(id);
+            if (skillList != null) {
+                request.setAttribute("skillList",skillList);
+            }
+        }else {
+            List<Skill> skillList = skillRepository.findByIdWithUserId(id);
+            if (skillList != null) {
+                request.setAttribute("skillList", skillList);
+            }
         }
         request.setAttribute("user", user);
 
@@ -151,14 +159,22 @@ public class UserController {
         else
             return "/user/updateForm";
 
-
     }
 
     @PostMapping("/user/{id}/update")
     public String update(@PathVariable int id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
-        skillRepository.save(requestDTO.getSkill(), id);
+        if(sessionUser.getIsEmployer()==true){
+            skillRepository.uploadEmployer(requestDTO.getSkill(),id);
+        }else{
+            skillRepository.uploadUser(requestDTO.getSkill(), id);
+
+        }
+
         request.setAttribute("user", userRepository.updateById(requestDTO, id));
+
+
         return "redirect:/user/"+id;
     }
 
