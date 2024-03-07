@@ -2,7 +2,12 @@
 <!-- 기업 버튼 -->
 <div class="sidenav">
     <div class="card" style="width:150px">
-        <img class="card-img-top" src="../images/people.jpg" alt="Card image" style="width:100%">
+        {{#userPic}}
+            <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
+        {{/userPic}}
+        {{^userPic}}
+            <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
+        {{/userPic}}
         <div class="card-body">
             <h4 class="card-title text-center">{{detail.name}}</h4>
             <div class="card-footer" style="text-align: center;">

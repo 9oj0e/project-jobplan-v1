@@ -135,7 +135,7 @@ public class BoardRepository {
 
 
     @Transactional
-    public int save(BoardRequest.SaveDTO requestDTO, Integer sessionUserId) {
+    public void save(BoardRequest.SaveDTO requestDTO, Integer sessionUserId) {
         String q = """
                 INSERT INTO board_tb
                 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)
@@ -160,17 +160,6 @@ public class BoardRepository {
 
 
         query.executeUpdate();
-
-        //board_id 찾기
-        String q1 = """
-                select max(id) from board_tb
-                """;
-
-        Query query1 = entityManager.createNativeQuery(q1);
-        Integer boardId = (Integer) query1.getSingleResult();
-
-        return boardId ;
-
 
     }
 

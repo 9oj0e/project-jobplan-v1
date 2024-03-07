@@ -110,7 +110,8 @@ public class ApplyRepository {
                   u.business_name,
                   b.title AS board_title,
                   b.id,
-                  a.created_at
+                  a.created_at,
+                  a.status
                FROM apply_tb a
                JOIN resume_tb r ON a.resume_id = r.id
                JOIN board_tb b ON a.board_id = b.id
@@ -129,14 +130,24 @@ public class ApplyRepository {
             dto.setBoardTitle((String) r[3]);
             dto.setBoardId((Integer) r[4]);
             dto.setAppliedAt((Timestamp) r[5]);
+            dto.setStatus((Boolean) r[6]);
             responseDTO.add(dto);
         }
 
         return responseDTO;
     }
     @Transactional
-    public int update(ApplyRequest.UpdateDTO requestDTO){
-        return 0;
+    public int update(Integer status, Integer resumeId, Integer boardId){
+        String q = """
+                update apply_tb set status = ? where resume_id = ? and board_id = ?
+                """;
+
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, status);
+        query.setParameter(2, resumeId);
+        query.setParameter(3, boardId);
+
+        return query.executeUpdate();
     }
     @Transactional
     public int deleteByEmployerId(){

@@ -193,12 +193,35 @@ a {
     grid-gap: 10px;
 }
 
-.div-company-img-1 {
-    background-image: url(images/chaeyong.jpg);
+.div-company-img-네이버 {
+    background-image: url(images/네이버.jpg);
     height: 180px;
     background-size: 100% 100%;
     border-radius: 20px;
-
+}
+.div-company-img-카카오 {
+    background-image: url(images/카카오.jpg);
+    height: 180px;
+    background-size: 100% 100%;
+    border-radius: 20px;
+}
+.div-company-img-라인 {
+    background-image: url(images/라인.jpg);
+    height: 180px;
+    background-size: 100% 100%;
+    border-radius: 20px;
+}
+.div-company-img-쿠팡 {
+    background-image: url(images/쿠팡.jpg);
+    height: 180px;
+    background-size: 100% 100%;
+    border-radius: 20px;
+}
+.div-company-img-배달의민족 {
+    background-image: url(images/배달의민족.jpg);
+    height: 180px;
+    background-size: 100% 100%;
+    border-radius: 20px;
 }
 
 

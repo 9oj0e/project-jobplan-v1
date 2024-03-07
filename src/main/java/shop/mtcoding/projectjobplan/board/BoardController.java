@@ -80,14 +80,8 @@ public class BoardController {
 
     @PostMapping("/board/upload")
     public String upload(BoardRequest.SaveDTO requestDTO){
-
         User sessionUser = (User) session.getAttribute("sessionUser");
-
-        int boardId = boardRepository.save(requestDTO, sessionUser.getId());
-
-        for (String skill : requestDTO.getSkill()){
-            skillRepository.saveBoard(skill, boardId);
-        }
+        boardRepository.save(requestDTO, sessionUser.getId());
 
         return "redirect:/user/" + sessionUser.getId();
     }

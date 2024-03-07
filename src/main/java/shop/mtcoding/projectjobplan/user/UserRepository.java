@@ -16,7 +16,7 @@ public class UserRepository {
     private final EntityManager entityManager;
 
     @Transactional
-    public Integer save(UserRequest.JoinDTO requestDTO) {
+    public void save(UserRequest.JoinDTO requestDTO) {
         String q = """
                 INSERT INTO user_tb
                 (username, password, name, birthdate, gender, phone_number, address, email,
@@ -38,7 +38,7 @@ public class UserRepository {
         query.setParameter(10, requestDTO.getEmployerIdNumber());
         query.setParameter(11, requestDTO.getBusinessName());
 
-        return query.executeUpdate(); // 영향 받은 행
+        query.executeUpdate(); // 영향 받은 행
     }
 
     public User findById(int id) {
@@ -133,6 +133,9 @@ public class UserRepository {
             query.setParameter(6, id);
 
             return query.executeUpdate();
+
+
+
         }
     }
     /* 계정 탈퇴

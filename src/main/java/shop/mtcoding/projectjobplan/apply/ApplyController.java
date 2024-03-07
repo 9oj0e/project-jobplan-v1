@@ -24,13 +24,12 @@ public class ApplyController {
     private final ResumeRepository resumeRepository;
 
     // 지원자 합격/불합격 처리
-    @PostMapping("/apply/{applyId}/update")
-    public String update(ApplyRequest.UpdateDTO requestDTO) {
-
+    @PostMapping("/apply/update")
+    public String update(Integer status, Integer resumeId, Integer boardId) {
         User user = (User) session.getAttribute("sessionUser");
-        System.out.println("영향 받은 행 : " + applyRepository.update(requestDTO));
+        applyRepository.update(status, resumeId, boardId);
 
-        return "redirect:/board/" + user.getId();
+        return "redirect:/user/" + user.getId();
     }
 
     // 지원하기
