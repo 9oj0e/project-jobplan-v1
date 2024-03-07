@@ -78,8 +78,8 @@ public class ResumeController {
 
     @GetMapping("/resume/{id}")
     public String detail(@PathVariable int id, HttpServletRequest request, PicRequest.UploadDTO requestDTO, UserRequest.JoinDTO userRequestDTO) {
-        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
-        request.setAttribute("detail", resumeDetailDTO);
+        ResumeResponse.ResumeDetailDTO resumeDetail = resumeRepository.detail(id);
+        request.setAttribute("resumeDetail", resumeDetail);
 
         return "/resume/detail";
     }

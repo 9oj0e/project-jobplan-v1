@@ -3,6 +3,7 @@ package shop.mtcoding.projectjobplan.resume;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 
 public class ResumeResponse {
     @Data
@@ -22,22 +23,24 @@ public class ResumeResponse {
 
     @Data
     public static class ResumeDetailDTO{
-        private Integer id;
-        private String name;
+        private String username;
+        private String birthdate;
         private String address;
         private String phoneNumber;
         private String email;
 
-        private Integer userId;
+        private Integer resumeUserId;
         private String title;
-        private String educationLevel;
-        private String major;
-        private String schoolName;
         private String content;
-        // ID NAME ADDRESS PHONE_NUMBER EMAIL USER_ID
-        // TITLE EDUCATION_LEVEL MAJOR SCHOOL_NAME CONTENT
-    }
+        private String schoolName;
+        private String major;
+        private String educationLevel;
+        private String career;
 
+        public String getBirthyear() { // 생년까지만 출력
+            return birthdate.substring(0, 4);
+        }
+    }
 }
 
 
