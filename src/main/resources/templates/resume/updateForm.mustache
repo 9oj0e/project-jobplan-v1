@@ -8,6 +8,7 @@
             </div>
             <div class="card-body">
                 {{#sessionUser}}
+                    <h4 class="card-title">개인 정보</h4>
                     <table class="table">
                         <tr>
                             <td>이름</td>
@@ -43,8 +44,8 @@
                     </table>
                 {{/sessionUser}}
                 {{#resume}}
-                    <table>
-                        <h4>이력서 제목</h4>
+                    <table class="table">
+                        <h4 class="card-title">이력서 제목</h4>
                         <tr>
                             <td>제목</td>
                             <td>
@@ -61,9 +62,9 @@
                         <tr>
                             <td>졸업형태</td>
                             <td>
-                                <select name="educationLevel">
-                                    <option value="중졸">중졸</option>
+                                <select name="educationLevel" class="form-control">
                                     <option value="고졸">고졸</option>
+                                    <option value="초대졸">초대졸</option>
                                     <option value="대졸">대졸</option>
                                 </select>
                             </td>
@@ -75,18 +76,18 @@
                             </td>
                         </tr>
                     </table>
-                    <h4>경력 사항</h4>
-                    <table>
+                    <h4 class="card-title">경력 사항</h4>
+                    <table class="table">
                         <tr>
                             <td>경력 정보</td>
                             <td>
-                                <textarea name="career" class="form-control">{{career}}</textarea>
+                                <textarea name="career" class="form-control" style="height: 100px">{{career}}</textarea>
                             </td>
                         </tr>
                         <tr>
                             <td>자기소개서</td>
                             <td>
-                                <textarea name="content" class="form-control">{{content}}</textarea>
+                                <textarea name="content" class="form-control" style="height: 300px">{{content}}</textarea>
                             </td>
                         </tr>
                     </table>
