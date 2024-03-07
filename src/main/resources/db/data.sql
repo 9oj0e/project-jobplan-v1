@@ -288,3 +288,4 @@ VALUES (4, 9, 2, 2, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
 VALUES (5, 10, 2, 2, now());
+

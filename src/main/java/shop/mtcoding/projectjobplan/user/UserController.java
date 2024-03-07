@@ -90,44 +90,51 @@ public class UserController {
     @GetMapping("/user/{id}")
     public String profile(HttpServletRequest request, @PathVariable int id) {
         User user = userRepository.findById(id);
-        List<Skill> skillList = skillRepository.findById(id);
-        if (skillList != null) {
-            request.setAttribute("skillList",skillList);
+
+        if(user.getIsEmployer()==true){
+            List<Skill> skillList = skillRepository.findByIdWithBoardId(id);
+            if (skillList != null) {
+                request.setAttribute("skillList",skillList);
+            }
+        }else {
+            List<Skill> skillList = skillRepository.findByIdWithUserId(id);
+            if (skillList != null) {
+                request.setAttribute("skillList", skillList);
+            }
+
+        }
+            request.setAttribute("user", user);
+            // 지원 현황 조회 (개인)
+
+            // 지원 합격 ("apply/1/accept")
+
+            // 지원 불합격 ("apply/1/reject")
+
+            // 지원 삭제 (개인)
+
+            // 지원 삭제 (기업)
+
+            // 기업 회원 인지..
+            if (user.getIsEmployer()) {
+                // 내가 쓴 공고 조회
+                List<Board> boardList = boardRepository.findByUserId(user.getId());
+                request.setAttribute("boardList", boardList);
+                // 지원자 현황 조회
+                List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(id);
+                request.setAttribute("applicationList", applicationList);
+
+                return "/employer/profile";
+            } else {
+                List<Resume> resumeList = resumeRepository.findByUserId(user.getId());
+                request.setAttribute("resumeList", resumeList);
+                List<ApplyResponse.ToUserDTO> applyList = applyRepository.findByUserId(id);
+                request.setAttribute("applyList", applyList);
+                System.out.println(applyList.get(0));
+                return "/user/profile";
+            }
+
         }
 
-        request.setAttribute("user", user);
-        // 지원 현황 조회 (개인)
-
-        // 지원 합격 ("apply/1/accept")
-
-        // 지원 불합격 ("apply/1/reject")
-
-        // 지원 삭제 (개인)
-
-        // 지원 삭제 (기업)
-
-        // 기업 회원 인지..
-        if (user.getIsEmployer()) {
-            // 내가 쓴 공고 조회
-            List<Board> boardList = boardRepository.findByUserId(user.getId());
-            request.setAttribute("boardList", boardList);
-            // 지원자 현황 조회
-            List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(id);
-            request.setAttribute("applicationList", applicationList);
-
-            return "/employer/profile";
-        }
-        else {
-            List<Resume> resumeList = resumeRepository.findByUserId(user.getId());
-            request.setAttribute( "resumeList", resumeList);
-            List<ApplyResponse.ToUserDTO> applyList = applyRepository.findByUserId(id);
-            request.setAttribute("applyList", applyList);
-            System.out.println(applyList.get(0));
-            return "/user/profile";
-        }
-
-
-    }
 
     @GetMapping("/user/{id}/updateForm")
     public String updateForm(HttpServletRequest request, @PathVariable int id) {
@@ -146,8 +153,15 @@ public class UserController {
     @PostMapping("/user/{id}/update")
     public String update(@PathVariable int id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
 
-        skillRepository.save(requestDTO.getSkill(), id);
+        if(requestDTO.getIsEmployer() !=null && requestDTO.getIsEmployer()==true){
+            skillRepository.uploadEmployer(requestDTO.getSkill(), id);
+        } else {
+            skillRepository.uploadUser(requestDTO.getSkill(), id);
+        }
+
         request.setAttribute("user", userRepository.updateById(requestDTO, id));
+
+
         return "redirect:/user/"+id;
     }
 
