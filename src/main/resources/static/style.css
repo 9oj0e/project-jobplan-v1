@@ -429,3 +429,7 @@ td {
     width: 600px;
     margin-bottom: 5%;
 }
+
+.card-title {
+    text-align: end;
+}

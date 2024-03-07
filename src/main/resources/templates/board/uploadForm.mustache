@@ -1,52 +1,64 @@
-{{> layout/header }}
-
-<div class="container">
-    <h2 class="mb-4 fw-bold">채용 공고 추가</h2>
-    <form action="/board/upload" method="post">
-    <table class="table-resume-notice">
-        <tr>
-            <td class="tb-row">공고 제목</td>
-            <td><input name="title" class="input-width30" type="text"></td>
-        </tr>
-    </table>
-
-    <h4 class="fw-semibold mb-3">채용 분야 정보</h4>
-    <table class="table-resume-notice">
-        <tr>
-            <td class="tb-row">채용 분야</td>
-            <td><input name="field" type="text"></td>
-        </tr>
-        <tr>
-            <td>포지션</td>
-            <td>
-                <input name="position" type="text">
-            </td>
-        </tr>
-        <tr>
-            <td class="tb-row">업무 상세</td>
-            <td><textarea name="content" class="textarea-work-size"></textarea></td>
-        </tr>
-        <tr>
-            <td class="tb-row">연봉</td>
-            <td>
-                <input name="salary" type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>게시일</td>
-            <td><input name="openingDate" type="date"></td>
-        </tr>
-        <tr>
-            <td>마감일</td>
-            <td><input name="closingDate" type="date"></td>
-        </tr>
-    </table>
-    <br>
-    <div class="button-post-cancel">
-        <button type="button" onclick="location.href='/'" class="btn btn-outline-dark">취소</button>
-        <button type="submit" class="btn btn-outline-dark">등록</button>
+{{>layout/header}}
+<!-- 바디 start -->
+<div class="div-card-container">
+    <div class="card div-card">
+        <form action="/board/upload" method="post">
+            <div class="card-header card-title">
+                <h2>채용 공고 추가</h2>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <td>공고 제목</td>
+                        <td><input name="title" type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td>채용 분야</td>
+                        <td>
+                            <input name="field" type="text" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>포지션</td>
+                        <td>
+                            <input name="position" type="text" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>업무 상세</td>
+                        <td>
+                            <textarea name="content" class="form-control" style="height: 300px"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>연봉</td>
+                        <td>
+                            <input name="salary" type="text" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>게시일</td>
+                        <td>
+                            <input name="openingDate" type="date" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>마감일</td>
+                        <td>
+                            <input name="closingDate" type="date" class="form-control">
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+            <div class="card-footer">
+                <div class="button-post-cancel">
+                    <button type="button" onclick="location.href='/'" class="btn btn-outline-dark">취소</button>
+                    <button type="submit" class="btn btn-outline-dark">등록</button>
+                </div>
+            </div>
+        </form>
     </div>
-    </form>
 </div>
 <!-- 바디 end -->
 {{>layout/footer}}
