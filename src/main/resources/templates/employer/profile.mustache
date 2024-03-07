@@ -20,7 +20,7 @@
                             <img class="card-img" src="/upload/{{imgFilename}}" style="width:100%;" >
                         {{/pic}}
                         {{^pic}}
-                                <img class="card-img" src="../images/{{user.businessName}}.jpg" alt="Card image" style="width:100%;">
+                                <img class="card-img" src="../images/{{user.businessName}}.jpg" onerror="this.onerror=null; this.src='../images/chaeyong.jpg';" style="width:100%;">
                         {{/pic}}
                     </div>
                     <div class="card-body">

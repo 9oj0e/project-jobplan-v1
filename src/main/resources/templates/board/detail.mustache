@@ -7,7 +7,7 @@
             <img class="card-img-top" src="/upload/{{imgFilename}}" alt="Card image" style="width:100%">
         {{/pic}}
         {{^pic}}
-            <img class="card-img-top" src="../images/{{boardDetail.businessName}}.jpg" alt="Card image" style="width:100%">
+            <img class="card-img-top" src="../images/{{boardDetail.businessName}}.jpg" onerror="this.onerror=null; this.src='../images/chaeyong.jpg';" style="width:100%">
         {{/pic}}    
             <div class="card-body">
                 <h4 class="card-title text-center">{{businessName}}</h4>
