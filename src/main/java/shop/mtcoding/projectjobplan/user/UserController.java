@@ -55,7 +55,7 @@ public class UserController {
 
         // 2. 동일 username 체크
         User user = userRepository.findByUsername(requestDTO.getUsername());
-        if (user == null){
+        if (user == null) {
             // 3. model에 위임하기
             userRepository.save(requestDTO);
             return "redirect:/loginForm";
@@ -80,9 +80,20 @@ public class UserController {
             request.setAttribute("status", 401);
             request.setAttribute("msg", "아이디 혹은 비밀번호가 틀렸습니다.");
             return "error";
-        }
-        else {
+        } else {
             session.setAttribute("sessionUser", user);
+        }
+
+
+        try {
+            if (picRepository.findImg() != null) {
+                String imgFilename = picRepository.findImg();
+                request.getSession().setAttribute("userPic2", imgFilename);
+                return "redirect:/";
+            }
+
+        } catch (Exception e) {
+            return "redirect:/";
         }
         return "redirect:/";
     }

@@ -12,10 +12,15 @@
             <div>
                 <div class="card mt-5" style="width:200px">
                     {{#userPic}}
-                        <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
+                        <img class="card-imga" src="/upload/{{userPic.imgFilename}}" style="width:100%">
                     {{/userPic}}
                     {{^userPic}}
-                        <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
+                        {{#userPic2}}
+                            <img class="card-imgb" src="/upload/{{userPic2}}" onerror="this.src='../images/avatar.png'" style="width:100%">
+                        {{/userPic2}}
+                        {{^userPic2}}
+                            <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
+                        {{/userPic2}}
                     {{/userPic}}
                     <div class="card-body">
                         <h4 class="card-title">{{user.name}}</h4>
