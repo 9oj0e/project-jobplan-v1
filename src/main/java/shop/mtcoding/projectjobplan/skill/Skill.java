@@ -16,3 +16,5 @@ public class Skill { // Tech Stack
 
     private String skillName;
 }
+
+//insert into skill_tb(user_id,employer_id, skill_name) values (null,1,'java');

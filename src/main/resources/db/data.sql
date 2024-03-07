@@ -287,3 +287,18 @@ VALUES (4, 9, 8, 2, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
 VALUES (5, 10, 5, 2, now());
+
+insert into skill_tb(user_id,employer_id, skill_name) values (null,1,'java');
+insert into skill_tb(user_id,employer_id, skill_name) values (null,1,'javascript');
+insert into skill_tb(user_id,employer_id, skill_name) values (null,1,'html');
+
+insert into skill_tb(user_id,employer_id, skill_name) values (null,2,'java');
+insert into skill_tb(user_id,employer_id, skill_name) values (null,2,'html');
+insert into skill_tb(user_id,employer_id, skill_name) values (null,2,'mysql');
+
+insert into skill_tb(user_id,employer_id, skill_name) values (6,null,'java');
+insert into skill_tb(user_id,employer_id, skill_name) values (6,null,'spring ');
+insert into skill_tb(user_id,employer_id, skill_name) values (7,null,'spring ');
+insert into skill_tb(user_id,employer_id, skill_name) values (8,null,'javascript ');
+insert into skill_tb(user_id,employer_id, skill_name) values (8,null,'jQuery ');
+
