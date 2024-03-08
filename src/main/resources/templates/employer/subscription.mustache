@@ -15,44 +15,24 @@
     <h2>구독 정보</h2>
     <hr>
     <table class="table">
-        <tr>
-            <th>이름</th>
-            <th>구직자 정보</th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>홍길동</td>
-            <td>
-                이력서 제목
-            </td>
-            <td>
-                <form action="">
-                    <button class="btn btn-danger">구독 취소</button>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>김덕배</td>
-            <td>
-                이력서 제목
-            </td>
-            <td>
-                <form action="">
-                    <button class="btn btn-danger">구독 취소</button>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>이가탄</td>
-            <td>
-                이력서 제목
-            </td>
-            <td>
-                <form action="">
-                    <button class="btn btn-danger">구독 취소</button>
-                </form>
-            </td>
-        </tr>
+        {{#subscribeList}}
+            <tr>
+                <th>이름</th>
+                <th>구직자 정보</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>{{resumeUsername}}</td>
+                <td>
+                    이력서 제목
+                </td>
+                <td>
+                    <form action="">
+                        <button class="btn btn-danger">구독 취소</button>
+                    </form>
+                </td>
+            </tr>
+        {{/subscribeList}}
         <!--
         <tr>
             <td>이가탄</td>

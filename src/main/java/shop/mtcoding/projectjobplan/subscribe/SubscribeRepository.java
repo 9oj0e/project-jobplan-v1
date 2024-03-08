@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -39,7 +40,7 @@ public class SubscribeRepository {
         }
     }
 
-    public Integer findResumeUserIdByBoardId(int resumeId){
+    public Integer findResumeUserIdByResumeId(int resumeId){
         String q = "select user_id from resume_tb where id = ?";
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, resumeId);
@@ -91,10 +92,24 @@ public class SubscribeRepository {
 
     public List<SubscribeResponse.ToEmployerDTO> findByEmployerId(int sessionUserId) {
         String q = """
+                select 
+                s.resume_id, r.title, u.name from subscribe_tb s, resume_tb r, user_tb u
+                where
+                s.user_id = ? and r.id = s.resume_id and u.id = s.resume_user_id;
                 """;
         Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, sessionUserId);
+        List<Object[]> results = query.getResultList();
+        List<SubscribeResponse.ToEmployerDTO> responseDTO = new ArrayList<>();
+        for (Object[] result : results){
+            SubscribeResponse.ToEmployerDTO dto = new SubscribeResponse.ToEmployerDTO();
+            dto.setResumeId((Integer) result[0]);
+            dto.setTitle((String) result[1]);
+            dto.setResumeUsername((String) result[2]);
+            responseDTO.add(dto);
+        }
 
-        return null;
+        return responseDTO;
     }
 
 

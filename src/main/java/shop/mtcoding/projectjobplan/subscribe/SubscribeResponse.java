@@ -9,6 +9,9 @@ public class SubscribeResponse {
     }
 
     @Data
-    public class ToEmployerDTO {
+    public static class ToEmployerDTO {
+        private Integer resumeId;
+        private String resumeUsername;
+        private String title;
     }
 }

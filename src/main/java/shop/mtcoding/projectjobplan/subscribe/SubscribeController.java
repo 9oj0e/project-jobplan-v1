@@ -48,7 +48,7 @@ public class SubscribeController {
     @PostMapping("/resume/{resumeId}/subscribe")
     public String subscribeResume(@PathVariable int resumeId) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-        subscribeRepository.uploadByResumeId(resumeId, sessionUser.getId(), subscribeRepository.findResumeUserIdByBoardId(resumeId));
+        subscribeRepository.uploadByResumeId(resumeId, sessionUser.getId(), subscribeRepository.findResumeUserIdByResumeId(resumeId));
 
 
         return "redirect:/resume/" + resumeId;
