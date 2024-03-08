@@ -15,19 +15,19 @@
     <h2>구독 정보</h2>
     <hr>
     <table class="table">
+        <tr>
+            <th>이름</th>
+            <th>구직자 정보</th>
+            <th></th>
+        </tr>
         {{#subscribeList}}
-            <tr>
-                <th>이름</th>
-                <th>구직자 정보</th>
-                <th></th>
-            </tr>
             <tr>
                 <td>{{resumeUsername}}</td>
                 <td>
-                    이력서 제목
+                    {{title}}
                 </td>
                 <td>
-                    <form action="">
+                    <form action="/resume/{{resumeId}}/unsubscribeResume" method="post">
                         <button class="btn btn-danger">구독 취소</button>
                     </form>
                 </td>

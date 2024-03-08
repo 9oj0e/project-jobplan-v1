@@ -90,10 +90,11 @@ public class SubscribeRepository {
 
     public List<SubscribeResponse.ToEmployerDTO> findByEmployerId(int sessionUserId) {
         String q = """
-                select 
-                s.resume_id, r.title, u.name from subscribe_tb s, resume_tb r, user_tb u
-                where
-                s.board_user_id = ? and r.id = s.resume_id and u.id = s.resume_user_id;
+                SELECT s.resume_id, r.title, u.name 
+                FROM subscribe_tb s
+                JOIN resume_tb r ON s.resume_id = r.id
+                JOIN user_tb u ON r.user_id = u.id
+                WHERE s.board_user_id = ?;
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, sessionUserId);

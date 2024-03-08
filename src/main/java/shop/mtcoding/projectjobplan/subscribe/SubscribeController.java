@@ -22,16 +22,16 @@ public class SubscribeController {
                                 @PathVariable int sessionUserId,
                                 HttpServletRequest request) {
         User user = (User) session.getAttribute("sessionUser");
-        if (user.getIsEmployer() == true) { // 기업 유저 (이력서 목록)
+        if (user.getIsEmployer() != true) { // 기업 유저 (이력서 목록)
             List<SubscribeResponse.ToUserDTO> subscribeList = subscribeRepository.findByUserId(sessionUserId);
             request.setAttribute("subscribeList", subscribeList);
 
-            return "/employer/subscription";
+            return "/user/subscription";
         } else { // 개인 유저 (공고 목록)
             List<SubscribeResponse.ToEmployerDTO> subscribeList = subscribeRepository.findByEmployerId(sessionUserId);
             request.setAttribute("subscribeList", subscribeList);
 
-            return "/user/subscription";
+            return "/employer/subscription";
         }
     }
 
@@ -63,6 +63,7 @@ public class SubscribeController {
         return "redirect:/board/" + boardId;
     }
 
+
     // 이력서 구독 취소
     @PostMapping("/resume/{resumeId}/unsubscribe")
     public String unsubscribeResume(@PathVariable int resumeId) {
@@ -70,5 +71,13 @@ public class SubscribeController {
         subscribeRepository.deleteByResumeId(resumeId, sessionUser.getId());
 
         return "redirect:/resume/" + resumeId;
+    }
+
+    @PostMapping("/resume/{resumeId}/unsubscribeResume")
+    public String unsubscribeResumeOnSubscription(@PathVariable int resumeId) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        subscribeRepository.deleteByResumeId(resumeId, sessionUser.getId());
+
+        return "redirect:/user/" + sessionUser.getId() + "/subscription";
     }
 }
