@@ -4,6 +4,7 @@ import lombok.Data;
 import shop.mtcoding.projectjobplan.user.User;
 
 import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 
 public class ResumeResponse {
     @Data
@@ -23,28 +24,32 @@ public class ResumeResponse {
 
     @Data
     public static class ResumeDetailDTO{
-        private Integer id;
-        private String name;
+        private String username; // todo 변수명 고치기
+        private String birthdate;
         private String address;
         private String phoneNumber;
         private String email;
 
-        private Integer userId;
+        private Integer resumeId;
+        private Integer resumeUserId;
         private String title;
         private String educationLevel;
         private String major;
         private String schoolName;
         private String content;
+        private String career;
+      
         private Boolean resumeOwner;
+
+        public String getBirthyear() { // 생년까지만 출력
+            return birthdate.substring(0, 4);
+        }
 
         public void isResumeOwner(User sessionUser){
             if(sessionUser == null) resumeOwner = false;
-            else resumeOwner = sessionUser.getId() == userId;
+            else resumeOwner = sessionUser.getId() == resumeUserId;
         }
-        // ID NAME ADDRESS PHONE_NUMBER EMAIL USER_ID
-        // TITLE EDUCATION_LEVEL MAJOR SCHOOL_NAME CONTENT
     }
-
 }
 
 

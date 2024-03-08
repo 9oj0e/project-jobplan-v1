@@ -30,5 +30,8 @@ public class BoardRequest {
         private String salary;
         private String openingDate;
         private String closingDate;
+
+        private List<String> skill;
+
     }
 }

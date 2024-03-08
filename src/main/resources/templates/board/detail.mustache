@@ -1,16 +1,78 @@
-{{> layout/header }}
-<!-- 기업 버튼 -->
-{{#boardDetail}}
-    <div class="sidenav">
-        <div class="card" style="width:150px">
-         {{#pic}}
-            <img class="card-img-top" src="/upload/{{imgFilename}}" alt="Card image" style="width:100%">
-        {{/pic}}
-        {{^pic}}
-            <img class="card-img-top" src="../images/{{boardDetail.businessName}}.jpg" onerror="this.onerror=null; this.src='../images/chaeyong.jpg';" style="width:100%">
-        {{/pic}}    
-            <div class="card-body">
-                <h4 class="card-title text-center">{{businessName}}</h4>
+{{>layout/header}}
+<!-- 바디 start -->
+<div class="div-card-container">
+    <div class="card div-card">
+        {{#boardDetail}}
+            <div class="card-header card-title">
+                <h3>{{title}}</h3>
+            </div>
+            <div class="card-body" style="margin-left: 5%; margin-right: 5%">
+                <h4 class="card-title">조건</h4>
+                <table class="table">
+                    <tr>
+                        <td>근무 지역</td>
+                        <td>{{address}}</td>
+                    </tr>
+                    <tr>
+                        <td>채용 분야</td>
+                        <td>{{field}}</td>
+                    </tr>
+                    <tr>
+                        <td>포지션</td>
+                        <td>{{position}}</td>
+                    </tr>
+                    <tr>
+                        <td>연봉</td>
+                        <td>{{salary}}</td>
+                    </tr>
+                </table>
+                <h4 class="card-title">상세 내용</h4>
+                <div class="form-control mb-3" style="height: 300px">{{content}}</div>
+                <h4 class="card-title">연락처</h4>
+                <table class="table">
+                    <tr>
+                        <td>전화</td>
+                        <td>{{phoneNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>이메일</td>
+                        <td>{{email}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card-footer">
+                <table class="table table-borderless">
+                    <tr>
+                        <td style="background-color: transparent; text-align: end">게시일</td>
+                        <td style="background-color: transparent">{{openingDate}}</td>
+                        <td style="background-color: transparent; text-align: end">마감일</td>
+                        <td style="background-color: transparent">{{closingDate}}</td>
+                    </tr>
+                </table>
+            </div>
+        {{/boardDetail}}
+    </div>
+    <div class="sidenav-container">
+        <div class="sidenav">
+            <div class="card" style="width:200px">
+                <div class="card-body" style="padding-left: 0; padding-right: 0">
+                    <div class="card-title">
+                        <table class="table">
+                            <tr>
+                                <td style="text-align: end; padding-bottom: 0; padding-top: 0">평점</td>
+                                <td style="text-align: start; padding-bottom: 0; padding-top: 0">3.0</td>
+                            </tr>
+                        </table>
+                    </div>
+                    {{#pic}}
+                        <img class="card-img-top" src="/upload/{{imgFilename}}" style="width:100%">
+                    {{/pic}}
+                    {{^pic}}
+                        <img class="card-img-top" src="../images/{{boardDetail.businessName}}.jpg"
+                             onerror="this.onerror=null; this.src='../images/chaeyong.jpg';" style="width:100%">
+                    {{/pic}}
+                    <h4 class="card-title text-center">{{boardDetail.businessName}}</h4>
+                </div>
                 <div class="card-footer" style="text-align: center;">
                     <div>
                         {{#sessionUser}}
@@ -33,79 +95,26 @@
                             {{/subscribe}}
                         {{/sessionUser}}
                         {{^sessionUser}}
-                                <form action="/loginForm" method="get">
-                                    <button class="btn btn-primary">지원</button>
-                                </form>
+                            <form action="/loginForm" method="get">
+                                <button class="btn btn-primary">지원</button>
+                            </form>
                         {{/sessionUser}}
                     </div>
-                    <div>
-                        {{#boardOwner}}
-                            <!-- 수정 삭제 버튼 -->
-                            <a href="/board/{{id}}/updateForm" method="get" class="btn btn-warning">수정</a>
-                            <form action="/board/{{id}}/delete" method="post">
+                    <!-- 수정 삭제 버튼 -->
+                    <div class="btn-container">
+                        {{#boardDetail.boardOwner}}
+                            <form action="/board/{{boardDetail.id}}/updateForm" method="get">
+                                <button class="btn btn-warning">수정</button>
+                            </form>
+                            <form action="/board/{{boardDetail.id}}/delete" method="post">
                                 <button class="btn btn-danger">삭제</button>
                             </form>
-                        {{/boardOwner}}
+                        {{/boardDetail.boardOwner}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 게시글내용 -->
-    <div class="container bg-light">
-        <h2><b>{{title}}</b></h2>
-        <hr>
-        <div>
-            <span>요약</span>
-            <table class="table">
-                <tr>
-                    <th>근무지역</th>
-                    <td>{{address}}</td>
-                </tr>
-                <tr>
-                    <th>모집분야</th>
-                    <td>{{field}}</td>
-                </tr>
-                <tr>
-                    <th>포지션</th>
-                    <td>{{position}}</td>
-                </tr>
-                <tr>
-                    <th>연봉</th>
-                    <td>{{salary}}</td>
-                </tr>
-            </table>
-        </div>
-        <div class="m-4 p-2">
-            <div>
-                <h3>내용</h3>
-                <div class="bg-white">
-                    {{content}}
-                </div>
-            </div>
-            <hr>
-            <div>
-                <h4>채용공고 게시일</h4>
-                <div>{{openingDate}}</div>
-            </div>
-            <hr>
-            <div>
-                <h4>채용공고 마감일</h4>
-                <div>{{closingDate}}</div>
-            </div>
-            <hr>
-            <div>
-                <h4>연락처</h4>
-                <div>전화번호: {{phoneNumber}}</div>
-                <div>이메일: {{email}}</div>
-            </div>
-            <hr>
-            <div>
-                <h4>근무지역</h4>
-                <div>지도</div>
-            </div>
-        </div>
-    </div>
-{{/boardDetail}}
+</div>
 <!-- 바디 end -->
 {{>layout/footer}}

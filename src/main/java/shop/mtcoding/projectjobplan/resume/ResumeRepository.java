@@ -17,44 +17,97 @@ import java.util.List;
 public class ResumeRepository {
     private final EntityManager entityManager;
 
-    public ResumeResponse.ResumeDetailDTO detail(int idx) {
+    public ResumeResponse.ResumeDetailDTO detail(int resumeId) {
         String q = """
-                select
-                r.id, u.name, u.address, u.phone_number, u.email,
-                r.user_id, r.title, r.education_level, r.major, r.school_name, r.content
-                from user_tb u, resume_tb r
-                where r.id = ? and r.user_id = u.id
+                SELECT
+                u.name, u.birthdate, u.address, u.phone_number, u.email,
+                r.user_id, r.title, r.content, r.school_name, r.major, r.education_level, r.career
+                FROM user_tb AS u, resume_tb AS r
+                WHERE r.id = ? AND r.user_id = u.id
                 """;
         Query query = entityManager.createNativeQuery(q);
-        query.setParameter(1, idx);
+        query.setParameter(1, resumeId);
 
         Object[] row = (Object[]) query.getSingleResult();
-        Integer id = (Integer) row[0];
-        String name = (String) row[1];
+        String username = (String) row[0]; // todo 변수명 고치
+        String birthdate = (String) row[1];
         String address = (String) row[2];
         String phoneNumber = (String) row[3];
         String email = (String) row[4];
-        Integer userId = (Integer) row[5];
+
+        Integer resumeUserId = (Integer) row[5];
         String title = (String) row[6];
-        String educationLevel = (String) row[7];
-        String major = (String) row[8];
-        String schoolName = (String) row[9];
-        String content = (String) row[10];
+        String content = (String) row[7];
+        String schoolName = (String) row[8];
+        String major = (String) row[9];
+        String educationLevel = (String) row[10];
+        String career = (String) row[11];
 
         ResumeResponse.ResumeDetailDTO resumeDetailDTO = new ResumeResponse.ResumeDetailDTO();
-        resumeDetailDTO.setId(id);
-        resumeDetailDTO.setName(name);
+        resumeDetailDTO.setUsername(username);
+        resumeDetailDTO.setBirthdate(birthdate);
         resumeDetailDTO.setAddress(address);
         resumeDetailDTO.setPhoneNumber(phoneNumber);
         resumeDetailDTO.setEmail(email);
-        resumeDetailDTO.setUserId(userId);
+
+        resumeDetailDTO.setResumeId(resumeId);
+        resumeDetailDTO.setResumeUserId(resumeUserId);
         resumeDetailDTO.setTitle(title);
-        resumeDetailDTO.setEducationLevel(educationLevel);
-        resumeDetailDTO.setMajor(major);
-        resumeDetailDTO.setSchoolName(schoolName);
         resumeDetailDTO.setContent(content);
+        resumeDetailDTO.setSchoolName(schoolName);
+        resumeDetailDTO.setMajor(major);
+        resumeDetailDTO.setEducationLevel(educationLevel);
+        resumeDetailDTO.setCareer(career);
 
         return resumeDetailDTO;
+    }
+
+    public List<ResumeResponse.ResumeAndUserDTO> findByResumeAndUser(int page,String keyword) {
+        final int COUNT = 10;
+        int value = (page - 1) * COUNT;
+
+        String q = """
+
+            SELECT\s
+                r.id, r.user_id, r.title, r.content, r.career,\s
+                u.address, u.is_employer, u.name\s
+                FROM\s
+               resume_tb r\s
+               INNER JOIN\s
+              user_tb u\s
+              ON\s
+             r.user_id = u.id\s
+            INNER JOIN\s
+            skill_tb s\s
+            ON\s
+            r.id = s.resume_id\s
+            WHERE\s
+            u.is_employer = false\s
+            AND s.skill_name = ?  ORDER BY r.id DESC LIMIT ?,?
+            """ ;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1,keyword);
+        query.setParameter(2, value);
+        query.setParameter(3, COUNT);
+
+        List<Object[]> results = query.getResultList();
+        List<ResumeResponse.ResumeAndUserDTO> responseDTO = new ArrayList<>();
+
+        for (Object[] result : results) {
+
+            ResumeResponse.ResumeAndUserDTO dto = new ResumeResponse.ResumeAndUserDTO();
+            dto.setId((Integer) result[0]);
+            dto.setUserId((Integer) result[1]);
+            dto.setTitle((String) result[2]);
+            dto.setContent((String) result[3]);
+            dto.setCareer((String) result[4]);
+            dto.setAddress((String) result[5]);
+            dto.setEmployer((boolean) result[6]);
+            dto.setName((String) result[7]);
+
+            responseDTO.add(dto);
+        }
+        return responseDTO;
     }
 
     public List<ResumeResponse.ResumeAndUserDTO> findByResumeAndUser(int page) {
@@ -82,7 +135,6 @@ public class ResumeRepository {
             dto.setAddress((String) result[5]);
             dto.setEmployer((boolean) result[6]);
             dto.setName((String) result[7]);
-
 
             responseDTO.add(dto);
         }
@@ -131,7 +183,15 @@ public class ResumeRepository {
         query.setParameter(6, requestDTO.getEducationLevel());
         query.setParameter(7, requestDTO.getCareer());
 
-        return query.executeUpdate(); // 영향 받은 행
+        query.executeUpdate();
+
+        String q1 = """
+                select max(id) from resume_tb;
+                """;
+        Query query1 = entityManager.createNativeQuery(q1);
+        Integer resumeId = (Integer) query1.getSingleResult();
+      
+        return resumeId ;
     }
 
     public List<Resume> findAll() {
