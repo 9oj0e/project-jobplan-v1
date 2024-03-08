@@ -1,7 +1,10 @@
 {{>layout/header}}
-<div style="display: flex; justify-content: center">
-    <div class="card" style="width: 600px; margin-bottom: 5%">
-        <div class="card-header" style="text-align: end"><b>회원 정보 수정</b></div>
+<!-- 바디 start -->
+<div class="div-card-container">
+    <div class="card div-card">
+        <div class="card-header card-title">
+            <b>회원 정보 수정</b>
+        </div>
         <div class="card-body">
             <form action="/user/{{user.id}}/update" method="post" enctype="application/x-www-form-urlencoded"
                   onsubmit="return true">
@@ -49,7 +52,6 @@
                     <input type="email" class="form-control" name="email"
                            placeholder="{{user.email}}" value="{{user.email}}">
                 </div>
-
                 </table>
                 <div>보유 기술</div>
                 <div class="table-resume-notice">
@@ -69,9 +71,7 @@
                         <input type="checkbox" name="skill" value="mysql">
                         <span>MySQL</span>
                     </div>
-
                 </div>
-
                 <button type="submit" class="btn btn-primary form-control">수정 완료</button>
             </form>
         </div>

@@ -205,11 +205,11 @@ VALUES (11, '목표를 달성하기 위해 실행한 3단계 실행 계획.', '�
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (6, '당신은 내가 넘어야 할 작은 산에 불과하다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (6, '꿈꾸고 믿고 대담해지고 실천하자.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (7, '당신은 내가 넘어야 할 작은 산에 불과하다.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
+VALUES (7, '코드를 개선하는 개발자.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
@@ -217,7 +217,7 @@ VALUES (8, '당신은 내가 넘어야 할 작은 산에 불과하다.', '이력
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (9, '화살 하나는 쉽게 부러져도 화살 한 묶음은 쉽게 부러지지 않습니다.', '이력서내용', '학교명', '전공', '학력', '신입', now());
+VALUES (9, 'Java 개발자', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
@@ -229,11 +229,11 @@ VALUES (11, '한번 물면 쉽게 놓지 않습니다.', '이력서내용', '학
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (6, '회복의 유일한 길은 다시 시작하는 것이다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (6, '대한민국의 미래.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (7, '회복의 유일한 길은 다시 시작하는 것이다.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
+VALUES (7, '10년후 대한민국을 책임질 인재.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
