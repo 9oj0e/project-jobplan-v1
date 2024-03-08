@@ -46,8 +46,8 @@ public class BoardController {
     }
 
     @GetMapping("/board/listings")
-    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1") int page,@RequestParam(value = "keyword",defaultValue = "null") String keyword) {
-
+    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1") int page,@RequestParam(value = "keyword", required = false) String keyword) {
+        request.setAttribute("keyword",keyword);
         if(keyword!=null){
             List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page,keyword);
             List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
@@ -55,8 +55,9 @@ public class BoardController {
                 if (dto.isEmployer()) {
                     employerList.add(dto);
                 }
+                request.setAttribute("employerList", employerList);
+
             }
-            request.setAttribute("employerList", employerList);
             // 페이지네이션 모듈
             int totalPage = boardRepository.countIsEmployerTrue();
             PagingUtil paginationHelper = new PagingUtil(totalPage, page);
@@ -75,8 +76,9 @@ public class BoardController {
                 if (dto.isEmployer()) {
                     employerList.add(dto);
                 }
+                request.setAttribute("employerList", employerList);
+
             }
-            request.setAttribute("employerList", employerList);
             // 페이지네이션 모듈
             int totalPage = boardRepository.countIsEmployerTrue();
             PagingUtil paginationHelper = new PagingUtil(totalPage, page);
