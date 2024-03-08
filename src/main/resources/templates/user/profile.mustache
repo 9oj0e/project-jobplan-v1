@@ -4,7 +4,7 @@
     <div class="div-body">
         <div class="div-layout">
             <div class="d-flex justify-content-between">
-                <h3><b>내 정보</b></h3>
+                <h4><b>안녕하세요, {{sessionUser.name}}님</b></h3>
                 <form action="/user/{{sessionUser.id}}/updateForm" class="justify-content-end">
                     <button class="btn btn-outline-primary">수정</button>
                     <button class="btn btn-primary">탈퇴</button>
@@ -20,7 +20,9 @@
                             <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
                         {{/userPic}}
                         <div class="card-body">
-                            <h4 class="card-title">{{user.name}}</h4>
+                            <h4>{{user.name}}님</h4>
+                        </div>
+                        <div class="card-footer">
                             <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
                                 {{#userPic}}
                                     <form action="/deleteImg" method="post">
