@@ -47,8 +47,8 @@ public class BoardController {
 
     @GetMapping("/board/listings")
     public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1") int page,@RequestParam(value = "keyword", required = false) String keyword) {
-        request.setAttribute("keyword",keyword);
-        if(keyword!=null){
+
+            if(keyword!=null){
             List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page,keyword);
             List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
             for (BoardResponse.BoardAndUserDTO dto : responseDTO) {

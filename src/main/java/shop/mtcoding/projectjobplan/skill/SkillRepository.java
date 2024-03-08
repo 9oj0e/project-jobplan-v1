@@ -139,4 +139,20 @@ public class SkillRepository {
             return null;
         }
     }
+
+    public List<Skill> findByResumeId(int resumeId) {
+        String q = """
+                select * from skill_tb where resume_id = ?
+                """;
+        Query query = entityManager.createNativeQuery(q,Skill.class);
+        query.setParameter(1,resumeId);
+
+        try {
+            List<Skill> skillList = query.getResultList();
+            return skillList;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
 }

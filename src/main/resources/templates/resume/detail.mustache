@@ -66,6 +66,17 @@
     </div>
     <div class="m-4 p-2">
         <div>
+            <h3>요구 스킬</h3>
+            <div>
+                {{#skillResumeList}}
+                    <span>{{skillName}}</span>
+                {{/skillResumeList}}
+                {{^skillResumeList}}
+                    <div>없음</div>
+                {{/skillResumeList}}
+            </div>
+            <hr>
+        <div>
             <h3>자기소개서</h3>
             <div class="bg-white">
                 {{detail.content}}

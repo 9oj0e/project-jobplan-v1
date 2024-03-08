@@ -60,7 +60,7 @@ public class ResumeController {
     @GetMapping("/resume/listings")
     public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1")int page,@RequestParam(value = "keyword", required = false) String keyword) {
         // 기업 메인 페이지
-        request.setAttribute("keywordResume",keyword);
+
         if(keyword!=null){
             List<ResumeResponse.ResumeAndUserDTO> responseDTO = resumeRepository.findByResumeAndUser(page,keyword);
             List<ResumeResponse.ResumeAndUserDTO> resumeList = new ArrayList<>();
@@ -113,6 +113,9 @@ public class ResumeController {
     public String detail(@PathVariable int id, HttpServletRequest request, PicRequest.UploadDTO requestDTO, UserRequest.JoinDTO userRequestDTO) {
         ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
         request.setAttribute("detail", resumeDetailDTO);
+
+        List<Skill> skillResumeList = skillRepository.findByResumeId(id);
+        request.setAttribute("skillResumeList",skillResumeList);
 
         return "/resume/detail";
     }
