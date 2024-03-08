@@ -65,7 +65,76 @@ public class BoardRepository {
         return boardDetailDTO;
     }
 
+    public List<BoardResponse.BoardAndUserDTO> findByBoardtbAndUsertb(int page,String keyword) {
+
+        final int COUNT = 10;
+        int value = (page - 1) * COUNT;
+        String q = """
+
+                SELECT\s
+                                b.id,\s
+                                b.employer_id,\s
+                                b.title,\s
+                                b.content,\s
+                                b.field,\s
+                                b.position,\s
+                                b.salary,\s
+                                b.opening_date,\s
+                                b.closing_date,\s
+                                b.created_at,\s
+                                u.username,\s
+                                u.address,\s
+                                u.is_employer,\s
+                                u.business_name,\s
+                                s.skill_name\s
+                            FROM\s
+                                board_tb b\s
+                            INNER JOIN\s
+                                user_tb u\s
+                            ON\s
+                                b.employer_id = u.id\s
+                            INNER JOIN\s
+                                skill_tb s\s
+                            ON\s
+                                b.id = s.board_id\s
+                            WHERE\s
+                                u.is_employer = true\s
+                                AND s.skill_name = ? ORDER BY b.id DESC LIMIT ?,?                        
+                                """;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1,keyword);
+        query.setParameter(2, value);
+        query.setParameter(3, COUNT);
+        List<Object[]> results = query.getResultList();
+        List<BoardResponse.BoardAndUserDTO> responseDTO = new ArrayList<>();
+
+        for (Object[] result : results) {
+
+            BoardResponse.BoardAndUserDTO dto = new BoardResponse.BoardAndUserDTO();
+            dto.setId((Integer) result[0]);
+            dto.setEmployerId((Integer) result[1]);
+            dto.setTitle((String) result[2]);
+            dto.setContent((String) result[3]);
+            dto.setField((String) result[4]);
+            dto.setPosition((String) result[5]);
+            dto.setSalary((String) result[6]);
+            dto.parseOpeningDate((Timestamp) result[7]);
+            dto.parseClosingDate((Timestamp) result[8]);
+            dto.parseCreatedAt((Timestamp) result[9]);
+            dto.setUsername((String) result[10]);
+            dto.setAddress((String) result[11]);
+            dto.setEmployer((boolean) result[12]);
+            dto.setBusinessName((String) result[13]);
+            dto.setSkillName((String) result[14]);
+
+            responseDTO.add(dto);
+        }
+        return responseDTO;
+    }
+
     public List<BoardResponse.BoardAndUserDTO> findByBoardtbAndUsertb(int page) {
+
+
         final int COUNT = 10;
         int value = (page - 1) * COUNT;
         String q = """

@@ -32,6 +32,7 @@ public class BoardResponse {
         private String businessName;
 
         private String keyword ;
+        private String skillName ;
 
         public void parseOpeningDate(Timestamp timestamp){
             // Timestamp -> String

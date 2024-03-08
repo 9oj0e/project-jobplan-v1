@@ -46,26 +46,52 @@ public class BoardController {
     }
 
     @GetMapping("/board/listings")
-    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1") int page) {
-        List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page);
-        List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
-        for (BoardResponse.BoardAndUserDTO dto : responseDTO) {
-            if (dto.isEmployer()) {
-                employerList.add(dto);
+    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1") int page,@RequestParam(value = "keyword",defaultValue = "null") String keyword) {
+
+        if(keyword!=null){
+            List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page,keyword);
+            List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
+            for (BoardResponse.BoardAndUserDTO dto : responseDTO) {
+                if (dto.isEmployer()) {
+                    employerList.add(dto);
+                }
             }
+            request.setAttribute("employerList", employerList);
+            // 페이지네이션 모듈
+            int totalPage = boardRepository.countIsEmployerTrue();
+            PagingUtil paginationHelper = new PagingUtil(totalPage, page);
+
+            request.setAttribute("nextPage", paginationHelper.getNextPage());
+            request.setAttribute("prevPage", paginationHelper.getPrevPage());
+            request.setAttribute("first", paginationHelper.isFirst());
+            request.setAttribute("last", paginationHelper.isLast());
+            request.setAttribute("numberList", paginationHelper.getNumberList());
+
+            return "/board/listings";
+        }else {
+            List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page);
+            List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
+            for (BoardResponse.BoardAndUserDTO dto : responseDTO) {
+                if (dto.isEmployer()) {
+                    employerList.add(dto);
+                }
+            }
+            request.setAttribute("employerList", employerList);
+            // 페이지네이션 모듈
+            int totalPage = boardRepository.countIsEmployerTrue();
+            PagingUtil paginationHelper = new PagingUtil(totalPage, page);
+
+            request.setAttribute("nextPage", paginationHelper.getNextPage());
+            request.setAttribute("prevPage", paginationHelper.getPrevPage());
+            request.setAttribute("first", paginationHelper.isFirst());
+            request.setAttribute("last", paginationHelper.isLast());
+            request.setAttribute("numberList", paginationHelper.getNumberList());
+
+            return "/board/listings";
+
         }
-        request.setAttribute("employerList", employerList);
-        // 페이지네이션 모듈
-        int totalPage = boardRepository.countIsEmployerTrue();
-        PagingUtil paginationHelper = new PagingUtil(totalPage, page);
 
-        request.setAttribute("nextPage", paginationHelper.getNextPage());
-        request.setAttribute("prevPage", paginationHelper.getPrevPage());
-        request.setAttribute("first", paginationHelper.isFirst());
-        request.setAttribute("last", paginationHelper.isLast());
-        request.setAttribute("numberList", paginationHelper.getNumberList());
 
-        return "/board/listings";
     }
 
     @GetMapping("/board/{id}")
