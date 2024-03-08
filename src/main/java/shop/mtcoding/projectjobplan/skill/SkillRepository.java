@@ -127,4 +127,29 @@ public class SkillRepository {
         }
 
     }
+    @Transactional
+    public void updateSkillByResumeId(List<String> skills,int resumeId, int userId) {
+
+        String q1 = """
+                delete from skill_tb where resume_id = ?
+                """;
+        Query query1 = entityManager.createNativeQuery(q1);
+        query1.setParameter(1,resumeId);
+        query1.executeUpdate();
+
+        for(String skill : skills){
+            String q2 = """
+                insert into skill_tb(skill_name,resume_id,user_id) values(?,?,?)
+                """;
+            Query query2 = entityManager.createNativeQuery(q2);
+            query2.setParameter(1,skill);
+            query2.setParameter(2,resumeId);
+            query2.setParameter(3,userId);
+            query2.executeUpdate();
+        }
+
+
+
+
+    }
 }

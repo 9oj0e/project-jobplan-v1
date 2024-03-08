@@ -33,6 +33,10 @@ public class ResumeController {
         resumeRepository.updateById(requestDTO, id);
         User user = (User) session.getAttribute("sessionUser");
 
+        skillRepository.updateSkillByResumeId(requestDTO.getSkill(),id,user.getId());
+
+
+
         return "redirect:/user/" + user.getId();
     }
 
