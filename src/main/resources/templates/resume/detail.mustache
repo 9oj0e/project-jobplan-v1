@@ -2,6 +2,15 @@
 <!-- 기업 버튼 -->
 <div class="sidenav">
     <div class="card" style="width:150px">
+        <!--평점-->
+        <div class="card-header" style="display: flex; justify-content: space-around">
+            <div style="margin-top: 3px">
+                {{#avgRate}}
+                    <b>평점 ⭐ {{avgRate}}</b>
+                {{/avgRate}}
+            </div>
+
+        </div>
         {{#userPic}}
             <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
         {{/userPic}}
@@ -29,6 +38,27 @@
                 </div>
             </div>
         </div>
+
+
+        <!--평가 - ⭐유저가 지원한 공고의 관리자만 볼 수 있게 해야함⭐-->
+
+            <form action="/rating/score/{{resumeList.id}}" method="post">
+                <div class="card-footer">
+                    <select id="rate" name="rate" style="width: 100%">
+                        <option value="1">1점</option>
+                        <option value="2">2점</option>
+                        <option value="3">3점</option>
+                        <option value="4">4점</option>
+                        <option value="5">5점</option>
+                    </select>
+
+                    <div align="right">
+                        <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 5px">평가하기</button>
+                    </div>
+                </div>
+            </form>
+
+
     </div>
 </div>
 <!-- 게시글내용 -->

@@ -17,6 +17,12 @@ import java.util.List;
 public class ResumeRepository {
     private final EntityManager entityManager;
 
+    public Resume findResumeId(int id) {
+        Query query = entityManager.createNativeQuery("select * from resume_tb where id = ?", Resume.class);
+        query.setParameter(1, id);
+        return (Resume) query.getSingleResult();
+    }
+
     public ResumeResponse.ResumeDetailDTO detail(int idx) {
         String q = """
                 select
@@ -150,6 +156,13 @@ public class ResumeRepository {
 
         return (Resume) query.getSingleResult();
     }
+
+//    public Resume findUserIdById(Integer id) {
+//        Query query = entityManager.createNativeQuery("select id, user_id from resume_tb where id = ?");
+//        query.setParameter(1, id);
+//        return (Resume) query.getSingleResult();
+//    }
+
     public List<Resume> findByUserId(Integer userId) {
         String q = "select * from resume_tb where user_id = ? order by id desc";
 

@@ -5,12 +5,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.board.BoardResponse;
 import shop.mtcoding.projectjobplan.pic.Pic;
 import shop.mtcoding.projectjobplan.pic.PicRepository;
 import shop.mtcoding.projectjobplan.pic.PicRequest;
+import shop.mtcoding.projectjobplan.rating.Rating;
+import shop.mtcoding.projectjobplan.rating.RatingRepository;
 import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
 import shop.mtcoding.projectjobplan.user.User;
@@ -26,6 +29,7 @@ public class ResumeController {
     private final SkillRepository skillRepository;
     private final HttpSession session;
     private final PicRepository picRepository;
+    private final RatingRepository ratingRepository;
 
     @PostMapping("resume/{id}/update")
     public String update(@PathVariable int id, ResumeRequest.UpdateDTO requestDTO){
@@ -77,12 +81,28 @@ public class ResumeController {
     }
 
     @GetMapping("/resume/{id}")
-    public String detail(@PathVariable int id, HttpServletRequest request, PicRequest.UploadDTO requestDTO, UserRequest.JoinDTO userRequestDTO) {
+    @PostMapping("/resume/{id}")
+    public String detail(@PathVariable int id, HttpServletRequest request, Model model) {
+        model.addAttribute("resumeList", resumeRepository.findResumeId(id));
         ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id);
         request.setAttribute("detail", resumeDetailDTO);
 
+        Resume resume = resumeRepository.findById(id);
+        Double avgRate = ratingRepository.findAvgRateBySubjectId(resume.getUserId());
+        model.addAttribute("avgRate", avgRate);
+
         return "/resume/detail";
     }
+
+//    @PostMapping("/resume/{id}")
+//    public String detail(Model model, @PathVariable int id) {
+//        Resume resume = resumeRepository.findById(id);
+//        Double avgRate = ratingRepository.findAvgRateBySubjectId(resume.getUserId());
+//        model.addAttribute("avgRate", avgRate);
+//
+//        return "/resume/detail";
+//    }
+
 
     @GetMapping("/resume/uploadForm")
     public String uploadForm() {
