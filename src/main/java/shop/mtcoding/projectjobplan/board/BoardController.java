@@ -24,7 +24,7 @@ public class BoardController {
     private final BoardRepository boardRepository;
     private final SkillRepository skillRepository;
     private final HttpSession session;
-  
+
     @GetMapping({"/", "/board"})
     public String index(HttpServletRequest request) {
         List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb();

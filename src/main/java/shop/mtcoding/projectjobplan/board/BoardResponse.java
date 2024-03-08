@@ -31,6 +31,8 @@ public class BoardResponse {
         private boolean isEmployer; // 사업자인지
         private String businessName;
 
+        private String keyword ;
+
         public void parseOpeningDate(Timestamp timestamp){
             // Timestamp -> String
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
