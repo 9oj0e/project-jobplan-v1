@@ -27,7 +27,7 @@
                     </tr>
                 </table>
                 <h4 class="card-title">상세 내용</h4>
-                <div class="form-control mb-5" style="height: 300px">{{content}}</div>
+                <div class="form-control mb-3" style="height: 300px">{{content}}</div>
                 <h4 class="card-title">연락처</h4>
                 <table class="table">
                     <tr>
@@ -64,12 +64,13 @@
                             </tr>
                         </table>
                     </div>
-         {{#pic}}
-            <img class="card-img-top" src="/upload/{{imgFilename}}" style="width:100%">
-        {{/pic}}
-        {{^pic}}
-            <img class="card-img-top" src="../images/{{boardDetail.businessName}}.jpg" onerror="this.onerror=null; this.src='../images/chaeyong.jpg';" style="width:100%">
-        {{/pic}}    
+                    {{#pic}}
+                        <img class="card-img-top" src="/upload/{{imgFilename}}" style="width:100%">
+                    {{/pic}}
+                    {{^pic}}
+                        <img class="card-img-top" src="../images/{{boardDetail.businessName}}.jpg"
+                             onerror="this.onerror=null; this.src='../images/chaeyong.jpg';" style="width:100%">
+                    {{/pic}}
                     <h4 class="card-title text-center">{{boardDetail.businessName}}</h4>
                 </div>
                 <div class="card-footer" style="text-align: center;">
