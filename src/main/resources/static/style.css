@@ -197,6 +197,12 @@ a {
     grid-gap: 10px;
 }
 
+.div-company-img {
+    height: 180px;
+    background-size: 100% 100%;
+    border-radius: 20px;
+}
+
 .div-company-img-네이버 {
     background-image: url(images/네이버.jpg);
     height: 180px;

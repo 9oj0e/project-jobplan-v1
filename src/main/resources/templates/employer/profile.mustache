@@ -18,12 +18,15 @@
                 <div class="div-information-grid">
                     <div class="card mt-5" style="width:200px">
                         <div class="card-img" style="width:100%">
-                            {{#pic}}
-                                <img class="card-img" src="/upload/{{imgFilename}}" style="width:100%;" >
-                            {{/pic}}
-                            {{^pic}}
-                                <img class="card-img" src="../images/{{user.businessName}}.jpg" alt="Card image" style="width:100%;">
-                            {{/pic}}
+                        <div class="card-body">
+                        <h4 class="card-title">{{user.businessName}}</h4>
+                            
+                        {{#pic}}
+                            <img class="card-img" src="/upload/{{imgFilename}}" style="width:100%;" >
+                        {{/pic}}
+                        {{^pic}}
+                                <img class="card-img" src="../images/{{user.businessName}}.jpg" onerror="this.src='../../images/{{user.businessName}}.jpg'" style="width:100%;">
+                        {{/pic}}
                         </div>
                         <div class="card-body">
                             <h4>{{user.businessName}}</h4>

@@ -64,12 +64,12 @@
                             </tr>
                         </table>
                     </div>
-                    {{#pic}}
-                        <img class="card-img-top" src="/upload/{{imgFilename}}" style="width:100%">
-                    {{/pic}}
-                    {{^pic}}
-                        <img class="card-img-top" src="../images/{{boardDetail.businessName}}.jpg" style="width:100%">
-                    {{/pic}}
+         {{#pic}}
+            <img class="card-img-top" src="/upload/{{imgFilename}}" style="width:100%">
+        {{/pic}}
+        {{^pic}}
+            <img class="card-img-top" src="../images/{{boardDetail.businessName}}.jpg" onerror="this.onerror=null; this.src='../images/chaeyong.jpg';" style="width:100%">
+        {{/pic}}    
                     <h4 class="card-title text-center">{{boardDetail.businessName}}</h4>
                 </div>
                 <div class="card-footer" style="text-align: center;">
