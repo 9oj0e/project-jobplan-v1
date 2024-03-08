@@ -21,12 +21,10 @@
                         <td>전공</td>
                         <td>{{major}}</td>
                     </tr>
-                    <!--
                     <tr>
                         <td>졸업형태</td>
                         <td>{{educationLevel}}</td>
                     </tr>
-                    -->
                     <tr>
                         <td>이름</td>
                         <td>{{username}}</td>
@@ -96,83 +94,6 @@
                         </div>
                     {{/resumeDetail.resumeOwner}}
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- 바디 end -->
-=======
-{{> layout/header }}
-<!-- 기업 버튼 -->
-<div class="sidenav">
-    <div class="card" style="width:150px">
-        {{#userPic}}
-            <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
-        {{/userPic}}
-        {{^userPic}}
-            {{#userPic2}}
-                <img class="card-img" src="/upload/{{userPic2}}" onerror="this.src='../images/avatar.png'" style="width:100%">
-            {{/userPic2}}
-            {{^userPic2}}
-                <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
-            {{/userPic2}}
-        {{/userPic}}
-        <div class="card-body">
-            <h4 class="card-title text-center">{{detail.name}}</h4>
-            <div class="card-footer" style="text-align: center;">
-                <!-- 지원하기 버튼 -->
-                <div>
-                    <a href="#" class="btn btn-primary">지원</a>
-                </div>
-                <!-- 수정 삭제 버튼 -->
-                <div>
-                    <a href="/board/1/updateForm" method="get" class="btn btn-warning">수정</a>
-                    <form action="/board/1/delete" method="post" onsubmit="return false">
-                        <button class="btn btn-danger">삭제</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- 게시글내용 -->
-<div class="container bg-light">
-    <h2><b>{{detail.title}}</b></h2>
-    <hr>
-    <div>
-        <span>요약</span>
-        <table class="table">
-            <tr>
-                <th>학력</th>
-                <td>{{detail.educationLevel}}</td>
-            </tr>
-            <tr>
-                <th>학교명</th>
-                <td>{{detail.schoolName}}</td>
-            </tr>
-            <tr>
-                <th>전공</th>
-                <td>{{detail.major}}</td>
-            </tr>
-            <tr>
-                <th>주소</th>
-                <td>{{detail.address}}</td>
-            </tr>
-            <tr>
-                <th>전화번호</th>
-                <td>{{detail.phoneNumber}}</td>
-            </tr>
-            <tr>
-                <th>email</th>
-                <td>{{detail.email}}</td>
-            </tr>
-        </table>
-    </div>
-    <div class="m-4 p-2">
-        <div>
-            <h3>자기소개서</h3>
-            <div class="bg-white">
-                {{detail.content}}
             </div>
         </div>
     </div>
