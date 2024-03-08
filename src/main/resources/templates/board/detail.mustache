@@ -3,6 +3,18 @@
 {{#boardDetail}}
     <div class="sidenav" xmlns="http://www.w3.org/1999/html">
         <div class="card" style="width:150px">
+            <!--평점-->
+            <div class="card-footer" style="display: flex; justify-content: space-around">
+                <div style="margin-top: 3px">
+                    {{^rate}}
+                        평점 ⭐
+                    {{/rate}}
+                    {{#rate}}
+                        평점 ⭐ <b>{{rate}}</b>
+                    {{/rate}}
+
+                </div>
+            </div>
             {{#pic}}
                 <img class="card-img-top" src="/upload/{{imgFilename}}" alt="Card image" style="width:100%">
             {{/pic}}
@@ -39,28 +51,33 @@
                 </div>
             </div>
 
-            <!--평점-->
-            <div class="card-footer" style="display: flex; justify-content: space-around">
-                <div style="margin-top: 3px">
-                    ⭐ <b>4.5</b>
-                </div>
 
-            </div>
+
             {{#sessionUser}}
                 {{^isEmployer}}
-                    <form action="/rating/score/{{id}}" method="get">
-                        <div class="card-footer">
-                            <input type="radio" name="rating" value="5" id="five"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5점<br>
-                            <input type="radio" name="rating" value="4" id="four"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4점<br>
-                            <input type="radio" name="rating" value="3" id="three"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3점<br>
-                            <input type="radio" name="rating" value="2" id="two"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2점<br>
-                            <input type="radio" name="rating" value="1" id="one"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1점
+                    {{^score}}
+                        <form action="/rating/score/{{boardDetail.id}}" method="post">
+                            <div class="card-footer">
+                                <select id="rating" name="rating" style="width: 100%">
+                                    <option value="1">1점</option>
+                                    <option value="2">2점</option>
+                                    <option value="3">3점</option>
+                                    <option value="4">4점</option>
+                                    <option value="5">5점</option>
+                                </select>
 
-                            <div align="right">
-                                <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 5px">평가하기</button>
+                                <div align="right">
+                                    <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 5px">평가하기</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    {{/score}}
+
+
+                    {{#score}}
+                        평가를 완료하였습니다.
+                    {{/score}}
+
                 {{/isEmployer}}
             {{/sessionUser}}
 

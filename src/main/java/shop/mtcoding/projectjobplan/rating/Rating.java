@@ -12,5 +12,5 @@ public class Rating {
     private Integer id;
     private Integer raterId; // 평가자 ID
     private Integer subjectId; // 피평가자 ID
-    private Double rate; // 점수
+    private Integer rate; // 점수
 }
