@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,10 +83,29 @@ public class SubscribeRepository {
 
     public List<SubscribeResponse.ToUserDTO> findByUserId(int sessionUserId) {
         String q = """
+                SELECT u.address, u.business_name, b.id, b.field, b.title, b.salary, b.closing_date
+                FROM subscribe_tb s
+                JOIN board_tb b ON b.id = s.board_id
+                JOIN user_tb u ON b.employer_id = u.id
+                WHERE s.resume_user_id = ?;
                 """;
         Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, sessionUserId);
+        List<Object[]> results = query.getResultList();
+        List<SubscribeResponse.ToUserDTO> responseDTO = new ArrayList<>();
+        for (Object[] result : results){
+            SubscribeResponse.ToUserDTO dto = new SubscribeResponse.ToUserDTO();
+            dto.setAddress((String) result[0]);
+            dto.setBusinessName((String) result[1]);
+            dto.setBoardId((Integer) result[2]);
+            dto.setField((String) result[3]);
+            dto.setTitle((String) result[4]);
+            dto.setSalary((String) result[5]);
+            dto.setClosingDate((Timestamp) result[6]);
+            responseDTO.add(dto);
+        }
 
-        return null;
+        return responseDTO;
     }
 
     public List<SubscribeResponse.ToEmployerDTO> findByEmployerId(int sessionUserId) {

@@ -63,6 +63,15 @@ public class SubscribeController {
         return "redirect:/board/" + boardId;
     }
 
+    // 공고 구독리스트에서 공고 구독 취소
+    @PostMapping("/user/{boardId}/unsubscribeBoard")
+    public String unsubscribeBoardOnSubscription(@PathVariable int boardId) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        subscribeRepository.deleteByBoardId(boardId, sessionUser.getId());
+
+        return "redirect:/user/" + sessionUser.getId() + "/subscription";
+    }
+
 
     // 이력서 구독 취소
     @PostMapping("/resume/{resumeId}/unsubscribe")
@@ -73,11 +82,14 @@ public class SubscribeController {
         return "redirect:/resume/" + resumeId;
     }
 
-    @PostMapping("/resume/{resumeId}/unsubscribeResume")
+    // 이력서 구독리스트에서 이력서 구독 취소
+    @PostMapping("/user/{resumeId}/unsubscribeResume")
     public String unsubscribeResumeOnSubscription(@PathVariable int resumeId) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         subscribeRepository.deleteByResumeId(resumeId, sessionUser.getId());
 
         return "redirect:/user/" + sessionUser.getId() + "/subscription";
     }
+
+
 }
