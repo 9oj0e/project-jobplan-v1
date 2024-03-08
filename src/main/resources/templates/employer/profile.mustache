@@ -4,7 +4,7 @@
     <div class="div-body">
         <div class="div-layout">
             <div class="d-flex justify-content-between">
-                <h4><b>안녕하세요, {{sessionUser.name}}님</b></h4>
+                <h5>안녕하세요, {{sessionUser.name}}님</h5>
                 <div style="display: flex; justify-content: space-evenly; width: 120px">
                     <form action="/user/{{sessionUser.id}}/updateForm">
                         <button class="btn btn-outline-primary">수정</button>
@@ -17,15 +17,14 @@
             <div class="div-information">
                 <div class="div-information-grid">
                     <div class="card mt-5" style="width:200px">
-                        <div class="card-body">
-                        <h4 class="card-title">{{user.businessName}}</h4>
-                            
-                        {{#pic}}
-                            <img class="card-img" src="/upload/{{imgFilename}}" style="width:100%;" >
-                        {{/pic}}
-                        {{^pic}}
-                                <img class="card-img" src="../images/{{user.businessName}}.jpg" onerror="this.src='../../images/{{user.businessName}}.jpg'" style="width:100%;">
-                        {{/pic}}
+                        <div>
+                            {{#pic}}
+                                <img class="card-img" src="/upload/{{imgFilename}}" style="width:100%;">
+                            {{/pic}}
+                            {{^pic}}
+                                <img class="card-img" src="../images/{{user.businessName}}.jpg"
+                                     onerror="this.src='../../images/{{user.businessName}}.jpg'" style="width:100%;">
+                            {{/pic}}
                         </div>
                         <div class="card-body">
                             <h4>{{user.businessName}}</h4>
@@ -96,7 +95,6 @@
                                 <th>회사명</th>
                                 <td>{{businessName}}</td>
                             </tr>
-
                             </tbody>
                         </table>
                         <div class="form-control">
