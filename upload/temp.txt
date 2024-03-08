@@ -1,1 +1,3 @@
 upload commit시 업로드된 파일 지우기
+
+merge시 view터짐
