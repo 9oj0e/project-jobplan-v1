@@ -40,7 +40,16 @@
                 </table>
             </div>
             <div class="card-footer">
-                <!--기술 스택?-->
+            <h3>보유 스킬</h3>
+            <div class="form-control">
+                {{#skillResumeList}}
+                    <btn class="btn btn-outline-light">{{skillName}}</btn>
+                {{/skillResumeList}}
+                {{^skillResumeList}}
+                    <div style="text-align: center">없음</div>
+                {{/skillResumeList}}
+            </div>
+            <br>
                 <table class="table table-borderless">
                     <tr>
                         <td style="background-color: transparent; text-align: end">전화</td>

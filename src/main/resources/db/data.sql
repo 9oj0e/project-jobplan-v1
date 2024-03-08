@@ -287,3 +287,19 @@ VALUES (4, 9, 8, 2, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
 VALUES (5, 10, 5, 2, now());
+
+
+-- skill_tb
+insert into skill_tb(board_id,employer_id,user_id,skill_name) values (1,1,null,'java');
+insert into skill_tb(board_id,employer_id,user_id,skill_name) values (1,1,null,'javaScript');
+insert into skill_tb(board_id,employer_id,user_id,skill_name) values (2,1,null,'java');
+insert into skill_tb(board_id,employer_id,user_id,skill_name) values (5,2,null,'HTML');
+insert into skill_tb(board_id,employer_id,user_id,skill_name) values (6,2,null,'Spring');
+
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (1,null,6,'java');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (1,null,6,'javaScript');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (2,null,7,'java');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (5,null,8,'HTML');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (6,null,8,'Spring');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (6,null,8,'MySQL');
+

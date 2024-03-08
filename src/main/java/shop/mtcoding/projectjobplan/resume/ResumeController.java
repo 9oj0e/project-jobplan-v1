@@ -25,6 +25,9 @@ public class ResumeController {
         resumeRepository.updateById(requestDTO, id);
         User user = (User) session.getAttribute("sessionUser");
 
+        skillRepository.updateSkillByResumeId(requestDTO.getSkill(),id,user.getId());
+
+
         return "redirect:/user/" + user.getId();
     }
 
@@ -34,8 +37,12 @@ public class ResumeController {
         User sessionUser = (User) session.getAttribute("sessionUser");
 
         // todo 유효성 검사, 권한 검사
-         resumeRepository.save(requestDTO, sessionUser.getId());
+         Integer resumeId =  resumeRepository.save(requestDTO, sessionUser.getId());
 
+        List<String> skills = requestDTO.getSkill();
+        for(String skill : skills){
+            skillRepository.saveByUserId(skill,sessionUser.getId(),resumeId);
+        }
         return "redirect:/user/" + sessionUser.getId();
     }
 
@@ -43,29 +50,55 @@ public class ResumeController {
     public String main() {
         return "/resume/main";
     }
+
     @GetMapping("/resume/listings")
-    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1")int page) {
+    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1")int page,@RequestParam(value = "keyword", required = false) String keyword) {
         // 기업 메인 페이지
-        List<ResumeResponse.ResumeAndUserDTO> responseDTO = resumeRepository.findByResumeAndUser(page);
-        List<ResumeResponse.ResumeAndUserDTO> resumeList = new ArrayList<>();
-        for (ResumeResponse.ResumeAndUserDTO dto : responseDTO) {
-            if (dto.isEmployer()==false) {
-                resumeList.add(dto);
+
+        if(keyword!=null){
+            List<ResumeResponse.ResumeAndUserDTO> responseDTO = resumeRepository.findByResumeAndUser(page,keyword);
+            List<ResumeResponse.ResumeAndUserDTO> resumeList = new ArrayList<>();
+            for (ResumeResponse.ResumeAndUserDTO dto : responseDTO) {
+                if (dto.isEmployer()==false) {
+                    resumeList.add(dto);
+                }
             }
+            request.setAttribute("resumeList", resumeList);
+
+            // 페이지네이션 모듈
+            int totalPage = resumeRepository.countIsEmployerFalse();;
+            PagingUtil paginationHelper = new PagingUtil(totalPage, page);
+
+            request.setAttribute("nextPage", paginationHelper.getNextPage());
+            request.setAttribute("prevPage", paginationHelper.getPrevPage());
+            request.setAttribute("first", paginationHelper.isFirst());
+            request.setAttribute("last", paginationHelper.isLast());
+            request.setAttribute("numberList", paginationHelper.getNumberList());
+
+            return "/resume/listings";
+
+        }else{
+            List<ResumeResponse.ResumeAndUserDTO> responseDTO = resumeRepository.findByResumeAndUser(page);
+            List<ResumeResponse.ResumeAndUserDTO> resumeList = new ArrayList<>();
+            for (ResumeResponse.ResumeAndUserDTO dto : responseDTO) {
+                if (dto.isEmployer()==false) {
+                    resumeList.add(dto);
+                }
+            }
+            request.setAttribute("resumeList", resumeList);
+
+            // 페이지네이션 모듈
+            int totalPage = resumeRepository.countIsEmployerFalse();;
+            PagingUtil paginationHelper = new PagingUtil(totalPage, page);
+
+            request.setAttribute("nextPage", paginationHelper.getNextPage());
+            request.setAttribute("prevPage", paginationHelper.getPrevPage());
+            request.setAttribute("first", paginationHelper.isFirst());
+            request.setAttribute("last", paginationHelper.isLast());
+            request.setAttribute("numberList", paginationHelper.getNumberList());
+
+            return "/resume/listings";
         }
-        request.setAttribute("resumeList", resumeList);
-
-        // 페이지네이션 모듈
-        int totalPage = resumeRepository.countIsEmployerFalse();;
-        PagingUtil paginationHelper = new PagingUtil(totalPage, page);
-
-        request.setAttribute("nextPage", paginationHelper.getNextPage());
-        request.setAttribute("prevPage", paginationHelper.getPrevPage());
-        request.setAttribute("first", paginationHelper.isFirst());
-        request.setAttribute("last", paginationHelper.isLast());
-        request.setAttribute("numberList", paginationHelper.getNumberList());
-
-        return "/resume/listings";
     }
 
     @GetMapping("/resume/{resumeId}")
@@ -75,6 +108,9 @@ public class ResumeController {
         resumeDetailDTO.isResumeOwner(sessionUser);
 
         request.setAttribute("resumeDetail", resumeDetailDTO);
+
+        List<Skill> skillResumeList = skillRepository.findByResumeId(id);
+        request.setAttribute("skillResumeList",skillResumeList);
 
         return "/resume/detail";
     }
@@ -95,6 +131,7 @@ public class ResumeController {
     public String delete(@PathVariable int id, HttpServletRequest request) {
         User user = (User) session.getAttribute("sessionUser");
         Resume resume = resumeRepository.findById(id);
+      
         if (resume == null) {
             request.setAttribute("msg", "해당 아이디를 찾을 수 없습니다.");
             request.setAttribute("status", "404");

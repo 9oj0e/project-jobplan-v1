@@ -27,7 +27,6 @@ public class Board {
     // closingDate == null -> "상시채용"
     private Timestamp createdAt; // 생성일
 
-    private String skill;
 
     public String getOpeningDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

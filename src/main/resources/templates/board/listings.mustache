@@ -74,6 +74,48 @@
                 </li>
             </ul>
         </div>
+    </section>
+    <hr>
+    <div class="container mt-3">
+        <div class="dropdown">
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="dropdown">
+                기술을 선택하세요
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" name ="keyword" href="?keyword=java">java</a></li>
+                <li><a class="dropdown-item" name ="keyword" href="?keyword=javaScript">javasSript</a></li>
+                <li><a class="dropdown-item" name ="keyword" href="?keyword=Spring">Spring</a></li>
+                <li><a class="dropdown-item" name ="keyword" href="?keyword=HTML">HTML</a></li>
+                <li><a class="dropdown-item" name ="keyword" href="?keyword=jQuery">jQuery</a></li>
+                <li><a class="dropdown-item" name ="keyword" href="?keyword=MySQL">MySQL</a></li>
+            </ul>
+        </div>
+        <br>
+    <div class="div-recommendation mb-20">채용 정보</div>
+    <table class="table">
+        <th>지역</th>
+        <th>회사명</th>
+        <th>공고 제목</th>
+        <th>급여 정보</th>
+        <th>마감일</th>
+        {{#employerList}}
+            <tr>
+                <td>{{address}}</td>
+                <td><a href="/board/{{id}}" class="text-body">{{businessName}}</a></td>
+                <td><a href="/board/{{id}}" class="text-body">{{title}}</a></td>
+                <td>{{salary}}</td>
+                <td>{{closingDate}}</td>
+            </tr>
+        {{/employerList}}
+    </table>
+    <div class="d-flex justify-content-center">
+        <ul class="pagination">
+            <li class="page-item {{#first}}disabled{{/first}}"><a class="page-link" href="?page={{prevPage}}">Previous</a></li>
+            {{#numberList}}
+                <li class="page-item"><a class="page-link" href="?page={{.}}">{{.}}</a></li>
+            {{/numberList}}
+            <li class="page-item {{#last}}disabled{{/last}}"><a class="page-link" href="?page={{nextPage}}">Next</a></li>
+        </ul>
     </div>
 </main>
 <!-- 바디 end -->
