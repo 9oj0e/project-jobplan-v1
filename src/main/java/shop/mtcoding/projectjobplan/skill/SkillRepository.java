@@ -27,13 +27,14 @@ public class SkillRepository {
 
     }
     @Transactional
-    public void saveByEmployerId(String skill, int employerId) {
+    public void saveByEmployerId(String skill, int employerId, int boardId) {
         String q = """
-                INSERT INTO skill_tb(employer_id, skill_name) VALUES (?, ?)
+                INSERT INTO skill_tb(employer_id, skill_name,board_id) VALUES (?, ?,?)
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, employerId);
         query.setParameter(2, skill);
+        query.setParameter(3,boardId);
         query.executeUpdate();
 
     }
@@ -93,6 +94,20 @@ public class SkillRepository {
         }
     }
 
+    public List<Skill> findByBoardId(int boardId) {
+        String q = """
+                select * from skill_tb where board_id = ?
+                """;
+        Query query = entityManager.createNativeQuery(q,Skill.class);
+        query.setParameter(1,boardId);
+
+        try {
+            List<Skill> skillList = query.getResultList();
+            return skillList;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     public List<Skill> findByEmployerId(int employerId) {
         String q = """

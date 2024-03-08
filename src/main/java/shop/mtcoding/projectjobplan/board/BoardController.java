@@ -10,6 +10,7 @@ import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.apply.ApplyRepository;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
+import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
 import shop.mtcoding.projectjobplan.user.User;
 import shop.mtcoding.projectjobplan.user.UserRepository;
@@ -72,21 +73,23 @@ public class BoardController {
         User sessionUser = (User) session.getAttribute("sessionUser");
         BoardResponse.BoardDetailDTO boardDetailDTO = boardRepository.detail(id);
         boardDetailDTO.isBoardOwner(sessionUser);
+        List<Skill> skillBoardList = skillRepository.findByBoardId(id);
 
         request.setAttribute("boardDetail", boardDetailDTO);
-
+        request.setAttribute("skillBoardList",skillBoardList);
         return "/board/detail";
     }
 
     @PostMapping("/board/upload")
     public String upload(BoardRequest.SaveDTO requestDTO){
         User sessionUser = (User) session.getAttribute("sessionUser");
-        boardRepository.save(requestDTO, sessionUser.getId());
+         Integer boardId = boardRepository.save(requestDTO, sessionUser.getId());
 
        List<String> skills = requestDTO.getSkill();
        for(String skill : skills){
-           skillRepository.saveByEmployerId(skill,sessionUser.getId());
+           skillRepository.saveByEmployerId(skill,sessionUser.getId(),boardId);
        }
+
 
         return "redirect:/user/" + sessionUser.getId();
     }

@@ -1,6 +1,7 @@
 package shop.mtcoding.projectjobplan.skill;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 
 @Entity
@@ -15,4 +16,7 @@ public class Skill { // Tech Stack
     private Integer employerId; // 1          -> null  채용공고로 옮김.
 
     private String skillName;
+
+    private Integer boardId ; // 채용공고 id
+
 }

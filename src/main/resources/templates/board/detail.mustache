@@ -63,6 +63,7 @@
                     <th>연봉</th>
                     <td>{{salary}}</td>
                 </tr>
+
             </table>
         </div>
         <div class="m-4 p-2">
@@ -70,6 +71,18 @@
                 <h3>내용</h3>
                 <div class="bg-white">
                     {{content}}
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h3>요구 스킬</h3>
+                <div>
+                    {{#skillBoardList}}
+                        <span>{{skillName}}</span>
+                    {{/skillBoardList}}
+                    {{^skillBoardList}}
+                        <div>없음</div>
+                    {{/skillBoardList}}
                 </div>
             </div>
             <hr>
