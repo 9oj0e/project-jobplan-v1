@@ -4,11 +4,15 @@
     <div class="div-body">
         <div class="div-layout">
             <div class="d-flex justify-content-between">
-                <h4><b>안녕하세요, {{sessionUser.name}}님</b></h3>
-                <form action="/user/{{sessionUser.id}}/updateForm" class="justify-content-end">
-                    <button class="btn btn-outline-primary">수정</button>
-                    <button class="btn btn-primary">탈퇴</button>
-                </form>
+                <h4><b>안녕하세요, {{sessionUser.name}}님</b></h4>
+                <div style="display: flex; justify-content: space-evenly; width: 120px">
+                    <form action="/user/{{sessionUser.id}}/updateForm">
+                        <button class="btn btn-outline-primary">수정</button>
+                    </form>
+                    <form action="/user/{{sessionUser.id}}/delete">
+                        <button class="btn btn-primary">탈퇴</button>
+                    </form>
+                </div>
             </div>
             <div class="div-information">
                 <div>
