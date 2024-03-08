@@ -131,7 +131,14 @@ public class ResumeRepository {
         query.setParameter(6, requestDTO.getEducationLevel());
         query.setParameter(7, requestDTO.getCareer());
 
-        return query.executeUpdate(); // 영향 받은 행
+         query.executeUpdate(); // 영향 받은 행
+
+        String q1 = """
+                select max(id) from resume_tb;
+                """;
+        Query query1 = entityManager.createNativeQuery(q1);
+        Integer resumeId = (Integer) query1.getSingleResult();
+        return resumeId ;
     }
 
     public List<Resume> findAll() {

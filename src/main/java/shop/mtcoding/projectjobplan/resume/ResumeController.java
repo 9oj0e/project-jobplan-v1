@@ -42,7 +42,12 @@ public class ResumeController {
         User sessionUser = (User) session.getAttribute("sessionUser");
 
         // todo 유효성 검사, 권한 검사
-         resumeRepository.save(requestDTO, sessionUser.getId());
+         Integer resumeId =  resumeRepository.save(requestDTO, sessionUser.getId());
+
+        List<String> skills = requestDTO.getSkill();
+        for(String skill : skills){
+            skillRepository.saveByUserId(skill,sessionUser.getId(),resumeId);
+        }
 
         return "redirect:/user/" + sessionUser.getId();
     }

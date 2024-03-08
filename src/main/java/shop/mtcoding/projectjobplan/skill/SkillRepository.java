@@ -40,13 +40,14 @@ public class SkillRepository {
     }
 
     @Transactional
-    public void saveByUserId(String skill, int userId) {
+    public void saveByUserId(String skill, int userId,int resumeId) {
         String q = """
-                INSERT INTO skill_tb(user_id, skill_name) VALUES (?, ?)
+                INSERT INTO skill_tb(user_id, skill_name,resume_id) VALUES (?, ?,?)
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1,userId);
         query.setParameter(2,skill);
+        query.setParameter(3,resumeId);
         query.executeUpdate();
     }
 

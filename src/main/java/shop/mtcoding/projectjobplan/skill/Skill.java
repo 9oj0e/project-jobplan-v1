@@ -18,5 +18,6 @@ public class Skill { // Tech Stack
     private String skillName;
 
     private Integer boardId ; // 채용공고 id
+    private Integer resumeId;
 
 }

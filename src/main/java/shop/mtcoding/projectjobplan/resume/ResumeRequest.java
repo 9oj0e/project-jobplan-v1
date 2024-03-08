@@ -15,6 +15,7 @@ public class ResumeRequest {
         private String educationLevel;
         private String career;
 
+        private List<String> skill;
     }
 
     @Data
