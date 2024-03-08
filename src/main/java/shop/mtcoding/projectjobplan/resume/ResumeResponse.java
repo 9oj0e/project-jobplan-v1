@@ -24,7 +24,7 @@ public class ResumeResponse {
 
     @Data
     public static class ResumeDetailDTO{
-        private String username;
+        private String username; // todo 변수명 고치기
         private String birthdate;
         private String address;
         private String phoneNumber;
@@ -33,12 +33,12 @@ public class ResumeResponse {
         private Integer resumeId;
         private Integer resumeUserId;
         private String title;
-        private String content;
-        private String schoolName;
-        private String major;
         private String educationLevel;
+        private String major;
+        private String schoolName;
+        private String content;
         private String career;
-
+      
         private Boolean resumeOwner;
 
         public String getBirthyear() { // 생년까지만 출력

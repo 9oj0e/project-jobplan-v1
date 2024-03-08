@@ -74,14 +74,25 @@
                     <h4 class="card-title text-center">{{boardDetail.businessName}}</h4>
                 </div>
                 <div class="card-footer" style="text-align: center;">
-                    <!-- 지원하기 버튼 -->
                     <div>
                         {{#sessionUser}}
                             {{^isEmployer}}
+                                <!-- 지원하기 버튼 -->
                                 <form action="/board/{{boardDetail.id}}/applyForm" method="get">
                                     <button class="btn btn-primary">지원</button>
                                 </form>
                             {{/isEmployer}}
+                            <!-- 구독하기 버튼 -->
+                            {{^subscribe}}
+                                <form action="/board/{{boardDetail.id}}/subscribe" method="post">
+                                    <button class="btn btn-success">구독</button>
+                                </form>
+                            {{/subscribe}}
+                            {{#subscribe}}
+                                <form action="/board/{{boardDetail.id}}/unsubscribe" method="post">
+                                    <button class="btn btn-danger">구독 취소</button>
+                                </form>
+                            {{/subscribe}}
                         {{/sessionUser}}
                         {{^sessionUser}}
                             <form action="/loginForm" method="get">
@@ -95,7 +106,7 @@
                             <form action="/board/{{boardDetail.id}}/updateForm" method="get">
                                 <button class="btn btn-warning">수정</button>
                             </form>
-                            <form action="/board/{{boardDetail.id}}/delete" method="post" onsubmit="return false">
+                            <form action="/board/{{boardDetail.id}}/delete" method="post">
                                 <button class="btn btn-danger">삭제</button>
                             </form>
                         {{/boardDetail.boardOwner}}

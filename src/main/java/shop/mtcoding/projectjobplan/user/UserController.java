@@ -114,11 +114,11 @@ public class UserController {
             List<Board> boardList = boardRepository.findByEmployerId(user.getId());
             request.setAttribute("boardList", boardList);
             if (boardId == null) {
-                // 지원자 현황 조회
+                // 전체 지원자 현황 조회
                 List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByEmployerId(sessionUserId);
                 request.setAttribute("applicationList", applicationList);
             } else {
-                // 지원자 현황 조회
+                // 공고별 지원자 현황 조회
                 List<ApplyResponse.ToEmployerDTO> applicationList = applyRepository.findByBoardId(boardId);
                 request.setAttribute("applicationList", applicationList);
             }

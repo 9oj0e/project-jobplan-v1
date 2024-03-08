@@ -29,7 +29,7 @@ public class ResumeRepository {
         query.setParameter(1, resumeId);
 
         Object[] row = (Object[]) query.getSingleResult();
-        String username = (String) row[0];
+        String username = (String) row[0]; // todo 변수명 고치
         String birthdate = (String) row[1];
         String address = (String) row[2];
         String phoneNumber = (String) row[3];
@@ -105,7 +105,6 @@ public class ResumeRepository {
             dto.setEmployer((boolean) result[6]);
             dto.setName((String) result[7]);
 
-
             responseDTO.add(dto);
         }
         return responseDTO;
@@ -136,7 +135,6 @@ public class ResumeRepository {
             dto.setAddress((String) result[5]);
             dto.setEmployer((boolean) result[6]);
             dto.setName((String) result[7]);
-
 
             responseDTO.add(dto);
         }
@@ -185,13 +183,14 @@ public class ResumeRepository {
         query.setParameter(6, requestDTO.getEducationLevel());
         query.setParameter(7, requestDTO.getCareer());
 
-         query.executeUpdate(); // 영향 받은 행
+        query.executeUpdate();
 
         String q1 = """
                 select max(id) from resume_tb;
                 """;
         Query query1 = entityManager.createNativeQuery(q1);
         Integer resumeId = (Integer) query1.getSingleResult();
+      
         return resumeId ;
     }
 

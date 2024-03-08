@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.pic.PicRepository;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
+import shop.mtcoding.projectjobplan.subscribe.Subscribe;
+import shop.mtcoding.projectjobplan.subscribe.SubscribeRepository;
 import shop.mtcoding.projectjobplan.user.User;
 
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ import java.util.List;
 @Controller
 public class ResumeController {
     private final ResumeRepository resumeRepository;
+    private final SkillRepository skillRepository;
+    private final SubscribeRepository subscribeRepository;
     private final HttpSession session;
 
     @PostMapping("resume/{id}/update")
@@ -101,17 +105,20 @@ public class ResumeController {
         }
     }
 
-    @GetMapping("/resume/{resumeId}")
+    @GetMapping("/resume/{id}")
     public String detail(@PathVariable int resumeId, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(resumeId);
         resumeDetailDTO.isResumeOwner(sessionUser);
-
         request.setAttribute("resumeDetail", resumeDetailDTO);
-
+  
         List<Skill> skillResumeList = skillRepository.findByResumeId(id);
         request.setAttribute("skillResumeList",skillResumeList);
-
+  
+        Subscribe subscribe = subscribeRepository.findAllByUserIdResumeId(sessionUser.getId(),resumeId);
+        if(subscribe != null){
+            request.setAttribute("subscribe", subscribe);
+        
         return "/resume/detail";
     }
 

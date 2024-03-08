@@ -90,7 +90,18 @@
                     </div>
                 {{/sessionUser.isEmployer}}
                 -->
-                    <!-- 수정 삭제 버튼 -->
+                <!-- 구독하기 버튼 -->
+                {{^subscribe}}
+                    <form action="/resume/{{detail.id}}/subscribe" method="post">
+                        <button class="btn btn-success">구독</button>
+                    </form>
+                {{/subscribe}}
+                {{#subscribe}}
+                    <form action="/resume/{{detail.id}}/unsubscribe" method="post">
+                        <button class="btn btn-danger">구독 취소</button>
+                    </form>
+                {{/subscribe}}
+                <!-- 수정 삭제 버튼 -->
                     {{#resumeDetail.resumeOwner}}
                         <div class="btn-container">
                             <form action="/resume/{{resumeDetail.resumeId}}/updateForm" method="get">
