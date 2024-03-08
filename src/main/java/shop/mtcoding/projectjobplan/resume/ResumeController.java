@@ -1,14 +1,12 @@
 package shop.mtcoding.projectjobplan.resume;
 
-import jakarta.persistence.Query;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
-import shop.mtcoding.projectjobplan.board.BoardResponse;
-import shop.mtcoding.projectjobplan.pic.Pic;
 import shop.mtcoding.projectjobplan.pic.PicRepository;
 import shop.mtcoding.projectjobplan.pic.PicRequest;
 import shop.mtcoding.projectjobplan.skill.Skill;
@@ -34,7 +32,6 @@ public class ResumeController {
         User user = (User) session.getAttribute("sessionUser");
 
         skillRepository.updateSkillByResumeId(requestDTO.getSkill(),id,user.getId());
-
 
 
         return "redirect:/user/" + user.getId();

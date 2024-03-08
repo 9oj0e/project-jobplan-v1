@@ -129,7 +129,11 @@ public class BoardController {
 
     @PostMapping("/board/{id}/update")
     public String update(@PathVariable int id, BoardRequest.UpdateDTO requestDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
         boardRepository.updateById(requestDTO, id);
+
+        skillRepository.updateSkillByBoardId(requestDTO.getSkill(),id,sessionUser.getId());
+
 
         return "redirect:/board/" + id;
     }
