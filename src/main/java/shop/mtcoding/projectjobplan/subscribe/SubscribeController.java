@@ -25,12 +25,14 @@ public class SubscribeController {
         if (user.getIsEmployer() == true) { // 기업 유저 (이력서 목록)
             List<SubscribeResponse.ToUserDTO> subscribeList = subscribeRepository.findByUserId(sessionUserId);
             request.setAttribute("subscribeList", subscribeList);
+
+            return "/employer/subscription";
         } else { // 개인 유저 (공고 목록)
             List<SubscribeResponse.ToEmployerDTO> subscribeList = subscribeRepository.findByEmployerId(sessionUserId);
             request.setAttribute("subscribeList", subscribeList);
-        }
 
-        return "/user/subscription"; // view 만들기
+            return "/user/subscription";
+        }
     }
 
     // 공고 구독
