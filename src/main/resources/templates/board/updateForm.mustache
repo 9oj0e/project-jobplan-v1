@@ -1,17 +1,59 @@
-{{> layout/header }}
-
-<div class="container">
-    <h2 class="mb-4 fw-bold">채용 공고 수정</h2>
-    <form action="/board/{{board.id}}/update" method="post">
-        <table class="table-resume-notice">
-            <tr>
-                <td class="tb-row">공고 제목</td>
-                <td><input name="title" class="input-width30" type="text" value="{{board.title}}"></td>
-            </tr>
-        </table>
-
-        <h2 class="mb-4 fw-bold">요구 스킬</h2>
-        <div>
+{{>layout/header}}
+<!-- 바디 start -->
+<div class="div-card-container">
+    <div class="card div-card">
+        {{#board}}
+        <form action="/board/{{id}}/update" method="post">
+            <div class="card-header card-title">
+                <h2>채용 공고 추가</h2>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <td>공고 제목</td>
+                        <td><input name="title" type="text" class="form-control" value="{{title}}"></td>
+                    </tr>
+                    <tr>
+                        <td>채용 분야</td>
+                        <td>
+                            <input name="field" type="text" class="form-control" value="{{field}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>포지션</td>
+                        <td>
+                            <input name="position" type="text" class="form-control" value="{{position}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>내용</td>
+                        <td>
+                            <textarea name="content" class="form-control" style="height: 300px">{{content}}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>연봉</td>
+                        <td>
+                            <input name="salary" type="text" class="form-control" value="{{salary}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>게시일</td>
+                        <td>
+                            <input name="openingDate" type="date" class="form-control" value="{{openingDate}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>마감일</td>
+                        <td>
+                            <input name="closingDate" type="date" class="form-control" value="{{closingDate}}">
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+            <h4 class="card-title">요구 스킬</h4>
+            <div class="form-control">
             <input type="checkbox" name="skill" value="없음">
             <span>없음</span>
             <input type="checkbox" name="skill" value="java">
@@ -26,45 +68,17 @@
             <span>jQuery</span>
             <input type="checkbox" name="skill" value="MySQL">
             <span>MySQL</span>
-        </div>
-        <br>
-        <h4 class="fw-semibold mb-3">채용 분야 정보</h4>
-        <table class="table-resume-notice">
-            <tr>
-                <td class="tb-row">채용 분야</td>
-                <td><input name="field" type="text" value="{{board.field}}"></td>
-            </tr>
-            <tr>
-                <td>포지션</td>
-                <td>
-                    <input name="position" type="text" value="{{board.position}}">
-                </td>
-            </tr>
-            <tr>
-                <td class="tb-row">업무 상세</td>
-                <td><textarea name="content" class="textarea-work-size">{{board.content}}</textarea></td>
-            </tr>
-            <tr>
-                <td class="tb-row">연봉</td>
-                <td>
-                    <input name="salary" type="text" value="{{board.salary}}">
-                </td>
-            </tr>
-            <tr>
-                <td>게시일</td>
-                <td><input name="openingDate" type="date"></td>
-            </tr>
-            <tr>
-                <td>마감일</td>
-                <td><input name="closingDate" type="date"></td>
-            </tr>
-        </table>
-        <br>
-        <div class="button-post-cancel">
-            <button type="button" onclick="location.href='/board/{{sessionUser.id}}'" class="btn btn-outline-dark">취소</button>
-            <button type="submit" class="btn btn-outline-dark">수정</button>
-        </div>
-    </form>
+            </div>
+            <br>
+            <div class="card-footer">
+                <div class="button-post-cancel">
+                    <button type="button" onclick="location.href='/board/{{sessionUser.id}}'" class="btn btn-outline-dark">취소</button>
+                    <button type="submit" class="btn btn-outline-dark">등록</button>
+                </div>
+            </div>
+        </form>
+        {{/board}}
+    </div>
 </div>
 <!-- 바디 end -->
 {{>layout/footer}}

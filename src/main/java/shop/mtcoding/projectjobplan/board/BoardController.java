@@ -96,10 +96,10 @@ public class BoardController {
 
     }
 
-    @GetMapping("/board/{id}")
-    public String detail(@PathVariable int id, HttpServletRequest request) {
+    @GetMapping("/board/{boardId}")
+    public String detail(@PathVariable int boardId, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-        BoardResponse.BoardDetailDTO boardDetailDTO = boardRepository.detail(id);
+        BoardResponse.BoardDetailDTO boardDetailDTO = boardRepository.detail(boardId);
         boardDetailDTO.isBoardOwner(sessionUser);
         List<Skill> skillBoardList = skillRepository.findByBoardId(id);
 

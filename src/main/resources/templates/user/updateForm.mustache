@@ -1,7 +1,10 @@
 {{>layout/header}}
-<div style="display: flex; justify-content: center">
-    <div class="card" style="width: 600px; margin-bottom: 5%">
-        <div class="card-header" style="text-align: end"><b>회원 정보 수정</b></div>
+<!-- 바디 start -->
+<div class="div-card-container">
+    <div class="card div-card">
+        <div class="card-header card-title">
+            <b>회원 정보 수정</b>
+        </div>
         <div class="card-body">
             <form action="/user/{{user.id}}/update" method="post" enctype="application/x-www-form-urlencoded"
                   onsubmit="return true">
@@ -37,7 +40,8 @@
                 </div>
                 <div>휴대전화</div>
                 <div class="mb-3">
-                    <input type="tel" pattern="[0-9]{9, 11}" title="번호만 입력하세요" class="form-control" name="phoneNumber" value="{{user.phoneNumber}}" required>
+                    <input type="tel" pattern="[0-9]{9, 11}" title="번호만 입력하세요" class="form-control" name="phoneNumber"
+                           value="{{user.phoneNumber}}" required>
                 </div>
                 <div>주소</div>
                 <div class="mb-3">
@@ -49,9 +53,7 @@
                     <input type="email" class="form-control" name="email"
                            placeholder="{{user.email}}" value="{{user.email}}">
                 </div>
-
-                </table>
-                <button type="submit" class="btn btn-primary form-control">수정 완료</button>
+                <button type="submit" class="btn btn-primary form-control mt-5">수정 완료</button>
             </form>
         </div>
     </div>
