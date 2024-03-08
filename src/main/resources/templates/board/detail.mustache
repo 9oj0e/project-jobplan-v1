@@ -55,7 +55,6 @@
 
             {{#sessionUser}}
                 {{^isEmployer}}
-
                         <form action="/rating/score/{{boardDetail.id}}" method="post">
                             <div class="card-footer">
                                 <select id="rating" name="rating" style="width: 100%">
@@ -71,13 +70,6 @@
                                 </div>
                             </div>
                         </form>
-
-
-
-
-<!--                        <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 5px">평가완료</button>-->
-
-
                 {{/isEmployer}}
             {{/sessionUser}}
 
