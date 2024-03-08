@@ -149,13 +149,7 @@ public class UserController {
 
     @PostMapping("/user/{sessionUserId}/update")
     public String update(@PathVariable int sessionUserId, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
-        User user = (User) session.getAttribute("sessionUser");
 
-        if (user.getIsEmployer() == true) {
-            skillRepository.uploadByEmployerId(requestDTO.getSkill(), sessionUserId);
-        } else {
-            skillRepository.uploadByUserId(requestDTO.getSkill(), sessionUserId);
-        }
         request.setAttribute("user", userRepository.updateById(requestDTO, sessionUserId));
 
         return "redirect:/user/" + sessionUserId;
