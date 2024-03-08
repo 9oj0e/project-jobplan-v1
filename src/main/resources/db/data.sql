@@ -287,3 +287,49 @@ VALUES (4, 9, 8, 2, now());
 INSERT INTO apply_tb
 (resume_id, resume_user_id, board_id, board_user_id, created_at)
 VALUES (5, 10, 5, 2, now());
+
+-- subscribe_tb
+
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (1, null, null, 1, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (2, null, null, 1, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (1, null, null, 2, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (2, null, null, 2, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (1, null, null, 3, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (2, null, null, 3, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (1, null, null, 4, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (1, null, null, 5, now());
+
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 6, 1, null, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 6, 2, null, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 6, 3, null, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 7, 1, null, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 7, 4, null, now());;
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 8, 7, null, now());
