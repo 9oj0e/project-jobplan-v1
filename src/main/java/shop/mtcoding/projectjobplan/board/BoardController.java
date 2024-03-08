@@ -83,6 +83,11 @@ public class BoardController {
         User sessionUser = (User) session.getAttribute("sessionUser");
         boardRepository.save(requestDTO, sessionUser.getId());
 
+       List<String> skills = requestDTO.getSkill();
+       for(String skill : skills){
+           skillRepository.saveByEmployerId(skill,sessionUser.getId());
+       }
+
         return "redirect:/user/" + sessionUser.getId();
     }
   
