@@ -25,7 +25,7 @@ public class RatingController {
     private final HttpSession session;
 
     @PostMapping("/rating/score/{id}") // 보드아이디임
-    public String ratingScore(@RequestParam("rating") int score, @PathVariable int id, HttpServletRequest request, RatingRequest.RatingDTO requestDTO) {
+    public String ratingScore(@RequestParam("rating") int score, @PathVariable int id, HttpServletRequest request, RatingRequest.RatingDTO requestDTO, Model model) {
 //        User user = userRepository.findByUsernameAndPassword(loginRequestDTO);
 //        int userId = user.getId();
 
@@ -34,7 +34,7 @@ public class RatingController {
         //int rate = requestDTO.getRate(); // 점수 불러오기
         System.out.println(userId); // user1 -> 6
         System.out.println(score); // 점수 적용 완료
-        request.setAttribute("score", score);
+        model.addAttribute("score", score);
 
         // 보드 id로 기업 id 불러오기
         System.out.println(id); // 18
@@ -45,11 +45,7 @@ public class RatingController {
         // 평가자, 피평가자, 점수 insert
         ratingRepository.insertRating(userId, employerId, score);
 
-        // 평점 불러오기
 
-        double rate = ratingRepository.findAvgRateBySubjectId(employerId);
-        System.out.println(rate);
-        request.setAttribute("rate", rate);
 
         return "redirect:/board/" + id;
     }

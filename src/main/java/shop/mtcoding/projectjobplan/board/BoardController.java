@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
 import shop.mtcoding.projectjobplan.apply.ApplyRepository;
+import shop.mtcoding.projectjobplan.rating.RatingRepository;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
@@ -22,6 +23,7 @@ import java.util.List;
 public class BoardController {
     private final BoardRepository boardRepository;
     private final SkillRepository skillRepository;
+    private final RatingRepository ratingRepository;
     private final HttpSession session;
   
     @GetMapping({"/", "/board"})
@@ -74,6 +76,17 @@ public class BoardController {
         boardDetailDTO.isBoardOwner(sessionUser);
 
         request.setAttribute("boardDetail", boardDetailDTO);
+
+        // 보드 id로 기업 id 불러오기
+        System.out.println(id); // 18
+        Board board = boardRepository.findEmpIdById(id);
+        int employerId = board.getEmployerId();
+        System.out.println(employerId);
+
+        // 평점 불러오기
+        Double rate = ratingRepository.findAvgRateBySubjectId(employerId);
+        System.out.println(rate);
+        request.setAttribute("rate", rate);
 
         return "/board/detail";
     }
