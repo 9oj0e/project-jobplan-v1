@@ -57,6 +57,55 @@ public class ResumeRepository {
         return resumeDetailDTO;
     }
 
+    public List<ResumeResponse.ResumeAndUserDTO> findByResumeAndUser(int page,String keyword) {
+        final int COUNT = 10;
+        int value = (page - 1) * COUNT;
+
+        String q = """
+
+            SELECT\s
+                r.id, r.user_id, r.title, r.content, r.career,\s
+                u.address, u.is_employer, u.name\s
+                FROM\s
+               resume_tb r\s
+               INNER JOIN\s
+              user_tb u\s
+              ON\s
+             r.user_id = u.id\s
+            INNER JOIN\s
+            skill_tb s\s
+            ON\s
+            r.id = s.resume_id\s
+            WHERE\s
+            u.is_employer = false\s
+            AND s.skill_name = ?  ORDER BY r.id DESC LIMIT ?,?
+            """ ;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1,keyword);
+        query.setParameter(2, value);
+        query.setParameter(3, COUNT);
+
+        List<Object[]> results = query.getResultList();
+        List<ResumeResponse.ResumeAndUserDTO> responseDTO = new ArrayList<>();
+
+        for (Object[] result : results) {
+
+            ResumeResponse.ResumeAndUserDTO dto = new ResumeResponse.ResumeAndUserDTO();
+            dto.setId((Integer) result[0]);
+            dto.setUserId((Integer) result[1]);
+            dto.setTitle((String) result[2]);
+            dto.setContent((String) result[3]);
+            dto.setCareer((String) result[4]);
+            dto.setAddress((String) result[5]);
+            dto.setEmployer((boolean) result[6]);
+            dto.setName((String) result[7]);
+
+
+            responseDTO.add(dto);
+        }
+        return responseDTO;
+    }
+
     public List<ResumeResponse.ResumeAndUserDTO> findByResumeAndUser(int page) {
         final int COUNT = 10;
         int value = (page - 1) * COUNT;

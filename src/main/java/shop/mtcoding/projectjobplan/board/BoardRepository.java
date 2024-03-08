@@ -73,10 +73,7 @@ public class BoardRepository {
         int value = (page - 1) * COUNT;
         String q = """
 
-                SELECT b.id, b.employer_id,
-                                b.title,\s
-                                b.content,\s
-                                b.field,\s
+                SELECT b.id, b.employer_id,b.title,b.content,b.field,
                                 b.position,\s
                                 b.salary,\s
                                 b.opening_date,\s

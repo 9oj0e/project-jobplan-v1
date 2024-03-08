@@ -295,3 +295,9 @@ insert into skill_tb(board_id,employer_id,user_id,skill_name) values (1,1,null,'
 insert into skill_tb(board_id,employer_id,user_id,skill_name) values (2,1,null,'java');
 insert into skill_tb(board_id,employer_id,user_id,skill_name) values (5,2,null,'HTML');
 insert into skill_tb(board_id,employer_id,user_id,skill_name) values (6,2,null,'Spring');
+
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (1,null,6,'java');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (1,null,6,'javascript');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (2,null,7,'java');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (5,null,8,'HTML');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (6,null,8,'Spring');

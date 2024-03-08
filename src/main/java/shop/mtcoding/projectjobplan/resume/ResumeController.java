@@ -56,29 +56,57 @@ public class ResumeController {
     public String main() {
         return "/resume/main";
     }
+
     @GetMapping("/resume/listings")
-    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1")int page) {
+    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1")int page,@RequestParam(value = "keyword", required = false) String keyword) {
         // 기업 메인 페이지
-        List<ResumeResponse.ResumeAndUserDTO> responseDTO = resumeRepository.findByResumeAndUser(page);
-        List<ResumeResponse.ResumeAndUserDTO> resumeList = new ArrayList<>();
-        for (ResumeResponse.ResumeAndUserDTO dto : responseDTO) {
-            if (dto.isEmployer()==false) {
-                resumeList.add(dto);
+        request.setAttribute("keywordResume",keyword);
+        if(keyword!=null){
+            List<ResumeResponse.ResumeAndUserDTO> responseDTO = resumeRepository.findByResumeAndUser(page,keyword);
+            List<ResumeResponse.ResumeAndUserDTO> resumeList = new ArrayList<>();
+            for (ResumeResponse.ResumeAndUserDTO dto : responseDTO) {
+                if (dto.isEmployer()==false) {
+                    resumeList.add(dto);
+                }
             }
+            request.setAttribute("resumeList", resumeList);
+
+            // 페이지네이션 모듈
+            int totalPage = resumeRepository.countIsEmployerFalse();;
+            PagingUtil paginationHelper = new PagingUtil(totalPage, page);
+
+            request.setAttribute("nextPage", paginationHelper.getNextPage());
+            request.setAttribute("prevPage", paginationHelper.getPrevPage());
+            request.setAttribute("first", paginationHelper.isFirst());
+            request.setAttribute("last", paginationHelper.isLast());
+            request.setAttribute("numberList", paginationHelper.getNumberList());
+
+            return "/resume/listings";
+
+        }else{
+            List<ResumeResponse.ResumeAndUserDTO> responseDTO = resumeRepository.findByResumeAndUser(page);
+            List<ResumeResponse.ResumeAndUserDTO> resumeList = new ArrayList<>();
+            for (ResumeResponse.ResumeAndUserDTO dto : responseDTO) {
+                if (dto.isEmployer()==false) {
+                    resumeList.add(dto);
+                }
+            }
+            request.setAttribute("resumeList", resumeList);
+
+            // 페이지네이션 모듈
+            int totalPage = resumeRepository.countIsEmployerFalse();;
+            PagingUtil paginationHelper = new PagingUtil(totalPage, page);
+
+            request.setAttribute("nextPage", paginationHelper.getNextPage());
+            request.setAttribute("prevPage", paginationHelper.getPrevPage());
+            request.setAttribute("first", paginationHelper.isFirst());
+            request.setAttribute("last", paginationHelper.isLast());
+            request.setAttribute("numberList", paginationHelper.getNumberList());
+
+            return "/resume/listings";
         }
-        request.setAttribute("resumeList", resumeList);
 
-        // 페이지네이션 모듈
-        int totalPage = resumeRepository.countIsEmployerFalse();;
-        PagingUtil paginationHelper = new PagingUtil(totalPage, page);
 
-        request.setAttribute("nextPage", paginationHelper.getNextPage());
-        request.setAttribute("prevPage", paginationHelper.getPrevPage());
-        request.setAttribute("first", paginationHelper.isFirst());
-        request.setAttribute("last", paginationHelper.isLast());
-        request.setAttribute("numberList", paginationHelper.getNumberList());
-
-        return "/resume/listings";
     }
 
     @GetMapping("/resume/{id}")
