@@ -29,7 +29,7 @@ public class ResumeRepository {
         query.setParameter(1, resumeId);
 
         Object[] row = (Object[]) query.getSingleResult();
-        String username = (String) row[0]; // todo 변수명 고치
+        String name = (String) row[0];
         String birthdate = (String) row[1];
         String address = (String) row[2];
         String phoneNumber = (String) row[3];
@@ -44,14 +44,14 @@ public class ResumeRepository {
         String career = (String) row[11];
 
         ResumeResponse.ResumeDetailDTO resumeDetailDTO = new ResumeResponse.ResumeDetailDTO();
-        resumeDetailDTO.setUsername(username);
+        resumeDetailDTO.setName(name);
         resumeDetailDTO.setBirthdate(birthdate);
         resumeDetailDTO.setAddress(address);
         resumeDetailDTO.setPhoneNumber(phoneNumber);
         resumeDetailDTO.setEmail(email);
 
-        resumeDetailDTO.setResumeId(resumeId);
-        resumeDetailDTO.setResumeUserId(resumeUserId);
+        resumeDetailDTO.setId(resumeId);
+        resumeDetailDTO.setUserId(resumeUserId);
         resumeDetailDTO.setTitle(title);
         resumeDetailDTO.setContent(content);
         resumeDetailDTO.setSchoolName(schoolName);
@@ -168,7 +168,7 @@ public class ResumeRepository {
     }
 
     @Transactional
-    public Integer save(ResumeRequest.SaveDTO requestDTO, Integer userId) {
+    public Integer upload(ResumeRequest.UploadDTO requestDTO, Integer userId) {
         String q = """
                 INSERT INTO resume_tb
                 (user_id, title, content, school_name, major, education_level, career, created_at)

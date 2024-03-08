@@ -1,21 +1,16 @@
 package shop.mtcoding.projectjobplan.board;
 
-import com.sun.tools.javac.Main;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
-import shop.mtcoding.projectjobplan.apply.ApplyRepository;
-import shop.mtcoding.projectjobplan.resume.Resume;
-import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
 import shop.mtcoding.projectjobplan.subscribe.Subscribe;
 import shop.mtcoding.projectjobplan.subscribe.SubscribeRepository;
 import shop.mtcoding.projectjobplan.user.User;
-import shop.mtcoding.projectjobplan.user.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,12 +99,12 @@ public class BoardController {
         request.setAttribute("boardDetail", boardDetailDTO);
 
         if (sessionUser != null) {
-            Subscribe subscribe = subscribeRepository.findAllByUserIdBoardId(sessionUser.getId(), id);
+            Subscribe subscribe = subscribeRepository.findAllByUserIdBoardId(sessionUser.getId(), boardId);
             if (subscribe != null) {
                 request.setAttribute("subscribe", subscribe);
             }
         }
-        List<Skill> skillBoardList = skillRepository.findByBoardId(id);
+        List<Skill> skillBoardList = skillRepository.findByBoardId(boardId);
 
         request.setAttribute("boardDetail", boardDetailDTO);
         request.setAttribute("skillBoardList",skillBoardList);
@@ -118,13 +113,13 @@ public class BoardController {
     }
 
     @PostMapping("/board/upload")
-    public String upload(BoardRequest.SaveDTO requestDTO){
+    public String upload(BoardRequest.UploadDTO requestDTO){
        User sessionUser = (User) session.getAttribute("sessionUser");
-       Integer boardId = boardRepository.save(requestDTO, sessionUser.getId());
+       Integer boardId = boardRepository.upload(requestDTO, sessionUser.getId());
        List<String> skills = requestDTO.getSkill();
       
        for(String skill : skills){
-           skillRepository.saveByEmployerId(skill,sessionUser.getId(),boardId);
+           skillRepository.uploadByEmployerId(skill,sessionUser.getId(),boardId);
        }
         return "redirect:/user/" + sessionUser.getId();
     }
@@ -135,27 +130,27 @@ public class BoardController {
         return "/board/uploadForm";
     }
 
-    @PostMapping("/board/{id}/update")
-    public String update(@PathVariable int id, BoardRequest.UpdateDTO requestDTO) {
+    @PostMapping("/board/{boardId}/update")
+    public String update(@PathVariable int boardId, BoardRequest.UpdateDTO requestDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-        boardRepository.updateById(requestDTO, id);
-        skillRepository.updateSkillByBoardId(requestDTO.getSkill(),id,sessionUser.getId());
+        boardRepository.updateById(requestDTO, boardId);
+        skillRepository.updateByBoardId(requestDTO.getSkill(),boardId,sessionUser.getId());
 
-        return "redirect:/board/" + id;
+        return "redirect:/board/" + boardId;
     }
 
-    @GetMapping("/board/{id}/updateForm")
-    public String updateForm(@PathVariable int id, HttpServletRequest request) {
-        Board board = boardRepository.findById(id);
+    @GetMapping("/board/{boardId}/updateForm")
+    public String updateForm(@PathVariable int boardId, HttpServletRequest request) {
+        Board board = boardRepository.findById(boardId);
         request.setAttribute("board", board);
 
         return "/board/updateForm";
     }
 
-    @PostMapping("/board/{id}/delete")
-    public String delete(@PathVariable int id, HttpServletRequest request) {
+    @PostMapping("/board/{boardId}/delete")
+    public String delete(@PathVariable int boardId, HttpServletRequest request) {
         User user = (User) session.getAttribute("sessionUser");
-        Board board = boardRepository.findById(id);
+        Board board = boardRepository.findById(boardId);
       
         if (board == null) {
             request.setAttribute("msg", "해당 아이디를 찾을 수 없습니다.");
@@ -163,7 +158,7 @@ public class BoardController {
           
             return "/error";
         } else {
-            boardRepository.deleteById(id);
+            boardRepository.deleteById(boardId);
           
             return "redirect:/user/" + user.getId();
         }

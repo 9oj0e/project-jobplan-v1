@@ -109,6 +109,7 @@ public class SubscribeRepository {
     }
 
     public List<SubscribeResponse.ToEmployerDTO> findByEmployerId(int sessionUserId) {
+        // todo u.birthdate(year로 치환), u.gender, u.address 도 조회
         String q = """
                 SELECT s.resume_id, r.title, u.name 
                 FROM subscribe_tb s

@@ -202,7 +202,7 @@ public class BoardRepository {
 
 
     @Transactional
-    public Integer save(BoardRequest.SaveDTO requestDTO, Integer sessionUserId) {
+    public Integer upload(BoardRequest.UploadDTO requestDTO, Integer sessionUserId) {
         String q = """
                 INSERT INTO board_tb
                 (employer_id, title, content, field, position, salary, opening_date, closing_date, created_at)

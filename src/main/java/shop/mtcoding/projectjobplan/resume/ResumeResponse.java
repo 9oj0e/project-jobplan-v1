@@ -24,19 +24,19 @@ public class ResumeResponse {
 
     @Data
     public static class ResumeDetailDTO{
-        private String username; // todo 변수명 고치기
+        private String name;
         private String birthdate;
         private String address;
         private String phoneNumber;
         private String email;
 
-        private Integer resumeId;
-        private Integer resumeUserId;
+        private Integer id; // resumeId
+        private Integer userId; // resumeUserId
         private String title;
-        private String educationLevel;
-        private String major;
-        private String schoolName;
         private String content;
+        private String schoolName;
+        private String major;
+        private String educationLevel;
         private String career;
       
         private Boolean resumeOwner;
@@ -47,7 +47,7 @@ public class ResumeResponse {
 
         public void isResumeOwner(User sessionUser){
             if(sessionUser == null) resumeOwner = false;
-            else resumeOwner = sessionUser.getId() == resumeUserId;
+            else resumeOwner = sessionUser.getId() == userId;
         }
     }
 }

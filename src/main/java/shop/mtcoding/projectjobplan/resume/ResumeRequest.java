@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ResumeRequest {
     @Data
-    public class SaveDTO {
+    public class UploadDTO {
         // title, cv, schoolName, major, educationLevel, career
         private String title;
         private String content;

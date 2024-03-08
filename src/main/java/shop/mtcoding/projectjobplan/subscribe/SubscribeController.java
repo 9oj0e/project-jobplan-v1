@@ -17,8 +17,9 @@ public class SubscribeController {
     private final HttpSession session;
     private final SubscribeRepository subscribeRepository;
 
+    // 구독 목록
     @GetMapping("/user/{sessionUserId}/subscription")
-    public String subscription( // 구독 목록
+    public String subscription(
                                 @PathVariable int sessionUserId,
                                 HttpServletRequest request) {
         User user = (User) session.getAttribute("sessionUser");
@@ -34,7 +35,6 @@ public class SubscribeController {
             return "/employer/subscription";
         }
     }
-
     // 공고 구독
     @PostMapping("/board/{boardId}/subscribe")
     public String subscribeBoard(@PathVariable int boardId) {
@@ -43,17 +43,14 @@ public class SubscribeController {
 
         return "redirect:/board/" + boardId;
     }
-
     // 이력서 구독
     @PostMapping("/resume/{resumeId}/subscribe")
     public String subscribeResume(@PathVariable int resumeId) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         subscribeRepository.uploadByResumeId(resumeId, sessionUser.getId());
 
-
         return "redirect:/resume/" + resumeId;
     }
-
     // 공고 구독 취소
     @PostMapping("/board/{boardId}/unsubscribe")
     public String unsubscribeBoard(@PathVariable int boardId) {
@@ -62,7 +59,6 @@ public class SubscribeController {
 
         return "redirect:/board/" + boardId;
     }
-
     // 공고 구독리스트에서 공고 구독 취소
     @PostMapping("/user/{boardId}/unsubscribeBoard")
     public String unsubscribeBoardOnSubscription(@PathVariable int boardId) {
@@ -71,8 +67,6 @@ public class SubscribeController {
 
         return "redirect:/user/" + sessionUser.getId() + "/subscription";
     }
-
-
     // 이력서 구독 취소
     @PostMapping("/resume/{resumeId}/unsubscribe")
     public String unsubscribeResume(@PathVariable int resumeId) {
@@ -81,7 +75,6 @@ public class SubscribeController {
 
         return "redirect:/resume/" + resumeId;
     }
-
     // 이력서 구독리스트에서 이력서 구독 취소
     @PostMapping("/user/{resumeId}/unsubscribeResume")
     public String unsubscribeResumeOnSubscription(@PathVariable int resumeId) {
@@ -90,6 +83,4 @@ public class SubscribeController {
 
         return "redirect:/user/" + sessionUser.getId() + "/subscription";
     }
-
-
 }

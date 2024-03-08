@@ -11,6 +11,15 @@
                 <div class="form-control mb-3" style="height: 300px">{{content}}</div>
                 <h4 class="card-title">경력 정보</h4>
                 <div class="form-control mb-3" style="height: 100px">{{career}}</div>
+                <h4 class="card-title">보유 스킬</h4>
+                <div class="form-control mb-3">
+                    {{#skillResumeList}}
+                        <btn class="btn btn-light">{{skillName}}</btn>
+                    {{/skillResumeList}}
+                    {{^skillResumeList}}
+                        <btn class="btn btn-outline-light form-control">없음</btn>
+                    {{/skillResumeList}}
+                </div>
                 <h4 class="card-title">개인 정보</h4>
                 <table class="table">
                     <tr>
@@ -27,7 +36,7 @@
                     </tr>
                     <tr>
                         <td>이름</td>
-                        <td>{{username}}</td>
+                        <td>{{name}}</td>
                     </tr>
                     <tr>
                         <td>나이</td>
@@ -40,16 +49,6 @@
                 </table>
             </div>
             <div class="card-footer">
-            <h3>보유 스킬</h3>
-            <div class="form-control">
-                {{#skillResumeList}}
-                    <btn class="btn btn-outline-light">{{skillName}}</btn>
-                {{/skillResumeList}}
-                {{^skillResumeList}}
-                    <div style="text-align: center">없음</div>
-                {{/skillResumeList}}
-            </div>
-            <br>
                 <table class="table table-borderless">
                     <tr>
                         <td style="background-color: transparent; text-align: end">전화</td>
@@ -79,7 +78,7 @@
                     {{^userPic}}
                         <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
                     {{/userPic}}
-                    <h4 class="card-title text-center">{{resumeDetail.username}}</h4>
+                    <h4 class="card-title text-center">{{resumeDetail.name}}</h4>
                 </div>
                 <div class="card-footer" style="text-align: center;">
                     <!-- 제안하기 버튼 -->
@@ -90,24 +89,26 @@
                     </div>
                 {{/sessionUser.isEmployer}}
                 -->
-                <!-- 구독하기 버튼 -->
-                {{^subscribe}}
-                    <form action="/resume/{{detail.id}}/subscribe" method="post">
-                        <button class="btn btn-success">구독</button>
-                    </form>
-                {{/subscribe}}
-                {{#subscribe}}
-                    <form action="/resume/{{detail.id}}/unsubscribe" method="post">
-                        <button class="btn btn-danger">구독 취소</button>
-                    </form>
-                {{/subscribe}}
-                <!-- 수정 삭제 버튼 -->
+                    <!-- 구독하기 버튼 -->
+                    {{#sessionUser}}
+                        {{^subscribe}}
+                            <form action="/resume/{{resumeDetail.id}}/subscribe" method="post">
+                                <button class="btn btn-success">구독</button>
+                            </form>
+                        {{/subscribe}}
+                        {{#subscribe}}
+                            <form action="/resume/{{resumeDetail.id}}/unsubscribe" method="post">
+                                <button class="btn btn-danger">구독 취소</button>
+                            </form>
+                        {{/subscribe}}
+                    {{/sessionUser}}
+                    <!-- 수정 삭제 버튼 -->
                     {{#resumeDetail.resumeOwner}}
                         <div class="btn-container">
-                            <form action="/resume/{{resumeDetail.resumeId}}/updateForm" method="get">
+                            <form action="/resume/{{resumeDetail.id}}/updateForm" method="get">
                                 <button class="btn btn-warning">수정</button>
                             </form>
-                            <form action="/resume/{{resumeDetail.resumeId}}/delete" method="post"
+                            <form action="/resume/{{resumeDetail.id}}/delete" method="post"
                                   onsubmit="return false">
                                 <button class="btn btn-danger">삭제</button>
                             </form>
