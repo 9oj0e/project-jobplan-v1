@@ -110,35 +110,7 @@ public class SkillRepository {
         }
     }
 
-    public List<Skill> findByEmployerId(int employerId) {
-        String q = """
-                select * from skill_tb where employer_id = ?
-                """;
-        Query query = entityManager.createNativeQuery(q,Skill.class);
-        query.setParameter(1,employerId);
 
-        try {
-           List<Skill> skillList = query.getResultList();
-           return skillList;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public List<Skill> findByUserId(int userId) {
-        String q = """
-                select * from skill_tb where user_id = ?
-                """;
-        Query query = entityManager.createNativeQuery(q,Skill.class);
-        query.setParameter(1,userId);
-
-        try {
-            List<Skill> skillList = query.getResultList();
-            return skillList;
-        } catch (Exception e) {
-            return null;
-        }
-    }
 
     public List<Skill> findByResumeId(int resumeId) {
         String q = """

@@ -93,19 +93,7 @@
 
                     </tbody>
                 </table>
-                    <div class="form-control">
-                        <div class="mb-3"><b>요구기술</b></div>
-                        <div>
-                            {{#skillList}}
-                                <span>{{skillName}}</span>
-                            {{/skillList}}
-                            {{^skillList}}
-                                <form action="/user/{{sessionUser.id}}/updateForm">
-                                    <button class="btn btn-outline-primary form-control">추가하기</button>
-                                </form>
-                            {{/skillList}}
-                        </div>
-                    </div>
+
                 {{/user}}
             </div>
         </div>

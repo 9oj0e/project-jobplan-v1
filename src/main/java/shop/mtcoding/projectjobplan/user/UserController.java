@@ -104,17 +104,6 @@ public class UserController {
                           @PathVariable(required = false) Integer boardId) {
         User user = userRepository.findById(sessionUserId);
 
-        if (user.getIsEmployer() == true) {
-            List<Skill> skillList = skillRepository.findByEmployerId(sessionUserId);
-            if (skillList != null) {
-                request.setAttribute("skillList", skillList);
-            }
-        } else {
-            List<Skill> skillList = skillRepository.findByUserId(sessionUserId);
-            if (skillList != null) {
-                request.setAttribute("skillList", skillList);
-            }
-        }
         request.setAttribute("user", user);
 
         // 지원 삭제 (개인, 지원 취소)
