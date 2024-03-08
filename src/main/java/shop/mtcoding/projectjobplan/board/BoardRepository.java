@@ -65,6 +65,8 @@ public class BoardRepository {
         return boardDetailDTO;
     }
 
+
+
     public List<BoardResponse.BoardAndUserDTO> findByBoardtbAndUsertb(int page,String keyword) {
 
         final int COUNT = 10;
