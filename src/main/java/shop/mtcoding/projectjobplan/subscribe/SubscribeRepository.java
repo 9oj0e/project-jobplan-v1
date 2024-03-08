@@ -14,10 +14,10 @@ import java.util.List;
 public class SubscribeRepository {
     private final EntityManager entityManager;
 
-    public Subscribe findAllByUserIdResumeId(Integer userId, Integer resumeId){
-        String q = "select * from subscribe_tb where user_id = ? and resume_id = ?";
+    public Subscribe findAllByUserIdResumeId(Integer boardUserId, Integer resumeId){
+        String q = "select * from subscribe_tb where board_user_id = ? and resume_id = ?";
         Query query = entityManager.createNativeQuery(q, Subscribe.class);
-        query.setParameter(1, userId);
+        query.setParameter(1, boardUserId);
         query.setParameter(2, resumeId);
 
         try {
@@ -27,10 +27,10 @@ public class SubscribeRepository {
         }
     }
 
-    public Subscribe findAllByUserIdBoardId(Integer userId, Integer boardId){
-        String q = "select * from subscribe_tb where user_id = ? and board_id = ?";
+    public Subscribe findAllByUserIdBoardId(Integer resumeUserId, Integer boardId){
+        String q = "select * from subscribe_tb where resume_user_id = ? and board_id = ?";
         Query query = entityManager.createNativeQuery(q, Subscribe.class);
-        query.setParameter(1, userId);
+        query.setParameter(1, resumeUserId);
         query.setParameter(2, boardId);
 
         try {
@@ -57,27 +57,25 @@ public class SubscribeRepository {
     }
 
     @Transactional
-    public int uploadByBoardId(int boardId,Integer sessionUserId, Integer boardUserId) {
+    public int uploadByBoardId(int boardId,Integer sessionUserId) {
         String q = """
-                insert into subscribe_tb (user_id, board_id, board_user_id, created_at) values(?,?,?, now())
+                insert into subscribe_tb (resume_user_id, board_id, created_at) values(?,?, now())
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, sessionUserId);
         query.setParameter(2, boardId);
-        query.setParameter(3, boardUserId);
 
         return query.executeUpdate();
     }
 
     @Transactional
-    public int uploadByResumeId(int resumeId, Integer sessionUserId, Integer resumeUserId) {
+    public int uploadByResumeId(int resumeId, Integer sessionUserId) {
         String q = """
-                insert into subscribe_tb (user_id, resume_id, resume_user_id, created_at) values(?,?,?, now())
+                insert into subscribe_tb (board_user_id, resume_id, created_at) values(?,?, now())
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, sessionUserId);
         query.setParameter(2, resumeId);
-        query.setParameter(3, resumeUserId);
 
         return query.executeUpdate();
     }
@@ -95,7 +93,7 @@ public class SubscribeRepository {
                 select 
                 s.resume_id, r.title, u.name from subscribe_tb s, resume_tb r, user_tb u
                 where
-                s.user_id = ? and r.id = s.resume_id and u.id = s.resume_user_id;
+                s.board_user_id = ? and r.id = s.resume_id and u.id = s.resume_user_id;
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, sessionUserId);
@@ -116,7 +114,7 @@ public class SubscribeRepository {
     @Transactional
     public int deleteByBoardId(int boardId, Integer sessionUserId) {
         String q = """
-                delete from subscribe_tb where board_id = ? and user_id = ?
+                delete from subscribe_tb where board_id = ? and resume_user_id = ?
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, boardId);
@@ -128,7 +126,7 @@ public class SubscribeRepository {
     @Transactional
     public int deleteByResumeId(int resumeId, Integer sessionUserId) {
         String q = """
-                delete from subscribe_tb where resume_id = ? and user_id = ?
+                delete from subscribe_tb where resume_id = ? and board_user_id = ?
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, resumeId);

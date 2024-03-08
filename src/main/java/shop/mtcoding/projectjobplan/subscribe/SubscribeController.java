@@ -39,7 +39,7 @@ public class SubscribeController {
     @PostMapping("/board/{boardId}/subscribe")
     public String subscribeBoard(@PathVariable int boardId) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-        subscribeRepository.uploadByBoardId(boardId, sessionUser.getId(), subscribeRepository.findBoardUserIdByBoardId(boardId));
+        subscribeRepository.uploadByBoardId(boardId, sessionUser.getId());
 
         return "redirect:/board/" + boardId;
     }
@@ -48,7 +48,7 @@ public class SubscribeController {
     @PostMapping("/resume/{resumeId}/subscribe")
     public String subscribeResume(@PathVariable int resumeId) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-        subscribeRepository.uploadByResumeId(resumeId, sessionUser.getId(), subscribeRepository.findResumeUserIdByResumeId(resumeId));
+        subscribeRepository.uploadByResumeId(resumeId, sessionUser.getId());
 
 
         return "redirect:/resume/" + resumeId;
