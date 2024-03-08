@@ -437,3 +437,12 @@ td {
 .card-title {
     text-align: end;
 }
+
+.card-body-container {
+    width: 80%;
+    justify-content: center;
+}
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
+}

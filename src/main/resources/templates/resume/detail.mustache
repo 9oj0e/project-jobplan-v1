@@ -4,10 +4,9 @@
     <div class="card div-card">
         {{#resumeDetail}}
             <div class="card-header card-title">
-                <h2>{{username}}님 이력서</h2>
+                <h3>{{title}}</h3>
             </div>
-            <div class="card-body">
-                <h4 class="card-title">{{title}}</h4>
+            <div class="card-body" style="margin-left: 5%; margin-right: 5%">
                 <h4 class="card-title">자기소개서</h4>
                 <div class="form-control" style="height: 300px">{{content}}</div>
                 <h4 class="card-title">경력 정보</h4>
@@ -37,14 +36,6 @@
                         <td>{{birthyear}}년 생</td>
                     </tr>
                     <tr>
-                        <td>휴대전화</td>
-                        <td>{{phoneNumber}}</td>
-                    </tr>
-                    <tr>
-                        <td>이메일</td>
-                        <td>{{email}}</td>
-                    </tr>
-                    <tr>
                         <td>주소</td>
                         <td>{{address}}</td>
                     </tr>
@@ -52,37 +43,58 @@
             </div>
             <div class="card-footer">
                 <!--기술 스택?-->
+                <table class="table table-borderless">
+                    <tr>
+                        <td style="background-color: transparent; text-align: end">전화</td>
+                        <td style="background-color: transparent">{{phoneNumber}}</td>
+                        <td style="background-color: transparent; text-align: end">이메일</td>
+                        <td style="background-color: transparent">{{email}}</td>
+                    </tr>
+                </table>
             </div>
         {{/resumeDetail}}
     </div>
     <div class="sidenav-container">
         <div class="sidenav">
-            <div class="card" style="width:150px">
-                {{#userPic}}
-                    <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
-                {{/userPic}}
-                {{^userPic}}
-                    <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
-                {{/userPic}}
-                <div class="card-body">
+            <div class="card" style="width:200px">
+                <div class="card-body" style="padding-left: 0; padding-right: 0">
+                    <div class="card-title">
+                        <table class="table">
+                            <tr>
+                                <td style="text-align: end; padding-bottom: 0; padding-top: 0">평점</td>
+                                <td style="text-align: start; padding-bottom: 0; padding-top: 0">3.0</td>
+                            </tr>
+                        </table>
+                    </div>
+                    {{#userPic}}
+                        <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
+                    {{/userPic}}
+                    {{^userPic}}
+                        <img class="card-img" src="../images/avatar.png" alt="Card image" style="width:100%">
+                    {{/userPic}}
                     <h4 class="card-title text-center">{{resumeDetail.username}}</h4>
-                    <div class="card-footer" style="text-align: center;">
-                        <!-- 제안하기 버튼 -->
-                        {{#isEmployer}}
-                            <div>
-                                <a href="#" class="btn btn-primary">제안</a>
-                            </div>
-                        {{/isEmployer}}
-                        <!-- 수정 삭제 버튼 -->
-                        {{#resumeDetail.resumeOwner}}
-                        <div>
-                            <a href="/resume/{{resumeDetail.resumeId}}/updateForm" class="btn btn-warning">수정</a>
-                            <form action="/resume/{{resumeDetail.resumeId}}/delete" method="post" onsubmit="return false">
+                </div>
+                <div class="card-footer" style="text-align: center;">
+                    <!-- 제안하기 버튼 -->
+                    <!--
+                {{#sessionUser.isEmployer}}
+                    <div>
+                        <a href="#" class="btn btn-primary">제안</a>
+                    </div>
+                {{/sessionUser.isEmployer}}
+                -->
+                    <!-- 수정 삭제 버튼 -->
+                    {{#resumeDetail.resumeOwner}}
+                        <div class="btn-container">
+                            <form action="/resume/{{resumeDetail.resumeId}}/updateForm" method="get">
+                                <button class="btn btn-warning">수정</button>
+                            </form>
+                            <form action="/resume/{{resumeDetail.resumeId}}/delete" method="post"
+                                  onsubmit="return false">
                                 <button class="btn btn-danger">삭제</button>
                             </form>
                         </div>
-                        {{/resumeDetail.resumeOwner}}
-                    </div>
+                    {{/resumeDetail.resumeOwner}}
                 </div>
             </div>
         </div>
