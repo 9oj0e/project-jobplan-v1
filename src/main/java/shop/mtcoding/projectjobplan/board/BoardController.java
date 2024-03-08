@@ -76,12 +76,12 @@ public class BoardController {
         BoardResponse.BoardDetailDTO boardDetailDTO = boardRepository.detail(id);
         boardDetailDTO.isBoardOwner(sessionUser);
         request.setAttribute("boardDetail", boardDetailDTO);
-        Subscribe subscribe = subscribeRepository.findAllByUserIdBoardId(sessionUser.getId(),id);
-        if(subscribe != null){
-            request.setAttribute("subscribe", subscribe);
-        }
-        else {
-            return "/board/detail";
+
+        if (sessionUser != null) {
+            Subscribe subscribe = subscribeRepository.findAllByUserIdBoardId(sessionUser.getId(), id);
+            if (subscribe != null) {
+                request.setAttribute("subscribe", subscribe);
+            }
         }
         return "/board/detail";
     }

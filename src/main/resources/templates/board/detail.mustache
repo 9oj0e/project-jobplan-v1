@@ -12,35 +12,35 @@
             <div class="card-body">
                 <h4 class="card-title text-center">{{businessName}}</h4>
                 <div class="card-footer" style="text-align: center;">
-                    <!-- 지원하기 버튼 -->
                     <div>
                         {{#sessionUser}}
                             {{^isEmployer}}
+                                <!-- 지원하기 버튼 -->
                                 <form action="/board/{{boardDetail.id}}/applyForm" method="get">
                                     <button class="btn btn-primary">지원</button>
                                 </form>
                             {{/isEmployer}}
+                            <!-- 구독하기 버튼 -->
+                            {{^subscribe}}
+                                <form action="/board/{{boardDetail.id}}/subscribe" method="post">
+                                    <button class="btn btn-success">구독</button>
+                                </form>
+                            {{/subscribe}}
+                            {{#subscribe}}
+                                <form action="/board/{{boardDetail.id}}/unsubscribe" method="post">
+                                    <button class="btn btn-danger">구독 취소</button>
+                                </form>
+                            {{/subscribe}}
                         {{/sessionUser}}
                         {{^sessionUser}}
                                 <form action="/loginForm" method="get">
                                     <button class="btn btn-primary">지원</button>
                                 </form>
                         {{/sessionUser}}
-                        <!-- 구독하기 버튼 -->
-                        {{^subscribe}}
-                            <form action="/board/{{boardDetail.id}}/subscribe" method="post">
-                                <button class="btn btn-success">구독</button>
-                            </form>
-                        {{/subscribe}}
-                        {{#subscribe}}
-                            <form action="/board/{{boardDetail.id}}/unsubscribe" method="post">
-                                <button class="btn btn-danger">구독취소</button>
-                            </form>
-                        {{/subscribe}}
                     </div>
-                    <!-- 수정 삭제 버튼 -->
                     <div>
                         {{#boardOwner}}
+                            <!-- 수정 삭제 버튼 -->
                             <a href="/board/{{id}}/updateForm" method="get" class="btn btn-warning">수정</a>
                             <form action="/board/{{id}}/delete" method="post">
                                 <button class="btn btn-danger">삭제</button>
