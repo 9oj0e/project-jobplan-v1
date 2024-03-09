@@ -4,8 +4,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
+import shop.mtcoding.projectjobplan.board.BoardResponse;
+import shop.mtcoding.projectjobplan.pic.Pic;
+import shop.mtcoding.projectjobplan.pic.PicRepository;
+import shop.mtcoding.projectjobplan.pic.PicRequest;
+import shop.mtcoding.projectjobplan.rating.Rating;
+import shop.mtcoding.projectjobplan.rating.RatingRepository;
 import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
 import shop.mtcoding.projectjobplan.subscribe.Subscribe;
@@ -22,6 +29,8 @@ public class ResumeController {
     private final SkillRepository skillRepository;
     private final SubscribeRepository subscribeRepository;
     private final HttpSession session;
+    private final PicRepository picRepository;
+    private final RatingRepository ratingRepository;
 
     @PostMapping("resume/{resumeId}/update")
     public String update(@PathVariable int resumeId, ResumeRequest.UpdateDTO requestDTO) {
@@ -103,23 +112,38 @@ public class ResumeController {
     }
 
     @GetMapping("/resume/{resumeId}")
-    public String detail(@PathVariable int resumeId, HttpServletRequest request) {
+    @PostMapping("/resume/{resumeId}") // ksj-030810 : Mapping 두번
+    public String detail(@PathVariable int resumeId, HttpServletRequest request, Model model) { // ksj-030810 - model
         User sessionUser = (User) session.getAttribute("sessionUser");
+        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id)
 
-        // resumeId가 없는 경우 처리 해야함.
-        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(resumeId);
+        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(resumeId); // todo : resumeId가 없는 경우 처리
         resumeDetailDTO.isResumeOwner(sessionUser);
         request.setAttribute("resumeDetail", resumeDetailDTO);
 
         List<Skill> skillResumeList = skillRepository.findByResumeId(resumeId);
-        request.setAttribute("skillResumeList", skillResumeList);
+        request.setAttribute("skillResumeList", skillResumeList); // todo : resumeSkillList로 변경
+  
+        Double avgRate = ratingRepository.findAvgRateBySubjectId(resume.getUserId()); // ksj-030810
+        model.addAttribute("resumeList", resumeDetailDTO.getId); // ksj-030810
+        model.addAttribute("avgRate", avgRate); // ksj-030810
 
         if (sessionUser != null){
             Subscribe subscribe = subscribeRepository.findAllByUserIdResumeId(sessionUser.getId(), resumeId);
             request.setAttribute("subscribe", subscribe);
         }
+
         return "/resume/detail";
     }
+//    @PostMapping("/resume/{id}")
+//    public String detail(Model model, @PathVariable int id) {
+//        Resume resume = resumeRepository.findById(id);
+//        Double avgRate = ratingRepository.findAvgRateBySubjectId(resume.getUserId());
+//        model.addAttribute("avgRate", avgRate);
+//
+//        return "/resume/detail";
+//    }
+
 
     @GetMapping("/resume/uploadForm")
     public String uploadForm() {
