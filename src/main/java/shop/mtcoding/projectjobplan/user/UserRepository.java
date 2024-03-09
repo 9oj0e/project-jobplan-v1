@@ -1,13 +1,11 @@
 package shop.mtcoding.projectjobplan.user;
 
-import com.sun.tools.javac.Main;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -16,7 +14,7 @@ public class UserRepository {
     private final EntityManager entityManager;
 
     @Transactional
-    public void save(UserRequest.JoinDTO requestDTO) {
+    public void upload(UserRequest.JoinDTO requestDTO) {
         String q = """
                 INSERT INTO user_tb
                 (username, password, name, birthdate, gender, phone_number, address, email,
@@ -133,9 +131,6 @@ public class UserRepository {
             query.setParameter(6, id);
 
             return query.executeUpdate();
-
-
-
         }
     }
     /* 계정 탈퇴

@@ -40,8 +40,9 @@
         <div class="div-menu-right">
             {{#sessionUser}}
                 {{#isEmployer}}
-                    <div><a href="/resume/listings" class="text-body">기업메인</a></div>
+                    <div><a href="/resume/listings" class="text-body">기업 메인</a></div>
                 {{/isEmployer}}
+                <div><a href="/user/{{id}}/subscription">구독</a></div>
                 <div><a href="/user/{{sessionUser.id}}" class="text-body">마이페이지</a></div>
                 <div><a href="/logout" class="text-body">로그아웃</a></div>
             {{/sessionUser}}
@@ -54,5 +55,3 @@
 </header>
 <hr>
 <!-- 헤더 end -->
-<!-- 바디 start -->
-<main class="main-size">

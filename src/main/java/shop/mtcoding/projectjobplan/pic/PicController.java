@@ -59,7 +59,7 @@ public class PicController {
             Files.write(imgPath, imgFile.getBytes());
 
             // 3. DB에 저장 (title, realFileName)
-            picRepository.insert(id, imgFilename);
+            picRepository.upload(id, imgFilename);
 
             Pic pic = picRepository.findById(id);
             if (userRepository.findById(id).getIsEmployer() != true) {

@@ -2,7 +2,6 @@ package shop.mtcoding.projectjobplan.user;
 
 import lombok.Data;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class UserRequest {
@@ -11,7 +10,7 @@ public class UserRequest {
         private String username;
         private String password;
         private String name;
-        private String birthdate;
+        private String birthdate; // timestamp
         private char gender;
         private String phoneNumber;
         private String address;

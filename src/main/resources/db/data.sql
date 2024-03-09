@@ -205,11 +205,11 @@ VALUES (11, '목표를 달성하기 위해 실행한 3단계 실행 계획.', '�
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (6, '당신은 내가 넘어야 할 작은 산에 불과하다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (6, '꿈꾸고 믿고 대담해지고 실천하자.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (7, '당신은 내가 넘어야 할 작은 산에 불과하다.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
+VALUES (7, '코드를 개선하는 개발자.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
@@ -217,7 +217,7 @@ VALUES (8, '당신은 내가 넘어야 할 작은 산에 불과하다.', '이력
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (9, '화살 하나는 쉽게 부러져도 화살 한 묶음은 쉽게 부러지지 않습니다.', '이력서내용', '학교명', '전공', '학력', '신입', now());
+VALUES (9, 'Java 개발자', '이력서내용', '학교명', '전공', '학력', '신입', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
@@ -229,11 +229,11 @@ VALUES (11, '한번 물면 쉽게 놓지 않습니다.', '이력서내용', '학
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (6, '회복의 유일한 길은 다시 시작하는 것이다.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
+VALUES (6, '대한민국의 미래.', '이력서내용', '학교명', '전공', '학력', '백앤드 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
-VALUES (7, '회복의 유일한 길은 다시 시작하는 것이다.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
+VALUES (7, '10년후 대한민국을 책임질 인재.', '이력서내용', '학교명', '전공', '학력', '프론트 1년', now());
 
 INSERT INTO resume_tb
 (user_id, title, content, school_name, major, education_level, career, created_at)
@@ -298,4 +298,63 @@ VALUES (5, 10, 5, 2, now());
 -- INSERT INTO rating_tb
 -- (rater_id, subject_id, rate)
 -- VALUES (1, 6, 3);
---
+
+-- subscribe_tb (기업이 이력서를 구독)
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (1, null, null, 1, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (2, null, null, 1, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (1, null, null, 2, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (2, null, null, 2, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (1, null, null, 3, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (2, null, null, 3, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (1, null, null, 4, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (1, null, null, 5, now());
+
+-- subscribe_tb (개인이 기업을 )
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 6, 1, null, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 6, 2, null, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 6, 3, null, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 7, 1, null, now());
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 7, 4, null, now());;
+INSERT INTO subscribe_tb
+(resume_id, resume_user_id, board_id, board_user_id, created_at)
+VALUES (null, 8, 7, null, now());
+
+-- skill_tb
+insert into skill_tb(board_id,employer_id,user_id,skill_name) values (1,1,null,'java');
+insert into skill_tb(board_id,employer_id,user_id,skill_name) values (1,1,null,'javaScript');
+insert into skill_tb(board_id,employer_id,user_id,skill_name) values (2,1,null,'java');
+insert into skill_tb(board_id,employer_id,user_id,skill_name) values (5,2,null,'HTML');
+insert into skill_tb(board_id,employer_id,user_id,skill_name) values (6,2,null,'Spring');
+
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (1,null,6,'java');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (1,null,6,'javaScript');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (2,null,7,'java');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (5,null,8,'HTML');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (6,null,8,'Spring');
+insert into skill_tb(resume_id,employer_id,user_id,skill_name) values (6,null,8,'MySQL');

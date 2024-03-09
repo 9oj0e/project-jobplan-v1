@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BoardRequest {
     @Data
-    public class SaveDTO {
+    public class UploadDTO {
         // (user_id, title, content, field, position, salary, opening_date, closing_date, created_at)
         private String title;
         private String content;
@@ -30,5 +30,8 @@ public class BoardRequest {
         private String salary;
         private String openingDate;
         private String closingDate;
+
+        private List<String> skill;
+
     }
 }
