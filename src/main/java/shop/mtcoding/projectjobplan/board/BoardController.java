@@ -30,7 +30,7 @@ public class BoardController {
 
     @GetMapping({"/", "/board"})
     public String index(HttpServletRequest request) {
-        List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb();
+        List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findBoardTbAndUserTb();
         List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
 
         for (BoardResponse.BoardAndUserDTO dto : responseDTO) {
@@ -55,7 +55,7 @@ public class BoardController {
             HttpServletRequest request) {
 
         if (keyword != null) {
-            List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page, keyword);
+            List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findBoardTbAndUserTb(page, keyword);
             List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
 
             for (BoardResponse.BoardAndUserDTO dto : responseDTO) {
@@ -76,7 +76,7 @@ public class BoardController {
 
             return "/board/listings";
         } else {
-            List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page);
+            List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findBoardTbAndUserTb(page);
             List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
 
             for (BoardResponse.BoardAndUserDTO dto : responseDTO) {

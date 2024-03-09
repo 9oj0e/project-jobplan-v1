@@ -45,7 +45,8 @@ public class ApplyRepository {
                 JOIN apply_tb a ON b.id = a.board_id
                 JOIN user_tb u ON a.resume_user_id = u.id
                 JOIN resume_tb r ON a.resume_id = r.id
-                WHERE a.board_user_id = ?;
+                WHERE a.board_user_id = ?
+                ORDER BY a.id DESC
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, sessionUserId);
@@ -80,7 +81,9 @@ public class ApplyRepository {
                 JOIN apply_tb a ON b.id = a.board_id
                 JOIN user_tb u ON a.resume_user_id = u.id
                 JOIN resume_tb r ON a.resume_id = r.id
-                WHERE a.board_id = ?;
+                WHERE a.board_id = ?
+                ORDER BY a.id DESC
+                ;
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, boardId);

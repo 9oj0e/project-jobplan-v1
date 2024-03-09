@@ -3,8 +3,10 @@ package shop.mtcoding.projectjobplan.board;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.projectjobplan._core.Constant;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -20,11 +22,23 @@ public class BoardRepository {
 
     public BoardResponse.BoardDetailDTO detail(int boardId) {
         String q = """
-                select
-                u.address, u.business_name, u.email, u.name, u.phone_number,
-                b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.employer_id
-                from user_tb u, board_tb b
-                where b.id=? and b.employer_id = u.id
+                SELECT
+                u.address,
+                u.business_name,
+                u.email,
+                u.name,
+                u.phone_number,
+                b.title,
+                b.content,
+                b.field,
+                b.position,
+                b.salary,
+                b.opening_date,
+                b.closing_date,
+                b.employer_id
+                FROM user_tb u, board_tb b
+                WHERE b.id=?
+                AND b.employer_id = u.id
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, boardId);
@@ -68,46 +82,49 @@ public class BoardRepository {
 
 
 
-    public List<BoardResponse.BoardAndUserDTO> findByBoardtbAndUsertb(int page,String keyword) {
-
-        final int COUNT = 10;
-        int value = (page - 1) * COUNT;
+    public List<BoardResponse.BoardAndUserDTO> findBoardTbAndUserTb(int page, String keyword) {
+        int value = (page - 1) * Constant.PAGING_COUNT;
         String q = """
-
-                SELECT b.id, b.employer_id,b.title,b.content,b.field,
-                                b.position,\s
-                                b.salary,\s
-                                b.opening_date,\s
-                                b.closing_date,\s
-                                b.created_at,\s
-                                u.username,\s
-                                u.address,\s
-                                u.is_employer,\s
-                                u.business_name,\s
-                                s.skill_name\s
-                            FROM\s
-                                board_tb b\s
-                            INNER JOIN\s
-                                user_tb u\s
-                            ON\s
-                                b.employer_id = u.id\s
-                            INNER JOIN\s
-                                skill_tb s\s
-                            ON\s
-                                b.id = s.board_id\s
-                            WHERE\s
-                                u.is_employer = true\s
-                                AND s.skill_name = ? ORDER BY b.id DESC LIMIT ?,?                        
-                                """;
+                SELECT
+                b.id,
+                b.employer_id,
+                b.title,
+                b.content,
+                b.field,
+                b.position,
+                b.salary,
+                b.opening_date,
+                b.closing_date,
+                b.created_at,
+                u.username,
+                u.address,
+                u.is_employer,
+                u.business_name,
+                s.skill_name
+                FROM
+                board_tb b
+                INNER JOIN
+                user_tb u
+                ON
+                b.employer_id = u.id
+                INNER JOIN
+                skill_tb s
+                ON
+                b.id = s.board_id
+                WHERE
+                u.is_employer = true
+                AND s.skill_name = ?
+                ORDER BY b.id
+                DESC LIMIT ?,?                        
+                """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1,keyword);
         query.setParameter(2, value);
-        query.setParameter(3, COUNT);
+        query.setParameter(3, Constant.PAGING_COUNT);
+
         List<Object[]> results = query.getResultList();
         List<BoardResponse.BoardAndUserDTO> responseDTO = new ArrayList<>();
-
         for (Object[] result : results) {
-
             BoardResponse.BoardAndUserDTO dto = new BoardResponse.BoardAndUserDTO();
             dto.setId((Integer) result[0]);
             dto.setEmployerId((Integer) result[1]);
@@ -127,25 +144,42 @@ public class BoardRepository {
 
             responseDTO.add(dto);
         }
+
         return responseDTO;
     }
 
-    public List<BoardResponse.BoardAndUserDTO> findByBoardtbAndUsertb(int page) {
-
-
-        final int COUNT = 10;
-        int value = (page - 1) * COUNT;
+    public List<BoardResponse.BoardAndUserDTO> findBoardTbAndUserTb(int page) {
+        int value = (page - 1) * Constant.PAGING_COUNT;
         String q = """
-                SELECT b.id, b.employer_id, b.title, b.content, b.field, b.position, b.salary, b.opening_date, b.closing_date, b.created_at, u.username, u.address, u.is_employer, u.business_name FROM board_tb b INNER JOIN user_tb u ON b.employer_id = u.id WHERE u.is_employer = true ORDER BY b.id DESC LIMIT ?,?;               
+                SELECT
+                b.id,
+                b.employer_id,
+                b.title,
+                b.content,
+                b.field,
+                b.position,
+                b.salary,
+                b.opening_date,
+                b.closing_date,
+                b.created_at,
+                u.username,
+                u.address,
+                u.is_employer,
+                u.business_name
+                FROM board_tb b
+                INNER JOIN user_tb u
+                ON b.employer_id = u.id
+                WHERE u.is_employer = true
+                ORDER BY b.id
+                DESC LIMIT ?,?;               
                         """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, value);
-        query.setParameter(2, COUNT);
+        query.setParameter(2, Constant.PAGING_COUNT);
+
         List<Object[]> results = query.getResultList();
         List<BoardResponse.BoardAndUserDTO> responseDTO = new ArrayList<>();
-
         for (Object[] result : results) {
-
             BoardResponse.BoardAndUserDTO dto = new BoardResponse.BoardAndUserDTO();
             dto.setId((Integer) result[0]);
             dto.setEmployerId((Integer) result[1]);
@@ -164,19 +198,38 @@ public class BoardRepository {
 
             responseDTO.add(dto);
         }
+
         return responseDTO;
     }
 
-    public List<BoardResponse.BoardAndUserDTO> findByBoardtbAndUsertb() {
+    public List<BoardResponse.BoardAndUserDTO> findBoardTbAndUserTb() {
         String q = """
-                select b.id,b.employer_id, b.title, b.content,b.field,b.position,b.salary,b.opening_date,b.closing_date,b.created_at, u.username,u.address,u.is_employer,u.business_name from board_tb b inner join user_tb u on b.employer_id = u.id  order by id desc LIMIT 0,12;
+                SELECT
+                b.id,
+                b.employer_id,
+                b.title,
+                b.content,
+                b.field,
+                b.position,
+                b.salary,
+                b.opening_date,
+                b.closing_date,
+                b.created_at,
+                u.username,
+                u.address,
+                u.is_employer,
+                u.business_name
+                FROM board_tb b
+                INNER JOIN user_tb u
+                ON b.employer_id = u.id
+                ORDER BY id
+                DESC LIMIT 0,12;
                 """;
         Query query = entityManager.createNativeQuery(q);
+
         List<Object[]> results = query.getResultList();
         List<BoardResponse.BoardAndUserDTO> responseDTO = new ArrayList<>();
-
         for (Object[] result : results) {
-
             BoardResponse.BoardAndUserDTO dto = new BoardResponse.BoardAndUserDTO();
             dto.setId((Integer) result[0]);
             dto.setEmployerId((Integer) result[1]);
@@ -193,13 +246,11 @@ public class BoardRepository {
             dto.setEmployer((boolean) result[12]);
             dto.setBusinessName((String) result[13]);
 
-
             responseDTO.add(dto);
         }
+
         return responseDTO;
-
     }
-
 
     @Transactional
     public Integer upload(BoardRequest.UploadDTO requestDTO, Integer sessionUserId) {
@@ -225,42 +276,32 @@ public class BoardRepository {
         query.setParameter(7, openingDate);
         query.setParameter(8, closingDate);
 
-
         query.executeUpdate();
 
         String q1 = """
-                select max(id) from board_tb
+                SELECT max(id) FROM board_tb
                 """;
         Query query1 = entityManager.createNativeQuery(q1);
         Integer boardId = (Integer) query1.getSingleResult();
         return boardId ;
    }
-
-
-
+   /*
     public List<Board> findAll() {
         String q = "select * from board_tb order by id desc";
         Query query = entityManager.createNativeQuery(q, Board.class);
 
         return (List<Board>) query.getResultList();
-
     }
-
-    public Board findEmpIdById(int id) {
-        String q = "select * from board_tb where id = ?";
-        Query query = entityManager.createNativeQuery(q, Board.class);
-        query.setParameter(1, id);
-
-        return (Board) query.getSingleResult();
-    }
+    */
 
     public Board findById(Integer id) {
-        String q = "select * from board_tb where id = ?";
+        String q = "SELECT * FROM board_tb WHERE id = ?";
         Query query = entityManager.createNativeQuery(q, Board.class);
         query.setParameter(1, id);
 
         return (Board) query.getSingleResult();
     }
+
     public BoardResponse.ApplyFormDTO findWithBusinessNameById(Integer id) {
         String q = """
                 SELECT u.id, u.business_name, b.title, b.closing_date
@@ -289,7 +330,7 @@ public class BoardRepository {
     }
 
     public List<Board> findByEmployerId(Integer employerId) {
-        String q = "select * from board_tb where employer_id = ? order by id desc";
+        String q = "SELECT * FROM board_tb WHERE employer_id = ? ORDER BY id DESC";
         Query query = entityManager.createNativeQuery(q, Board.class);
         query.setParameter(1, employerId);
 
@@ -343,10 +384,12 @@ public class BoardRepository {
         }
     }
 
-
     public int countIsEmployerTrue() {
         String q = """
-                SELECT COUNT(*) FROM board_tb b INNER JOIN user_tb u ON b.employer_id = u.id WHERE u.is_employer = true;
+                SELECT COUNT(*)
+                FROM board_tb b
+                INNER JOIN user_tb u ON b.employer_id = u.id
+                WHERE u.is_employer = true;
                 """;
         Query query = entityManager.createNativeQuery(q);
         Long count = (Long) query.getSingleResult();

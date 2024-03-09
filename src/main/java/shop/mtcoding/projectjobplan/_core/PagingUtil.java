@@ -27,7 +27,9 @@ public class PagingUtil {
     }
 
     public int getTotalPageCount() {
-        return (this.totalCount % 10 == 0) ? (this.totalCount / 10) : (this.totalCount / 10 + 1);
+        return (this.totalCount % Constant.PAGING_COUNT == 0) ?
+                (this.totalCount / Constant.PAGING_COUNT) :
+                (this.totalCount / Constant.PAGING_COUNT + 1);
     }
 
     public boolean isLast() {
