@@ -4,9 +4,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import shop.mtcoding.projectjobplan._core.ApiUtil;
 import shop.mtcoding.projectjobplan.apply.ApplyRepository;
 import shop.mtcoding.projectjobplan.apply.ApplyResponse;
 import shop.mtcoding.projectjobplan.board.Board;
@@ -33,6 +36,18 @@ public class UserController {
     private final ApplyRepository applyRepository;
     private final RatingRepository ratingRepository;
     private final PicRepository picRepository;
+
+    @GetMapping("/api/username-same-check")
+    public @ResponseBody ApiUtil<?> usernameSameCheck(String username){
+
+       User user = userRepository.findByUsername(username);
+       if(user==null){
+           return new ApiUtil<>(false);
+       }else {
+           return new ApiUtil<>(true);
+       }
+
+    }
 
     @GetMapping("/user/joinSelection")
     public String joinSelection() {

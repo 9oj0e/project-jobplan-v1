@@ -1,5 +1,6 @@
 {{>layout/header}}
 <style>
+
     * {
         margin: 0px;
         box-sizing: border-box;
@@ -9,6 +10,12 @@
         font-size: 13px;
         margin-top: 10px;
         color: rgb(66, 66, 66);
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     }
 </style>
 <!-- 바디 start -->
@@ -23,7 +30,7 @@
                 <div>아이디</div>
                 <div class="mb-3">
                     <input type="text" name="username" id="username" placeholder="Enter username.." value="love"
-                           class="form-control"
+                           class="form-control" onchange="check()"
                            required>
                 </div>
                 <div>비밀번호</div>
@@ -108,5 +115,36 @@
         </div>
     </div>
 </div>
+
+<script>
+    let isSameCheck = false ;
+
+    function check(){
+        let username = $("#username").val();
+
+        $.ajax({
+            type :"get",
+            url : "/api/username-same-check",
+            data : {username : username}
+        }).done((res)=>{
+            if(res.body==false) {
+                isSameCheck = true;
+                alert("사용가능한 아이디입니다.")
+            }else{
+                isSameCheck = false ;
+                alert("아이디가 중복되었습니다.")
+            }
+        }).fail((res)=>{
+            alert(res.responseJSON.msg);
+        });
+
+
+
+    }
+
+</script>
+
+
+
         <!-- 바디 end -->
 {{>layout/footer}}
