@@ -43,71 +43,76 @@
                         </tr>
                     </table>
                 {{/sessionUser}}
-                    <table class="table">
-                        <h4 class="card-title">이력서 제목</h4>
-                        <tr>
-                            <td>제목</td>
-                            <td>
-                                <input name="title" type="text" class="form-control">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>학교명</td>
-                            <td>
-                                <input name="schoolName" type="text"
-                                       class="form-control">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>졸업형태</td>
-                            <td>
-                                <select name="educationLevel" class="form-control">
-                                    <option value="중졸">중졸</option>
-                                    <option value="고졸">고졸</option>
-                                    <option value="대졸">대졸</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>전공</td>
-                            <td>
-                                <input name="major" type="text" class="form-control">
-                            </td>
-                        </tr>
-                    </table>
-                    <h2 class="card-title">보유 스킬</h2>
-                    <div class=form-control>
-                    <input type="checkbox" name="skill" value="없음">
-                    <span>없음</span>
-                    <input type="checkbox" name="skill" value="java">
-                    <span>java</span>
-                    <input type="checkbox" name="skill" value="javaScript">
-                    <span>javaScript</span>
-                    <input type="checkbox" name="skill" value="Spring">
-                    <span>Spring</span>
-                    <input type="checkbox" name="skill" value="HTML">
-                    <span>HTML</span>
-                    <input type="checkbox" name="skill" value="jQuery">
-                    <span>jQuery</span>
-                    <input type="checkbox" name="skill" value="MySQL">
-                    <span>MySQL</span>
-                    </div>
-                    <br>
-                    <h4 class="card-title">경력 사항</h4>
-                    <table class="table">
-                        <tr>
-                            <td>경력 정보</td>
-                            <td>
-                                <textarea name="career" class="form-control" style="height: 100px"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>자기소개서</td>
-                            <td>
-                                <textarea name="content" class="form-control" style="height: 300px;"></textarea>
-                            </td>
-                        </tr>
-                    </table>
+                <table class="table">
+                    <h4 class="card-title">이력서 제목</h4>
+                    <tr>
+                        <td>제목</td>
+                        <td>
+                            <input name="title" type="text" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>학교명</td>
+                        <td>
+                            <input name="schoolName" type="text"
+                                   class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>졸업형태</td>
+                        <td>
+                            <select name="educationLevel" class="form-control">
+                                <option value="중졸">중졸</option>
+                                <option value="고졸">고졸</option>
+                                <option value="대졸">대졸</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>전공</td>
+                        <td>
+                            <input name="major" type="text" class="form-control">
+                        </td>
+                    </tr>
+                </table>
+                <h4 class="card-title">보유 스킬</h4>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <div class=form-control style="display: flex; justify-content: space-evenly">
+                                <input type="checkbox" name="skill" value="java">
+                                <span>java</span>
+                                <input type="checkbox" name="skill" value="javaScript">
+                                <span>javaScript</span>
+                                <input type="checkbox" name="skill" value="Spring">
+                                <span>Spring</span>
+                                <input type="checkbox" name="skill" value="HTML">
+                                <span>HTML</span>
+                                <input type="checkbox" name="skill" value="jQuery">
+                                <span>jQuery</span>
+                                <input type="checkbox" name="skill" value="MySQL">
+                                <span>MySQL</span>
+                                <input type="checkbox" name="skill" value="없음">
+                                <span>없음</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <h4 class="card-title">경력 사항</h4>
+                <table class="table">
+                    <tr>
+                        <td>경력 정보</td>
+                        <td>
+                            <textarea name="career" class="form-control" style="height: 100px"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>자기소개서</td>
+                        <td>
+                            <textarea name="content" class="form-control" style="height: 300px;"></textarea>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="card-footer">
                 <div class="button-post-cancel">

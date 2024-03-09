@@ -128,20 +128,12 @@
                     <h4 class="card-title text-center">{{resumeDetail.name}}</h4>
                 </div>
                 <div class="card-footer" style="text-align: center;">
-                    <!-- 제안하기 버튼 -->
-                    <!--
-                {{#sessionUser.isEmployer}}
-                    <div>
-                        <a href="#" class="btn btn-primary">제안</a>
-                    </div>
-                {{/sessionUser.isEmployer}}
-                -->
                     {{#sessionUser}}
                         {{#isEmployer}}
                             {{^hasRated}}
                                 <form action="/resume/{{resumeDetail.id}}/rate" method="post">
                                     <div>
-                                        <select id="rate" name="rate" style="width: 100%">
+                                        <select name="rate" style="text-align: center; width: 100%">
                                             <option value="1">1점</option>
                                             <option value="2">2점</option>
                                             <option value="3">3점</option>
@@ -149,7 +141,8 @@
                                             <option value="5">5점</option>
                                         </select>
                                         <div align="right">
-                                            <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 5px">
+                                            <button class="btn btn-outline-dark btn-sm"
+                                                    style="width: 100%; margin-top: 5px">
                                                 평가하기
                                             </button>
                                         </div>
@@ -160,6 +153,16 @@
                     {{/sessionUser}}
                 </div>
             </div>
+            <!-- 제안하기 버튼 -->
+            <!--
+            {{#sessionUser.isEmployer}}
+            <div class="mt-3">
+                <form action="#" method="post">
+                    <button class="btn btn-primary">제안</button>
+                </form>
+            </div>
+            {{/sessionUser.isEmployer}}
+            -->
         </div>
     </div>
 </div>

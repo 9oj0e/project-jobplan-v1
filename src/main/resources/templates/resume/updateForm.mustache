@@ -1,7 +1,8 @@
+{{>layout/header}}
 <!-- 바디 start -->
 <div class="div-card-container">
     <div class="card div-card">
-        <form action="/resume/{{id}}/update" method="post">
+        <form action="/resume/{{resume.id}}/update" method="post">
             <div class="card-header card-title">
                 <h2>이력서 수정</h2>
             </div>
@@ -76,23 +77,28 @@
                         </tr>
                     </table>
                     <h4 class="card-title">보유 스킬</h4>
-                    <div class="form-control">
-                    <input type="checkbox" name="skill" value="없음">
-                    <span>없음</span>
-                    <input type="checkbox" name="skill" value="java">
-                    <span>java</span>
-                    <input type="checkbox" name="skill" value="javaScript">
-                    <span>javaScript</span>
-                    <input type="checkbox" name="skill" value="Spring">
-                    <span>Spring</span>
-                    <input type="checkbox" name="skill" value="HTML">
-                    <span>HTML</span>
-                    <input type="checkbox" name="skill" value="jQuery">
-                    <span>jQuery</span>
-                    <input type="checkbox" name="skill" value="MySQL">
-                    <span>MySQL</span>
-                    </div>
-                    <br>
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class=form-control style="display: flex; justify-content: space-evenly">
+                                    <input type="checkbox" name="skill" value="java">
+                                    <span>java</span>
+                                    <input type="checkbox" name="skill" value="javaScript">
+                                    <span>javaScript</span>
+                                    <input type="checkbox" name="skill" value="Spring">
+                                    <span>Spring</span>
+                                    <input type="checkbox" name="skill" value="HTML">
+                                    <span>HTML</span>
+                                    <input type="checkbox" name="skill" value="jQuery">
+                                    <span>jQuery</span>
+                                    <input type="checkbox" name="skill" value="MySQL">
+                                    <span>MySQL</span>
+                                    <input type="checkbox" name="skill" value="없음">
+                                    <span>없음</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                     <h4 class="card-title">경력 사항</h4>
                     <table class="table">
                         <tr>

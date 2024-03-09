@@ -130,29 +130,13 @@
                     <h4 class="card-title text-center">{{boardDetail.businessName}}</h4>
                 </div>
                 <div class="card-footer" style="text-align: center;">
-                    <div>
-                        {{#sessionUser}}
-                            {{^isEmployer}}
-                                <!-- 지원하기 버튼 -->
-                                <form action="/board/{{boardDetail.id}}/applyForm" method="get">
-                                    <!--todo 지원시 사라지게-->
-                                    <button class="btn btn-primary">지원</button>
-                                </form>
-                            {{/isEmployer}}
-                        {{/sessionUser}}
-                        {{^sessionUser}}
-                            <form action="/loginForm" method="get">
-                                <button class="btn btn-primary">지원</button>
-                            </form>
-                        {{/sessionUser}}
-                    </div>
                     <!-- 평가 버튼 -->
                     {{#sessionUser}}
                         {{^isEmployer}}
                             {{^hasRated}}
                                 <form action="/board/{{boardDetail.id}}/rate" method="post">
                                     <div>
-                                        <select name="rate" style="width: 100%">
+                                        <select name="rate" style="text-align: center; width: 100%">
                                             <option value="1">1점</option>
                                             <option value="2">2점</option>
                                             <option value="3">3점</option>
@@ -160,7 +144,7 @@
                                             <option value="5">5점</option>
                                         </select>
                                         <div align="right">
-                                            <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 5px">
+                                            <button class="btn btn-outline-dark btn-sm" style="width: 100%; margin-top: 5px">
                                                 평가하기
                                             </button>
                                         </div>
@@ -170,6 +154,26 @@
                         {{/isEmployer}}
                     {{/sessionUser}}
                 </div>
+            </div>
+            <div>
+                {{#sessionUser}}
+                    {{^isEmployer}}
+                        <!-- 지원하기 버튼 -->
+                        <div class="mt-3">
+                            <form action="/board/{{boardDetail.id}}/applyForm" method="get">
+                                <!--todo 지원시 사라지게-->
+                                <button class="btn btn-primary form-control">지원</button>
+                            </form>
+                        </div>
+                    {{/isEmployer}}
+                {{/sessionUser}}
+                {{^sessionUser}}
+                    <div>
+                        <form action="/loginForm" method="get">
+                            <button class="btn btn-primary form-control">지원</button>
+                        </form>
+                    </div>
+                {{/sessionUser}}
             </div>
         </div>
     </div>
