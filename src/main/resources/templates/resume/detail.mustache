@@ -57,21 +57,6 @@
                         <td style="background-color: transparent">{{email}}</td>
                     </tr>
                 </table>
-                <!--평가 - ⭐유저가 지원한 공고의 관리자만 볼 수 있게 해야함⭐-->
-                <form action="/rating/score/{{resumeList.id}}" method="post">
-                    <div class="card-footer">
-                       <select id="rate" name="rate" style="width: 100%">
-                           <option value="1">1점</option>
-                           <option value="2">2점</option>
-                           <option value="3">3점</option>
-                           <option value="4">4점</option>
-                           <option value="5">5점</option>
-                        </select>
-                        <div align="right">
-                           <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 5px">평가하기</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         {{/resumeDetail}}
     </div>
@@ -80,14 +65,14 @@
             <div class="card" style="width:200px">
                 <div class="card-body" style="padding-left: 0; padding-right: 0">
                     <div class="card-title">
-                        {{#avgRate}}
+                        {{#rating}}
                         <table class="table">
                             <tr>
                                 <td style="text-align: end; padding-bottom: 0; padding-top: 0">평점 ⭐</td>
-                                <td style="text-align: start; padding-bottom: 0; padding-top: 0">{{avgRate}}</td>
+                                <td style="text-align: start; padding-bottom: 0; padding-top: 0">{{rating}}</td>
                             </tr>
                         </table>
-                        {{/avgRate}}
+                        {{/rating}}
                     </div>
                     {{#userPic}}
                         <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
@@ -118,6 +103,24 @@
                                 <button class="btn btn-danger">구독 취소</button>
                             </form>
                         {{/subscribe}}
+                        {{#isEmployer}}
+                        {{^hasRated}}
+                        <form action="/resume/{{resumeDetail.id}}/rate" method="post">
+                            <div class="card-footer">
+                                <select id="rate" name="rate" style="width: 100%">
+                                    <option value="1">1점</option>
+                                    <option value="2">2점</option>
+                                    <option value="3">3점</option>
+                                    <option value="4">4점</option>
+                                    <option value="5">5점</option>
+                                </select>
+                                <div align="right">
+                                    <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 5px">평가하기</button>
+                                </div>
+                            </div>
+                        </form>
+                        {{/hasRated}}
+                        {{/isEmployer}}
                     {{/sessionUser}}
                     <!-- 수정 삭제 버튼 -->
                     {{#resumeDetail.resumeOwner}}

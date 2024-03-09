@@ -103,10 +103,13 @@ public class BoardController {
         boardDetailDTO.isBoardOwner(sessionUser);
         request.setAttribute("boardDetail", boardDetailDTO);
 
-        Double avgRate = ratingRepository.findAvgRateBySubjectId(boardDetailDTO.getEmployerId()); // cyj-030809
-        request.setAttribute("avgRate", avgRate);
+        Double rating = ratingRepository.findBySubjectId(boardDetailDTO.getEmployerId()); // cyj-030809
+        request.setAttribute("rating", rating);
 
         if (sessionUser != null) {
+            // 평가 이력 확인
+            Boolean hasRated = ratingRepository.hasRated(sessionUser.getId(), boardDetailDTO.getEmployerId());
+            request.setAttribute("hasRated", hasRated);
             Subscribe subscribe = subscribeRepository.findAllByUserIdBoardId(sessionUser.getId(), boardId);
             if (subscribe != null) {
                 request.setAttribute("subscribe", subscribe);

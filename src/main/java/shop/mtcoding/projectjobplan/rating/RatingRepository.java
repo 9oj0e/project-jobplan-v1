@@ -13,22 +13,42 @@ public class RatingRepository {
     private final EntityManager entityManager;
 
     @Transactional
-    public int upload(int raterId, int subjectId, int rate) {
-        String q = "insert into rating_tb (rater_id, subject_id, rate) values (?, ?, ?)";
+    public int upload(int raterId, int subjectId, int rating) {
+        String q = "insert into rating_tb (rater_id, subject_id, rating) values (?, ?, ?)";
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, raterId);
         query.setParameter(2, subjectId);
-        query.setParameter(3, rate);
+        query.setParameter(3, rating);
 
         return query.executeUpdate();
     }
 
-    @Transactional
-    public Double findAvgRateBySubjectId(int subjectId) {
-        Query query = entityManager.createNativeQuery("select avg(rate) from rating_tb where subject_id = ?");
+    public Double findBySubjectId(int subjectId) {
+        Query query = entityManager.createNativeQuery("select avg(rating) from rating_tb where subject_id = ?");
         query.setParameter(1, subjectId);
 
         return (Double) query.getSingleResult();
+    }
+
+    public boolean hasRated(int raterId, int subjectId) {
+        String q = """
+                SELECT *
+                FROM
+                rating_tb
+                WHERE
+                rater_id = ?
+                AND
+                subject_id = ?
+                """;
+        Query query = entityManager.createNativeQuery(q);
+        query.setParameter(1, raterId);
+        query.setParameter(2, subjectId);
+        try {
+            System.out.println(query.getSingleResult());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Transactional

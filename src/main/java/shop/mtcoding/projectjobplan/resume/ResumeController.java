@@ -7,11 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
-import shop.mtcoding.projectjobplan.board.BoardResponse;
-import shop.mtcoding.projectjobplan.pic.Pic;
 import shop.mtcoding.projectjobplan.pic.PicRepository;
-import shop.mtcoding.projectjobplan.pic.PicRequest;
-import shop.mtcoding.projectjobplan.rating.Rating;
 import shop.mtcoding.projectjobplan.rating.RatingRepository;
 import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
@@ -115,8 +111,6 @@ public class ResumeController {
     @PostMapping("/resume/{resumeId}") // ksj-030810 : Mapping 두번
     public String detail(@PathVariable int resumeId, HttpServletRequest request, Model model) { // ksj-030810 - model
         User sessionUser = (User) session.getAttribute("sessionUser");
-        ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(id)
-
         ResumeResponse.ResumeDetailDTO resumeDetailDTO = resumeRepository.detail(resumeId); // todo : resumeId가 없는 경우 처리
         resumeDetailDTO.isResumeOwner(sessionUser);
         request.setAttribute("resumeDetail", resumeDetailDTO);
@@ -124,11 +118,13 @@ public class ResumeController {
         List<Skill> skillResumeList = skillRepository.findByResumeId(resumeId);
         request.setAttribute("skillResumeList", skillResumeList); // todo : resumeSkillList로 변경
   
-        Double avgRate = ratingRepository.findAvgRateBySubjectId(resume.getUserId()); // ksj-030810
-        model.addAttribute("resumeList", resumeDetailDTO.getId); // ksj-030810
-        model.addAttribute("avgRate", avgRate); // ksj-030810
+        Double rating = ratingRepository.findBySubjectId(resumeDetailDTO.getUserId()); // ksj-030810
+//        model.addAttribute("resumeList", resumeDetailDTO.getId()); // ksj-03081
+        model.addAttribute("rating", rating); // ksj-030810
 
         if (sessionUser != null){
+            Boolean hasRated = ratingRepository.hasRated(sessionUser.getId(), resumeDetailDTO.getUserId());
+            request.setAttribute("hasRated", hasRated);
             Subscribe subscribe = subscribeRepository.findAllByUserIdResumeId(sessionUser.getId(), resumeId);
             request.setAttribute("subscribe", subscribe);
         }

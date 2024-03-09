@@ -12,5 +12,15 @@ public class Rating {
     private Integer id;
     private Integer raterId; // 평가자 ID
     private Integer subjectId; // 피평가자 ID
-    private Integer rate; // 점수
+    private Integer rating; // 점수
+
+    public Integer getRating() { // 소수점 두자리수 까지 출력하게
+        return Math.round(this.rating * 100);
+    }
+    /*
+    private Boolean isRater;
+    public Boolean getIsRater(Integer sessionUserId) { // 평가 기록이 있는지.
+        return sessionUserId == this.raterId ? true : false;
+    }
+    */
 }
