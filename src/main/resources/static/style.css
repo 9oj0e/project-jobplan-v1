@@ -120,12 +120,16 @@ a {
 
 
 /* 바디 start */
+.sidenav-container {
+    height: 1000px;
+    position: relative;
+}
 
 .sidenav {
-    position: fixed;
-    right: 10px;
-    z-index: 1;
-    opacity: 0.7;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    padding-left: 10px;
 }
 
 
@@ -424,4 +428,27 @@ th {
 }
 td {
     vertical-align: middle;
+}
+
+.div-card-container {
+    display: flex;
+    justify-content: center;
+}
+
+.div-card {
+    width: 600px;
+    margin-bottom: 5%;
+}
+
+.card-title {
+    text-align: end;
+}
+
+.card-body-container {
+    width: 80%;
+    justify-content: center;
+}
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
 }

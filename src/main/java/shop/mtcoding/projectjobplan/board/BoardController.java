@@ -1,6 +1,5 @@
 package shop.mtcoding.projectjobplan.board;
 
-import com.sun.tools.javac.Main;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +10,11 @@ import shop.mtcoding.projectjobplan.apply.ApplyRepository;
 import shop.mtcoding.projectjobplan.rating.RatingRepository;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
+import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
+import shop.mtcoding.projectjobplan.subscribe.Subscribe;
+import shop.mtcoding.projectjobplan.subscribe.SubscribeRepository;
 import shop.mtcoding.projectjobplan.user.User;
-import shop.mtcoding.projectjobplan.user.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +22,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
+    private final HttpSession session;
     private final BoardRepository boardRepository;
     private final SkillRepository skillRepository;
     private final RatingRepository ratingRepository;
-    private final HttpSession session;
-  
+    private final SubscribeRepository subscribeRepository;
+
     @GetMapping({"/", "/board"})
     public String index(HttpServletRequest request) {
         List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb();
@@ -47,88 +49,125 @@ public class BoardController {
     }
 
     @GetMapping("/board/listings")
-    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1") int page) {
-        List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page);
-        List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
-        for (BoardResponse.BoardAndUserDTO dto : responseDTO) {
-            if (dto.isEmployer()) {
-                employerList.add(dto);
+    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1") int page,@RequestParam(value = "keyword", required = false) String keyword) {
+
+            if(keyword!=null){
+            List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page,keyword);
+            List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
+            
+            for (BoardResponse.BoardAndUserDTO dto : responseDTO) {
+                if (dto.isEmployer()) {
+                    employerList.add(dto);
+                }
+                request.setAttribute("employerList", employerList);
             }
+            // 페이지네이션 모듈
+            int totalPage = boardRepository.countIsEmployerTrue();
+            PagingUtil paginationHelper = new PagingUtil(totalPage, page);
+
+            request.setAttribute("nextPage", paginationHelper.getNextPage());
+            request.setAttribute("prevPage", paginationHelper.getPrevPage());
+            request.setAttribute("first", paginationHelper.isFirst());
+            request.setAttribute("last", paginationHelper.isLast());
+            request.setAttribute("numberList", paginationHelper.getNumberList());
+
+            return "/board/listings";
+        }else {
+            List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page);
+            List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
+            
+            for (BoardResponse.BoardAndUserDTO dto : responseDTO) {
+                if (dto.isEmployer()) {
+                    employerList.add(dto);
+                }
+                request.setAttribute("employerList", employerList);
+            }
+            // 페이지네이션 모듈
+            int totalPage = boardRepository.countIsEmployerTrue();
+            PagingUtil paginationHelper = new PagingUtil(totalPage, page);
+
+            request.setAttribute("nextPage", paginationHelper.getNextPage());
+            request.setAttribute("prevPage", paginationHelper.getPrevPage());
+            request.setAttribute("first", paginationHelper.isFirst());
+            request.setAttribute("last", paginationHelper.isLast());
+            request.setAttribute("numberList", paginationHelper.getNumberList());
+
+            return "/board/listings";
         }
-        request.setAttribute("employerList", employerList);
-        // 페이지네이션 모듈
-        int totalPage = boardRepository.countIsEmployerTrue();
-        PagingUtil paginationHelper = new PagingUtil(totalPage, page);
-
-        request.setAttribute("nextPage", paginationHelper.getNextPage());
-        request.setAttribute("prevPage", paginationHelper.getPrevPage());
-        request.setAttribute("first", paginationHelper.isFirst());
-        request.setAttribute("last", paginationHelper.isLast());
-        request.setAttribute("numberList", paginationHelper.getNumberList());
-
-        return "/board/listings";
     }
 
-    @GetMapping("/board/{id}")
-    public String detail(@PathVariable int id, HttpServletRequest request) {
+    @GetMapping("/board/{boardId}")
+    public String detail(@PathVariable int boardId, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-        BoardResponse.BoardDetailDTO boardDetailDTO = boardRepository.detail(id);
+        BoardResponse.BoardDetailDTO boardDetailDTO = boardRepository.detail(boardId);
         boardDetailDTO.isBoardOwner(sessionUser);
-
         request.setAttribute("boardDetail", boardDetailDTO);
 
-        // 보드 id로 기업 id 불러오기
-        System.out.println(id); // 18
-        Board board = boardRepository.findEmpIdById(id);
-        int employerId = board.getEmployerId();
-        System.out.println(employerId);
+        Double avgRate = ratingRepository.findAvgRateBySubjectId(boardDetailDTO.getEmployerId()); // cyj-030809
+        request.setAttribute("avgRate", avgRate);
 
-        // 평점 불러오기
-        Double rate = ratingRepository.findAvgRateBySubjectId(employerId);
-        System.out.println(rate);
-        request.setAttribute("rate", rate);
+        if (sessionUser != null) {
+            Subscribe subscribe = subscribeRepository.findAllByUserIdBoardId(sessionUser.getId(), boardId);
+            if (subscribe != null) {
+                request.setAttribute("subscribe", subscribe);
+            }
+        }
+        List<Skill> skillBoardList = skillRepository.findByBoardId(boardId); // todo : boardSkillList로 바꾸기
 
+        request.setAttribute("boardDetail", boardDetailDTO);
+        request.setAttribute("skillBoardList",skillBoardList);
+      
         return "/board/detail";
     }
 
     @PostMapping("/board/upload")
-    public String upload(BoardRequest.SaveDTO requestDTO){
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        boardRepository.save(requestDTO, sessionUser.getId());
-
+    public String upload(BoardRequest.UploadDTO requestDTO){
+       User sessionUser = (User) session.getAttribute("sessionUser");
+       Integer boardId = boardRepository.upload(requestDTO, sessionUser.getId());
+       List<String> skills = requestDTO.getSkill();
+      
+       for(String skill : skills){
+           skillRepository.uploadByEmployerId(skill,sessionUser.getId(),boardId);
+       }
         return "redirect:/user/" + sessionUser.getId();
     }
   
     @GetMapping("/board/uploadForm")
     public String uploadForm() {
+      
         return "/board/uploadForm";
     }
 
-    @PostMapping("/board/{id}/update")
-    public String update(@PathVariable int id, BoardRequest.UpdateDTO requestDTO) {
-        boardRepository.updateById(requestDTO, id);
+    @PostMapping("/board/{boardId}/update")
+    public String update(@PathVariable int boardId, BoardRequest.UpdateDTO requestDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        boardRepository.updateById(requestDTO, boardId);
+        skillRepository.updateByBoardId(requestDTO.getSkill(),boardId,sessionUser.getId());
 
-        return "redirect:/board/" + id;
+        return "redirect:/board/" + boardId;
     }
 
-    @GetMapping("/board/{id}/updateForm")
-    public String updateForm(@PathVariable int id, HttpServletRequest request) {
-        Board board = boardRepository.findById(id);
+    @GetMapping("/board/{boardId}/updateForm")
+    public String updateForm(@PathVariable int boardId, HttpServletRequest request) {
+        Board board = boardRepository.findById(boardId);
         request.setAttribute("board", board);
 
         return "/board/updateForm";
     }
 
-    @PostMapping("/board/{id}/delete")
-    public String delete(@PathVariable int id, HttpServletRequest request) {
+    @PostMapping("/board/{boardId}/delete")
+    public String delete(@PathVariable int boardId, HttpServletRequest request) {
         User user = (User) session.getAttribute("sessionUser");
-        Board board = boardRepository.findById(id);
+        Board board = boardRepository.findById(boardId);
+      
         if (board == null) {
             request.setAttribute("msg", "해당 아이디를 찾을 수 없습니다.");
             request.setAttribute("status", "404");
+          
             return "/error";
         } else {
-            boardRepository.deleteById(id);
+            boardRepository.deleteById(boardId);
+          
             return "redirect:/user/" + user.getId();
         }
     }
