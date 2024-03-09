@@ -1,6 +1,43 @@
 {{>layout/header}}
 <!-- 바디 start -->
 <div class="div-card-container">
+    <div class="sidenav-container">
+        <div class="sidenav">
+            <!-- 수정 삭제 버튼 -->
+            {{#boardDetail.boardOwner}}
+                <div class="mb-3">
+                    <form action="/board/{{boardDetail.id}}/updateForm" method="get">
+                        <button class="btn btn-warning"><i class="fa-regular fa-file-word icon-size"></i></button>
+                    </form>
+                </div>
+                <div class="mb-3">
+                    <form action="/board/{{boardDetail.id}}/delete" method="post"
+                          onsubmit="return false">
+                        <button class="btn btn-danger"><i class="fa-regular fa-trash-can icon-size"></i></button>
+                    </form>
+                </div>
+            {{/boardDetail.boardOwner}}
+            <!-- 구독하기 버튼 -->
+            {{^boardDetail.boardOwner}}
+                {{#sessionUser}}
+                    {{^subscribe}}
+                        <div class="mb-3">
+                            <form action="/board/{{boardDetail.id}}/subscribe" method="post">
+                                <button class="btn btn-outline-dark"><i class="fa-regular fa-bookmark icon-size"></i></button>
+                            </form>
+                        </div>
+                    {{/subscribe}}
+                    {{#subscribe}}
+                        <div class="mb-3">
+                            <form action="/board/{{boardDetail.id}}/unsubscribe" method="post">
+                                <button class="btn btn-outline-dark"><i class="fa-solid fa-bookmark icon-size"></i></button>
+                            </form>
+                        </div>
+                    {{/subscribe}}
+                {{/sessionUser}}
+            {{/boardDetail.boardOwner}}
+        </div>
+    </div>
     <div class="card div-card">
         {{#boardDetail}}
             <div class="card-header card-title">
@@ -93,17 +130,6 @@
                                     <!--todo 지원시 사라지게-->
                                     <button class="btn btn-primary">지원</button>
                                 </form>
-                                <!-- 구독하기 버튼 -->
-                                {{^subscribe}}
-                                    <form action="/board/{{boardDetail.id}}/subscribe" method="post">
-                                        <button class="btn btn-success">구독</button>
-                                    </form>
-                                {{/subscribe}}
-                                {{#subscribe}}
-                                    <form action="/board/{{boardDetail.id}}/unsubscribe" method="post">
-                                        <button class="btn btn-danger">구독 취소</button>
-                                    </form>
-                                {{/subscribe}}
                             {{/isEmployer}}
                         {{/sessionUser}}
                         {{^sessionUser}}
@@ -112,23 +138,12 @@
                             </form>
                         {{/sessionUser}}
                     </div>
-                    <!-- 수정 삭제 버튼 -->
-                    <div class="btn-container">
-                        {{#boardDetail.boardOwner}}
-                            <form action="/board/{{boardDetail.id}}/updateForm" method="get">
-                                <button class="btn btn-warning">수정</button>
-                            </form>
-                            <form action="/board/{{boardDetail.id}}/delete" method="post">
-                                <button class="btn btn-danger">삭제</button>
-                            </form>
-                        {{/boardDetail.boardOwner}}
-                    </div>
                     <!-- 평가 버튼 -->
                     {{#sessionUser}}
                         {{^isEmployer}}
                             {{^hasRated}}
                                 <form action="/board/{{boardDetail.id}}/rate" method="post">
-                                    <div class="card-footer">
+                                    <div>
                                         <select name="rate" style="width: 100%">
                                             <option value="1">1점</option>
                                             <option value="2">2점</option>

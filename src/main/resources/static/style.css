@@ -126,10 +126,10 @@ a {
 }
 
 .sidenav {
-    position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 10px;
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 
@@ -448,7 +448,12 @@ td {
     width: 80%;
     justify-content: center;
 }
+
 .btn-container {
     display: flex;
     justify-content: space-evenly;
+}
+
+.icon-size {
+    font-size: 20pt;
 }
