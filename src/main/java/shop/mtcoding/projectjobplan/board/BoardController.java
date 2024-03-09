@@ -49,12 +49,15 @@ public class BoardController {
     }
 
     @GetMapping("/board/listings")
-    public String listings(HttpServletRequest request, @RequestParam(defaultValue = "1") int page,@RequestParam(value = "keyword", required = false) String keyword) {
+    public String listings(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            HttpServletRequest request) {
 
-            if(keyword!=null){
-            List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page,keyword);
+        if (keyword != null) {
+            List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page, keyword);
             List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
-            
+
             for (BoardResponse.BoardAndUserDTO dto : responseDTO) {
                 if (dto.isEmployer()) {
                     employerList.add(dto);
@@ -72,10 +75,10 @@ public class BoardController {
             request.setAttribute("numberList", paginationHelper.getNumberList());
 
             return "/board/listings";
-        }else {
+        } else {
             List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findByBoardtbAndUsertb(page);
             List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
-            
+
             for (BoardResponse.BoardAndUserDTO dto : responseDTO) {
                 if (dto.isEmployer()) {
                     employerList.add(dto);
@@ -99,13 +102,19 @@ public class BoardController {
     @GetMapping("/board/{boardId}")
     public String detail(@PathVariable int boardId, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-        BoardResponse.BoardDetailDTO boardDetailDTO = boardRepository.detail(boardId);
+        BoardResponse.BoardDetailDTO boardDetailDTO = boardRepository.detail(boardId); // todo : boardId가 없는 경우 처리
         boardDetailDTO.isBoardOwner(sessionUser);
         request.setAttribute("boardDetail", boardDetailDTO);
 
-        Double rating = ratingRepository.findBySubjectId(boardDetailDTO.getEmployerId()); // cyj-030809
-        request.setAttribute("rating", rating);
+        List<Skill> boardSkillList = skillRepository.findByBoardId(boardId);
+        request.setAttribute("skillList", boardSkillList);
 
+        Double rawRating = ratingRepository.findBySubjectId(boardDetailDTO.getEmployerId()); // cyj-030809
+        if (rawRating != null) {
+            // 소수점 한자리수 까지 출력
+            String rating = String.format("%.1f", rawRating);
+            request.setAttribute("rating", rating);
+        }
         if (sessionUser != null) {
             // 평가 이력 확인
             Boolean hasRated = ratingRepository.hasRated(sessionUser.getId(), boardDetailDTO.getEmployerId());
@@ -115,29 +124,25 @@ public class BoardController {
                 request.setAttribute("subscribe", subscribe);
             }
         }
-        List<Skill> skillBoardList = skillRepository.findByBoardId(boardId); // todo : boardSkillList로 바꾸기
 
-        request.setAttribute("boardDetail", boardDetailDTO);
-        request.setAttribute("skillBoardList",skillBoardList);
-      
         return "/board/detail";
     }
 
     @PostMapping("/board/upload")
-    public String upload(BoardRequest.UploadDTO requestDTO){
-       User sessionUser = (User) session.getAttribute("sessionUser");
-       Integer boardId = boardRepository.upload(requestDTO, sessionUser.getId());
-       List<String> skills = requestDTO.getSkill();
-      
-       for(String skill : skills){
-           skillRepository.uploadByEmployerId(skill,sessionUser.getId(),boardId);
-       }
+    public String upload(BoardRequest.UploadDTO requestDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        Integer boardId = boardRepository.upload(requestDTO, sessionUser.getId());
+        List<String> skills = requestDTO.getSkill();
+
+        for (String skill : skills) {
+            skillRepository.uploadByEmployerId(skill, sessionUser.getId(), boardId);
+        }
         return "redirect:/user/" + sessionUser.getId();
     }
-  
+
     @GetMapping("/board/uploadForm")
     public String uploadForm() {
-      
+
         return "/board/uploadForm";
     }
 
@@ -145,7 +150,7 @@ public class BoardController {
     public String update(@PathVariable int boardId, BoardRequest.UpdateDTO requestDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         boardRepository.updateById(requestDTO, boardId);
-        skillRepository.updateByBoardId(requestDTO.getSkill(),boardId,sessionUser.getId());
+        skillRepository.updateByBoardId(requestDTO.getSkill(), boardId, sessionUser.getId());
 
         return "redirect:/board/" + boardId;
     }
@@ -162,15 +167,15 @@ public class BoardController {
     public String delete(@PathVariable int boardId, HttpServletRequest request) {
         User user = (User) session.getAttribute("sessionUser");
         Board board = boardRepository.findById(boardId);
-      
+
         if (board == null) {
             request.setAttribute("msg", "해당 아이디를 찾을 수 없습니다.");
             request.setAttribute("status", "404");
-          
+
             return "/error";
         } else {
             boardRepository.deleteById(boardId);
-          
+
             return "redirect:/user/" + user.getId();
         }
     }

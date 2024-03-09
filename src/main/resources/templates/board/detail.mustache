@@ -28,12 +28,12 @@
                 </table>
                 <h4 class="card-title">우대 스킬</h4>
                 <div class="form-control mb-3">
-                    {{#skillBoardList}}
+                    {{#skillList}}
                         <btn class="btn btn-light">{{skillName}}</btn>
-                    {{/skillBoardList}}
-                    {{^skillBoardList}}
+                    {{/skillList}}
+                    {{^skillList}}
                         <btn class="btn btn-outline-light form-control">없음</btn>
-                    {{/skillBoardList}}
+                    {{/skillList}}
                 </div>
                 <h4 class="card-title">상세 내용</h4>
                 <div class="form-control mb-3" style="height: 300px">{{content}}</div>

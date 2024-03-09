@@ -13,12 +13,12 @@
                 <div class="form-control mb-3" style="height: 100px">{{career}}</div>
                 <h4 class="card-title">보유 스킬</h4>
                 <div class="form-control mb-3">
-                    {{#skillResumeList}}
+                    {{#skillList}}
                         <btn class="btn btn-light">{{skillName}}</btn>
-                    {{/skillResumeList}}
-                    {{^skillResumeList}}
+                    {{/skillList}}
+                    {{^skillList}}
                         <btn class="btn btn-outline-light form-control">없음</btn>
-                    {{/skillResumeList}}
+                    {{/skillList}}
                 </div>
                 <h4 class="card-title">개인 정보</h4>
                 <table class="table">

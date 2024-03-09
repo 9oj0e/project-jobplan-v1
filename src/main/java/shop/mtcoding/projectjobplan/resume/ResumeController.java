@@ -115,13 +115,16 @@ public class ResumeController {
         resumeDetailDTO.isResumeOwner(sessionUser);
         request.setAttribute("resumeDetail", resumeDetailDTO);
 
-        List<Skill> skillResumeList = skillRepository.findByResumeId(resumeId);
-        request.setAttribute("skillResumeList", skillResumeList); // todo : resumeSkillList로 변경
+        List<Skill> resumeSkillList = skillRepository.findByResumeId(resumeId);
+        request.setAttribute("skillList", resumeSkillList);
   
-        Double rating = ratingRepository.findBySubjectId(resumeDetailDTO.getUserId()); // ksj-030810
-//        model.addAttribute("resumeList", resumeDetailDTO.getId()); // ksj-03081
-        model.addAttribute("rating", rating); // ksj-030810
-
+        Double rawRating = ratingRepository.findBySubjectId(resumeDetailDTO.getUserId()); // ksj-030810
+        if (rawRating != null) {
+            // 소수점 한자리수까지 출력
+            String rating = String.format("%.1f", rawRating);
+            // model.addAttribute("resumeList", resumeDetailDTO.getId()); // ksj-03081
+            model.addAttribute("rating", rating); // ksj-030810
+        }
         if (sessionUser != null){
             Boolean hasRated = ratingRepository.hasRated(sessionUser.getId(), resumeDetailDTO.getUserId());
             request.setAttribute("hasRated", hasRated);
