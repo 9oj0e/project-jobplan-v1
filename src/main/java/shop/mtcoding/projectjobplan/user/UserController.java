@@ -14,6 +14,7 @@ import shop.mtcoding.projectjobplan.board.BoardRepository;
 import shop.mtcoding.projectjobplan.pic.Pic;
 import shop.mtcoding.projectjobplan.pic.PicRepository;
 import shop.mtcoding.projectjobplan.pic.PicRequest;
+import shop.mtcoding.projectjobplan.rating.RatingRepository;
 import shop.mtcoding.projectjobplan.resume.Resume;
 import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.skill.Skill;
@@ -25,11 +26,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class UserController {
+    private final HttpSession session;
     private final UserRepository userRepository;
     private final ResumeRepository resumeRepository;
     private final BoardRepository boardRepository;
     private final ApplyRepository applyRepository;
-    private final HttpSession session;
+    private final RatingRepository ratingRepository;
     private final PicRepository picRepository;
 
     @GetMapping("/user/joinSelection")
@@ -89,13 +91,19 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping({"/user/{userId}", "/user/{sessionUserId}/{boardId}"})
+    @GetMapping({"/user/{userId}", "/user/{userId}/{boardId}"})
     public String profile(HttpServletRequest request,
                           @PathVariable int userId,
                           @PathVariable(required = false) Integer boardId) {
         User user = userRepository.findById(userId);
-
         request.setAttribute("user", user);
+
+        Double rawRating = ratingRepository.findBySubjectId(user.getId()); // cyj-030809
+        if (rawRating != null) { // 평점 출력
+            // 소수점 한자리수 까지 출력
+            String rating = String.format("%.1f", rawRating);
+            request.setAttribute("rating", rating);
+        }
 
         // 지원 삭제 (개인, 지원 취소)
 
