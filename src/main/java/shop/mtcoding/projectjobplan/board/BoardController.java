@@ -6,6 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projectjobplan._core.PagingUtil;
+import shop.mtcoding.projectjobplan.apply.ApplyRepository;
+import shop.mtcoding.projectjobplan.rating.RatingRepository;
+import shop.mtcoding.projectjobplan.resume.Resume;
+import shop.mtcoding.projectjobplan.resume.ResumeRepository;
 import shop.mtcoding.projectjobplan.skill.Skill;
 import shop.mtcoding.projectjobplan.skill.SkillRepository;
 import shop.mtcoding.projectjobplan.subscribe.Subscribe;
@@ -18,10 +22,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
+    private final HttpSession session;
     private final BoardRepository boardRepository;
     private final SkillRepository skillRepository;
+    private final RatingRepository ratingRepository;
     private final SubscribeRepository subscribeRepository;
-    private final HttpSession session;
 
     @GetMapping({"/", "/board"})
     public String index(HttpServletRequest request) {
@@ -98,13 +103,16 @@ public class BoardController {
         boardDetailDTO.isBoardOwner(sessionUser);
         request.setAttribute("boardDetail", boardDetailDTO);
 
+        Double avgRate = ratingRepository.findAvgRateBySubjectId(boardDetailDTO.getEmployerId()); // cyj-030809
+        request.setAttribute("avgRate", avgRate);
+
         if (sessionUser != null) {
             Subscribe subscribe = subscribeRepository.findAllByUserIdBoardId(sessionUser.getId(), boardId);
             if (subscribe != null) {
                 request.setAttribute("subscribe", subscribe);
             }
         }
-        List<Skill> skillBoardList = skillRepository.findByBoardId(boardId);
+        List<Skill> skillBoardList = skillRepository.findByBoardId(boardId); // todo : boardSkillList로 바꾸기
 
         request.setAttribute("boardDetail", boardDetailDTO);
         request.setAttribute("skillBoardList",skillBoardList);

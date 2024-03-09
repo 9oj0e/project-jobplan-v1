@@ -246,6 +246,14 @@ public class BoardRepository {
 
     }
 
+    public Board findEmpIdById(int id) {
+        String q = "select * from board_tb where id = ?";
+        Query query = entityManager.createNativeQuery(q, Board.class);
+        query.setParameter(1, id);
+
+        return (Board) query.getSingleResult();
+    }
+
     public Board findById(Integer id) {
         String q = "select * from board_tb where id = ?";
         Query query = entityManager.createNativeQuery(q, Board.class);
