@@ -5,15 +5,19 @@
         <div class="sidenav">
             <!-- 수정 삭제 버튼 -->
             {{#resumeDetail.resumeOwner}}
-                <div class="mb-3">
+                <div class="mb-3"> <!-- 수정 하기 -->
                     <form action="/resume/{{resumeDetail.id}}/updateForm" method="get">
-                        <button class="btn btn-warning"><i class="fa-regular fa-file-word icon-size"></i></button>
+                        <button class="btn btn-warning">
+                            <i class="fa-regular fa-file-word icon-size"></i>
+                        </button>
                     </form>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3"> <!-- 삭제 하기 -->
                     <form action="/resume/{{resumeDetail.id}}/delete" method="post"
                           onsubmit="return false">
-                        <button class="btn btn-danger"><i class="fa-regular fa-trash-can icon-size"></i></button>
+                        <button class="btn btn-danger">
+                            <i class="fa-regular fa-trash-can icon-size"></i>
+                        </button>
                     </form>
                 </div>
             {{/resumeDetail.resumeOwner}}
@@ -21,17 +25,20 @@
                 <!-- 구독하기 버튼 -->
                 {{#sessionUser}}
                     {{^subscribe}}
-                        <div class="mb-3">
+                        <div class="mb-3"> <!-- 구독하기 -->
                             <form action="/resume/{{resumeDetail.id}}/subscribe" method="post">
-                                <button class="btn btn-outline-dark"><i class="fa-regular fa-bookmark icon-size"></i>
+                                <button class="btn btn-outline-dark">
+                                    <i class="fa-regular fa-bookmark icon-size"></i>
                                 </button>
                             </form>
                         </div>
                     {{/subscribe}}
                     {{#subscribe}}
-                        <div class="mb-3">
+                        <div class="mb-3"> <!-- 구독 취소 -->
                             <form action="/resume/{{resumeDetail.id}}/unsubscribe" method="post">
-                                <button class="btn btn-outline-dark"><i class="fa-solid fa-bookmark icon-size"></i></button>
+                                <button class="btn btn-outline-dark">
+                                    <i class="fa-solid fa-bookmark icon-size"></i>
+                                </button>
                             </form>
                         </div>
                     {{/subscribe}}

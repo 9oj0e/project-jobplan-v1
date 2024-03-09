@@ -1,12 +1,21 @@
 {{>layout/header}}
-<div class="container mt-5">
-    <form action="/upload/{{user.id}}" method="post" enctype="multipart/form-data" class="text-center border border-light p-5">
-        <p class="h4 mb-4">사진 업로드</p>
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFileLang" lang="ko" name="imgFile">
-            <label class="custom-file-label" for="customFileLang"></label>
+<main style="display: flex; justify-content: center">
+    <div class="div-card">
+        <div class="card div-card-container">
+            <form action="/upload/{{user.id}}" method="post" enctype="multipart/form-data">
+                <div class="card-header">
+                    <h1 class="card-title">사진 업로드</h1>
+                </div>
+                <div class="card-body">
+                    <input type="file" class="btn btn-outline-primary form-control" id="customFileLang" lang="ko" name="imgFile">
+                    <label class="custom-file-label" for="customFileLang"></label>
+                </div>
+                <div class="card-footer card-title">
+                    <button class="btn btn-outline-primary" type="submit">업로드</button>
+                </div>
+            </form>
         </div>
-        <button class="btn btn-outline-primary btn-block my-4" type="submit">업로드</button>
-    </form>
-</div>
+    </div>
+</main>
+
 {{>layout/footer}}

@@ -5,51 +5,58 @@
         <div class="div-layout">
             <div class="d-flex justify-content-between">
                 <h5>안녕하세요, {{sessionUser.name}}님</h5>
-                <div style="display: flex; justify-content: space-evenly; width: 120px">
-                    <form action="/user/{{sessionUser.id}}/updateForm">
-                        <button class="btn btn-outline-primary">수정</button>
+                <div style="display: flex; justify-content: space-evenly; width: 150px">
+                    <form action="/user/{{sessionUser.id}}/updateForm"> <!-- 수정 하기 -->
+                        <button class="btn btn-outline-warning">
+                            <i class="fa-solid fa-user-pen icon-size"></i>
+                        </button>
                     </form>
-                    <form action="/user/{{sessionUser.id}}/delete">
-                        <button class="btn btn-primary">탈퇴</button>
+                    <form action="/user/{{sessionUser.id}}/delete"> <!-- 탈퇴 하기 -->
+                        <button class="btn btn-danger">
+                            <i class="fa-solid fa-user-xmark icon-size"></i>
+                        </button>
                     </form>
                 </div>
             </div>
             <div class="div-information">
                 <div>
                     <div class="card mt-5" style="width:200px">
-                        <div class="card-header">
-                            <table class="table">
-                                <tr>
-                                   <td style="text-align: end; padding-bottom: 0; padding-top: 0">평점 ⭐</td>
-                                    <td style="text-align: start; padding-bottom: 0; padding-top: 0">4.5</td>
-                                </tr>
-                            </table>
-                        </div>
-                    {{#userPic}}
-                        <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
-                    {{/userPic}}
-                    {{^userPic}}
-                        {{#userPic2}}
-                            <img class="card-img" src="/upload/{{userPic2}}" onerror="this.src='../images/avatar.png'" style="width:100%">
-                        {{/userPic2}}
-                        {{^userPic2}}
-                            <img class="card-img" src="../images/avatar.png" style="width:100%">
-                        {{/userPic2}}
-                    {{/userPic}}
+                        <table class="table">
+                            <tr>
+                                <td style="text-align: end; padding-bottom: 0; padding-top: 0">평점 ⭐</td>
+                                <td style="text-align: start; padding-bottom: 0; padding-top: 0">4.5</td>
+                            </tr>
+                        </table>
+                        {{#userPic}}
+                            <img class="card-img" src="/upload/{{userPic.imgFilename}}" style="width:100%">
+                        {{/userPic}}
+                        {{^userPic}}
+                            {{#userPic2}}
+                                <img class="card-img" src="/upload/{{userPic2}}"
+                                     onerror="this.src='../images/avatar.png'" style="width:100%">
+                            {{/userPic2}}
+                            {{^userPic2}}
+                                <img class="card-img" src="../images/avatar.png" style="width:100%">
+                            {{/userPic2}}
+                        {{/userPic}}
                         <div class="card-body">
                             <h4>{{user.name}}</h4>
                         </div>
                         <div class="card-footer">
                             <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px">
-                                {{#userPic}}
-                                    <form action="/deleteImg" method="post">
-                                        <input type="hidden" name="userId" value="{{userPic.userId}}">
-                                        <button class="btn btn-primary">삭제</button>
+                                {{^userPic}}
+                                    <form action="/uploadForm/{{user.id}}" method="get"> <!-- 사진 등록 -->
+                                        <button class="btn btn-primary">
+                                            <i class="fa-solid fa-plus icon-size"></i>
+                                        </button>
                                     </form>
                                 {{/userPic}}
-                                {{^userPic}}
-                                    <form action="/uploadForm/{{user.id}}" method="get">
-                                        <button class="btn btn-outline-primary">등록</button>
+                                {{#userPic}}
+                                    <form action="/deleteImg" method="post"> <!-- 사진 삭제 -->
+                                        <input type="hidden" name="userId" value="{{userPic.userId}}">
+                                        <button class="btn btn-outline-primary">
+                                            <i class="fa-solid fa-minus icon-size"></i>
+                                        </button>
                                     </form>
                                 {{/userPic}}
                             </div>
