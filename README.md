@@ -8,6 +8,7 @@
 ## 공고 작성 (구인자)
 ### 1. 회원가입 및 로그인
 ![스크린샷 2024-03-11 112304](https://github.com/9oj0e/project-job-plan/assets/153602328/c52bb95a-a42d-431b-b1f9-2321095c1326)
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/541ff496-eb17-409a-beb8-4350caac0978)
 
 ### 2. 채용공고 작성
 ![image](https://github.com/9oj0e/project-job-plan/assets/153602328/bd44139b-3f23-4057-9eb3-32cca8d008ed)
@@ -17,6 +18,8 @@
 
 ## 이력서 작성 (구직자)
 ### 1. 회원가입 및 로그인
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/27a71287-7fa0-4757-8a69-11ee9a1e8537)
+
 ### 2. 이력서 작성
 ![image](https://github.com/9oj0e/project-job-plan/assets/153602328/d79d6598-7018-453a-8408-f42fce5e4ff0)
 
