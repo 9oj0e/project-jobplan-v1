@@ -39,17 +39,22 @@ public class RatingController {
     @PostMapping("/resume/{resumeId}/rate") //
     public String rateResume(@RequestParam("rate") int rate, @PathVariable int resumeId, Model model) {
         User user = (User) session.getAttribute("sessionUser");
-        Integer raterId = user.getId();
+        if (user.getId() != null) {
+            Integer raterId = user.getId();
 
-        if (raterId != null) {
-            int subjectId = resumeRepository.findById(resumeId).getUserId();
-            ratingRepository.upload(raterId, subjectId, rate);
-            Resume resume = resumeRepository.findById(resumeId);
-            Double rating = ratingRepository.findBySubjectId(resume.getUserId());
-            model.addAttribute("rating", rating);
-            return "redirect:/resume/" + resumeId;
-        } else {
-            return "redirect:/login";
+            if (raterId != null) {
+                int subjectId = resumeRepository.findById(resumeId).getUserId();
+                ratingRepository.upload(raterId, subjectId, rate);
+                Resume resume = resumeRepository.findById(resumeId);
+                Double rating = ratingRepository.findBySubjectId(resume.getUserId());
+                model.addAttribute("rating", rating);
+                return "redirect:/resume/" + resumeId;
+            } else {
+                return "redirect:/login";
+            }
         }
+
+        return "redirect:/login";
+
     }
 }
