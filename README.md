@@ -1,9 +1,10 @@
 # 구인구직 사이트
-프로젝트 Jobplan
 ![2024-03-11 12 13 52](https://github.com/9oj0e/project-job-plan/assets/126438339/f0b0e1f1-e70d-462f-bf9f-c3fdc937c9d3)
 
 # 시연 (영상)
 ## PPT
+[KDT 1차 미니프로젝트 4조 완성.pptx](https://github.com/9oj0e/project-job-plan/files/14553267/KDT.1.4.pptx)
+
 
 # 시연 (핵심 로직)
 ## 공고 작성 (구인자)
