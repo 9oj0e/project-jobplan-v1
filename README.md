@@ -29,6 +29,17 @@
 ## 사진 업로드
 ## 스킬 매칭
 ## 평점
+![평가하기_user1](https://github.com/9oj0e/project-job-plan/assets/129649095/722254f7-55c1-40ec-bf6f-9605d52631a6)
+
+![image](https://github.com/9oj0e/project-job-plan/assets/129649095/f9bcdb31-507f-4d4c-b0c1-63d2bde9ab22)
+
+![image](https://github.com/9oj0e/project-job-plan/assets/129649095/1c878e5c-0893-4a65-82b8-a050d331800e)
+
+![image](https://github.com/9oj0e/project-job-plan/assets/129649095/daccc476-1a02-497b-8d53-52ee48dac76c)
+
+![image](https://github.com/9oj0e/project-job-plan/assets/129649095/d217f161-db33-441e-8d91-b03ecd932dd4)
+
+![image](https://github.com/9oj0e/project-job-plan/assets/129649095/853072a1-43e1-466e-b932-4b926b2a4100)
 ## 구독
 
 # 개발 환경
