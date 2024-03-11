@@ -64,6 +64,7 @@ public class PicController {
             Pic pic = picRepository.findById(id);
             if (userRepository.findById(id).getIsEmployer() != true) {
                 request.getSession().setAttribute("userPic", pic);
+                session.setAttribute("userPic", pic);
             } else {
                 request.getSession().setAttribute("pic", pic);
             }
