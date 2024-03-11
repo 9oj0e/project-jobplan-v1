@@ -1,4 +1,4 @@
-# 구인구직 사이트
+![image](https://github.com/9oj0e/project-job-plan/assets/153582301/9d829e39-c81e-4c18-9419-5a2393671379)# 구인구직 사이트
 ## 프로젝트 목표
 
 # 시연 (영상)
@@ -53,6 +53,19 @@
 ![image](https://github.com/9oj0e/project-job-plan/assets/153602328/7dac7d9d-3814-470a-8b8c-f37b91ffe2b9)
 
 ## 로그아웃
+## 사진 업로드   
+1. 메인페이지 기업별 사진
+  ![image](https://github.com/9oj0e/project-job-plan/assets/153582301/dc1a568d-7ecc-4381-a23c-71ef1c4cb23b)
+
+2. 회원정보 사진 등록
+  ![image](https://github.com/9oj0e/project-job-plan/assets/153582301/7bd0bfdf-b06c-48a3-8cd3-dd8b79dff624)
+  ![image](https://github.com/9oj0e/project-job-plan/assets/153582301/b3277ff5-a048-4db7-ada6-6374780d45b7)
+  ![image](https://github.com/9oj0e/project-job-plan/assets/153582301/da13a425-c2ae-4910-a7db-c4c81cfa25a3)
+  
+3. 회원정보 사진 삭제
+  ![image](https://github.com/9oj0e/project-job-plan/assets/153582301/62098979-9944-409c-9212-0792adc36c17)
+  ![image](https://github.com/9oj0e/project-job-plan/assets/153582301/b61bbf32-1aa2-4e24-9442-5d9ca9a38729)
+
 ![image](https://github.com/9oj0e/project-job-plan/assets/153602328/81315bab-361d-485f-87db-b35b8130da49)
 
 ## 사진 업로드
@@ -143,7 +156,7 @@ table 설계
         - 전체 보기
         - 공고별 보기
   - 채용 공고
-    - 지원하기
+    - 지원하기   
 김정수
 - 이력서
   - 등록
@@ -162,12 +175,12 @@ table 설계
     - 기능 구현
 - 마이 페이지 (기업)
   - 지원자 현황
-    - SQL
+    - SQL   
 류재성
 - 메인 페이지
   - 개인 메인
   - 기업 메인
-  - 페이지네이션
+  - 페이지네이션   
 김성재&최윤정
 - 마이 페이지 (개인)
   - 보기
@@ -184,6 +197,7 @@ table 설계
     - 공고 페이지
     - 이력서 페이지
   - 삭제
+ 
 ### 3단계 (완료)
 조정현&김정수
 - 디버깅 & view 취합
@@ -196,7 +210,7 @@ table 설계
   - 수정
   - 삭제
 - 매칭
-
+    
 김성재&최윤정
 - 평점
   - 개인
