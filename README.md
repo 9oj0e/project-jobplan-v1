@@ -41,14 +41,28 @@
 
 # 시연 (부가 로직)
 ## 개인 정보 수정
-## 채용공고 수정 (구인자)
-## 이력서 수정 (구직자)
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/a4464913-3ff0-4c9c-9fe0-28cd01d9494c)
+
+## 이력서,채용공고 수정
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/f630da40-c5e8-4db9-92bd-e9f1c3833555)
+
 ## 스킬 추가(및 수정)
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/7dac7d9d-3814-470a-8b8c-f37b91ffe2b9)
+
 ## 로그아웃
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/81315bab-361d-485f-87db-b35b8130da49)
+
 ## 사진 업로드
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/cc150522-b2bd-4ea9-94b9-7fb1a07d8390)
+
 ## 스킬 매칭
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/7fec341a-c627-4b2f-b451-09db54ed6356)
+
 ## 평점
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/c4c4f5da-4ec7-44dd-b28a-3c65f4ee39a1)
+
 ## 구독
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/ccc93919-6124-4d64-a547-97a55ef9bb88)
 
 # 개발 환경
 <span>
