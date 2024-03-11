@@ -12,18 +12,32 @@
 ### 2. 채용공고 작성
 ![image](https://github.com/9oj0e/project-job-plan/assets/153602328/bd44139b-3f23-4057-9eb3-32cca8d008ed)
 
-
 ### 3. 작성 공고 확인
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/846fa888-1238-468b-baf1-3927afd98cd8)
+
 ## 이력서 작성 (구직자)
 ### 1. 회원가입 및 로그인
 ### 2. 이력서 작성
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/d79d6598-7018-453a-8408-f42fce5e4ff0)
+
 ### 3. 이력서 확인
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/38bc389a-ae8e-41de-9b63-5441666c5087)
+
 ## 지원
 ### 1. 채용공고 확인 (구직자)
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/97ef033f-a1a7-46b5-85cc-6bc2cccc82bf)
+
 ### 2. 이력서 지원 (구직자)
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/70f1bd4d-2ece-41f1-89c6-fcc5fd04eccf)
+
 ### 3. 지원 현황 확인 (구인자)
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/1b7bb96e-1214-4420-a2af-884e0e9b69a5)
+
 ### 4. 지원서 합격 판별 (구인자)
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/27e68a88-f5ba-41e9-88e1-229b8ea44439)
+
 ### 5. 지원 합격 여부 확인 (구직자)
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/537fd496-d0c5-4ba6-aea1-024f7d7d34cb)
 
 # 시연 (부가 로직)
 ## 개인 정보 수정
