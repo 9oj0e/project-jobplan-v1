@@ -57,9 +57,14 @@
 <img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"/>
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </span>
+<br>
 ## 프로젝트 아키텍쳐 : MVC 설계
 
+
+
 ## 테이블 설계
+![Screenshot_6](https://github.com/9oj0e/project-job-plan/assets/153602328/09a3287a-b0d2-48da-960a-96ddb952d411)
+
 
 ## 진행
 ### 1단계 (완료)
