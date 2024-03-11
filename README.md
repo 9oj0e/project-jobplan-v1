@@ -1,5 +1,6 @@
 ![image](https://github.com/9oj0e/project-job-plan/assets/153582301/9d829e39-c81e-4c18-9419-5a2393671379)# 구인구직 사이트
-## 프로젝트 목표
+## 프로젝트 Jobplan
+![2024-03-11 12 13 52](https://github.com/9oj0e/project-job-plan/assets/126438339/f0b0e1f1-e70d-462f-bf9f-c3fdc937c9d3)
 
 # 시연 (영상)
 ## PPT
