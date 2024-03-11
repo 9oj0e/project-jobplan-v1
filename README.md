@@ -10,6 +10,9 @@
 ![스크린샷 2024-03-11 112304](https://github.com/9oj0e/project-job-plan/assets/153602328/c52bb95a-a42d-431b-b1f9-2321095c1326)
 
 ### 2. 채용공고 작성
+![image](https://github.com/9oj0e/project-job-plan/assets/153602328/bd44139b-3f23-4057-9eb3-32cca8d008ed)
+
+
 ### 3. 작성 공고 확인
 ## 이력서 작성 (구직자)
 ### 1. 회원가입 및 로그인
