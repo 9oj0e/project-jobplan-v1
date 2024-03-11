@@ -58,8 +58,10 @@
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </span>
 <br>
+
 ## 프로젝트 아키텍쳐 : MVC 설계
 
+![image (1)](https://github.com/9oj0e/project-job-plan/assets/153602328/4a1059d5-6080-4683-921d-bd0a92a4197f)
 
 
 ## 테이블 설계
