@@ -150,7 +150,7 @@ a {
 }
 
 .div-recommendation-img-1 {
-    background-image: url(images/chaeyong.jpg);
+    background-image: url(images/maincompany1.png);
     height: 250px;
     background-size: 100% 100%;
     border-radius: 20px;
@@ -158,7 +158,7 @@ a {
 }
 
 .div-recommendation-img-2 {
-    background-image: url(images/chaeyong.jpg);
+    background-image: url(images/maincompany2.png);
     height: 250px;
     background-size: 100% 100%;
     border-radius: 20px;
@@ -166,7 +166,7 @@ a {
 }
 
 .div-recommendation-img-3 {
-    background-image: url(images/chaeyong.jpg);
+    background-image: url(images/maincompany3.png);
     height: 250px;
     background-size: 100% 100%;
     border-radius: 20px;
@@ -245,6 +245,42 @@ a {
     border-radius: 20px;
 
 }
+
+.employer-people-image2 {
+    background-image: url(images/people1.jpg);
+    width: 150px;
+    height: 180px;
+    background-size: 100% 100%;
+    border-radius: 20px;
+
+}
+.employer-people-image3 {
+    background-image: url(images/people2.jpg);
+    width: 150px;
+    height: 180px;
+    background-size: 100% 100%;
+    border-radius: 20px;
+
+}
+
+.employer-people-image4 {
+    background-image: url(images/people3.jpg);
+    width: 150px;
+    height: 180px;
+    background-size: 100% 100%;
+    border-radius: 20px;
+
+}
+
+.employer-people-image5 {
+    background-image: url(images/people4.jpg);
+    width: 150px;
+    height: 180px;
+    background-size: 100% 100%;
+    border-radius: 20px;
+
+}
+
 
 .div-recommendation-people {
     display: grid;
