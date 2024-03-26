@@ -38,14 +38,14 @@ public class UserController {
     private final PicRepository picRepository;
 
     @GetMapping("/api/username-same-check")
-    public @ResponseBody ApiUtil<?> usernameSameCheck(String username){
+    public @ResponseBody ApiUtil<?> usernameSameCheck(String username) {
 
-       User user = userRepository.findByUsername(username);
-       if(user==null){
-           return new ApiUtil<>(false);
-       }else {
-           return new ApiUtil<>(true);
-       }
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return new ApiUtil<>(false);
+        } else {
+            return new ApiUtil<>(true);
+        }
 
     }
 

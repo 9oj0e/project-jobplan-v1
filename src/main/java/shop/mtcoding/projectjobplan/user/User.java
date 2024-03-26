@@ -19,7 +19,7 @@ public class User {
     private String username;
     private String password;
     private String name;
-  
+
     private String birthdate; // Timestamp..
     private char gender; // 'M' or 'F'
     private String phoneNumber;

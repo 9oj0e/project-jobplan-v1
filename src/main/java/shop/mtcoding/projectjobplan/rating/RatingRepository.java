@@ -55,7 +55,7 @@ public class RatingRepository {
     public Rating findAllBySubjectId(Integer subjectId) {
         Query query = entityManager.createNativeQuery("select * from rating_tb where subjectId = ?", Rating.class);
         query.setParameter(1, subjectId);
-      
+
         return (Rating) query.getSingleResult();
     }
 }

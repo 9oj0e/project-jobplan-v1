@@ -20,6 +20,7 @@ public class UserRequest {
         private String employerIdNumber;
         private String businessName;
     }
+
     @Data
     public static class LoginDTO {
         private String username;

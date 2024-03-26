@@ -47,14 +47,14 @@ public class PicController {
 
 
     @PostMapping("/upload/{id}")
-    public String upload(PicRequest.UploadDTO requestDTO, @PathVariable int id, HttpServletRequest request){
+    public String upload(PicRequest.UploadDTO requestDTO, @PathVariable int id, HttpServletRequest request) {
         // 1. 데이터 전달 받고
         MultipartFile imgFile = requestDTO.getImgFile();
         session.getAttribute(String.valueOf(imgFile));
 
         // 2. 파일저장 위치 설정해서 파일을 저장 (UUID 붙여서 롤링)
-        String imgFilename = UUID.randomUUID()+"_"+imgFile.getOriginalFilename();
-        Path imgPath = Paths.get("./upload/"+imgFilename);
+        String imgFilename = UUID.randomUUID() + "_" + imgFile.getOriginalFilename();
+        Path imgPath = Paths.get("./upload/" + imgFilename);
         try {
             Files.write(imgPath, imgFile.getBytes());
 
@@ -74,11 +74,11 @@ public class PicController {
             throw new RuntimeException(e);
         }
 
-        return "redirect:/user/"+id;
+        return "redirect:/user/" + id;
     }
 
     @GetMapping("/uploadForm/{id}")
-    public String uploadForm(@PathVariable int id, HttpServletRequest request){
+    public String uploadForm(@PathVariable int id, HttpServletRequest request) {
         User user = userRepository.findById(id);
         request.setAttribute("user", user);
         return "user/uploadForm";
@@ -91,7 +91,7 @@ public class PicController {
         String imgFilename = pic.getImgFilename();
 
         try {
-            Files.deleteIfExists(Paths.get("./upload/"+imgFilename)); // 이미지 파일 삭제
+            Files.deleteIfExists(Paths.get("./upload/" + imgFilename)); // 이미지 파일 삭제
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -106,8 +106,7 @@ public class PicController {
         }
 
 
-
-        return "redirect:/user/"+userId;
+        return "redirect:/user/" + userId;
 
     }
 

@@ -110,7 +110,8 @@
                         <tr>
                             <td>자기소개서</td>
                             <td>
-                                <textarea name="content" class="form-control" style="height: 300px">{{content}}</textarea>
+                                <textarea name="content" class="form-control"
+                                          style="height: 300px">{{content}}</textarea>
                             </td>
                         </tr>
                     </table>
@@ -118,7 +119,9 @@
             </div>
             <div class="card-footer">
                 <div class="button-post-cancel">
-                    <button type="button" onclick="location.href='/user/{{sessionUser.id}}'" class="btn btn-outline-dark">취소</button>
+                    <button type="button" onclick="location.href='/user/{{sessionUser.id}}'"
+                            class="btn btn-outline-dark">취소
+                    </button>
                     <button type="submit" class="btn btn-outline-dark">수정</button>
                 </div>
             </div>

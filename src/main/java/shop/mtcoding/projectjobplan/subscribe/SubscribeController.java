@@ -27,12 +27,12 @@ public class SubscribeController {
             List<SubscribeResponse.ToUserDTO> subscribeList = subscribeRepository.findByUserId(sessionUserId);
             request.setAttribute("subscribeList", subscribeList);
 
-            return "/user/subscription";
+            return "user/subscription";
         } else { // 개인 유저 (공고 목록)
             List<SubscribeResponse.ToEmployerDTO> subscribeList = subscribeRepository.findByEmployerId(sessionUserId);
             request.setAttribute("subscribeList", subscribeList);
 
-            return "/employer/subscription";
+            return "employer/subscription";
         }
     }
     // 공고 구독

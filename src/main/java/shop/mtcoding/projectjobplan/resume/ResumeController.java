@@ -80,7 +80,7 @@ public class ResumeController {
             request.setAttribute("last", paginationHelper.isLast());
             request.setAttribute("numberList", paginationHelper.getNumberList());
 
-            return "/resume/listings";
+            return "resume/listings";
 
         } else {
             List<ResumeResponse.ResumeAndUserDTO> responseDTO = resumeRepository.findByResumeAndUser(page);
@@ -103,7 +103,7 @@ public class ResumeController {
             request.setAttribute("last", paginationHelper.isLast());
             request.setAttribute("numberList", paginationHelper.getNumberList());
 
-            return "/resume/listings";
+            return "resume/listings";
         }
     }
 
@@ -117,7 +117,7 @@ public class ResumeController {
 
         List<Skill> resumeSkillList = skillRepository.findByResumeId(resumeId);
         request.setAttribute("skillList", resumeSkillList);
-  
+
         Double rawRating = ratingRepository.findBySubjectId(resumeDetailDTO.getUserId()); // ksj-030810
         if (rawRating != null) {
             // 소수점 한자리수까지 출력
@@ -125,14 +125,14 @@ public class ResumeController {
             // model.addAttribute("resumeList", resumeDetailDTO.getId()); // ksj-03081
             model.addAttribute("rating", rating); // ksj-030810
         }
-        if (sessionUser != null){
+        if (sessionUser != null) {
             Boolean hasRated = ratingRepository.hasRated(sessionUser.getId(), resumeDetailDTO.getUserId());
             request.setAttribute("hasRated", hasRated);
             Subscribe subscribe = subscribeRepository.findAllByUserIdResumeId(sessionUser.getId(), resumeId);
             request.setAttribute("subscribe", subscribe);
         }
 
-        return "/resume/detail";
+        return "resume/detail";
     }
 //    @PostMapping("/resume/{id}")
 //    public String detail(Model model, @PathVariable int id) {
@@ -154,7 +154,7 @@ public class ResumeController {
         Resume resume = resumeRepository.findById(resumeId);
         request.setAttribute("resume", resume);
 
-        return "/resume/updateForm";
+        return "resume/updateForm";
     }
 
     @PostMapping("/resume/{resumeId}/delete")

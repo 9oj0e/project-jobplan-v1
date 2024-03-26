@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 public class BoardResponse {
 
     @Data
-    public static class BoardAndUserDTO{
+    public static class BoardAndUserDTO {
         private Integer id;
         private Integer employerId; // 기업ID
         private String title; // 제목
@@ -31,10 +31,10 @@ public class BoardResponse {
         private boolean isEmployer; // 사업자인지
         private String businessName;
 
-        private String keyword ;
-        private String skillName ;
+        private String keyword;
+        private String skillName;
 
-        public void parseOpeningDate(Timestamp timestamp){
+        public void parseOpeningDate(Timestamp timestamp) {
             // Timestamp -> String
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String timestampString = dateFormat.format(timestamp);
@@ -44,7 +44,8 @@ public class BoardResponse {
                     .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             this.openingDate = dateTime;
         }
-        public void parseClosingDate(Timestamp timestamp){
+
+        public void parseClosingDate(Timestamp timestamp) {
             // Timestamp -> String
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String timestampString = dateFormat.format(timestamp);
@@ -54,7 +55,8 @@ public class BoardResponse {
                     .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             this.closingDate = dateTime;
         }
-        public void parseCreatedAt(Timestamp timestamp){
+
+        public void parseCreatedAt(Timestamp timestamp) {
             // Timestamp -> String
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSS");
             String timestampString = dateFormat.format(timestamp);
@@ -67,7 +69,7 @@ public class BoardResponse {
     }
 
     @Data
-    public static class BoardDetailDTO{
+    public static class BoardDetailDTO {
         private Integer id;
         private String title;
         private String content;
@@ -85,16 +87,18 @@ public class BoardResponse {
         private Integer employerId;
         private Boolean boardOwner;
 
-        public void isBoardOwner(User sessionUser){
-            if(sessionUser == null) boardOwner = false;
+        public void isBoardOwner(User sessionUser) {
+            if (sessionUser == null) boardOwner = false;
             else boardOwner = sessionUser.getId() == employerId;
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        public String getOpeningDate(){
+
+        public String getOpeningDate() {
             return openingDate.toLocalDateTime().format(formatter);
         }
-        public String getClosingDate(){
+
+        public String getClosingDate() {
             return closingDate.toLocalDateTime().format(formatter);
         }
         // ADDRESS BUSINESS_NAME EMAIL NAME PHONE_NUMBER
@@ -110,7 +114,8 @@ public class BoardResponse {
         private Timestamp closingDate;
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        public String getClosingDate(){
+
+        public String getClosingDate() {
             return closingDate.toLocalDateTime().format(formatter);
         }
     }

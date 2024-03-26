@@ -12,7 +12,7 @@ public class PicRepository {
     private final EntityManager em;
 
     @Transactional
-    public void upload(int userId, String imgFilename){
+    public void upload(int userId, String imgFilename) {
         Query query = em.createNativeQuery("insert into pic_tb (user_id, img_filename) values (?,?)");
         query.setParameter(1, userId);
         query.setParameter(2, imgFilename);
@@ -21,7 +21,7 @@ public class PicRepository {
     }
 
     @Transactional
-    public Pic findById(int id){
+    public Pic findById(int id) {
         Query query = em.createNativeQuery("select * from pic_tb", Pic.class);
         return (Pic) query.getSingleResult();
     }

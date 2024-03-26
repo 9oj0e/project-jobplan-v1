@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 @Table(name = "board_tb")
 public class Board {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer employerId; // 게시자 id
     // @Column(nullable = false)
@@ -28,12 +28,12 @@ public class Board {
     private Timestamp createdAt; // 생성일
 
 
-    public String getOpeningDate(){
+    public String getOpeningDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return openingDate.toLocalDateTime().format(formatter);
     }
 
-    public String getClosingDate(){
+    public String getClosingDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return closingDate.toLocalDateTime().format(formatter);
     }

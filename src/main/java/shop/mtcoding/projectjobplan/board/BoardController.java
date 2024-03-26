@@ -40,7 +40,7 @@ public class BoardController {
         }
         request.setAttribute("employerList", employerList);
 
-        return "/index";
+        return "index";
     }
 
     @GetMapping("/board/main")
@@ -95,7 +95,7 @@ public class BoardController {
             request.setAttribute("last", paginationHelper.isLast());
             request.setAttribute("numberList", paginationHelper.getNumberList());
 
-            return "/board/listings";
+            return "board/listings";
         }
     }
 
@@ -125,7 +125,7 @@ public class BoardController {
             }
         }
 
-        return "/board/detail";
+        return "board/detail";
     }
 
     @PostMapping("/board/upload")
@@ -143,7 +143,7 @@ public class BoardController {
     @GetMapping("/board/uploadForm")
     public String uploadForm() {
 
-        return "/board/uploadForm";
+        return "board/uploadForm";
     }
 
     @PostMapping("/board/{boardId}/update")
@@ -160,7 +160,7 @@ public class BoardController {
         Board board = boardRepository.findById(boardId);
         request.setAttribute("board", board);
 
-        return "/board/updateForm";
+        return "board/updateForm";
     }
 
     @PostMapping("/board/{boardId}/delete")

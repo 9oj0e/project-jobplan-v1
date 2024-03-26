@@ -67,24 +67,18 @@ public class ResumeRepository {
         int value = (page - 1) * COUNT;
 
         String q = """
-
-            SELECT\s
-                r.id, r.user_id, r.title, r.content, r.career,\s
-                u.address, u.is_employer, u.name\s
-                FROM\s
-               resume_tb r\s
-               INNER JOIN\s
-              user_tb u\s
-              ON\s
-             r.user_id = u.id\s
-            INNER JOIN\s
-            skill_tb s\s
-            ON\s
-            r.id = s.resume_id\s
-            WHERE\s
-            u.is_employer = false\s
-            AND s.skill_name = ?  ORDER BY r.id DESC LIMIT ?,?
-            """ ;
+                SELECT r.id, r.user_id, r.title, r.content, r.career,
+                u.address, u.is_employer, u.name
+                FROM resume_tb r
+                INNER JOIN user_tb u
+                ON r.user_id = u.id
+                INNER JOIN skill_tb s
+                ON r.id = s.resume_id
+                WHERE u.is_employer = false
+                AND s.skill_name = ?
+                ORDER BY r.id
+                DESC LIMIT ?,?
+                """ ;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1,keyword);
         query.setParameter(2, value);
@@ -115,7 +109,14 @@ public class ResumeRepository {
         int value = (page - 1) * COUNT;
 
         String q = """
-                select r.id,r.user_id,r.title,r.content,r.career,u.address,u.is_employer,u.name  from resume_tb r inner join user_tb u on r.user_id = u.id where u.is_employer =false order by id desc limit ?,?;
+                SELECT r.id, r.user_id, r.title, r.content, r.career,
+                u.address, u.is_employer, u.name
+                FROM resume_tb r
+                INNER JOIN user_tb u
+                ON r.user_id = u.id
+                WHERE u.is_employer = false
+                ORDER BY id
+                DESC limit ?,?;
                 """;
         Query query = entityManager.createNativeQuery(q);
         query.setParameter(1, value);

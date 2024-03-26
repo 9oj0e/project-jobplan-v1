@@ -43,11 +43,11 @@ public class ApplyController {
         List<Resume> resumeList = resumeRepository.findByUserId(user.getId());
         request.setAttribute("resumeList", resumeList);
 
-        return "/apply/applyForm";
+        return "apply/applyForm";
     }
 
     @PostMapping("/board/{boardId}/apply")
-    public String apply(@PathVariable int boardId, ApplyRequest.UploadDTO requestDTO){
+    public String apply(@PathVariable int boardId, ApplyRequest.UploadDTO requestDTO) {
         System.out.println("영향 받은 행 : " + applyRepository.upload(requestDTO));
         return "redirect:/board/" + boardId;
     }

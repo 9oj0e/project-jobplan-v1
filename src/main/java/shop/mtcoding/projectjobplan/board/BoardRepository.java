@@ -81,7 +81,6 @@ public class BoardRepository {
     }
 
 
-
     public List<BoardResponse.BoardAndUserDTO> findBoardTbAndUserTb(int page, String keyword) {
         int value = (page - 1) * Constant.PAGING_COUNT;
         String q = """
@@ -118,7 +117,7 @@ public class BoardRepository {
                 DESC LIMIT ?,?                        
                 """;
         Query query = entityManager.createNativeQuery(q);
-        query.setParameter(1,keyword);
+        query.setParameter(1, keyword);
         query.setParameter(2, value);
         query.setParameter(3, Constant.PAGING_COUNT);
 
@@ -283,8 +282,8 @@ public class BoardRepository {
                 """;
         Query query1 = entityManager.createNativeQuery(q1);
         Integer boardId = (Integer) query1.getSingleResult();
-        return boardId ;
-   }
+        return boardId;
+    }
    /*
     public List<Board> findAll() {
         String q = "select * from board_tb order by id desc";
