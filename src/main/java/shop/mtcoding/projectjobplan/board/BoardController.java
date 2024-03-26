@@ -45,7 +45,7 @@ public class BoardController {
 
     @GetMapping("/board/main")
     public String main() {
-        return "/board/main";
+        return "board/main";
     }
 
     @GetMapping("/board/listings")
@@ -74,7 +74,7 @@ public class BoardController {
             request.setAttribute("last", paginationHelper.isLast());
             request.setAttribute("numberList", paginationHelper.getNumberList());
 
-            return "/board/listings";
+            return "board/listings";
         } else {
             List<BoardResponse.BoardAndUserDTO> responseDTO = boardRepository.findBoardTbAndUserTb(page);
             List<BoardResponse.BoardAndUserDTO> employerList = new ArrayList<>();
@@ -172,7 +172,7 @@ public class BoardController {
             request.setAttribute("msg", "해당 아이디를 찾을 수 없습니다.");
             request.setAttribute("status", "404");
 
-            return "/error";
+            return "error";
         } else {
             boardRepository.deleteById(boardId);
 

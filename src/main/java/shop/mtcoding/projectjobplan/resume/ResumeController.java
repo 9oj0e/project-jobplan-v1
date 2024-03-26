@@ -52,7 +52,7 @@ public class ResumeController {
 
     @GetMapping("/resume/main")
     public String main() {
-        return "/resume/main";
+        return "resume/main";
     }
 
     @GetMapping("/resume/listings")
@@ -146,7 +146,7 @@ public class ResumeController {
 
     @GetMapping("/resume/uploadForm")
     public String uploadForm() {
-        return "/resume/uploadForm";
+        return "resume/uploadForm";
     }
 
     @GetMapping("/resume/{resumeId}/updateForm")

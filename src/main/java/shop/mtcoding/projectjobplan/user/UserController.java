@@ -51,17 +51,17 @@ public class UserController {
 
     @GetMapping("/user/joinSelection")
     public String joinSelection() {
-        return "/user/joinSelection";
+        return "user/joinSelection";
     }
 
     @GetMapping("/user/joinForm")
     public String joinForm() {
-        return "/user/joinForm";
+        return "user/joinForm";
     }
 
     @GetMapping("/employer/joinForm")
     public String employerJoinForm() {
-        return "/employer/joinForm";
+        return "employer/joinForm";
     }
 
     @PostMapping("/join")
@@ -81,7 +81,7 @@ public class UserController {
 
     @GetMapping("/loginForm")
     public String loginForm() {
-        return "/user/loginForm";
+        return "user/loginForm";
     }
 
     @PostMapping("/login")
@@ -137,7 +137,7 @@ public class UserController {
                 request.setAttribute("applicationList", applicationList);
             }
 
-            return "/employer/profile";
+            return "employer/profile";
         } else {
             // 지원 현황 조회
             List<Resume> resumeList = resumeRepository.findByUserId(user.getId());
@@ -145,7 +145,7 @@ public class UserController {
             List<ApplyResponse.ToUserDTO> applyList = applyRepository.findByUserId(userId);
             request.setAttribute("applyList", applyList);
 
-            return "/user/profile";
+            return "user/profile";
         }
     }
 
@@ -156,9 +156,9 @@ public class UserController {
 
         // 기업 회원인지..
         if (user.getIsEmployer())
-            return "/employer/updateForm";
+            return "employer/updateForm";
         else
-            return "/user/updateForm";
+            return "user/updateForm";
     }
 
     @PostMapping("/user/{userId}/update")
